@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""
+Whiterun Location Triggers
+
+This module handles location-based triggers for Whiterun and its districts.
+It provides contextual events, NPC interactions, and companion commentary
+specific to Whiterun Hold.  When the Battle of Whiterun is active, district
+text and companion barks switch to siege context keyed to the current stage.
+"""
+
+from .trigger_utils import is_companion_present
+
+
+def whiterun_location_triggers(loc, campaign_state):
+    """
+    Generate location-specific triggers for Whiterun locations.
+    
+    Args:
+        loc: Current location string (e.g., "whiterun", "whiterun_plains_district")
+        campaign_state: Dictionary containing campaign state including companions
+        
+    Returns:
+        List of event strings to be narrated to players
+    """
+    events = []
+    
+    # Normalize location for case-insensitive matching
+    loc_lower = str(loc).lower()
+
+    flags = campaign_state.setdefault("scene_flags", {})
+
+    # ------------------------------------------------------------------
+    # Siege state detection
+    # ------------------------------------------------------------------
+    cw_state = campaign_state.get("civil_war_state", {})
+    battle_status = cw_state.get("battle_of_whiterun_status", "")
+    siege_active = battle_status == "active"
+    battle_stage = int(cw_state.get("battle_of_whiterun_stage", 0))
+    battle_faction = str(cw_state.get("battle_of_whiterun_faction", "")).lower()
+
+    if siege_active:
+        # Emit the universal siege header
+        faction_label = battle_faction.capitalize() if battle_faction else "Unknown"
+        events.append(
+            f"[Battle of Whiterun | {faction_label} | Stage {battle_stage}/5]"
+        )
+
+    # ------------------------------------------------------------------
+    # District-specific triggers - siege vs. peacetime text
+    # ------------------------------------------------------------------
+    if "plains" in loc_lower and "whiterun" in loc_lower:
+        if siege_active:
+            if battle_stage >= 3:
+                events.append(
+                    "The Plains District is a war zone. Market stalls are overturned, "
+                    "fires lick at the Bannered Mare's eaves, and Imperial and Stormcloak "
+                    "dead share the cobblestones. Every shadow might be an ambush."
+                )
+            else:
+                events.append(
+                    "The Plains District is on edge. Merchants have shuttered their stalls "
+                    "and armed Whiterun guards patrol in force. The distant sound of battle "
+                    "echoes off the stone walls."
+                )
+        else:
+            events.append(
+                "You enter the bustling Plains District. Merchants call out their wares, "
+                "and the smell of fresh bread wafts from the Bannered Mare."
+            )
+
+    elif "wind" in loc_lower and "whiterun" in loc_lower:
+        if siege_active:
+            if battle_stage >= 4:
+                events.append(
+                    "The Wind District is contested. The Gildergreen stands witness to the "
+                    "fighting below it; its branches are speckled with ash. Jorrvaskr's doors "
+                    "are barred, and the clash of steel rings where prayers once echoed."
+                )
+            else:
+                events.append(
+                    "The Wind District is braced for violence. Citizens have retreated indoors "
+                    "and the Temple of Kynareth's healers move urgently between the wounded. "
+                    "The Gildergreen sways as if it knows what is coming."
+                )
+        else:
+            events.append(
+                "The Wind District stretches before you. The Gildergreen's branches sway "
+                "gently, and Jorrvaskr's mead hall stands proud among the homes."
+            )
+
+    elif "cloud" in loc_lower and "whiterun" in loc_lower:
+        if siege_active:
+            if battle_stage >= 1:
+                events.append(
+                    "The Cloud District is locked down. Dragonsreach's great doors are "
+                    "sealed from within; Imperial guards hold the bridge chokepoint. "
+                    "The air smells of smoke and drawn steel."
+                )
+            else:
+                events.append(
+                    "You ascend to the Cloud District under a sky heavy with tension. "
+                    "Dragonsreach looms above, its banners snapping in a wind carrying "
+                    "the distant sound of war drums."
+                )
+        else:
+            events.append(
+                "You ascend to the Cloud District. Dragonsreach looms above, its ancient "
+                "Nordic architecture a testament to Whiterun's storied past."
+            )
+
+    elif loc_lower.startswith("whiterun"):
+        if siege_active:
+            events.append(
+                "Whiterun is at war. The gates are reinforced with improvised barricades "
+                "and the guards' faces are grim. Every entrance is watched. "
+                "The city you knew is a battlefield now."
+            )
+        else:
+            events.append(
+                "The gates of Whiterun stand before you. Guards watch from the walls as "
+                "merchants and travelers pass through the ancient stone gateway."
+            )
+
+    # ------------------------------------------------------------------
+    # Companion barks - siege context for Hadvar and Ralof
+    # ------------------------------------------------------------------
+    active_companions = campaign_state.get("companions", {}).get("active_companions", [])
+
+    if siege_active:
+        if is_companion_present(active_companions, "hadvar") and "whiterun" in loc_lower:
+            if battle_faction == "imperial":
+                events.append(
+                    'Hadvar scans the street and nods grimly. '
+                    '"Hold the line. We protect these people - that\'s why we\'re here."'
+                )
+            else:
+                events.append(
+                    'Hadvar is tense beside you. He says nothing, but his hand never '
+                    'leaves his sword hilt.'
+                )
+
+        if is_companion_present(active_companions, "ralof") and "whiterun" in loc_lower:
+            if battle_faction == "stormcloak":
+                events.append(
+                    'Ralof grips your arm. "Push forward! Skyrim is watching what we do here."'
+                )
+            else:
+                events.append(
+                    'Ralof surveys the fighting with a complicated expression. He says '
+                    'nothing - but you can see he is weighing every step.'
+                )
+    else:
+        # Peacetime Lydia commentary
+        if is_companion_present(active_companions, "lydia") and loc_lower.startswith("whiterun"):
+            events.append(
+                'Lydia smiles fondly as she looks around. '
+                '"It\'s good to be back in Whiterun, my Thane," she says softly.'
+            )
+
+    # ------------------------------------------------------------------
+    # College of Winterhold tie-in: Farengar research mission
+    # ------------------------------------------------------------------
+    starting_faction = campaign_state.get("starting_faction", "")
+    college_state = campaign_state.get("college_state", {}) or {}
+    active_college_quest = college_state.get("active_quest")
+    farengar_mission_done = flags.get("farengar_college_mission_complete", False)
+
+    if (
+        starting_faction == "college_of_winterhold"
+        and not farengar_mission_done
+        and "whiterun" in loc_lower
+    ):
+        if not flags.get("college_farengar_tie_in_triggered"):
+            events.append(
+                "Tolfdir's instructions echo in your mind: seek out Farengar Secret-Fire "
+                "in Dragonsreach and share the College's dragon-research notes. The Eye of "
+                "Magnus and the dragons may be connected - the College needs to know what "
+                "Farengar has discovered."
+            )
+            flags["college_farengar_tie_in_triggered"] = True
+
+        if siege_active and not flags.get("college_allegiance_choice_prompted"):
+            events.append(
+                "[COLLEGE TIE-IN] The battle erupts before Farengar's briefing is complete. "
+                "Tolfdir's letter sits unread on his desk. You must choose: stand with the "
+                "Imperial defenders (Hadvar) or the Stormcloak attackers (Ralof). "
+                "Your choice will set your civil-war alliance and allow the Farengar mission "
+                "to continue after the battle."
+            )
+            flags["college_allegiance_choice_prompted"] = True
+
+    # ------------------------------------------------------------------
+    # Companions tie-in: Jorrvaskr HQ and Inner Circle
+    # ------------------------------------------------------------------
+    companions_state = campaign_state.get("companions_state", {}) or {}
+    active_companions_quest = companions_state.get("active_quest")
+
+    if "jorrvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
+        if active_companions_quest == "companions_proving_honor":
+            if not flags.get("jorrvaskr_proving_honor_briefing_done"):
+                events.append(
+                    "Jorrvaskr's mead hall rises before you - the ancient home of the Companions. "
+                    "The smell of roasting meat and mead fills the air. Kodlak Whitemane sits at "
+                    "the head table, watching you with measured eyes. The trial awaits."
+                )
+                flags["jorrvaskr_proving_honor_briefing_done"] = True
+
+        elif active_companions_quest == "companions_inner_circle_rites":
+            if not flags.get("jorrvaskr_inner_circle_triggered"):
+                events.append(
+                    "Skjor catches your eye as you enter Jorrvaskr and tilts his head toward "
+                    "the rear of the hall. The Underforge is beneath you - and the secret of the "
+                    "Inner Circle waits below. This is not a conversation for open mead halls."
+                )
+                flags["jorrvaskr_inner_circle_triggered"] = True
+
+        elif active_companions_quest == "companions_kodlak_cure_or_sacrifice":
+            if not flags.get("jorrvaskr_kodlak_dying_triggered"):
+                events.append(
+                    "Jorrvaskr is quiet in a way it should never be. The shield-siblings speak "
+                    "in hushed tones and avert their eyes. Kodlak Whitemane has been struck down. "
+                    "His chamber is ahead. Whatever you choose next will define his legacy."
+                )
+                flags["jorrvaskr_kodlak_dying_triggered"] = True
+
+    # Companions deployment: Kodlak sends PC to defend Whiterun's civilians
+    if (
+        starting_faction == "companions"
+        and active_companions_quest in ("companions_proving_honor", "companions_inner_circle_rites")
+        and siege_active
+        and not flags.get("companions_whiterun_deployment_triggered")
+    ):
+        events.append(
+            "[COMPANIONS TIE-IN] Kodlak's orders echo in your mind: the Companions do not "
+            "choose sides in civil wars, but they do not stand by while innocents burn. "
+            "Defend Whiterun's people - Plains District, Wind District, wherever the battle "
+            "spills into civilian streets. This is not Imperial or Stormcloak work. "
+            "This is honor."
+        )
+        flags["companions_whiterun_deployment_triggered"] = True
+
+    return events

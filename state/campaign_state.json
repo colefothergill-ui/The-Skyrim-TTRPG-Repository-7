@@ -1,0 +1,317 @@
+{
+  "campaign_id": "skyrim_fate_core_001",
+  "campaign_name": "The Elder Scrolls: Skyrim - Fate Core Campaign",
+  "started_date": "4E 201, 17th of Last Seed",
+  "current_act": 1,
+  "active_pc": "pc_oskern_cindershroud",
+  "active_pc_id": "pc_oskern_cindershroud",
+  "session_zero_completed": true,
+  "session_count": 1,
+  "last_updated": "2026-02-20 03:45:09",
+  "starting_location": "Winterhold - College Bridge",
+  "session_start_location": "Saarthal \u2014 Eye Chamber (pre-withdrawal)",
+  "current_scene_id": "A1_S01_SAARTHAL_WITHDRAWAL",
+  "current_location": "Saarthal \u2014 Eye Chamber (pre-withdrawal)",
+  "active_hold": "Winterhold Hold",
+  "current_objective": "Withdraw from Saarthal with the students and the College's notes. Report the Eye of Magnus discovery to Arch-Mage Savos Aren. Keep Ancano boxed into \"observer\" status.",
+  "current_npcs": [
+    "tolfdir",
+    "ancano",
+    "onmund",
+    "brelyna_maryon",
+    "jzargo"
+  ],
+  "scene_flags": {
+    "active_quest_id": "college_under_saarthal",
+    "college_first_lessons_completed": true,
+    "expedition_team": [
+      "onmund",
+      "brelyna_maryon",
+      "jzargo"
+    ],
+    "expedition_lead": "pc_oskern_cindershroud",
+    "compel_resolution": {
+      "atronach_stone_magicka_starved": "Accepted compel; spent Magicka potion to clear immediate exhaustion before departure.",
+      "atronach_hunger_eye_siphon": "Accepted compel; siphoned the Eye via Staff of Cinders, created Measured Eye Siphon and Eye-Fed Reservoir; Ancano was alerted."
+    },
+    "eye_of_magnus_discovered": true,
+    "eye_siphon_completed": true,
+    "eye_fed_reservoir_charges": 2,
+    "ancano_publicly_checked": true,
+    "saarthal_burial_sigil_acquired": true,
+    "threshold_sealed": true,
+    "psijic_warning_pending": true,
+    "end_session_protocol_ran": "2026-02-19 05:12:49"
+  },
+  "scene_last_major_update": "2026-02-15",
+  "scene_aspects": {
+    "College-Issued Field Kit": {
+      "free_invokes": 2,
+      "created_by": "npc_stat_mirabelle_ervine",
+      "notes": "Satchel of scrolls, potions, and emergency gear signed out for Saarthal."
+    },
+    "Shield-Wall Doctrine": {
+      "free_invokes": 0,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Formation order: Oskern+Onmund front with wards; Brelyna mid support; J'zargo rear artillery. Free invoke spent to coordinate the initial shield surge against the draugr ambush at the chokepoint."
+    },
+    "Signed for Their Safety": {
+      "free_invokes": 0,
+      "created_by": "npc_stat_mirabelle_ervine",
+      "notes": "Mirabelle's directive: you are accountable for student welfare on this expedition."
+    },
+    "Measured, Orderly Grit": {
+      "free_invokes": 0,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Voice of the Emperor used at the Saarthal gate to steady the group's nerves and enforce procedure."
+    },
+    "Saarthal Resonance Attunement": {
+      "free_invokes": 0,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Oskern keyed to the ruin's ward-hum, letting him feel pressure shifts before they happen."
+    },
+    "Ward Reforged in Heat": {
+      "free_invokes": 0,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Oskern blasted back frost buildup with heat, layering the frontline ward; invoked during the Fireball funnel in the chokepoint."
+    },
+    "Right Key, Right Now": {
+      "free_invokes": 0,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Boost from ash-salvage: the correct ward-key was found in the sentinel ash (Saarthal Burial Sigil). Boost is spent; the item remains."
+    },
+    "Thalmor Overreach Publicly Checked": {
+      "free_invokes": 2,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "Oskern and Tolfdir boxed Ancano into observer posture in front of the students."
+    },
+    "Ancano's Attention": {
+      "free_invokes": 1,
+      "created_by": "npc_stat_ancano",
+      "notes": "Ancano is now watching you as a political obstacle, not a student."
+    },
+    "Containment Lattice Harmonized": {
+      "free_invokes": 1,
+      "created_by": "npc_stat_tolfdir",
+      "notes": "Tolfdir's diagram stabilizes the barrier. A window of safety has been created."
+    },
+    "Measured Eye Siphon": {
+      "free_invokes": 1,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "A precise, throttled draw. Enough to empower, not enough to rupture."
+    },
+    "Eye-Fed Reservoir": {
+      "free_invokes": 2,
+      "created_by": "pc_oskern_cindershroud",
+      "notes": "A stored charge of Eye energy threaded through the Staff of Cinders into Oskern's matrix."
+    }
+  },
+  "scene_clocks": {
+    "saarthal_expedition_logistics": {
+      "name": "Saarthal Expedition Logistics",
+      "current": 3,
+      "max": 4,
+      "notes": "1=briefed+supplied; 2=arrive; 3=breach wards + reach Eye chamber; 4=secure exit + return report."
+    },
+    "saarthal_expedition_progress": {
+      "name": "Saarthal Expedition Progress",
+      "current": 6,
+      "max": 6,
+      "notes": "6/6 means you have reached the Eye chamber. Extraction/withdrawal begins next scene."
+    }
+  },
+  "player": {
+    "college_member": true,
+    "college_rank": "Adept",
+    "has_staff_of_cinders": true,
+    "staff_level": 2,
+    "artifacts": [
+      "staff_of_cinders"
+    ]
+  },
+  "civil_war_state": {
+    "player_alliance": "neutral",
+    "whiterun_control": "neutral",
+    "battle_of_whiterun_status": "active",
+    "imperial_victories": 0,
+    "stormcloak_victories": 0,
+    "key_battles_completed": [],
+    "faction_relationship": {
+      "imperial_legion": 0,
+      "stormcloaks": 0
+    },
+    "battle_of_whiterun_modifiers": [],
+    "battle_of_whiterun_stage": 1,
+    "battle_of_whiterun_faction": "imperial",
+    "battle_of_whiterun_companion": null,
+    "battle_of_whiterun_last_stage_completed": 0,
+    "hadvar_ralof_rivalry_clock": {
+      "current": 0,
+      "max": 6,
+      "notes": "Ticks during key set-pieces; resolves into kill/capture/turn outcomes."
+    }
+  },
+  "main_quest_state": {
+    "post_alduin_timeline": true,
+    "dragon_crisis_resolved": true,
+    "blades_status": "reformed",
+    "greybeards_relations": "respectful",
+    "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Thalmor conspiracy."
+  },
+  "thalmor_arc": {
+    "thalmor_awareness_of_party": "none",
+    "embassy_infiltrated": false,
+    "elenwen_disposition": "neutral",
+    "thalmor_schemes_discovered": [],
+    "active_plots": [
+      {
+        "plot_id": "undermine_empire",
+        "description": "Thalmor seeks to prolong civil war to weaken both sides",
+        "progress": 0,
+        "clock_segments": 8
+      },
+      {
+        "plot_id": "eliminate_talos_worship",
+        "description": "Continue persecution of Talos worshippers",
+        "progress": 0,
+        "clock_segments": 10
+      }
+    ]
+  },
+  "branching_decisions": {
+    "civil_war_stance": null,
+    "jarl_balgruuf_support": null,
+    "thalmor_embassy_approach": null,
+    "talos_worship_stance": null,
+    "civil_war_entry_contact": "undecided",
+    "battle_of_whiterun_choice": null
+  },
+  "world_consequences": {
+    "towns_affected": [],
+    "npcs_killed": [],
+    "npcs_befriended": [],
+    "major_choices": [
+      "Publicly checked Ancano's attempted authority grab at the Eye chamber."
+    ]
+  },
+  "active_story_arcs": [
+    {
+      "arc_name": "Civil War",
+      "status": "pending",
+      "progress": 0,
+      "next_milestone": "Choose faction alignment"
+    },
+    {
+      "arc_name": "Thalmor Conspiracy",
+      "status": "hidden",
+      "progress": 0,
+      "next_milestone": "Unknown"
+    }
+  ],
+  "companions": {
+    "active_companions": [],
+    "available_companions": [
+      {
+        "npc_id": "npc_stat_hadvar",
+        "name": "Hadvar",
+        "status": "available",
+        "loyalty": 50,
+        "location": "Riverwood or Whiterun",
+        "recruitment_condition": "Party encounters Hadvar and helps with Imperial-related task",
+        "faction_affinity": "imperial_legion"
+      },
+      {
+        "npc_id": "npc_stat_ralof",
+        "name": "Ralof",
+        "status": "available",
+        "loyalty": 50,
+        "location": "Riverwood or Stormcloak camps",
+        "recruitment_condition": "Party encounters Ralof and helps with Stormcloak-related task",
+        "faction_affinity": "stormcloaks"
+      },
+      {
+        "npc_id": "npc_stat_onmund",
+        "name": "Onmund",
+        "status": "available",
+        "loyalty": 43,
+        "location": "College of Winterhold",
+        "recruitment_condition": "Complete Under Saarthal and earn Onmund's respect (keep him alive).",
+        "faction_affinity": "college_of_winterhold"
+      },
+      {
+        "npc_id": "npc_stat_brelyna_maryon",
+        "name": "Brelyna Maryon",
+        "status": "available",
+        "loyalty": 40,
+        "location": "College of Winterhold",
+        "recruitment_condition": "Complete Under Saarthal and earn Brelyna's trust (prove discretion).",
+        "faction_affinity": "college_of_winterhold"
+      },
+      {
+        "npc_id": "npc_stat_jzargo",
+        "name": "J'zargo",
+        "status": "available",
+        "loyalty": 44,
+        "location": "College of Winterhold",
+        "recruitment_condition": "Complete Under Saarthal and keep J'zargo from reckless collateral damage.",
+        "faction_affinity": "college_of_winterhold"
+      }
+    ],
+    "dismissed_companions": [],
+    "companion_relationships": {},
+    "notes": "Companion loyalty ranges from 0-100."
+  },
+  "player_characters": [
+    {
+      "id": "pc_oskern_cindershroud",
+      "name": "Oskern Cindershroud",
+      "player": "Cole",
+      "race": "Imperial",
+      "standing_stone": "The Atronach Stone",
+      "faction_alignment": "neutral"
+    }
+  ],
+  "starting_narrative": "Oskern Cindershroud begins at the College of Winterhold, already a capable Adept with a famous (and politically loaded) name. The first crisis is local: Tolfdir's expedition to Saarthal and the sealed anomaly beneath it. The civil war remains a looming backdrop\u2014Whiterun is still officially neutral, and both sides pressure Jarl Balgruuf\u2014while the Thalmor maneuver in the shadows.",
+  "faction_relationships": {
+    "college_of_winterhold": 32,
+    "tolfdir": 47,
+    "mirabelle_ervine": 35,
+    "companions": 20
+  },
+  "npc_first_impressions": {
+    "test_companion": {
+      "pc_oskern_cindershroud": {
+        "timestamp": "2026-02-20T03:35:21.843835",
+        "disposition": "neutral",
+        "line": "Snow's falling and you're holding fire like it's a lantern. Show-off... useful, though.",
+        "source": "default",
+        "recognition_tags": [
+          "college_of_winterhold",
+          "imperial_noble",
+          "pyromancer",
+          "thuum_user",
+          "atronach_stone_blessed",
+          "cindershroud_name",
+          "staff_of_cinders"
+        ]
+      }
+    }
+  },
+  "relationship_inference": {},
+  "college_state": {
+    "active_quest": null,
+    "completed_quests": [],
+    "quest_progress": {},
+    "eye_instability": 0,
+    "ancano_suspicion": 0,
+    "internal_politics": 0
+  },
+  "companions_state": {
+    "active_quest": null,
+    "completed_quests": [],
+    "quest_progress": {},
+    "embraced_curse": false,
+    "skjor_alive": true,
+    "kodlak_cured": false
+  }
+}
