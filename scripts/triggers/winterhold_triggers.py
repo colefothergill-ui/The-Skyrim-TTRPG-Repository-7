@@ -36,28 +36,6 @@ def _player_blob(campaign_state: dict) -> dict:
     return campaign_state.get("player", {}) or {}
 
 
-def _has_staff_of_cinders(player: dict) -> bool:
-    """Best-effort check for the Staff of Cinders.
-
-    We support multiple likely representations:
-    - player["has_staff_of_cinders"] == True
-    - "staff_of_cinders" in player["artifacts"]
-    - "Staff of Cinders" appears in player["inventory"]
-    """
-    if player.get("has_staff_of_cinders"):
-        return True
-
-    artifacts = player.get("artifacts") or []
-    if isinstance(artifacts, list) and any(str(a).lower() in ("staff_of_cinders", "staff of cinders") for a in artifacts):
-        return True
-
-    inv = player.get("inventory") or []
-    if isinstance(inv, list) and any("staff of cinders" in str(i).lower() for i in inv):
-        return True
-
-    return False
-
-
 def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
     """Return a list of narrative events for a Winterhold/College location."""
 
@@ -72,8 +50,6 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
 
     civil = campaign_state.get("civil_war_state", {}) or {}
     alliance = _lower(civil.get("player_alliance"))
-
-    has_staff = _has_staff_of_cinders(player)
 
     college_state = campaign_state.get("college_state", {}) or {}
     active_college_quest = college_state.get("active_quest")
@@ -93,12 +69,6 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
             )
             flags["winterhold_imperial_tension"] = True
 
-        if has_staff and not flags.get("staff_of_cinders_seen_in_town"):
-            events.append(
-                "A local fisherman clocks the black-and-ember runes on your staff and goes pale. 'That's… Cindershroud.' He doesn't say it like a compliment—he says it like a warning prayer."
-            )
-            flags["staff_of_cinders_seen_in_town"] = True
-
         events.append(
             "The wind here cuts like a lecture. Even the aurora looks judgmental."
         )
@@ -108,12 +78,6 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
         events.append(
             "The Frozen Hearth is cramped warmth: stew, wet wool, and locals pretending they're not listening. Everyone is listening."
         )
-
-        if has_staff and not flags.get("staff_of_cinders_inn_reaction"):
-            events.append(
-                "A traveling bard falls silent mid-verse when he sees your staff. Then, very softly: 'I thought that heirloom was a story.' The room suddenly remembers it has somewhere else to look."
-            )
-            flags["staff_of_cinders_inn_reaction"] = True
 
     # --- JARL'S LONGHOUSE ---------------------------------------------------
     if key in {"winterhold_jarls_longhouse", "jarls_longhouse", "jarl_korir_court"}:
@@ -151,12 +115,6 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
                 f"The wards recognize you—{college_rank}. The shimmer parts like a curtain, and you feel the College's attention settle on you for a heartbeat before it moves on."
             )
 
-        if has_staff and not flags.get("staff_of_cinders_college_notice"):
-            events.append(
-                "A student whispers as you pass: 'Those runes… that's not common enchantment.' Another answers: 'That's not common anything.'"
-            )
-            flags["staff_of_cinders_college_notice"] = True
-
     # --- COLLEGE COURTYARD --------------------------------------------------
     if key in {"college_courtyard", "winterhold_college"}:
         events.append(
@@ -178,14 +136,9 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
         
         # Add student trio introduction
         if is_college_member and not flags.get("college_students_intro_done"):
-            if has_staff:
-                events.append(
-                    "Onmund (earnest Nord), Brelyna Maryon (quiet Dunmer), and J'zargo (ambitious Khajiit) step out of the student crowd—your 'main peers' are finally present. They react to your Staff of Cinders and your obvious faculty familiarity."
-                )
-            else:
-                events.append(
-                    "Onmund (earnest Nord), Brelyna Maryon (quiet Dunmer), and J'zargo (ambitious Khajiit) step out of the student crowd—your 'main peers' are finally present. They react to your presence and your obvious faculty familiarity."
-                )
+            events.append(
+                "Onmund (earnest Nord), Brelyna Maryon (quiet Dunmer), and J'zargo (ambitious Khajiit) step out of the student crowd—your 'main peers' are finally present. They react to your presence and your obvious faculty familiarity."
+            )
             flags["college_students_intro_done"] = True
 
     if key in {"college_hall_of_attainment", "hall_of_attainment"}:
@@ -197,12 +150,6 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
         events.append(
             "The Arcanaeum smells like ink, old leather, and the kind of silence that judges you. Urag gro-Shub guards the shelves like they're a dragon hoard of ideas."
         )
-
-        if has_staff and not flags.get("staff_of_cinders_arcanaeum"):
-            events.append(
-                "Urag's eyes follow the staff's runes for a long moment. 'That enchantment is… old.' He pauses. 'Do not wave it near my books.' Somehow, that feels like respect."
-            )
-            flags["staff_of_cinders_arcanaeum"] = True
 
     # --- THE MIDDEN ---------------------------------------------------------
     if key in {"college_midden", "midden"}:

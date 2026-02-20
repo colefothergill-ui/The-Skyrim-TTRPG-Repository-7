@@ -169,33 +169,6 @@ def test_saarthal():
     print(f"✓ Saarthal Eye of Magnus hook works")
 
 
-def test_staff_of_cinders_recognition():
-    """Test Staff of Cinders artifact recognition across locations"""
-    print("\n=== Testing Staff of Cinders Recognition ===")
-    
-    campaign_state = {
-        "scene_flags": {},
-        "player": {
-            "has_staff_of_cinders": True
-        },
-        "civil_war_state": {}
-    }
-    
-    # Test in town
-    events_town = winterhold_location_triggers("winterhold", campaign_state)
-    assert any("Cindershroud" in event for event in events_town), "Expected staff recognition in town"
-    
-    # Reset flag for next test
-    campaign_state["scene_flags"] = {}
-    
-    # Test at College bridge
-    campaign_state["player"]["college_member"] = True
-    events_college = winterhold_location_triggers("college_bridge", campaign_state)
-    assert any("runes" in event.lower() and "enchantment" in event.lower() for event in events_college), "Expected staff recognition at College"
-    
-    print(f"✓ Staff of Cinders recognition works across locations")
-
-
 def test_hall_of_elements():
     """Test Hall of the Elements triggers"""
     print("\n=== Testing Hall of the Elements ===")
@@ -267,7 +240,6 @@ def run_all_tests():
         test_college_courtyard,
         test_arcanaeum,
         test_saarthal,
-        test_staff_of_cinders_recognition,
         test_hall_of_elements,
         test_the_midden,
         test_jarl_korir_court

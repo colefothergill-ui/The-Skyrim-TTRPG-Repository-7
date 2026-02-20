@@ -37,16 +37,13 @@ def demo_winterhold_journey():
     
     print_section("WINTERHOLD & COLLEGE OF WINTERHOLD - LOCATION TRIGGERS DEMO")
     print("\nScenario: An Adept of the College returns to Winterhold")
-    print("carrying the legendary Staff of Cinders...")
     
     # Initial campaign state
     campaign_state = {
         "scene_flags": {},
         "player": {
             "college_member": True,
-            "college_rank": "Adept",
-            "has_staff_of_cinders": True,
-            "artifacts": ["staff_of_cinders"]
+            "college_rank": "Adept"
         },
         "civil_war_state": {
             "player_alliance": "neutral"
@@ -156,40 +153,6 @@ def demo_imperial_tension():
     print_events(events)
 
 
-def demo_staff_reactions():
-    """Demonstrate Staff of Cinders recognition"""
-    
-    print_section("STAFF OF CINDERS RECOGNITION")
-    print("\nScenario: Wielding the legendary Staff of Cinders")
-    
-    campaign_state = {
-        "scene_flags": {},
-        "player": {
-            "has_staff_of_cinders": True,
-            "college_member": False
-        },
-        "civil_war_state": {}
-    }
-    
-    print("\n1. In Winterhold town:")
-    events = winterhold_location_triggers("winterhold", campaign_state)
-    staff_events = [e for e in events if "Cindershroud" in e or "staff" in e.lower()]
-    print_events(staff_events if staff_events else events)
-    
-    campaign_state["scene_flags"] = {}  # Reset
-    print("\n2. At the Frozen Hearth:")
-    events = winterhold_location_triggers("winterhold_frozen_hearth", campaign_state)
-    staff_events = [e for e in events if "staff" in e.lower() or "heirloom" in e.lower()]
-    print_events(staff_events if staff_events else events)
-    
-    campaign_state["scene_flags"] = {}  # Reset
-    campaign_state["player"]["college_member"] = True
-    print("\n3. At the College bridge:")
-    events = winterhold_location_triggers("college_bridge", campaign_state)
-    staff_events = [e for e in events if "runes" in e.lower() or "enchantment" in e.lower()]
-    print_events(staff_events if staff_events else events)
-
-
 def demo_location_variety():
     """Show variety of College locations"""
     
@@ -222,7 +185,6 @@ def main():
         demo_winterhold_journey()
         demo_non_member_admission()
         demo_imperial_tension()
-        demo_staff_reactions()
         demo_location_variety()
         
         print_section("DEMO COMPLETE")
