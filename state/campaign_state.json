@@ -5,7 +5,7 @@
   "started_date": "2026-02-20",
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": null,
+  "current_scene_id": "act1_scene_002_chillfurrow_farm_wolves",
   "active_hold": "Whiterun",
   "session_zero_completed": true,
   "session_count": 0,
@@ -19,7 +19,35 @@
       "faction_alignment": "neutral"
     }
   },
-  "npc_first_impressions": {},
+  "npc_first_impressions": {
+    "justiciar_varyn": "Cold, prideful Thalmor Justiciar; escalated first at Talos shrine; maimed and captured.",
+    "nazeem": "Smug mouthpiece; buckled under pressure; likely connected to harassment scheme.",
+    "whiterun_guard_imposter": "Borrowed uniform and borrowed courage; used as intimidation muscle.",
+    "test_companion": {
+      "pc_elitrof_whitemane": {
+        "timestamp": "2026-02-21T11:54:41.015405",
+        "disposition": "neutral",
+        "line": "He moves like a practiced predator, heavy cloak of 'bear' hide rolling off his shoulders, eyes measuring the room the way hunters measure snow.",
+        "source": "default",
+        "recognition_tags": [
+          "nord",
+          "companions",
+          "jorrvaskr",
+          "warrior-poet",
+          "dual-wield",
+          "skyforge-steel",
+          "ysgramor-etching",
+          "dragon-etching",
+          "crimson-mane",
+          "werebear-cloak",
+          "talos-amulet",
+          "skaal",
+          "solstheim",
+          "lord-stone"
+        ]
+      }
+    }
+  },
   "faction_trust": {},
   "active_quests": [],
   "completed_quests": [],
@@ -79,10 +107,13 @@
     "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Companions."
   },
   "thalmor_arc": {
-    "thalmor_awareness_of_party": "none",
+    "thalmor_awareness_of_party": "high",
     "embassy_infiltrated": false,
     "elenwen_disposition": "neutral",
-    "thalmor_schemes_discovered": [],
+    "thalmor_schemes_discovered": [
+      "justiciar_varyn_captured_and_maimed",
+      "whiterun_talos_shrine_sting_exposed"
+    ],
     "active_plots": [
       {
         "plot_id": "undermine_empire",
@@ -95,6 +126,12 @@
         "description": "Continue persecution of Talos worshippers",
         "progress": 0,
         "clock_segments": 10
+      },
+      {
+        "plot_id": "retaliate_whiterun_justiciar",
+        "description": "Thalmor retaliate for the capture and maiming of a Justiciar in Whiterun Hold; they will attempt to control the narrative and punish Talos sympathizers.",
+        "progress": 0,
+        "clock_segments": 8
       }
     ]
   },
@@ -108,14 +145,50 @@
     "active_quest": "companions_proving_honor",
     "completed_quests": [],
     "quest_progress": {
-      "take_up_arms": "active"
+      "take_up_arms": "active",
+      "companions_proving_honor": "active",
+      "contract_talos_shrine": "completed",
+      "contract_chillfurrow_wolves": "accepted",
+      "contract_pelagia_giant": "accepted"
     },
     "embraced_curse": false,
     "skjor_alive": true,
     "kodlak_cured": false
   },
   "relationship_inference": {},
-  "scene_flags": {},
+  "scene_flags": {
+    "scene_001_jorrvaskr_homecoming_completed": true,
+    "scene_001_trouble_compel_taken_public_talos_defiance": true,
+    "scene_002_talos_shrine_sting_completed": true,
+    "vignar_intel_talos_sting": {
+      "source": "Vignar Greymane (Jorrvaskr)",
+      "summary": "Identified the shrine harassment as a fishing operation targeting Talos worshippers; named Nazeem as the mouthpiece; suspected Battle-Born backing; confirmed a Thalmor Justiciar handler present.",
+      "named_actors": {
+        "mouthpiece": "nazeem",
+        "handler": "justiciar_varyn",
+        "muscle": "whiterun_guard_imposter",
+        "suspected_paymaster": "battle_born_patron_suspected"
+      },
+      "confidence": {
+        "nazeem": "high",
+        "justiciar_varyn": "high",
+        "whiterun_guard_imposter": "high",
+        "battle_born_patron_suspected": "medium"
+      }
+    },
+    "party_split": {
+      "elitrof": "with_farkas_to_chillfurrow_farm",
+      "farkas": "with_elitrof_to_chillfurrow_farm",
+      "vilkas": "to_dragonsreach_with_prisoners"
+    },
+    "captives_in_transit": {
+      "justiciar_varyn": "alive_cauterized_missing_sword_hand; escorted by Vilkas to Dragonsreach",
+      "nazeem": "captured; escorted by Vilkas to Dragonsreach",
+      "whiterun_guard_imposter": "captured_disarmed; escorted by Vilkas to Dragonsreach"
+    },
+    "werebear_cloak_truth_told_to_farkas_vilkas": true,
+    "pending_compel_travelers_talos": "offered_not_resolved"
+  },
   "clocks": {
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
@@ -145,6 +218,21 @@
         "Sabotage",
         "March",
         "Battle"
+      ]
+    },
+    "thalmor_retaliation_whiterun": {
+      "name": "Thalmor Retaliation: Whiterun",
+      "current_progress": 0,
+      "total_segments": 8,
+      "segments": [
+        "Rumor Push",
+        "Witness Pressure",
+        "Diplomatic Complaint",
+        "Targeted Arrest Attempt",
+        "Street Informants",
+        "Violent Provocation",
+        "Political Ultimatum",
+        "Retaliation Strike"
       ]
     }
   }

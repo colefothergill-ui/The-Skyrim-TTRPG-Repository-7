@@ -1,0 +1,29 @@
+{
+  "name": "Nazeem",
+  "id": "nazeem",
+  "type": "NPC",
+  "description": "Smug Whiterun social climber; mouthpiece in the Talos shrine harassment scheme. Cowardly when steel comes out.",
+  "aspects": {
+    "high_concept": "Cloud District Braggart and Social Parasite",
+    "trouble": "Runs at the First Sign of Real Consequences",
+    "other": [
+      "Knows Who Pays",
+      "Smiles Like a Knife"
+    ]
+  },
+  "skills": {
+    "Great (+4)": [],
+    "Good (+3)": ["Deceive"],
+    "Fair (+2)": ["Rapport", "Provoke"],
+    "Average (+1)": ["Notice", "Will"]
+  },
+  "stress": {
+    "physical": [false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "stunts": [
+    "Slippery Talker: +2 to Deceive when deflecting blame onto others."
+  ],
+  "notes": "Not a combatant. If attacked physically, he prioritizes escape or surrender."
+}

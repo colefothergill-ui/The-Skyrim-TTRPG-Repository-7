@@ -1,0 +1,25 @@
+{
+  "name": "Borrowed-Uniform Enforcer",
+  "id": "whiterun_guard_imposter",
+  "type": "NPC",
+  "description": "Local muscle wearing mismatched Whiterun guard colors; used to intimidate pilgrims.",
+  "aspects": {
+    "high_concept": "Paid Bully in Borrowed Authority",
+    "trouble": "Breaks When Real Fighters Show Up",
+    "other": [
+      "Knows His Paymaster",
+      "Wants to Live"
+    ]
+  },
+  "skills": {
+    "Good (+3)": ["Fight"],
+    "Fair (+2)": ["Physique"],
+    "Average (+1)": ["Athletics", "Provoke"]
+  },
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "notes": "Taken out by Farkas at the shrine; disarmed and captured."
+}

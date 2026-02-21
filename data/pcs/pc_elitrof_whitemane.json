@@ -1,13 +1,14 @@
 {
   "id": "pc_elitrof_whitemane",
   "name": "Elitrof Whitemane",
-  "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
   "player": "Cole",
   "race": "Nord",
-  "class": "Warrior-Poet",
+  "class": "Companion (Neutral POV)",
+  "standing_stone": "The Lord Stone",
+  "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
   "aspects": {
     "high_concept": "Warrior-Poet of Jorvaskr",
-    "trouble": "Honor Before Caution",
+    "trouble": "Righteously Protective, Ill-Tempered Man of Principle",
     "other_aspects": [
       "Nomadic Sage of Skyrim",
       "Adoptive Son of Kodlak Whitemane",
@@ -15,70 +16,150 @@
     ],
     "compel_library": {
       "trouble": [
-        "Insult to your honor, your shield-siblings, Kodlak, or Skyrim's ways flips your restraint switch OFF.",
-        "You refuse to tolerate disrespect toward Skyrim's culture, history, or the Old Ways.",
-        "Any hint of the Talos ban being enforced in your presence becomes a line in the snow.",
-        "If pushed, you default to settling it the Old Way: a duel (sometimes to the death).",
-        "Slights against the Skaal are treated as personal affronts, no matter who delivers them."
+        "Takes insults to his honor, shield-siblings, Kodlak, Skyrim, or the Skaal unkindly.",
+        "Disdains those who disrespect Skyrim's culture, history, or way of life.",
+        "Will stand up against the ban on Talos, especially when enforcement turns cruel.",
+        "Quick to settle disputes the Old Way when pushed (honor challenge or deadly duel).",
+        "Will not tolerate slights against the Skaal; treats them as personal."
       ],
       "aspects": {
         "Warrior-Poet of Jorvaskr": [
-          "You can't resist turning a tense moment into a public verse or challenge, raising stakes and attention.",
-          "A chance to do something legendary is dangled in front of you, even if it's tactically unwise.",
-          "You are expected to represent Jorrvaskr with honor, and you can't walk away when it's questioned."
+          "Can't resist turning a tense moment into a public verse, toast, or challenge.",
+          "A chance to do something saga-worthy pulls him toward risk.",
+          "Feels compelled to represent Jorrvaskr honorably in public."
         ],
         "Nomadic Sage of Skyrim": [
-          "A rumor of an ancient site, lost saga, or half-true legend drags you off the direct path.",
-          "You stop to record or verify a detail that 'has to be right,' costing precious time.",
-          "You feel responsible for correcting ignorance, even when silence would be safer."
+          "A rumor of a lost saga/site distracts him from the direct path.",
+          "Stops to correct ignorance even when silence would be safer.",
+          "Feels duty-bound to record or preserve lore."
         ],
         "Adoptive Son of Kodlak Whitemane": [
-          "Kodlak's expectations (or the Companions' needs) override your personal plans.",
-          "Someone speaks ill of Kodlak or the Companions, and you take it as a personal summons.",
-          "You protect the Harbinger's reputation, even if it means swallowing pride or taking blame."
+          "Someone speaks ill of Kodlak, and Elitrof takes it personally.",
+          "Companions' needs override personal plans.",
+          "Protects Kodlak's reputation even at cost."
         ],
         "'Ole Great Bear' of the Skaal of Solstheim": [
-          "Your 'oversized bear' cloak draws questions you'd rather not answer, forcing a lie or a confrontation.",
-          "Skaal trouble reaches you by rumor; you feel obligated to answer the call.",
-          "You refuse to let outsiders mock or exploit Skaal customs, even if it complicates alliances."
+          "The 'bear' cloak draws questions that can expose the truth.",
+          "Skaal trouble reaches him by rumor; he feels obligated to answer.",
+          "Outsiders mocking Skaal custom triggers immediate pushback."
         ]
-      },
-      "notes": "Use these as GM compels and pressure points. Tie them to public scenes, honor challenges, Talos enforcement, and Skaal-related prejudice."
+      }
     }
   },
   "skills": {
-    "Great (+4)": ["Fight"],
-    "Good (+3)": ["Athletics", "Physique"],
-    "Fair (+2)": ["Will", "Lore", "Provoke"],
-    "Average (+1)": ["Notice", "Rapport", "Empathy", "Stealth"]
+    "Great (+4)": [
+      "Fight"
+    ],
+    "Good (+3)": [
+      "Athletics",
+      "Physique"
+    ],
+    "Fair (+2)": [
+      "Command",
+      "Lore",
+      "Provoke"
+    ],
+    "Average (+1)": [
+      "Notice",
+      "Crafts",
+      "Will",
+      "Rapport"
+    ]
+  },
+  "racial_bonuses": {
+    "skill_bonuses": [
+      "Fight (+1)",
+      "Athletics (+1)"
+    ],
+    "notes": "Apply as effective +1 when relevant; does not break pyramid."
   },
   "stunts": [
-    "Skyforge Mastery: +2 to Fight when dual-wielding Skyforge steel weapons",
-    "Saga-Maker: Once per scene, invoke a personal aspect for free when performing a legendary act in public",
-    "Old Way Challenge: Declare a duel; target must accept or suffer a social consequence"
+    "Rake and Rend: When Elitrof Defends with Fight while dual-wielding and succeeds with style, he may forgo the boost to instead inflict 2 physical stress on the attacker. If he also spends 1 Fate Point, he may create the scene aspect 'Rending Blow' with 2 free invokes.",
+    "Flyting Words: +2 to Provoke when insulting, jeering, or intimidating with sharp Nordic verse. On success with style, create the scene aspect 'Brutal Eloquence' with 1 free invoke.",
+    "Lore Authority: +2 to Lore for Skyrim/Solstheim history/culture. May use Lore to Overcome as Rapport when persuasion is grounded in precedent, scholarship, or storytelling."
   ],
+  "extras": {
+    "pack_tactics": {
+      "cost": "1 Refresh",
+      "mechanics": [
+        "+2 to Command when fighting alongside Companions/allies.",
+        "Once per scene: Overcome with Command to order one ally to immediately take an Attack on your turn; does not consume their next action."
+      ]
+    },
+    "thuum": {
+      "cost": "1 Refresh",
+      "known_shouts": [
+        {
+          "name": "Elemental Fury",
+          "words": [
+            "Su",
+            "Grah",
+            "Dun"
+          ],
+          "words_unlocked": 3,
+          "mastery_clock_id": "thuum_elemental_fury_mastery"
+        }
+      ]
+    }
+  },
   "stress": {
-    "physical": [false, false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
     "moderate": null,
     "severe": null
   },
-  "refresh": 3,
-  "fate_points": 3,
+  "refresh": 1,
+  "fate_points": 2,
   "equipment": [
     "Skyforge Steel Waraxe (Jorrvaskr) x2 [one etched with Ysgramor, one etched with a dragon]",
-    "Companion Leather Armor",
-    "Werebear-hide Cloak",
+    "Companion-styled leather armor",
+    "Alchemy Tools",
+    "Scholar Log",
     "Amulet of Talos",
-    "Lord Stone Resonance (passive bonus)"
+    "Great Beast Bear Pelt (Giant Cloak) [actually a werebear hide; he claims it's just an oversized bear's]",
+    "Alchemy Pouch",
+    "Satchel",
+    "Nord Mead (Bottle)"
   ],
   "relationships": {
-    "Kodlak Whitemane": "Adoptive father figure and Harbinger",
-    "The Companions": "Shield-siblings and family",
-    "The Skaal": "Honored allies from Solstheim"
+    "kodlak_whitemane": "Adoptive father. Found Elitrof as the sole survivor of a shipwreck off the coast of Eastmarch while on mission. Suspects Elitrof's origins trace back to Solstheim and the Skaal. Taught him to fight, strategize, wield an axe, and tempered his rage into righteous purpose; fostered his love of history.",
+    "skjor": "Pseudo-mentor and counterweight to Kodlak's approach. Gave Elitrof his first mead and drilled one creed: never be prey.",
+    "farkas": "Childhood best friend and shield-sibling. Loyal, straightforward, quick to stand at Elitrof's side.",
+    "vilkas": "Childhood best friend and shield-sibling. Disciplined, demanding; expects Elitrof to earn every ounce of his legend.",
+    "vignar_greymane": "Grandfather-figure storyteller; stoked Elitrof's hunger for glory, reverence, and a name worth remembering."
   },
-  "notes": "Elitrof is a crimson-maned Nord warrior-poet of Jorrvaskr. He dual-wields Skyforge steel waraxes, one etched with Ysgramor and one with a dragon. He wears a werebear-hide cloak and an Amulet of Talos, and carries the Lord Stone's blessing."
+  "backstory": {
+    "format": "personal_log",
+    "entries": [
+      {
+        "day_count": 1823,
+        "year": "4E 201",
+        "date": "4th of Frostfall",
+        "era": "Fourth Era",
+        "location": "Skyrim road (recorded later)",
+        "text": "(See Session Zero log entry for full text.)"
+      },
+      {
+        "day_count": 1824,
+        "year": "4E 201",
+        "date": "5th of Frostfall",
+        "era": "Fourth Era",
+        "location": "Solstheim (recorded later)",
+        "text": "(See Session Zero log entry for full text.)"
+      }
+    ]
+  },
+  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.'"
 }

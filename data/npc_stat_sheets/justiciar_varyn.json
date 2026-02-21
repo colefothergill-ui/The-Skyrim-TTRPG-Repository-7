@@ -1,0 +1,25 @@
+{
+  "name": "Justiciar Varyn",
+  "id": "justiciar_varyn",
+  "type": "NPC",
+  "template": "thalmor_justiciar",
+  "description": "Thalmor Justiciar operating in Whiterun under 'courtesy.' Led the Talos shrine sting; cast first; captured alive with severe injury.",
+  "aspects": {
+    "high_concept": "Prideful Thalmor Justiciar, Enforcer of the Concordat",
+    "trouble": "Wounded Pride Turns to Punitive Cruelty",
+    "other": [
+      "Paper Authority",
+      "Arcane Discipline",
+      "Will Not Be Humiliated"
+    ]
+  },
+  "status_at_snapshot": {
+    "physical_stress_marked": [1, 2, 3],
+    "consequences": {
+      "moderate": "Raked Across the Chest",
+      "severe": "Severed Sword Hand"
+    },
+    "captured": true,
+    "medical": "Wound cauterized; stable for transport."
+  }
+}
