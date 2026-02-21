@@ -2,7 +2,9 @@
   "campaign_id": "skyrim_fate_core",
   "campaign_name": "Skyrim: Civil War and Hidden Hands",
   "created_at": "2026-02-20",
-  "current_act": "Act I",
+  "started_date": "2026-02-20",
+  "current_act": 1,
+  "current_act_label": "Act I",
   "current_scene_id": null,
   "active_hold": "Whiterun",
   "session_zero_completed": true,
@@ -43,6 +45,13 @@
     "battle_of_whiterun_companion": null,
     "battle_of_whiterun_last_stage_completed": 0,
     "whiterun_control": "neutral",
+    "imperial_victories": 0,
+    "stormcloak_victories": 0,
+    "key_battles_completed": [],
+    "faction_relationship": {
+      "imperial_legion": 0,
+      "stormcloaks": 0
+    },
     "hadvar_ralof_rivalry_clock": {
       "current": 0,
       "max": 6,
@@ -50,7 +59,60 @@
     }
   },
   "branching_decisions": {
-    "neutral_subfaction": "companions"
+    "neutral_subfaction": "companions",
+    "civil_war_stance": null,
+    "jarl_balgruuf_support": null,
+    "thalmor_embassy_approach": null,
+    "talos_worship_stance": null,
+    "civil_war_entry_contact": "undecided",
+    "battle_of_whiterun_choice": null
+  },
+  "main_quest_state": {
+    "post_alduin_timeline": true,
+    "dragon_crisis_resolved": true,
+    "blades_status": "reformed",
+    "greybeards_relations": "respectful",
+    "dragon_souls_absorbed": 0,
+    "shouts_learned": [],
+    "greybeards_training": false,
+    "civil_war_involvement": true,
+    "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Companions."
+  },
+  "thalmor_arc": {
+    "thalmor_awareness_of_party": "none",
+    "embassy_infiltrated": false,
+    "elenwen_disposition": "neutral",
+    "thalmor_schemes_discovered": [],
+    "active_plots": [
+      {
+        "plot_id": "undermine_empire",
+        "description": "Thalmor seeks to prolong civil war to weaken both sides",
+        "progress": 0,
+        "clock_segments": 8
+      },
+      {
+        "plot_id": "eliminate_talos_worship",
+        "description": "Continue persecution of Talos worshippers",
+        "progress": 0,
+        "clock_segments": 10
+      }
+    ]
+  },
+  "companions": {
+    "active_companions": [],
+    "available_companions": [],
+    "dismissed_companions": [],
+    "companion_relationships": {}
+  },
+  "companions_state": {
+    "active_quest": "companions_proving_honor",
+    "completed_quests": [],
+    "quest_progress": {
+      "take_up_arms": "active"
+    },
+    "embraced_curse": false,
+    "skjor_alive": true,
+    "kodlak_cured": false
   },
   "relationship_inference": {},
   "scene_flags": {},
