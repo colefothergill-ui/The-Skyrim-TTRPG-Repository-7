@@ -125,7 +125,7 @@
       },
       "companions_trust": {
         "faction": "The Companions",
-        "current_trust": 5,
+        "current_trust": 6,
         "max_trust": 10,
         "trust_level": "Ally",
         "advancement_triggers": {

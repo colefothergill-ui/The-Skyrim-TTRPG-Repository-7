@@ -54,3 +54,14 @@
 - Thalmor retaliation clock active; narrative control attempts expected.
 
 ---
+
+---
+## Checkpoint: Chillfurrow Wolves (Den Cleared)
+- Elitrof pursued a runner wolf to the den (Whiterun/Pale treeline gully).
+- Brewed and refined a Berserker Draught (Skaal Crimson Cut), consumed dose #1, stored dose #2.
+- Used Nord racial Battle Cry to force the pack to flee for one round and seize initiative.
+- Cleared the den of pack wolves and took out the Alpha in close quarters.
+- **Contract status:** Chillfurrow Wolves completed; civilians and livestock secured (Farkas held the farm line).
+- **Elitrof status:** FP 3; Physical Stress boxes 1 and 3 marked; no consequences.
+- **Farkas status:** minor bite (stress 1).
+- **Clocks:** Companions Trust 6/10; Battle of Whiterun Countdown 1/8; Thalmor Retaliation: Whiterun 1/8.
