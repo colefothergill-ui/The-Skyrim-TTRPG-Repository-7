@@ -1,32 +1,50 @@
 {
-  "campaign_id": "skyrim_fate_core_001",
-  "campaign_name": "The Elder Scrolls: Skyrim - Fate Core Campaign",
-  "started_date": "4E 201, 17th of Last Seed",
+  "campaign_id": "skyrim_fate_core",
+  "campaign_name": "Skyrim: Civil War and Hidden Hands",
+  "created_at": "2026-02-20",
+  "started_date": "2026-02-20",
   "current_act": 1,
-  "active_pc": null,
-  "active_pc_id": null,
-  "session_zero_completed": false,
+  "current_act_label": "Act I",
+  "current_scene_id": null,
+  "active_hold": "Whiterun",
+  "session_zero_completed": true,
   "session_count": 0,
-  "last_updated": "2026-02-20 21:27:01",
-  "starting_location": "Skyrim — Session Zero",
-  "current_scene_id": "S0_START",
-  "current_location": "Skyrim — Session Zero",
-  "active_hold": null,
-  "current_objective": "Create a new character and begin Session Zero.",
-  "current_npcs": [],
-  "scene_flags": {},
-  "scene_aspects": {},
-  "scene_clocks": {},
-  "player": {
-    "college_member": false,
-    "college_rank": null,
-    "artifacts": [],
-    "inventory": []
+  "active_pc_id": "pc_elitrof_whitemane",
+  "pcs": {
+    "pc_elitrof_whitemane": {
+      "name": "Elitrof Whitemane",
+      "player": "Cole",
+      "race": "Nord",
+      "standing_stone": "The Lord Stone",
+      "faction_alignment": "neutral"
+    }
+  },
+  "npc_first_impressions": {},
+  "faction_trust": {},
+  "active_quests": [],
+  "completed_quests": [],
+  "quest_state": {
+    "main": {
+      "current": "battle_of_whiterun",
+      "status": "locked"
+    },
+    "civil_war": {
+      "current": "battle_of_whiterun",
+      "status": "locked"
+    },
+    "companions": {
+      "current": "take_up_arms",
+      "status": "available"
+    }
   },
   "civil_war_state": {
     "player_alliance": "neutral",
-    "whiterun_control": "neutral",
     "battle_of_whiterun_status": "approaching",
+    "battle_of_whiterun_stage": 0,
+    "battle_of_whiterun_faction": null,
+    "battle_of_whiterun_companion": null,
+    "battle_of_whiterun_last_stage_completed": 0,
+    "whiterun_control": "neutral",
     "imperial_victories": 0,
     "stormcloak_victories": 0,
     "key_battles_completed": [],
@@ -34,19 +52,31 @@
       "imperial_legion": 0,
       "stormcloaks": 0
     },
-    "battle_of_whiterun_modifiers": [],
     "hadvar_ralof_rivalry_clock": {
       "current": 0,
       "max": 6,
-      "notes": "Ticks during key set-pieces; resolves into kill/capture/turn outcomes."
+      "notes": "Ticks during set-pieces; resolves into outcomes."
     }
+  },
+  "branching_decisions": {
+    "neutral_subfaction": "companions",
+    "civil_war_stance": null,
+    "jarl_balgruuf_support": null,
+    "thalmor_embassy_approach": null,
+    "talos_worship_stance": null,
+    "civil_war_entry_contact": "undecided",
+    "battle_of_whiterun_choice": null
   },
   "main_quest_state": {
     "post_alduin_timeline": true,
     "dragon_crisis_resolved": true,
     "blades_status": "reformed",
     "greybeards_relations": "respectful",
-    "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Thalmor conspiracy."
+    "dragon_souls_absorbed": 0,
+    "shouts_learned": [],
+    "greybeards_training": false,
+    "civil_war_involvement": true,
+    "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Companions."
   },
   "thalmor_arc": {
     "thalmor_awareness_of_party": "none",
@@ -68,111 +98,54 @@
       }
     ]
   },
-  "branching_decisions": {
-    "civil_war_stance": null,
-    "jarl_balgruuf_support": null,
-    "thalmor_embassy_approach": null,
-    "talos_worship_stance": null,
-    "civil_war_entry_contact": "undecided",
-    "battle_of_whiterun_choice": null
-  },
-  "world_consequences": {
-    "towns_affected": [],
-    "npcs_killed": [],
-    "npcs_befriended": [],
-    "major_choices": []
-  },
-  "active_story_arcs": [
-    {
-      "arc_name": "Civil War",
-      "status": "pending",
-      "progress": 0,
-      "next_milestone": "Choose faction alignment"
-    },
-    {
-      "arc_name": "Thalmor Conspiracy",
-      "status": "hidden",
-      "progress": 0,
-      "next_milestone": "Unknown"
-    }
-  ],
   "companions": {
     "active_companions": [],
-    "available_companions": [
-      {
-        "npc_id": "npc_stat_hadvar",
-        "name": "Hadvar",
-        "status": "available",
-        "loyalty": 50,
-        "location": "Riverwood or Whiterun",
-        "recruitment_condition": "Party encounters Hadvar and helps with Imperial-related task",
-        "faction_affinity": "imperial_legion"
-      },
-      {
-        "npc_id": "npc_stat_ralof",
-        "name": "Ralof",
-        "status": "available",
-        "loyalty": 50,
-        "location": "Riverwood or Stormcloak camps",
-        "recruitment_condition": "Party encounters Ralof and helps with Stormcloak-related task",
-        "faction_affinity": "stormcloaks"
-      },
-      {
-        "npc_id": "npc_stat_onmund",
-        "name": "Onmund",
-        "status": "available",
-        "loyalty": 43,
-        "location": "College of Winterhold",
-        "recruitment_condition": "Complete Under Saarthal and earn Onmund's respect (keep him alive).",
-        "faction_affinity": "college_of_winterhold"
-      },
-      {
-        "npc_id": "npc_stat_brelyna_maryon",
-        "name": "Brelyna Maryon",
-        "status": "available",
-        "loyalty": 40,
-        "location": "College of Winterhold",
-        "recruitment_condition": "Complete Under Saarthal and earn Brelyna's trust (prove discretion).",
-        "faction_affinity": "college_of_winterhold"
-      },
-      {
-        "npc_id": "npc_stat_jzargo",
-        "name": "J'zargo",
-        "status": "available",
-        "loyalty": 44,
-        "location": "College of Winterhold",
-        "recruitment_condition": "Complete Under Saarthal and keep J'zargo from reckless collateral damage.",
-        "faction_affinity": "college_of_winterhold"
-      }
-    ],
+    "available_companions": [],
     "dismissed_companions": [],
-    "companion_relationships": {},
-    "notes": "Companion loyalty ranges from 0-100."
-  },
-  "player_characters": [],
-  "starting_narrative": "A new hero enters Skyrim at a time of civil war and Thalmor intrigue. Begin Session Zero.",
-  "faction_relationships": {
-    "college_of_winterhold": 0,
-    "tolfdir": 0,
-    "mirabelle_ervine": 0,
-    "companions": 0
-  },
-  "npc_first_impressions": {},
-  "relationship_inference": {},
-  "college_state": {
-    "active_quest": null,
-    "completed_quests": [],
-    "quest_progress": {},
-    "eye_instability": 0,
-    "ancano_suspicion": 0,
-    "internal_politics": 0
+    "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": null,
+    "active_quest": "companions_proving_honor",
     "completed_quests": [],
-    "quest_progress": {},
+    "quest_progress": {
+      "take_up_arms": "active"
+    },
     "embraced_curse": false,
     "skjor_alive": true,
     "kodlak_cured": false
+  },
+  "relationship_inference": {},
+  "scene_flags": {},
+  "clocks": {
+    "thuum_elemental_fury_mastery": {
+      "name": "Elemental Fury Mastery",
+      "current_progress": 0,
+      "total_segments": 8,
+      "segments": [
+        "Su",
+        "Grah",
+        "Dun",
+        "Focus",
+        "Flow",
+        "Tempo",
+        "Edge",
+        "Mastery"
+      ]
+    },
+    "battle_of_whiterun_countdown": {
+      "name": "Battle of Whiterun Countdown",
+      "current_progress": 0,
+      "total_segments": 8,
+      "segments": [
+        "Rumors",
+        "Ultimatum",
+        "Supply Lines",
+        "Reinforcements",
+        "Evacuation",
+        "Sabotage",
+        "March",
+        "Battle"
+      ]
+    }
   }
 }
