@@ -104,9 +104,9 @@
   },
   "stress": {
     "physical": [
+      true,
       false,
-      false,
-      false,
+      true,
       false
     ],
     "mental": [
@@ -121,7 +121,7 @@
     "severe": null
   },
   "refresh": 1,
-  "fate_points": 2,
+  "fate_points": 3,
   "equipment": [
     "Skyforge Steel Waraxe (Jorrvaskr) x2 [one etched with Ysgramor, one etched with a dragon]",
     "Companion-styled leather armor",
@@ -131,7 +131,8 @@
     "Great Beast Bear Pelt (Giant Cloak) [actually a werebear hide; he claims it's just an oversized bear's]",
     "Alchemy Pouch",
     "Satchel",
-    "Nord Mead (Bottle)"
+    "Nord Mead (Bottle)",
+    "Alchemical Draught: Berserker (Skaal Crimson Cut) x1 [remaining dose; refined in-field at the wolf den]"
   ],
   "relationships": {
     "kodlak_whitemane": "Adoptive father. Found Elitrof as the sole survivor of a shipwreck off the coast of Eastmarch while on mission. Suspects Elitrof's origins trace back to Solstheim and the Skaal. Taught him to fight, strategize, wield an axe, and tempered his rage into righteous purpose; fostered his love of history.",
@@ -161,5 +162,5 @@
       }
     ]
   },
-  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.'"
+  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den)."
 }

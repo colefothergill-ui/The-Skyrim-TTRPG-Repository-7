@@ -5,7 +5,7 @@
   "started_date": "2026-02-20",
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "act1_scene_002_chillfurrow_farm_wolves",
+  "current_scene_id": "act1_scene_002b_wolf_den_resolved",
   "active_hold": "Whiterun",
   "session_zero_completed": true,
   "session_count": 0,
@@ -148,7 +148,7 @@
       "take_up_arms": "active",
       "companions_proving_honor": "active",
       "contract_talos_shrine": "completed",
-      "contract_chillfurrow_wolves": "accepted",
+      "contract_chillfurrow_wolves": "completed",
       "contract_pelagia_giant": "accepted"
     },
     "embraced_curse": false,
@@ -187,7 +187,23 @@
       "whiterun_guard_imposter": "captured_disarmed; escorted by Vilkas to Dragonsreach"
     },
     "werebear_cloak_truth_told_to_farkas_vilkas": true,
-    "pending_compel_travelers_talos": "offered_not_resolved"
+    "pending_compel_travelers_talos": "offered_not_resolved",
+    "scene_003_chillfurrow_wolves_completed": true,
+    "wolf_den_alpha_taken_out": true,
+    "berserker_draught_brewed_and_consumed": {
+      "dose_1": "consumed_at_wolf_den",
+      "dose_2": "stored_for_later",
+      "refinement": "Nomadic Sage FP + Shamefaced invoke; achieved SWS on brew"
+    },
+    "elitrof_stress_update_checkpoint": {
+      "physical": [true, false, true, false],
+      "mental": [false, false, false],
+      "consequences": {"mild": null, "moderate": null, "severe": null}
+    },
+    "farkas_stress_update_checkpoint": {
+      "physical_stress": "1_box_marked (minor bite) while securing farm perimeter"
+    },
+    "battle_cry_used": true
   },
   "clocks": {
     "thuum_elemental_fury_mastery": {
@@ -207,7 +223,7 @@
     },
     "battle_of_whiterun_countdown": {
       "name": "Battle of Whiterun Countdown",
-      "current_progress": 0,
+      "current_progress": 1,
       "total_segments": 8,
       "segments": [
         "Rumors",
@@ -222,7 +238,7 @@
     },
     "thalmor_retaliation_whiterun": {
       "name": "Thalmor Retaliation: Whiterun",
-      "current_progress": 0,
+      "current_progress": 1,
       "total_segments": 8,
       "segments": [
         "Rumor Push",
