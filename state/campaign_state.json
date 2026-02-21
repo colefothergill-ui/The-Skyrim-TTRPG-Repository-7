@@ -25,9 +25,9 @@
     "whiterun_guard_imposter": "Borrowed uniform and borrowed courage; used as intimidation muscle.",
     "test_companion": {
       "pc_elitrof_whitemane": {
-        "timestamp": "2026-02-21T11:24:57.236847",
+        "timestamp": "2026-02-21T11:54:41.015405",
         "disposition": "neutral",
-        "line": "Crimson hair like a banner in wind, a Companion's cut of leather, and two Skyforge axes that look old enough to remember Ysgramor.",
+        "line": "He moves like a practiced predator, heavy cloak of 'bear' hide rolling off his shoulders, eyes measuring the room the way hunters measure snow.",
         "source": "default",
         "recognition_tags": [
           "nord",
