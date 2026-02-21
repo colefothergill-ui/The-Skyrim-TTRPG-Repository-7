@@ -1,7 +1,7 @@
 {
   "faction_trust_clocks": {
     "description": "Track party standing and trust with all major factions in Skyrim",
-    "last_updated": "2026-02-15",
+    "last_updated": "2026-02-21",
     "trust_scale": {
       "0-2": {
         "level": "Stranger",
@@ -125,7 +125,7 @@
       },
       "companions_trust": {
         "faction": "The Companions",
-        "current_trust": 3,
+        "current_trust": 5,
         "max_trust": 10,
         "trust_level": "Ally",
         "advancement_triggers": {
