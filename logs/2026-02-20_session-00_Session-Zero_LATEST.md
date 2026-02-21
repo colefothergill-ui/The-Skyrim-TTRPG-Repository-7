@@ -11,7 +11,7 @@ The following assets were added for **Elitrof Whitemane** (PC):
 
 - **Portrait added**: `docs/assets/pcs/elitrof_whitemane.png`
 - **PC sheet created/updated**: `data/pcs/pc_elitrof_whitemane.json`
-  - Equipment updated: waraxes are now Skyforge Steel (one etched with Ysgrammor, one etched with a dragon)
+  - Equipment updated: waraxes are now Skyforge Steel (one etched with Ysgramor, one etched with a dragon)
   - `portrait_path` key added
   - `aspects.compel_library` replaced with full structured library (trouble compels + per-aspect compels + GM notes)
 - **First-impression appearance file created**: `data/pcs/appearances/elitrof_whitemane_appearance.json`
