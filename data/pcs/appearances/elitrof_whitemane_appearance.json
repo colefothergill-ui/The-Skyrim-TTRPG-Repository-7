@@ -1,0 +1,76 @@
+{
+  "pc_id": "pc_elitrof_whitemane",
+  "pc_name": "Elitrof Whitemane",
+  "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
+  "recognition_tags": [
+    "nord",
+    "companions",
+    "jorrvaskr",
+    "warrior-poet",
+    "dual-wield",
+    "skyforge-steel",
+    "ysgrammor-etching",
+    "dragon-etching",
+    "crimson-mane",
+    "werebear-cloak",
+    "talos-amulet",
+    "skaal",
+    "solstheim",
+    "lord-stone"
+  ],
+  "first_impression_lines": {
+    "neutral": [
+      "Crimson hair like a banner in wind, a Companion's cut of leather, and two Skyforge axes that look old enough to remember Ysgrammor.",
+      "He moves like a practiced predator, heavy cloak of 'bear' hide rolling off his shoulders, eyes measuring the room the way hunters measure snow.",
+      "Skyforge steel in both hands. One blade etched with Ysgrammor, the other with a dragon… like he's daring the world to decide which legend wins.",
+      "A grin that promises trouble, a stance that promises follow-through. Whoever he is, he's not here to be prey.",
+      "A warrior built for the Old Way: broad-shouldered, scar-ready, and carrying his history on his hips and in his voice."
+    ],
+    "positive": [
+      "A familiar Jorrvaskr scent to him, like smoke and mead. The Skyforge axes aren't just weapons, they're kin.",
+      "There's honor in his posture: the kind that steps between danger and the weak without asking permission.",
+      "He carries himself like a saga in motion, crimson mane and all, and the room feels safer for it."
+    ],
+    "negative": [
+      "That red-maned Companion swagger reads like a threat, and those Skyforge axes look eager to 'settle things' the old way.",
+      "He watches like you've already offended him. The 'bear' cloak and Talos trinket dare anyone to comment.",
+      "Too proud. Too ready. The kind of man who turns a small slight into a big funeral."
+    ]
+  },
+  "conditional_first_impression_lines": [
+    {
+      "id": "thalmor_talos_trigger",
+      "if_npc_blob_any": ["thalmor", "justiciar"],
+      "lines": {
+        "negative": [
+          "A Talos amulet at his throat and Skyforge axes in hand. The Thalmor can feel the duel coming like thunder before rain.",
+          "He doesn't just dislike the Talos ban, he's built a whole personality around breaking it."
+        ],
+        "neutral": [
+          "The red-maned Nord's gaze hardens the moment he clocks Thalmor colors. That's not fear, that's a verdict."
+        ]
+      }
+    },
+    {
+      "id": "companions_recognition",
+      "if_npc_blob_any": ["companions", "jorrvaskr"],
+      "lines": {
+        "positive": [
+          "A shield-sibling's look: leather and fur, Skyforge steel, and that grin that says 'training starts now.'"
+        ],
+        "neutral": [
+          "Companion leathers, Skyforge steel, and a stance that screams Jorrvaskr."
+        ]
+      }
+    },
+    {
+      "id": "skaal_recognition",
+      "if_npc_blob_any": ["skaal", "solstheim"],
+      "lines": {
+        "positive": [
+          "The cloak, the way he carries it, and the respect in his eyes… that's a man the Skaal would name."
+        ]
+      }
+    }
+  ]
+}

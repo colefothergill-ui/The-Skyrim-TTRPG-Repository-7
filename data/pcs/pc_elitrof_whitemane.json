@@ -1,0 +1,84 @@
+{
+  "id": "pc_elitrof_whitemane",
+  "name": "Elitrof Whitemane",
+  "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
+  "player": "Cole",
+  "race": "Nord",
+  "class": "Warrior-Poet",
+  "aspects": {
+    "high_concept": "Warrior-Poet of Jorvaskr",
+    "trouble": "Honor Before Caution",
+    "other_aspects": [
+      "Nomadic Sage of Skyrim",
+      "Adoptive Son of Kodlak Whitemane",
+      "'Ole Great Bear' of the Skaal of Solstheim"
+    ],
+    "compel_library": {
+      "trouble": [
+        "Insult to your honor, your shield-siblings, Kodlak, or Skyrim's ways flips your restraint switch OFF.",
+        "You refuse to tolerate disrespect toward Skyrim's culture, history, or the Old Ways.",
+        "Any hint of the Talos ban being enforced in your presence becomes a line in the snow.",
+        "If pushed, you default to settling it the Old Way: a duel (sometimes to the death).",
+        "Slights against the Skaal are treated as personal affronts, no matter who delivers them."
+      ],
+      "aspects": {
+        "Warrior-Poet of Jorvaskr": [
+          "You can't resist turning a tense moment into a public verse or challenge, raising stakes and attention.",
+          "A chance to do something legendary is dangled in front of you, even if it's tactically unwise.",
+          "You are expected to represent Jorrvaskr with honor, and you can't walk away when it's questioned."
+        ],
+        "Nomadic Sage of Skyrim": [
+          "A rumor of an ancient site, lost saga, or half-true legend drags you off the direct path.",
+          "You stop to record or verify a detail that 'has to be right,' costing precious time.",
+          "You feel responsible for correcting ignorance, even when silence would be safer."
+        ],
+        "Adoptive Son of Kodlak Whitemane": [
+          "Kodlak's expectations (or the Companions' needs) override your personal plans.",
+          "Someone speaks ill of Kodlak or the Companions, and you take it as a personal summons.",
+          "You protect the Harbinger's reputation, even if it means swallowing pride or taking blame."
+        ],
+        "'Ole Great Bear' of the Skaal of Solstheim": [
+          "Your 'oversized bear' cloak draws questions you'd rather not answer, forcing a lie or a confrontation.",
+          "Skaal trouble reaches you by rumor; you feel obligated to answer the call.",
+          "You refuse to let outsiders mock or exploit Skaal customs, even if it complicates alliances."
+        ]
+      },
+      "notes": "Use these as GM compels and pressure points. Tie them to public scenes, honor challenges, Talos enforcement, and Skaal-related prejudice."
+    }
+  },
+  "skills": {
+    "Great (+4)": ["Fight"],
+    "Good (+3)": ["Athletics", "Physique"],
+    "Fair (+2)": ["Will", "Lore", "Provoke"],
+    "Average (+1)": ["Notice", "Rapport", "Empathy", "Stealth"]
+  },
+  "stunts": [
+    "Skyforge Mastery: +2 to Fight when dual-wielding Skyforge steel weapons",
+    "Saga-Maker: Once per scene, invoke a personal aspect for free when performing a legendary act in public",
+    "Old Way Challenge: Declare a duel; target must accept or suffer a social consequence"
+  ],
+  "stress": {
+    "physical": [false, false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "fate_points": 3,
+  "equipment": [
+    "Skyforge Steel Waraxe (Jorrvaskr) x2 [one etched with Ysgrammor, one etched with a dragon]",
+    "Companion Leather Armor",
+    "Werebear-hide Cloak",
+    "Amulet of Talos",
+    "Lord Stone Resonance (passive bonus)"
+  ],
+  "relationships": {
+    "Kodlak Whitemane": "Adoptive father figure and Harbinger",
+    "The Companions": "Shield-siblings and family",
+    "The Skaal": "Honored allies from Solstheim"
+  },
+  "notes": "Elitrof is a crimson-maned Nord warrior-poet of Jorrvaskr. He dual-wields Skyforge steel waraxes, one etched with Ysgrammor and one with a dragon. He wears a werebear-hide cloak and an Amulet of Talos, and carries the Lord Stone's blessing."
+}
