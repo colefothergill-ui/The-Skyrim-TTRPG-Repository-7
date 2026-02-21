@@ -6,7 +6,7 @@
         "name": "Saarthal Expedition Logistics",
         "current": 0,
         "max": 6,
-        "status": "completed",
+        "status": "active",
         "notes": "Tracks the expedition staging → ruins entry → breach.\n1=briefed+supplied; 2=arrive; 3=outer wards breached; 4=first draugr; 5=inner threshold reached; 6=Eye chamber (secured for withdrawal)."
       },
       "student_safety_pressure": {
@@ -20,7 +20,7 @@
         "name": "Ancano Suspicion Meter",
         "current": 0,
         "max": 8,
-        "status": "critical",
+        "status": "active",
         "notes": ""
       },
       "eye_of_magnus_discovery": {
