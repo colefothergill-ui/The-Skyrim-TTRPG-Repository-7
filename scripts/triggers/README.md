@@ -81,7 +81,7 @@ Handles Winterhold Hold and the College of Winterhold including:
   - Arch-Mage's Quarters
 - Saarthal (ancient Nordic ruins excavation site)
 
-Features College membership awareness, civil war faction reactions, Staff of Cinders recognition, and Eye of Magnus questline hooks.
+Features College membership awareness, civil war faction reactions, and Eye of Magnus questline hooks.
 
 ## Usage
 

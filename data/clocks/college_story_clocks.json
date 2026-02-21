@@ -4,9 +4,9 @@
     "clocks": {
       "saarthal_expedition_logistics": {
         "name": "Saarthal Expedition Logistics",
-        "current": 6,
+        "current": 0,
         "max": 6,
-        "status": "completed",
+        "status": "active",
         "notes": "Tracks the expedition staging → ruins entry → breach.\n1=briefed+supplied; 2=arrive; 3=outer wards breached; 4=first draugr; 5=inner threshold reached; 6=Eye chamber (secured for withdrawal)."
       },
       "student_safety_pressure": {
@@ -18,10 +18,10 @@
       },
       "ancano_suspicion_meter": {
         "name": "Ancano Suspicion Meter",
-        "current": 6,
+        "current": 0,
         "max": 8,
-        "status": "critical",
-        "notes": "Ticks when Oskern blocks, outshines, or thwarts Ancano. At 8, Ancano escalates directly."
+        "status": "active",
+        "notes": ""
       },
       "eye_of_magnus_discovery": {
         "name": "Eye of Magnus Discovery",
@@ -32,16 +32,10 @@
       },
       "college_internal_politics": {
         "name": "College Internal Politics",
-        "current": 1,
+        "current": 0,
         "max": 8,
         "status": "active",
-        "notes": "Tracks tension between factions in the College (Ancano vs traditionalists).\nAt 8, the College fractures into open conflict.\n[2026-02-15] Ancano's authority grab was publicly checked in the Eye chamber. Political tension rises."
-      }
-    },
-    "deprecated": {
-      "staff_of_cinders_awakening": {
-        "replaced_by": "data/clocks/pc_extras_clocks.json#pc_oskern_staff_of_cinders_awakening",
-        "note": "Removed from college_story_clocks to prevent duplicate tracking. Use pc_extras_clocks for canon."
+        "notes": "Tracks tension between factions in the College (Ancano vs traditionalists).\nAt 8, the College fractures into open conflict."
       }
     }
   }
