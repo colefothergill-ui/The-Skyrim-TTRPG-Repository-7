@@ -125,9 +125,9 @@
       },
       "companions_trust": {
         "faction": "The Companions",
-        "current_trust": 0,
+        "current_trust": 3,
         "max_trust": 10,
-        "trust_level": "Stranger",
+        "trust_level": "Ally",
         "advancement_triggers": {
           "complete_proving_honor": "+2",
           "complete_companion_quest": "+1 to +2",

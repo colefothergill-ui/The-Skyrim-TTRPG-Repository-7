@@ -1,0 +1,185 @@
+{
+  "name": "Elitrof Whitemane",
+  "id": "pc_elitrof_whitemane",
+  "player": "Cole",
+  "race": "Nord",
+  "class": "Companion",
+  "level": 1,
+  "faction_alignment": "neutral",
+  "neutral_subfaction": "companions",
+  "standing_stone": "The Lord Stone",
+  "aspects": {
+    "high_concept": "Warrior-Poet of Jorvaskr",
+    "trouble": "Righteously Protective, Ill-Tempered Man of Principle",
+    "other_aspects": [
+      "Nomadic Sage of Skyrim",
+      "Adoptive Son of Kodlak Whitemane",
+      "'Ole Great Bear' of the Skaal of Solstheim"
+    ],
+    "compel_library": {
+      "ideas": [
+        "Your temper flares at the worst moment, turning a tense negotiation into a duel-or-death challenge.",
+        "You put yourself between danger and someone weaker, even when it's tactically foolish.",
+        "A slight against Kodlak or the Companions demands a response, no matter the cost.",
+        "A rival goads you into a public flyting, risking reputation and escalation.",
+        "Your principles won't allow a 'necessary evil' shortcut, forcing a harder path."
+      ]
+    }
+  },
+  "skills": {
+    "Great (+4)": [
+      "Fight"
+    ],
+    "Good (+3)": [
+      "Athletics",
+      "Physique"
+    ],
+    "Fair (+2)": [
+      "Command",
+      "Lore",
+      "Provoke"
+    ],
+    "Average (+1)": [
+      "Notice",
+      "Crafts",
+      "Will",
+      "Rapport"
+    ]
+  },
+  "stunts": [
+    "Rake and Rend: When Elitrof Defends with Fight while dual-wielding and succeeds with style, he may forgo the boost to instead inflict 2 physical stress on the attacker. If he also spends 1 Fate Point, he may create the scene aspect 'Rending Blow' with 2 free invokes.",
+    "Flyting Words: Elitrof gains +2 to Provoke when insulting, jeering, or intimidating with sharp Nordic verse. On success with style, he may create the scene aspect 'Brutal Eloquence' with 1 free invoke.",
+    "Lore Authority: Elitrof gains +2 to Lore when recalling Skyrim or Solstheim history/culture. When persuasion is grounded in knowledge, precedent, or storytelling, he may use Lore to Overcome as if it were Rapport (GM discretion)."
+  ],
+  "extras": {
+    "pack_tactics": {
+      "name": "Pack Tactics (Companion Drill)",
+      "type": "Extra",
+      "cost": "1 Refresh",
+      "mechanics": [
+        "+2 to Command rolls when fighting alongside Companions, shield-siblings, or organized soldiers.",
+        "Once per scene, you may Overcome with Command to issue a decisive order: one ally in your zone immediately takes an Attack action on your turn. This does not consume their action on their next turn.",
+        "If the ally's attack succeeds with style, you may choose: they take the boost OR you take the boost (your call)."
+      ]
+    },
+    "thuum": {
+      "name": "Voice of the Nord (Thu'um)",
+      "type": "Extra",
+      "cost": "1 Refresh",
+      "known_shouts": [
+        {
+          "name": "Elemental Fury (Su Grah Dun)",
+          "words": [
+            "Su",
+            "Grah",
+            "Dun"
+          ],
+          "words_unlocked": 3,
+          "mastery_clock": {
+            "current": 0,
+            "max": 8
+          },
+          "use": "Costs 1 Fate Point while unmastered. Once mastered, usable once per scene without FP cost (per thuum_system.json)."
+        }
+      ]
+    }
+  },
+  "racial_bonuses": {
+    "name": "Nord",
+    "skill_bonuses": [
+      "Fight (+1)",
+      "Athletics (+1)"
+    ],
+    "abilities": [
+      {
+        "name": "Resist Frost",
+        "effect": "+2 to Defend against cold/frost damage"
+      },
+      {
+        "name": "Battle Cry",
+        "effect": "Once per session, cause enemies within your zone to flee for one round (Create Advantage or Overcome vs their Will)."
+      }
+    ]
+  },
+  "standing_stone_benefits": [
+    "+1 to Defend against physical attacks (situational)",
+    "+1 to Will against magic (situational)"
+  ],
+  "stress": {
+    "physical": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 1,
+  "fate_points": 1,
+  "experience": 0,
+  "milestones": [],
+  "equipment": [
+    "Nordic Steel Waraxe (Jorrvaskr) x2",
+    "Alchemy Tools",
+    "Scholar Log",
+    "Amulet of Talos",
+    "Great Beast Bear Pelt (Giant Cloak) [actually a werebear hide; you claim it's just an oversized bear's]",
+    "Alchemy Pouch",
+    "Satchel",
+    "Nord Mead (Bottle)"
+  ],
+  "gold": 100,
+  "relationships": {
+    "kodlak_whitemane": "Adoptive father. Found Elitrof as the sole survivor of a shipwreck off the coast of Eastmarch while on mission. Suspects Elitrof's origins trace back to Solstheim and the Skaal. Taught him to fight, strategize, wield an axe, and tempered his rage into righteous purpose; fostered his love of history.",
+    "skjor": "Pseudo-mentor and counterweight to Kodlak's softness. Gave Elitrof his first mead and drilled one creed into him: never be prey.",
+    "farkas": "Childhood best friend and shield-sibling. Grew up together in Jorrvaskr; loyal, steady, and quick to stand at Elitrof's side.",
+    "vilkas": "Childhood best friend and shield-sibling. Grew up together in Jorrvaskr; demanding, disciplined, and expects Elitrof to earn every ounce of his legend.",
+    "vignar_greymane": "Grandfather-figure and hall's storyteller. Fed Elitrof the old songs and the hunger for glory, reverence, and a name worth remembering."
+  },
+  "quests": [
+    "Active: Take Up Arms (Companions)"
+  ],
+  "backstory": {
+    "format": "personal_log",
+    "entries": [
+      {
+        "day_count": 1823,
+        "year": "4E 201",
+        "date": "4th of Frostfall",
+        "era": "Fourth Era",
+        "location": "Whiterun Hold (Jorrvaskr)",
+        "text": "\u201cReflectin\u2019 upon the merit of the man I had been since my departure from Jorvaskr some five years prior, has left me astonished to how much one can become a stranger to one\u2019s former self. A fact that I am pleased to say, was indeed, the point of this venture. Fore though it had always been my desire to be counted amongst Ysgrammor\u2019s chosen few, and to one day be exonerated as a warrior worthy of the stories my shield sibling\u2019s and I had grown up hearin\u2019 bout from ole Vignar. To be a true Son of Skyrim, and a Nord who knew exactly all of what bein\u2019 one meant.\n\nIn order to accomplish any of this, I had realized during my tenor as a whelp, that I needed to take a page from my adoptive father. The greatest amongst our ilk, the Harbinger, Kodlak Whitemane. Fore if I were to ever aspire to be like he, Ysgrammor, and the other warriors of yesteryear, I needed to experience all of what lie outside of the den I was taken into, and do as my Elder Skjor would say: Perish amongst the flock, or be the one huntin\u2019 it.\n\nSo it was, like Kodlak before me, that I set out to endeavor to fully experience the land given to Men. Where I had traveled to where King Olaf had marched his armies upon Solitude, then to the sprawling snowfields where Ysgrammor had beset the Elves of yesteryore at Saarthal, before venturing southward to attempt the 10,000 step climb toward High Hrothgar. Through it all, I had garnered the battle acumen to match most of the Inner Circle, and had proudly absorbed more of our history than any book had ever learned me. By standin\u2019 upon the soil where the events actually happened.\n\nSo there I was, after two years of plying my trade with axe in hand and story in heart, I began to ascend the steps outside Ivarstead, and climb to the top of the mountain. Where I inevitably reached the Throat of the World, and met upon its peak a teacher whom spoke in two tongues. Who then elected to teach me to do the same. The language he taught? The Thu\u2019um.\u201d"
+      },
+      {
+        "day_count": 1824,
+        "year": "4E 201",
+        "date": "5th of Frostfall",
+        "era": "Fourth Era",
+        "location": "Solstheim (Skaal Village; recorded later)",
+        "text": "\u201cNot long after learnin\u2019 to shape breath into thunder, I found the same lesson repeatin\u2019 itself, only louder: power\u2019s no good if it can\u2019t be aimed... \u2018Ole Great Bear.\u2019\n\nNot because I was the beast\u2026 but because I was the one who brought it down.\u201d"
+      }
+    ],
+    "tags": [
+      "companions",
+      "kodlak_whitemane",
+      "skjor",
+      "high_hrothgar",
+      "throat_of_the_world",
+      "thuum",
+      "solstheim",
+      "skaal",
+      "werebear",
+      "ole_great_bear"
+    ]
+  },
+  "notes": "Neutral in the Civil War through the Companions. Adopted by Kodlak Whitemane; trained in Jorrvaskr's ways. Five-year road-walk across Skyrim's mythic sites (Solitude, Saarthal, High Hrothgar) culminated in learning the Thu'um. On Solstheim, mentored by the Skaal and slew a legendary werebear; wears its hide as a cloak while downplaying it as an oversized bear pelt. Known among the Skaal as 'Ole Great Bear'. Kodlak first found Elitrof as the lone shipwreck survivor off Eastmarch and has long suspected Skaal roots on Solstheim."
+}
