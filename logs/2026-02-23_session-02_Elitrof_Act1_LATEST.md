@@ -30,3 +30,11 @@
 ### Character Knowledge (GM Canon)
 - Elitrof does **not** know the Inner Circle (including Kodlak) are werewolves. Kodlak kept it secret (protective) and forbade Skjor from revealing it until the Underforge rite.
 - Farkas and Vilkas also have not told him yet; they were instructed not to by Kodlak.
+
+## Dustman's Cairn Interior (Resolution)
+- Elitrof fought through Silver Hand hunters inside the cairn, disarmed traps, and reached the relic chamber.
+- Recovered the **Wuuthrad fragment** and slew a **Draugr Overlord** in single combat.
+- Learned **YOL (Fire)** from the Word Wall; **Fire Breath Mastery now 2/8**.
+- **Elemental Fury Mastery now 4/8** after dramatic 3-word use.
+- Loot: Rune-etched Nord torc (warmth), +330 septims, sapphire, garnet, Vigorous Healing potion.
+- Status: FP 1; Mild consequence: Sliced Upper Arm; Stress persists pending end-session clear.

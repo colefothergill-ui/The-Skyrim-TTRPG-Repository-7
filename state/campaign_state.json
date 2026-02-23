@@ -243,10 +243,19 @@
       "witness": "Farkas"
     }
   },
+  "flags": {
+    "dustmans_cairn": {
+      "wuuthrad_fragment_recovered": true,
+      "draugr_overlord_defeated": true,
+      "silver_hand_cell_engaged": true,
+      "word_wall_yol_learned": true,
+      "silver_hand_survivor_escaped": true
+    }
+  },
   "clocks": {
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
-      "current_progress": 2,
+      "current_progress": 4,
       "total_segments": 8,
       "segments": [
         "Su",
@@ -257,6 +266,34 @@
         "Tempo",
         "Edge",
         "Mastery"
+      ]
+    },
+    "thuum_fire_breath_mastery": {
+      "name": "Fire Breath Mastery",
+      "current_progress": 2,
+      "total_segments": 8,
+      "segments": [
+        "Yol",
+        "Toor",
+        "Shul",
+        "Breath",
+        "Heat",
+        "Control",
+        "Inferno",
+        "Mastery"
+      ]
+    },
+    "silver_hand_vendetta_elitrof": {
+      "name": "Silver Hand Vendetta: The Great Bear",
+      "current_progress": 1,
+      "total_segments": 6,
+      "segments": [
+        "Rumor",
+        "Scout",
+        "Trap",
+        "Ambush",
+        "Blood Price",
+        "Hunt"
       ]
     },
     "battle_of_whiterun_countdown": {
