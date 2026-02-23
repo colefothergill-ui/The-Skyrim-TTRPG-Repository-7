@@ -15,11 +15,11 @@
     },
     {
       "path": "data/clocks/faction_trust_clocks.json",
-      "change": "Set companions_trust current_trust=9; last_updated=2026-02-23."
+      "change": "Set companions_trust current_trust=9, trust_level='Legend'; last_updated=2026-02-23."
     },
     {
       "path": "data/pcs/pc_elitrof_whitemane.json",
-      "change": "Add Harbinger's Horn Toggle to equipment; append note."
+      "change": "Add gold=1800; add Harbinger's Horn Toggle to equipment; append note."
     },
     {
       "path": "logs/2026-02-23_session-02_Elitrof_Act1_LATEST.md",

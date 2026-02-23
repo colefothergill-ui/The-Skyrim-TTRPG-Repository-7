@@ -5,15 +5,15 @@
 **Objective:** Recover the Wuuthrad fragment and return to Jorrvaskr.
 
 ### Canon State
-- **FP:** 5 (Refresh 1)
-- **Stress:** physical clear; mental clear
+- **FP:** 2 (Refresh 1)
+- **Stress:** physical 2 boxes marked; mental clear
 - **Gold:** 1800
 - **Companions Trust:** 9/10 (Legend)
 - **NPC Trust:** Farkas 3/6; Vilkas 2/6
 
 ### Active Clocks
 - Battle of Whiterun Countdown: 1/8
-- Thalmor Retaliation: Whiterun: 4/8 (Diplomatic Complaint lodged; next threat: targeted arrest attempt / agent play)
+- Thalmor Retaliation: Whiterun: 1/8 (Thalmor pressure mounting in Whiterun; next threat: diplomatic complaint / targeted arrest attempt)
 - Elemental Fury Mastery: 2/8 (Su, Grah)
 
 ### Scene Aspects / Flags (active)
