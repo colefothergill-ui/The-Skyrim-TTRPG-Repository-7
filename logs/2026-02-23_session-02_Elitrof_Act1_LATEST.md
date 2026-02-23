@@ -26,3 +26,7 @@
 - **Trap language:** Nord runes, pressure plates, collapsing passages
 - **Moral beat:** Companions honor vs pragmatism (capture vs kill; desecration vs respect)
 - **Off-screen heat:** Thalmor agents continue witness pressure in Whiterun while Elitrof is away.
+
+### Character Knowledge (GM Canon)
+- Elitrof does **not** know the Inner Circle (including Kodlak) are werewolves. Kodlak kept it secret (protective) and forbade Skjor from revealing it until the Underforge rite.
+- Farkas and Vilkas also have not told him yet; they were instructed not to by Kodlak.
