@@ -80,45 +80,10 @@
   ],
   "extras": {
     "pelt_ulran_vjarn": {
-      "type": "artifact",
-      "name": "Pelt of the Great Werebear Ulran-Vjarn",
+      "item_id": "pelt_ulran_vjarn",
       "level_current": 1,
       "level_max": 3,
-      "cost": "1 Refresh (replaces Pack Tactics)",
-      "traits": {
-        "armor": {
-          "rating": 2,
-          "applies_to": "physical",
-          "exceptions": [
-            "silvered_attacks_bypass_armor"
-          ],
-          "notes": "Armor:2 vs physical harm while worn. Silvered weapons/attacks bypass this armor."
-        },
-        "hide_of_the_huntsman": {
-          "bonus": "+2",
-          "skill": "Physique",
-          "when_active": "When 2+ physical stress boxes are marked OR any physical consequence is present",
-          "applies_to": [
-            "Defend vs physical attacks",
-            "Overcome physical hazards (forced march, poison, cold exposure, crushing force)"
-          ],
-          "notes": "The pelt 'locks in' under strain; the more battered you are, the more the hide bears the blow."
-        }
-      },
-      "stunts": [
-        {
-          "name": "Stunt 1 (Locked)",
-          "status": "locked",
-          "unlock": "GM discretion / Level 2"
-        },
-        {
-          "name": "Stunt 2 (Locked)",
-          "status": "locked",
-          "unlock": "GM discretion / Level 3"
-        }
-      ],
-      "lore": "Skaal shamans blessed the hide after the Ulran-Vjarn hunt. It carries hunt-magic: endurance under strain and warding against mundane steel.",
-      "tags": ["Skaal", "Solstheim", "Artifact", "Armor"]
+      "cost": "1 Refresh (replaces Pack Tactics)"
     },
     "thuum": {
       "cost": "1 Refresh",
