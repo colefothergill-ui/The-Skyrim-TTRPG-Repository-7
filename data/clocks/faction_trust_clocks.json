@@ -1,7 +1,7 @@
 {
   "faction_trust_clocks": {
     "description": "Track party standing and trust with all major factions in Skyrim",
-    "last_updated": "2026-02-21",
+    "last_updated": "2026-02-23",
     "trust_scale": {
       "0-2": {
         "level": "Stranger",
@@ -125,9 +125,9 @@
       },
       "companions_trust": {
         "faction": "The Companions",
-        "current_trust": 7,
+        "current_trust": 9,
         "max_trust": 10,
-        "trust_level": "Champion",
+        "trust_level": "Legend",
         "advancement_triggers": {
           "complete_proving_honor": "+2",
           "complete_companion_quest": "+1 to +2",
