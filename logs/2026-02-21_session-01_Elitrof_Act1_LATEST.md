@@ -1,4 +1,4 @@
-# Session 1 (Mid-Session Snapshot): Elitrof Whitemane — Act I
+# Session 1 (Final Session Log): Elitrof Whitemane — Act I
 **Date:** 2026-02-21  
 **PC:** Elitrof Whitemane (Nord, Lord Stone)  
 **Hold:** Whiterun  
@@ -6,11 +6,15 @@
 
 ---
 
-## Current Scene
+## Current Scene *(session-start snapshot — scene at time of log creation)*
 - **Scene ID:** act1_scene_002_chillfurrow_farm_wolves
 - **Type:** Travel → Exploration → Combat (queued)
 - **Location:** Chillfurrow Farm, Whiterun tundra
 - **Immediate Objective:** Resolve the wolf contract quickly and safely.
+
+## Final Scene (End of Session)
+- **Scene ID:** act1_scene_004_pelagia_giant_duel_resolved
+- **Next Scene (Queued):** dragonsreach_hearing
 
 ## Active Clocks
 - **Battle of Whiterun Countdown:** 0/8
