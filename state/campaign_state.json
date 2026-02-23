@@ -153,7 +153,14 @@
     },
     "embraced_curse": false,
     "skjor_alive": true,
-    "kodlak_cured": false
+    "kodlak_cured": false,
+    "circle_secret_known_to_pc": {
+      "pc_elitrof_whitemane": false
+    },
+    "circle_secret_policy": {
+      "kodlak_policy": "Keep beastblood secret from Elitrof; Skjor forbidden to reveal until rite.",
+      "farkas_vilkas_policy": "Have not told Elitrof; obeying Kodlak."
+    }
   },
   "relationship_inference": {},
   "scene_flags": {
