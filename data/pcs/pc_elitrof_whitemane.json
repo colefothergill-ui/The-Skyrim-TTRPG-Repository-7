@@ -166,9 +166,7 @@
   },
   "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den). Used Elemental Fury (Su Grah Dun) at Pelagia Farm (unmastered; FP spent) to secure a solo giant takeout witnessed by Farkas. Also received Harbinger's Horn Toggle for Dustman's Cairn mission (emergency call for backup). GM NOTE: Elitrof does NOT know the Inner Circle (including Kodlak) are werewolves; Kodlak kept it from him to protect him and forbade Skjor from telling him until his time came. Farkas and Vilkas also haven't told him yet and were instructed not to.",
   "knowledge": {
-    "knows_companions_circle_secret": false,
-    "knows_companions_are_werewolves": false,
-    "knows_kodlak_is_werewolf": false,
-    "kodlak_forbade_reveal_until_time": true
+    "companions_circle_knowledge_stage": "unaware",
+    "kodlak_reveal_policy": "forbade_until_time"
   }
 }
