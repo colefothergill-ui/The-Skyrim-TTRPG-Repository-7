@@ -1,4 +1,4 @@
-# Session 1 (Mid-Session Snapshot): Elitrof Whitemane — Act I
+# Session 1 (Final Session Log): Elitrof Whitemane — Act I
 **Date:** 2026-02-21  
 **PC:** Elitrof Whitemane (Nord, Lord Stone)  
 **Hold:** Whiterun  
@@ -6,11 +6,15 @@
 
 ---
 
-## Current Scene
+## Current Scene *(session-start snapshot — scene at time of log creation)*
 - **Scene ID:** act1_scene_002_chillfurrow_farm_wolves
 - **Type:** Travel → Exploration → Combat (queued)
 - **Location:** Chillfurrow Farm, Whiterun tundra
 - **Immediate Objective:** Resolve the wolf contract quickly and safely.
+
+## Final Scene (End of Session)
+- **Scene ID:** act1_scene_004_pelagia_giant_duel_resolved
+- **Next Scene (Queued):** dragonsreach_hearing
 
 ## Active Clocks
 - **Battle of Whiterun Countdown:** 0/8
@@ -67,24 +71,38 @@
 - **Clocks:** Companions Trust 6/10; Battle of Whiterun Countdown 1/8; Thalmor Retaliation: Whiterun 1/8.
 
 ---
-## Scene Resolution: Pelagia Farm Giant (Solo Duel)
-- Elitrof sent Farkas ahead as witness and took the Pelagia giant **alone**.
-- **Accepted a Warrior-Poet saga-risk Compel** (+1 FP), then **spent 1 FP** to unleash **Elemental Fury (Su Grah Dun)** (unmastered).
-- The giant was dismantled via leg-work: hamstring strikes → knees shredded → finishing dual-axe descent to the skull.
-- **Reroll note:** Elitrof spent **1 FP** to reroll a near-hit dodge, reframing it as a clean miss (no added stress).
-- **Contract status:** Pelagia giant **completed**; Pelagia farmhands secured; Farkas can corroborate the tale.
+## Scene: Pelagia Farm — Giant Duel (Solo)
+- **Scene ID:** act1_scene_004_pelagia_giant_duel
+- **Type:** Combat — Solo Duel
+- **Location:** Pelagia Farm, Whiterun tundra
+- Farkas held the farm perimeter while Elitrof engaged the giant alone.
+- Elitrof opened with **Elemental Fury (Su Grah Dun)** — all three words, unmastered.
+  - Cost: 1 FP (unmastered use) + 1 FP (reroll); Farkas witnessed the Thu'um.
+- Giant taken down; farm secured; farmhands unharmed.
+- **Contract status:** Pelagia Giant completed.
+- **Elitrof status post-duel:** FP 2 (Refresh 1; keeps higher); Physical Stress boxes 1 and 3 still marked; no consequences.
+- **Farkas:** departs for Dragonsreach to meet Vilkas and report the Thu'um to Kodlak.
+- **Clocks updated:** Companions Trust 7/10 (Champion); Elemental Fury Mastery 2/8.
 
-### Final Session State (End Session Protocol)
-- **Elitrof status:** FP **2**; Physical stress **1 and 3 marked**; no consequences.
-- **Active clocks:**
-  - Battle of Whiterun Countdown: **1/8**
-  - Thalmor Retaliation: Whiterun: **1/8**
-  - Elemental Fury Mastery: **2/8** (Su, Grah)
-  - Companions Trust: **7/10** (Champion)
-- **Unresolved thread:** Vilkas is at **Dragonsreach** with captives (Justiciar Varyn, Nazeem, guard-imposter) awaiting **Balgruuf's ruling**.
+---
+## End Session Protocol — Session 1
+**Milestone:** Minor  
+**Milestone award:** 1 skill point or 1 new stunt (to be applied next session).
 
-### Milestone Awarded
-- **Minor Milestone** (end of session): Elitrof may rename/swap one aspect, adjust an aspect, or purchase a stunt/+1 skill (subject to refresh/skill cap rules).
+### End-of-Session State
+| Field | Value |
+|---|---|
+| Fate Points | 2 (Refresh 1; keeps higher) |
+| Physical Stress | Boxes 1 & 3 marked |
+| Mental Stress | Clear |
+| Consequences | None |
+| Companions Trust | 7/10 (Champion) |
+| Elemental Fury Mastery | 2/8 |
+| Battle of Whiterun Countdown | 1/8 |
+| Thalmor Retaliation: Whiterun | 1/8 |
+
+### Session 1 Summary
+Elitrof returned to Jorrvaskr, publicly defied Talos persecution, ran three Companions contracts in a single day — exposing a Thalmor sting, clearing a wolf den, and taking down a giant solo with the Thu'um. Vilkas holds the captives at Dragonsreach. The city is watching.
 
 ### Next Session Hook
-- Dragonsreach hearing: narrative control, Thalmor pressure, and the legal framing of a wounded Justiciar.
+**Scene:** Dragonsreach hearing — Jarl Balgruuf rules on the captured Justiciar, Nazeem, and the guard-imposter. Thalmor pressure on witnesses begins. Elitrof's name spreads through Whiterun.

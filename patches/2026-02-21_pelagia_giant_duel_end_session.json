@@ -1,0 +1,17 @@
+{
+  "patch_id": "2026-02-21_pelagia_giant_duel_end_session",
+  "created_at": "2026-02-21",
+  "summary": "End Session 1: Resolve Pelagia Farm giant contract (solo duel). Update Elitrof FP, Companions trust, Elemental Fury mastery clock, quest progress, scene flags, and append log with end session protocol + minor milestone.",
+  "applies_to": [
+    "data/pcs/pc_elitrof_whitemane.json",
+    "data/clocks/faction_trust_clocks.json",
+    "state/campaign_state.json",
+    "logs/2026-02-21_session-01_Elitrof_Act1_LATEST.md"
+  ],
+  "changes": [
+    {"path": "data/pcs/pc_elitrof_whitemane.json", "change": "Set fate_points=2; confirm physical stress boxes 1 and 3 marked; append note about Elemental Fury usage at Pelagia."},
+    {"path": "data/clocks/faction_trust_clocks.json", "change": "Set companions_trust current_trust=7; keep trust_level=Champion; last_updated=2026-02-21."},
+    {"path": "state/campaign_state.json", "change": "Set current_scene_id=act1_scene_004_pelagia_giant_duel_resolved; set contract_pelagia_giant=completed; set thuum_elemental_fury_mastery current_progress=2; add scene flags for Pelagia completion + thuum usage + party split; set session_count>=1."},
+    {"path": "logs/2026-02-21_session-01_Elitrof_Act1_LATEST.md", "change": "Append Pelagia giant scene resolution + End Session Protocol + minor milestone + next session hook."}
+  ]
+}

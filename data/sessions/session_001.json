@@ -1,20 +1,22 @@
 {
   "session_number": 1,
   "date": "2026-02-21",
-  "title": "Act I: Session 1 — Proving Honor",
-  "gm": "Game Master",
-  "players_present": ["Cole"],
-  "characters_present": ["pc_elitrof_whitemane"],
-  "session_summary": "Elitrof returned to Jorrvaskr, challenged a whelp over Talos disrespect, and took on three contracts. The Talos Shrine sting revealed a Thalmor operation; Justiciar Varyn was captured after escalating first, and Nazeem with a guard-imposter were taken into custody. Elitrof and Farkas cleared the Chillfurrow wolf den and slew the Pelagia giant solo. Vilkas escorted captives to Dragonsreach.",
+  "title": "Whiterun Contracts: Talos Sting, Wolves, and a Giant",
+  "gm": "Charlotte (ChatGPT GM)",
+  "players_present": [
+    "Cole"
+  ],
+  "characters_present": [
+    "pc_elitrof_whitemane"
+  ],
+  "session_summary": "Elitrof Whitemane returned to Jorrvaskr, took several Companions contracts, uncovered a Thalmor-backed Talos shrine harassment sting (capturing Justiciar Varyn and accomplices), cleared the Chillfurrow wolf den, then ended the day by taking the Pelagia farm giant solo with Elemental Fury. The session closes with Vilkas at Dragonsreach awaiting Jarl Balgruuf's ruling on the captives.",
   "key_events": [
-    "Homecoming at Jorrvaskr; flyting compel taken (public Talos defiance)",
-    "Sparring bout with Vilkas and Farkas; status re-established",
-    "Three contracts accepted: Talos Shrine, Chillfurrow Wolves, Pelagia Giant",
-    "Talos Shrine sting exposed; Vignar's intelligence recorded",
-    "Justiciar Varyn captured and cauterized; Nazeem and guard-imposter also captured",
-    "Chillfurrow wolf den cleared; Alpha slain; Berserker Draught brewed and used",
-    "Pelagia giant slain solo by Elitrof with Elemental Fury (Su Grah Dun)",
-    "Minor Milestone awarded; Vilkas at Dragonsreach with captives"
+    "Jorrvaskr homecoming; public flyting and Trouble compel taken",
+    "Contracts accepted: protect Talos pilgrims, cull Chillfurrow wolves, and slay the Pelagia giant",
+    "Talos shrine sting exposed; Justiciar Varyn maimed and captured alive; Nazeem and a guard-imposter captured",
+    "Chillfurrow wolves cleared; alpha slain; Berserker Draught refined (dose 2 retained)",
+    "Pelagia giant taken out solo; Elemental Fury used (unmastered) with witness (Farkas)",
+    "End state: captives in transit/at Dragonsreach for Balgruuf's judgment"
   ],
   "npcs_encountered": [
     "Kodlak Whitemane - Harbinger (adoptive father)",
