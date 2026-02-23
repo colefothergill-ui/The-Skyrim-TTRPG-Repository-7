@@ -5,10 +5,10 @@
   "started_date": "2026-02-20",
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "act1_scene_002b_wolf_den_resolved",
+  "current_scene_id": "act1_scene_004_pelagia_giant_duel_resolved",
   "active_hold": "Whiterun",
   "session_zero_completed": true,
-  "session_count": 0,
+  "session_count": 1,
   "active_pc_id": "pc_elitrof_whitemane",
   "pcs": {
     "pc_elitrof_whitemane": {
@@ -149,7 +149,7 @@
       "companions_proving_honor": "active",
       "contract_talos_shrine": "completed",
       "contract_chillfurrow_wolves": "completed",
-      "contract_pelagia_giant": "accepted"
+      "contract_pelagia_giant": "completed"
     },
     "embraced_curse": false,
     "skjor_alive": true,
@@ -177,8 +177,8 @@
       }
     },
     "party_split": {
-      "elitrof": "with_farkas_to_chillfurrow_farm",
-      "farkas": "with_elitrof_to_chillfurrow_farm",
+      "elitrof": "solo_at_pelagia_farm_then_returning_to_whiterun",
+      "farkas": "to_dragonsreach_after_witnessing_giant_duel",
       "vilkas": "to_dragonsreach_with_prisoners"
     },
     "captives_in_transit": {
@@ -196,19 +196,44 @@
       "refinement": "Nomadic Sage FP + Shamefaced invoke; achieved SWS on brew"
     },
     "elitrof_stress_update_checkpoint": {
-      "physical": [true, false, true, false],
-      "mental": [false, false, false],
-      "consequences": {"mild": null, "moderate": null, "severe": null}
+      "physical": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "mental": [
+        false,
+        false,
+        false
+      ],
+      "consequences": {
+        "mild": null,
+        "moderate": null,
+        "severe": null
+      }
     },
     "farkas_stress_update_checkpoint": {
       "physical_stress": "1_box_marked (minor bite) while securing farm perimeter"
     },
-    "battle_cry_used": true
+    "battle_cry_used": true,
+    "scene_004_pelagia_giant_completed": true,
+    "pelagia_farm_saved": true,
+    "thuum_elemental_fury_used_pelagia": {
+      "words": [
+        "Su",
+        "Grah",
+        "Dun"
+      ],
+      "unmastered_cost_fp": 1,
+      "reroll_fp_spent": 1,
+      "witness": "Farkas"
+    }
   },
   "clocks": {
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
-      "current_progress": 0,
+      "current_progress": 2,
       "total_segments": 8,
       "segments": [
         "Su",
@@ -251,5 +276,8 @@
         "Retaliation Strike"
       ]
     }
-  }
+  },
+  "last_session_ended_at": "2026-02-21",
+  "last_session_title": "Session 1: Whiterun Contracts (Talos Sting, Wolves, Giant)",
+  "next_scene_hint": "dragonsreach_hearing"
 }

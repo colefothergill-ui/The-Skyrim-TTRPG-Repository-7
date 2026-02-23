@@ -8,13 +8,26 @@
     "Thalmor influence in Skyrim grows stronger",
     "Battle of Whiterun looms as both sides pressure Jarl Balgruuf",
     "Galmar Stone-Fist remains alive and commands Stormcloak forces",
-    "College expedition at Saarthal uncovered a sealed Eye of Magnus chamber; Thalmor Advisor Ancano was present."
+    "College expedition at Saarthal uncovered a sealed Eye of Magnus chamber; Thalmor Advisor Ancano was present.",
+    "Pelagia Farm giant slain; Companions involvement becomes local legend"
   ],
   "political_situation": {
     "skyrim_status": "Civil War in progress",
-    "imperial_control": ["Solitude", "Falkreath", "Morthal"],
-    "stormcloak_control": ["Windhelm", "Dawnstar", "Winterhold", "Riften"],
-    "neutral": ["Markarth (contested)", "Whiterun (contested/neutral)"]
+    "imperial_control": [
+      "Solitude",
+      "Falkreath",
+      "Morthal"
+    ],
+    "stormcloak_control": [
+      "Windhelm",
+      "Dawnstar",
+      "Winterhold",
+      "Riften"
+    ],
+    "neutral": [
+      "Markarth (contested)",
+      "Whiterun (contested/neutral)"
+    ]
   },
   "post_dragon_crisis": {
     "status": "Dragons are largely inactive",
@@ -23,12 +36,26 @@
     "blades_status": "Nearly extinct, few remain in hiding"
   },
   "faction_standings": {
-    "Imperial Legion": { "strength": 60, "morale": 55, "public_support": 45 },
-    "Stormcloaks": { "strength": 55, "morale": 70, "public_support": 50 },
-    "Whiterun": { "strength": 40, "morale": 65, "public_support": 75 }
+    "Imperial Legion": {
+      "strength": 60,
+      "morale": 55,
+      "public_support": 45
+    },
+    "Stormcloaks": {
+      "strength": 55,
+      "morale": 70,
+      "public_support": 50
+    },
+    "Whiterun": {
+      "strength": 40,
+      "morale": 65,
+      "public_support": 75
+    }
   },
   "weather_and_season": "Late summer, generally pleasant weather",
   "rumors_and_news": [
+    "Pelagia Farm rumor: a lone Companion with two Skyforge axes felled the wandering giant in a blur of wind and verse.",
+    "Whiterun whispers: a Thalmor Justiciar was captured at a Talos shrine sting after striking first; witnesses are being quietly questioned.",
     "Rumor: A blue glow poured from the Saarthal excavation at dusk, and the College party returned shaken, speaking in whispers about an \"Eye\".",
     "Galmar Stone-Fist was seen rallying Stormcloak troops after the west-wall clash — bruised, furious, and very much alive.",
     "Caravans report College mages traveling north under guard; Winterhold locals are muttering about 'another Collapse waiting to happen.'",
@@ -39,6 +66,7 @@
     "Strange reports of dragon sightings in distant lands"
   ],
   "active_threats": [
+    "Thalmor narrative control: pressure on witnesses and officials in Whiterun after the Justiciar incident",
     "Thalmor surveillance increasing around the College of Winterhold and notable relics",
     "Civil war escalation",
     "Thalmor interference and manipulation",

@@ -1,52 +1,74 @@
 {
   "session_number": 1,
-  "date": "2026-01-15",
-  "title": "Journey to Whiterun",
-  "gm": "Game Master Name",
-  "players_present": ["Player 1", "Player 2", "Player 3"],
-  "characters_present": ["pc_001", "pc_002"],
-  "session_summary": "The party traveled from Riverwood to Whiterun, encountering signs of civil war tension along the road. They met with Jarl Balgruuf and learned about the political situation in Skyrim.",
+  "date": "2026-02-21",
+  "title": "Whiterun Contracts: Talos Sting, Wolves, and a Giant",
+  "gm": "Charlotte (ChatGPT GM)",
+  "players_present": [
+    "Cole"
+  ],
+  "characters_present": [
+    "pc_elitrof_whitemane"
+  ],
+  "session_summary": "Elitrof Whitemane returned to Jorrvaskr, took several Companions contracts, uncovered a Thalmor-backed Talos shrine harassment sting (capturing Justiciar Varyn and accomplices), cleared the Chillfurrow wolf den, then ended the day by taking the Pelagia farm giant solo with Elemental Fury. The session closes with Vilkas at Dragonsreach awaiting Jarl Balgruuf's ruling on the captives.",
   "key_events": [
-    "Departure from Riverwood",
-    "Encounter with Imperial patrol on the road",
-    "Arrival in Whiterun",
-    "Meeting with Jarl Balgruuf",
-    "Learning about the civil war and Thalmor presence"
+    "Jorrvaskr homecoming; public flyting and Trouble compel taken",
+    "Contracts accepted: protect Talos pilgrims, cull Chillfurrow wolves, and slay the Pelagia giant",
+    "Talos shrine sting exposed; Justiciar Varyn maimed and captured alive; Nazeem and a guard-imposter captured",
+    "Chillfurrow wolves cleared; alpha slain; Berserker Draught refined (dose 2 retained)",
+    "Pelagia giant taken out solo; Elemental Fury used (unmastered) with witness (Farkas)",
+    "End state: captives in transit/at Dragonsreach for Balgruuf's judgment"
   ],
   "npcs_encountered": [
-    "Alvor - Blacksmith of Riverwood",
-    "Imperial Patrol - Road guards",
-    "Jarl Balgruuf - Jarl of Whiterun",
-    "Irileth - Housecarl"
+    "Kodlak Whitemane - Harbinger (adoptive father)",
+    "Skjor - mentor and hardline voice",
+    "Farkas - shield-sibling and witness",
+    "Vilkas - shield-sibling; escort for captives",
+    "Vignar Greymane - storyteller; intelligence source",
+    "Justiciar Varyn - Thalmor handler; captured and cauterized",
+    "Nazeem - mouthpiece; captured",
+    "Borrowed-Uniform Enforcer - guard-imposter; captured",
+    "Talos pilgrims (witnesses)",
+    "Chillfurrow farmhands",
+    "Pelagia farmhands"
   ],
   "locations_visited": [
-    "Riverwood",
-    "Road to Whiterun",
-    "Whiterun",
-    "Dragonsreach"
+    "Whiterun (Jorrvaskr)",
+    "Talos Shrine (Whiterun outskirts)",
+    "Chillfurrow Farm",
+    "Wolf Den (Whiterun/Pale border gully)",
+    "Pelagia Farm"
   ],
   "quests_updated": [
     {
-      "quest": "Before the Storm",
+      "quest": "Companions: Contract - Talos Shrine",
       "status": "Completed"
     },
     {
-      "quest": "Bleak Falls Barrow",
+      "quest": "Companions: Contract - Chillfurrow Wolves",
+      "status": "Completed"
+    },
+    {
+      "quest": "Companions: Contract - Pelagia Giant",
+      "status": "Completed"
+    },
+    {
+      "quest": "Companions: Proving Honor",
       "status": "Active"
     }
   ],
   "loot_acquired": [
-    "Iron Sword",
-    "Hide Armor",
-    "50 gold",
-    "Health Potions x2"
+    "Alpha Wolf Pelt trophy (sent with Farkas)",
+    "Berserker Draught: Skaal Crimson Cut (1 remaining dose)",
+    "Pelagia bounty claim (pending collection)"
   ],
-  "experience_gained": 50,
-  "fate_points_awarded": 1,
-  "notes": "Great session! Players were engaged with the political intrigue and made good choices in how to approach the Jarl. Next session will focus on exploring Bleak Falls Barrow.",
+  "experience_gained": 0,
+  "fate_points_awarded": 0,
+  "milestone": "Minor",
+  "notes": "End-of-session state: Elitrof FP 2 (Refresh 1; keeps higher), Physical stress boxes 1 and 3 marked, no consequences. Companions Trust 7/10 (Champion). Elemental Fury Mastery 2/8. Next session opens on the Dragonsreach hearing with Thalmor pressure and narrative control attempts.",
   "next_session_prep": [
-    "Prepare Bleak Falls Barrow dungeon",
-    "Design Draugr encounters",
-    "Develop civil war subplot hooks"
+    "Dragonsreach hearing scene: Balgruuf, Proventus, Irileth, guards; Vilkas presenting captives",
+    "Prepare Thalmor retaliation beat (witness pressure / diplomatic complaint)",
+    "Offer at least one compel tied to Elitrof's honor and Talos stance",
+    "Decide legal framing: self-defense, assault on Justiciar, or political compromise"
   ]
 }
