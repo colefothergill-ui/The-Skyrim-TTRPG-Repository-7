@@ -149,7 +149,7 @@
       "companions_proving_honor": "active",
       "contract_talos_shrine": "completed",
       "contract_chillfurrow_wolves": "completed",
-      "contract_pelagia_giant": "accepted"
+      "contract_pelagia_giant": "completed"
     },
     "embraced_curse": false,
     "skjor_alive": true,
@@ -208,7 +208,7 @@
   "clocks": {
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
-      "current_progress": 0,
+      "current_progress": 2,
       "total_segments": 8,
       "segments": [
         "Su",
