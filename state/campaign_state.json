@@ -177,9 +177,15 @@
       }
     },
     "party_split": {
-      "elitrof": "solo_at_pelagia_farm_then_returning_to_whiterun",
-      "farkas": "to_dragonsreach_after_witnessing_giant_duel",
-      "vilkas": "to_dragonsreach_with_prisoners"
+      "elitrof": "solo_at_dustmans_cairn",
+      "farkas": "in_jorrvaskr (available on horn call)",
+      "vilkas": "in_whiterun_after_dragonsreach_hearing"
+    },
+    "mid_session_checkpoint_2026_02_23_01": {
+      "scene_id": "act1_scene_009_dustmans_departure_dawn",
+      "location": "Dustman's Cairn (Exterior)",
+      "objective": "Recover the Wuuthrad fragment from Dustman's Cairn and return it to Jorrvaskr.",
+      "note": "Paused at Dustman's Cairn exterior before first infiltration/entry."
     },
     "captives_in_transit": {
       "justiciar_varyn": "alive_cauterized_missing_sword_hand; escorted by Vilkas to Dragonsreach",
@@ -277,6 +283,9 @@
       ]
     }
   },
+  "current_location": "Dustman's Cairn (Exterior)",
+  "current_objective": "Recover the Wuuthrad fragment from Dustman's Cairn and return it to Jorrvaskr.",
+  "current_npcs": ["Draugr", "Bandit Marauder"],
   "last_session_ended_at": "2026-02-21",
   "last_session_title": "Session 1: Whiterun Contracts (Talos Sting, Wolves, Giant)",
   "next_scene_hint": "dragonsreach_hearing"
