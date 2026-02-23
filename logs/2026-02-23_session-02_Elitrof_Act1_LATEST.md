@@ -38,3 +38,7 @@
 - **Elemental Fury Mastery now 4/8** after dramatic 3-word use.
 - Loot: Rune-etched Nord torc (warmth), +330 septims, sapphire, garnet, Vigorous Healing potion.
 - Status: FP 1; Mild consequence: Sliced Upper Arm; Stress persists pending end-session clear.
+
+### Milestones Spent (Post-Dustman's)
+- **Minor Milestone x2:** Replaced **Pack Tactics (Companion Drill)** with **Artifact Extra: Pelt of the Great Werebear Ulran-Vjarn (L1/3)**.
+- Artifact Traits: **Armor:2 (physical; silver bypasses)**, **Hide of the Huntsman (+2 Physique when 2+ physical stress marked or a physical consequence is present).**

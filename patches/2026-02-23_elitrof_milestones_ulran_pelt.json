@@ -1,0 +1,25 @@
+{
+  "patch_id": "2026-02-23_elitrof_milestones_ulran_pelt",
+  "created_at": "2026-02-23",
+  "type": "milestone_spend",
+  "summary": "Spend 2 minor milestones to replace Pack Tactics extra with Ulran-Vjarn werebear pelt artifact (L1/3).",
+  "applies_to": [
+    "data/pcs/pc_elitrof_whitemane.json",
+    "data/items/pelt_ulran_vjarn.json",
+    "logs/2026-02-23_session-02_Elitrof_Act1_LATEST.md"
+  ],
+  "changes": [
+    {
+      "path": "data/pcs/pc_elitrof_whitemane.json",
+      "change": "Replaced extras.pack_tactics with extras.pelt_ulran_vjarn artifact object; updated equipment entry; appended milestone note."
+    },
+    {
+      "path": "data/items/pelt_ulran_vjarn.json",
+      "change": "Created new artifact definition file for Pelt of the Great Werebear Ulran-Vjarn."
+    },
+    {
+      "path": "logs/2026-02-23_session-02_Elitrof_Act1_LATEST.md",
+      "change": "Appended Milestones Spent (Post-Dustman's) section."
+    }
+  ]
+}

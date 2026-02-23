@@ -79,12 +79,46 @@
     "Lore Authority: +2 to Lore for Skyrim/Solstheim history/culture. May use Lore to Overcome as Rapport when persuasion is grounded in precedent, scholarship, or storytelling."
   ],
   "extras": {
-    "pack_tactics": {
-      "cost": "1 Refresh",
-      "mechanics": [
-        "+2 to Command when fighting alongside Companions/allies.",
-        "Once per scene: Overcome with Command to order one ally to immediately take an Attack on your turn; does not consume their next action."
-      ]
+    "pelt_ulran_vjarn": {
+      "type": "artifact",
+      "name": "Pelt of the Great Werebear Ulran-Vjarn",
+      "level_current": 1,
+      "level_max": 3,
+      "cost": "1 Refresh (replaces Pack Tactics)",
+      "traits": {
+        "armor": {
+          "rating": 2,
+          "applies_to": "physical",
+          "exceptions": [
+            "silvered_attacks_bypass_armor"
+          ],
+          "notes": "Armor:2 vs physical harm while worn. Silvered weapons/attacks bypass this armor."
+        },
+        "hide_of_the_huntsman": {
+          "bonus": "+2",
+          "skill": "Physique",
+          "when_active": "When 2+ physical stress boxes are marked OR any physical consequence is present",
+          "applies_to": [
+            "Defend vs physical attacks",
+            "Overcome physical hazards (forced march, poison, cold exposure, crushing force)"
+          ],
+          "notes": "The pelt 'locks in' under strain; the more battered you are, the more the hide bears the blow."
+        }
+      },
+      "stunts": [
+        {
+          "name": "Stunt 1 (Locked)",
+          "status": "locked",
+          "unlock": "GM discretion / Level 2"
+        },
+        {
+          "name": "Stunt 2 (Locked)",
+          "status": "locked",
+          "unlock": "GM discretion / Level 3"
+        }
+      ],
+      "lore": "Skaal shamans blessed the hide after the Ulran-Vjarn hunt. It carries hunt-magic: endurance under strain and warding against mundane steel.",
+      "tags": ["Skaal", "Solstheim", "Artifact", "Armor"]
     },
     "thuum": {
       "cost": "1 Refresh",
@@ -140,7 +174,7 @@
     "Scholar Log",
     "Amulet of Talos",
     "Harbinger's Horn Toggle (Emergency Call): Blow to summon a shield-brother response (once per mission; no shame to use, per Kodlak)",
-    "Great Beast Bear Pelt (Giant Cloak) [actually a werebear hide; he claims it's just an oversized bear's]",
+    "Pelt of the Great Werebear Ulran-Vjarn (Artifact L1/3) — Skaal-blessed hide; worn as cloak/armor",
     "Alchemy Pouch",
     "Satchel",
     "Nord Mead (Bottle)",
@@ -180,7 +214,7 @@
       }
     ]
   },
-  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den). Used Elemental Fury (Su Grah Dun) at Pelagia Farm (unmastered; FP spent) to secure a solo giant takeout witnessed by Farkas. Also received Harbinger's Horn Toggle for Dustman's Cairn mission (emergency call for backup). GM NOTE: Elitrof does NOT know the Inner Circle (including Kodlak) are werewolves; Kodlak kept it from him to protect him and forbade Skjor from telling him until his time came. Farkas and Vilkas also haven't told him yet and were instructed not to. Cleared Dustman's Cairn solo. Engaged Silver Hand defilers, recovered Wuuthrad fragment, and defeated a Draugr Overlord. Learned the Word Wall 'YOL' and used Fire Breath (unmastered; FP spent) in a critical duel. A Silver Hand survivor escaped.",
+  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den). Used Elemental Fury (Su Grah Dun) at Pelagia Farm (unmastered; FP spent) to secure a solo giant takeout witnessed by Farkas. Also received Harbinger's Horn Toggle for Dustman's Cairn mission (emergency call for backup). GM NOTE: Elitrof does NOT know the Inner Circle (including Kodlak) are werewolves; Kodlak kept it from him to protect him and forbade Skjor from telling him until his time came. Farkas and Vilkas also haven't told him yet and were instructed not to. Cleared Dustman's Cairn solo. Engaged Silver Hand defilers, recovered Wuuthrad fragment, and defeated a Draugr Overlord. Learned the Word Wall 'YOL' and used Fire Breath (unmastered; FP spent) in a critical duel. A Silver Hand survivor escaped. Milestones (x2 Minor): Retired Pack Tactics (Companion Drill) extra; promoted Ulran-Vjarn werebear pelt into Artifact Extra (L1/3) with Armor:2 and Hide of the Huntsman.",
   "knowledge": {
     "companions_circle_knowledge_stage": "unaware",
     "kodlak_reveal_policy": "forbade_until_time"
