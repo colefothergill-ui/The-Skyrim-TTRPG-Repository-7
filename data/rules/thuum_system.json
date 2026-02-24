@@ -287,5 +287,8 @@
     "no_fate_point_cost": "Remove Fate Point requirement entirely, rely only on cooldowns. Good for lower-power campaigns.",
     "hardcore_learning": "Require completing specific quests to learn each word, not just finding Word Walls. Makes Thu'um much rarer.",
     "voice_of_power": "Allow spending 2 Fate Points to use a mastered shout twice in same scene, ignoring cooldown."
+  },
+  "restrictions": {
+    "werewolf_form": "Rule: Werewolves cannot use the Thu'um while transformed. The beast-change suppresses the Voice; a werewolf in beast form may not make any shout action rolls until the transformation ends."
   }
 }

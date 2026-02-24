@@ -1,0 +1,25 @@
+{
+  "patch_id": "2026-02-23_werewolf_form_v2_and_proto_oath",
+  "created_at": "2026-02-23",
+  "type": "rules_patch",
+  "summary": "Rework Werewolf Form to avoid nerfing high-Fight PCs; add proto-purity power for refusal path.",
+  "applies_to": [
+    "data/stunts/companions.json",
+    "data/npc_stat_sheets/companion_member.json",
+    "data/quests/companions_questline.json"
+  ],
+  "changes": [
+    {
+      "path": "data/stunts/companions.json",
+      "change": "Replace werewolf_form with v2: Fight+2/Physique+2 bonuses (not fixed Great +4), add gorging mechanic, stunts array, limitations array, end_of_scene roll, scaling levels. Add oath_of_ysgramor_proto power for refusal path."
+    },
+    {
+      "path": "data/npc_stat_sheets/companion_member.json",
+      "change": "Update Beast Form stunt text to match v2 mechanics (Fight+2, Physique+2, move 2 zones, Weapon:2 claws, gorge to heal, social skills locked)."
+    },
+    {
+      "path": "data/quests/companions_questline.json",
+      "change": "Update companions_inner_circle_rites rewards: embrace path references Werewolf Form v2; refusal path unlocks Oath of Ysgramor and gains Kodlak's Blessing aspect with 1 free invoke."
+    }
+  ]
+}
