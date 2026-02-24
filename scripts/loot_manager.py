@@ -40,11 +40,14 @@ class LootManager:
         except Exception:
             pass
 
-    def roll_table(self, table_id: str, rolls: int = 1, *, seed=None) -> list:
+    def roll_table(self, table_id: str, rolls: int = None, *, seed=None) -> list:
         tables = self._load_tables().get("tables", {})
         table = tables.get(table_id)
         if not table:
             return []
+
+        if rolls is None:
+            rolls = int(table.get("rolls", 1))
 
         rng = random.Random(seed)
         entries = table.get("entries", [])

@@ -20,6 +20,13 @@ from utils import location_matches
 from query_data import DataQueryManager
 from first_impression import maybe_first_impression
 
+# Import LootManager if available
+try:
+    from loot_manager import LootManager
+    LOOT_MANAGER_AVAILABLE = True
+except (ImportError, ModuleNotFoundError):
+    LOOT_MANAGER_AVAILABLE = False
+
 # Import DragonbreakManager if available
 try:
     from dragonbreak_manager import DragonbreakManager
@@ -321,7 +328,10 @@ class StoryManager:
                         quest_id = "battle_for_whiterun_stormcloak"
                     else:
                         pal = (cw_state.get("player_alliance") or "").lower()
-                        quest_id = "battle_for_whiterun_imperial" if pal == "imperial" else "battle_for_whiterun_stormcloak"
+                        if pal == "imperial":
+                            quest_id = "battle_for_whiterun_imperial"
+                        elif pal == "stormcloak":
+                            quest_id = "battle_for_whiterun_stormcloak"
                 elif "windhelm" in bn:
                     quest_id = "battle_for_windhelm"
                 elif "solitude" in bn:
@@ -435,13 +445,13 @@ class StoryManager:
             for item in quests_data:
                 yield from self._iter_quest_records(item)
 
-    def _load_json(self, path: Path):
+    def _load_json(self, path):
         if path and Path(path).exists():
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         return None
 
-    def _save_json(self, path: Path, data: dict):
+    def _save_json(self, path, data: dict):
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
@@ -527,8 +537,8 @@ class StoryManager:
                     state["completed_quests"].append(key)
 
             self.save_campaign_state(state)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Warning: failed to sync quest state for '{quest_id}': {e}", file=sys.stderr)
 
         print(f"Quest '{target.get('name', quest_id)}' status: {old_status} -> {new_status}")
 
@@ -550,15 +560,15 @@ class StoryManager:
                 loot_table = rewards.get("loot_table")
                 if loot_table:
                     try:
-                        from loot_manager import LootManager
-                        lm = LootManager(str(self.data_dir), str(self.state_dir))
-                        rolled = lm.roll_table(loot_table)
-                        if rolled:
-                            print("  Loot Roll:")
-                            for line in rolled:
-                                print(f"    - {line}")
-                    except Exception:
-                        pass
+                        if LOOT_MANAGER_AVAILABLE:
+                            lm = LootManager(str(self.data_dir), str(self.state_dir))
+                            rolled = lm.roll_table(loot_table)
+                            if rolled:
+                                print("  Loot Roll:")
+                                for line in rolled:
+                                    print(f"    - {line}")
+                    except Exception as e:
+                        print(f"Warning: loot roll failed for table '{loot_table}': {e}", file=sys.stderr)
 
         return True
 
@@ -589,7 +599,7 @@ class StoryManager:
                 q_faction = (quest.get("faction") or "").lower().strip()
                 qid = (quest.get("id") or "").lower()
 
-                if alliance:
+                if alliance in ("imperial", "stormcloak"):
                     if q_faction and q_faction != alliance:
                         continue
                     if "imperial" in qid and alliance == "stormcloak":

@@ -416,7 +416,7 @@
             "jarl_balgruuf_status": "remains_in_power",
             "stormcloak_morale": -10
           },
-          "next_quest": "reunification_of_skyrim_the_pale",
+          "next_quest": "reunification_of_skyrim_falkreath",
           "status": "locked"
         },
         "stormcloak_version": {
