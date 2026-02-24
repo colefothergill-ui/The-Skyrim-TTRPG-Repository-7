@@ -23,12 +23,72 @@
         "id": "werewolf_form",
         "name": "Werewolf Form",
         "unlock_condition": "Complete companions_inner_circle_rites with embraced_curse == true",
-        "unlock_flavor": "The blood burns through you and the world becomes sharper - smells like iron, sounds like prey. You are wolf now.",
+        "unlock_flavor": "The blood ignites through you and the world becomes prey-sharp. You are wolf now.",
         "type": "session_power",
         "cost": "Once per session; lasts one scene",
-        "effect": "Transform into werewolf form for one scene. While transformed: Fight and Physique are treated as Great (+4) regardless of base skill; you ignore your first mild consequence each scene; you cannot use social skills (Rapport, Empathy, Deceive) as the beast overrides social reasoning. At end of scene, make a Will roll vs Fair (+2) or take a mild mental consequence 'Shame of the Wolf'.",
+        "level_current": 1,
+        "level_max": 3,
+        "effect": "Transform into beast form for one scene. While transformed: (1) Bestial Strength & Endurance: +2 Fight and +2 Physique; (2) Pursuit of Prey: you may move up to 2 zones with a single move if not blocked; (3) Gorging: with a Taken Out/helpless body in your zone, you may Overcome with Physique to feed (Fair +2, or Good +3 if actively threatened). On success: Humanoid clears 2 physical stress OR clears one Moderate physical consequence; Wildlife clears 1 physical stress OR clears one Mild physical consequence. Cannot clear Severe. Limits: once per exchange. Silver/fire prevents gorging healing for one full exchange.",
+        "stunts": [
+          "Werewolf Physiology: Your claw/teeth attacks are Weapon:2.",
+          "Rampaging Strikes: When you Attack with Fight in beast form, choose a primary target. If you deal shifts to the primary target, you may also deal splash stress to other enemies in the same zone equal to half the shifts (rounded up), max 2 stress per extra target."
+        ],
+        "limitations": [
+          "Cannot use social skills (Rapport, Empathy, Deceive) in beast form.",
+          "Cannot use weapons/shields/armor extras while transformed; you fight with claws/teeth.",
+          "CANNOT USE THE THU'UM WHILE TRANSFORMED (no shouts in werewolf form).",
+          "Silvered attacks bypass beast defenses and prevent gorging healing for one full exchange.",
+          "Fire damage prevents gorging healing for one full exchange."
+        ],
+        "end_of_scene": "Make a Will roll vs Fair (+2) or take a mild mental consequence 'Shame of the Wolf'. If you gorged on a humanoid this scene, difficulty is Good (+3).",
+        "scaling": {
+          "level_2_unlock": "GM discretion: unlock one stunt (Alpha's Howl or Bloodscent).",
+          "level_3_unlock": "GM discretion: unlock one stunt (Tempered Regeneration or Predator Leap)."
+        },
         "prerequisites": ["companions_inner_circle_rites"],
-        "notes": "Only available if embraced_curse == true. Kodlak views this power with sadness; using it in his presence costs 1 trust with Kodlak. Skjor approves (+1 trust with Skjor when used effectively)."
+        "notes": "This replaces the old fixed-skill implementation that could nerf high-Fight PCs. Only available if embraced_curse == true. Kodlak views this power with sadness; using it in his presence costs 1 trust with Kodlak. Skjor approves (+1 trust with Skjor when used effectively)."
+      },
+      "oath_of_ysgramor_proto": {
+        "id": "oath_of_ysgramor_proto",
+        "name": "Oath of Ysgramor (Proto-Breath)",
+        "unlock_condition": "Complete companions_inner_circle_rites with embraced_curse == false",
+        "type": "session_power",
+        "cost": "Once per session",
+        "effect": "Choose one: (a) clear one physical stress box; or (b) gain +2 to a single Will roll to resist fear, temptation, or bloodlust.",
+        "notes": "This bridges the refusal path until Breath of Ysgramor unlocks at the finale."
+      },
+      "oath_of_ysgramor": {
+        "id": "oath_of_ysgramor",
+        "name": "Oath of Ysgramor",
+        "unlock_condition": "Complete companions_inner_circle_rites with embraced_curse == false",
+        "unlock_flavor": "You refuse the beast blood. In its place, you swear the older oath: to carry Ysgramor's legacy without stain.",
+        "type": "persistent_power",
+        "cost": "Permanent (Purity Track). Includes once-per-session and once-per-scene stunts.",
+        "level_current": 1,
+        "level_max": 3,
+        "traits": {
+          "man_and_mer": {
+            "effect": "Against Mer (Altmer, Dunmer, Bosmer, Orsimer): when you Attack, gain +1 to your 4dF result.",
+            "applies_to": ["Fight", "Shoot", "Athletics (if permitted to Attack)", "Physique (if permitted to Attack)"]
+          },
+          "tongue_of_the_ancestors": {
+            "use_thuum_bonus": "+2 to 4dF result on any Thu'um action roll (Attack/Overcome/Create Advantage).",
+            "learning_discount": {
+              "difficulty": "Halve learning difficulty (round up), minimum Fair (+2). Example: Great (+4) -> Fair (+2), Superb (+5) -> Great (+3).",
+              "clock": "Halve clock requirements for learning/mastery tracks started after swearing the Oath (e.g., 8->4, 10->5)."
+            }
+          },
+          "locked_trait_3": {"status": "locked", "unlock": "GM discretion / Level 2"},
+          "locked_trait_4": {"status": "locked", "unlock": "GM discretion / Level 3"}
+        },
+        "stunts": [
+          "Second Wind (Once per Session): Overcome with Physique or Will (Good +3; Great +4 in combat). On success, choose: clear up to 6 total stress ticks OR clear up to two consequences (mild/moderate only). Cannot clear Severe. On failure, clear 3 stress ticks but take a cost (1 mental stress or enemy boost).",
+          "Bladestorm (Once per Scene): Overcome with Fight or Shoot (Fair +2 if outnumbered; Good +3 if disciplined foes). On success, immediately Attack every enemy in your zone. Roll once, each enemy defends separately. Treat this attack as Weapon:1."
+        ],
+        "limitations": [
+          "Bad Blood: Against Mer, all social rolls to gain favor, lie, persuade, or intimidate take -2 to 4dF result."
+        ],
+        "notes": "Purity alternative to lycanthropy. Intended to be competitive with Werewolf Form without stacking."
       }
     }
   }

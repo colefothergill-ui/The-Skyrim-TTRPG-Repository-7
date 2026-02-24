@@ -24,7 +24,7 @@
   "stunts": [
     "Shield-Sibling: +2 to Fight when fighting alongside another Companion",
     "Warrior's Pride: +2 to Provoke when challenged about honor or combat prowess",
-    "Beast Form (some): If a werewolf, can transform once per session into beast form (gain +3 to all physical skills but lose mental acuity)"
+    "Beast Form (some): If a werewolf, can transform once per session into beast form (Fight+2, Physique+2, move 2 zones, Weapon:2 claws; can gorge to heal; social skills locked)."
   ],
   "stress": {
     "physical": [false, false, false, false],

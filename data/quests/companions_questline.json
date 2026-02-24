@@ -42,8 +42,8 @@
         ],
         "rewards": [
           "Inner Circle membership and access to the Underforge",
-          "If embraced: Werewolf Form stunt (once per session, transform for one scene - Fight and Physique treated as Great (+4), ignore first mild consequence each scene, cannot use social skills while transformed, requires Will vs Fair (+2) at scene end or take 'Shame of the Wolf' mild mental consequence; see data/stunts/companions.json)",
-          "If refused: 'Kodlak's Blessing' aspect with 1 free invoke (Kodlak confides deeper secrets)"
+          "If embraced: Werewolf Form stunt (once per session, transform for one scene - Fight+2 and Physique+2, move 2 zones, Weapon:2 claws, gorge to heal; cannot use social skills or Thu'um while transformed; requires Will vs Fair (+2) at scene end or take 'Shame of the Wolf' mild mental consequence; see data/stunts/companions.json)",
+          "If refused: Unlock Oath of Ysgramor (see data/stunts/companions.json) and gain 'Kodlak's Blessing' aspect with 1 free invoke (Kodlak confides deeper secrets)"
         ],
         "branching": {
           "embrace_curse": {
