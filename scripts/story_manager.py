@@ -283,36 +283,61 @@ class StoryManager:
     
     def update_civil_war_state(self, alliance=None, battle_result=None):
         """
-        Update civil war state
-        
-        Args:
-            alliance: 'imperial', 'stormcloak', or None
-            battle_result: Dict with battle outcome
+        Update civil war state and (optionally) advance questlines.
         """
         state = self.load_campaign_state()
         if not state:
             return False
-        
+
+        cw_state = state.setdefault("civil_war_state", {})
+        cw_state.setdefault("imperial_victories", 0)
+        cw_state.setdefault("stormcloak_victories", 0)
+        cw_state.setdefault("key_battles_completed", [])
+
         if alliance:
-            state['civil_war_state']['player_alliance'] = alliance
+            alliance = str(alliance).lower().strip()
+            cw_state["player_alliance"] = alliance
             print(f"Player alliance set to: {alliance}")
-        
+
         if battle_result:
-            battle_name = battle_result.get('battle_name')
-            winner = battle_result.get('winner')
-            
-            if winner == 'imperial':
-                state['civil_war_state']['imperial_victories'] += 1
-            elif winner == 'stormcloak':
-                state['civil_war_state']['stormcloak_victories'] += 1
-            
-            state['civil_war_state']['key_battles_completed'].append(battle_name)
-            
-            # Update Battle of Whiterun specifically
-            if 'whiterun' in battle_name.lower():
-                state['civil_war_state']['battle_of_whiterun_status'] = 'completed'
-                print(f"Battle of Whiterun completed - Winner: {winner}")
-        
+            battle_name = str(battle_result.get("battle_name") or "")
+            winner = str(battle_result.get("winner") or "").lower().strip()
+            quest_id = battle_result.get("quest_id")
+
+            if winner == "imperial":
+                cw_state["imperial_victories"] += 1
+            elif winner == "stormcloak":
+                cw_state["stormcloak_victories"] += 1
+
+            if battle_name and battle_name not in cw_state["key_battles_completed"]:
+                cw_state["key_battles_completed"].append(battle_name)
+
+            if not quest_id:
+                bn = battle_name.lower()
+                if "whiterun" in bn:
+                    if winner == "imperial":
+                        quest_id = "battle_for_whiterun_imperial"
+                    elif winner == "stormcloak":
+                        quest_id = "battle_for_whiterun_stormcloak"
+                    else:
+                        pal = (cw_state.get("player_alliance") or "").lower()
+                        quest_id = "battle_for_whiterun_imperial" if pal == "imperial" else "battle_for_whiterun_stormcloak"
+                elif "windhelm" in bn:
+                    quest_id = "battle_for_windhelm"
+                elif "solitude" in bn:
+                    quest_id = "battle_for_solitude"
+
+            if battle_name and "whiterun" in battle_name.lower():
+                cw_state["battle_of_whiterun_status"] = "completed"
+                print(f"Battle of Whiterun completed - Winner: {winner or 'unknown'}")
+                self.advance_questline("main", "battle_of_whiterun", "completed")
+
+            if battle_name and ("windhelm" in battle_name.lower() or "solitude" in battle_name.lower()):
+                self.advance_questline("main", "siege_of_windhelm_or_solitude", "completed")
+
+            if quest_id:
+                self.advance_questline("civil_war", quest_id, "completed")
+
         self.save_campaign_state(state)
         return True
     
@@ -384,102 +409,217 @@ class StoryManager:
     
     def _iter_quest_records(self, quests_data):
         """
-        Helper to iterate quest records regardless of whether they are stored
-        as a list or a dict (dict.values() covers the new format).
+        Recursively yield quest record dicts from arbitrary quest trees.
+
+        A "quest record" is any dict that has at least an 'id' and a 'name'
+        and is not explicitly marked as a non-quest reference.
 
         Args:
-            quests_data: The value of main_questline['quests'] (list or dict).
+            quests_data: Any nested structure containing quest records.
 
         Yields:
-            Individual quest record dicts.
+            dict: Quest record dictionaries (live references, safe to mutate)
         """
         if isinstance(quests_data, dict):
-            yield from quests_data.values()
+            if (
+                "id" in quests_data
+                and "name" in quests_data
+                and quests_data.get("record_type") != "reference"
+            ):
+                yield quests_data
+
+            for v in quests_data.values():
+                yield from self._iter_quest_records(v)
+
         elif isinstance(quests_data, list):
-            yield from quests_data
+            for item in quests_data:
+                yield from self._iter_quest_records(item)
+
+    def _load_json(self, path: Path):
+        if path and Path(path).exists():
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return None
+
+    def _save_json(self, path: Path, data: dict):
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+
+    def _questline_config(self, questline_type: str):
+        """Resolve questline type -> (path, root_key, quests_key)."""
+        questline_type = (questline_type or "").lower().strip()
+        if questline_type in ("main", "main_quest", "main_quests"):
+            return (self.main_quests_path, "main_questline", "quests")
+        if questline_type in ("civil_war", "civilwar", "cw"):
+            return (self.civil_war_path, "civil_war_questline", "quests")
+        if questline_type in ("college", "college_of_winterhold"):
+            return (self.college_path, "college_questline", "quests")
+        if questline_type in ("companions", "companions_questline"):
+            return (self.companions_path, "companions_questline", "quests")
+        raise ValueError(f"Unknown questline_type: {questline_type}")
+
+    def advance_questline(self, questline_type: str, quest_id: str, new_status: str, *, echo_rewards: bool = True):
+        """
+        Advance a quest inside a quest file and sync minimal state lists.
+
+        Status conventions (recommended):
+          - locked: not yet available
+          - available: can be started
+          - active: currently in progress
+          - stub: placeholder, treated as locked for unlock purposes
+          - completed / failed: resolved
+
+        Unlocks 'next_quest' or entries in 'next_quests' when a quest completes.
+        """
+        if not quest_id:
+            return False
+
+        quest_path, root_key, quests_key = self._questline_config(questline_type)
+        data = self._load_json(quest_path)
+        if not data or root_key not in data or quests_key not in data[root_key]:
+            return False
+
+        quests_root = data[root_key][quests_key]
+
+        target = None
+        for q in self._iter_quest_records(quests_root):
+            if q.get("id") == quest_id:
+                target = q
+                break
+
+        if not target:
+            return False
+
+        old_status = target.get("status", "locked")
+        target["status"] = new_status
+
+        # Unlock next quests
+        if new_status == "completed":
+            next_ids = []
+            if isinstance(target.get("next_quest"), str):
+                next_ids.append(target["next_quest"])
+            if isinstance(target.get("next_quests"), list):
+                next_ids.extend([x for x in target["next_quests"] if isinstance(x, str)])
+
+            for nid in next_ids:
+                for nq in self._iter_quest_records(quests_root):
+                    if nq.get("id") == nid and nq.get("status") in (None, "locked", "stub", "conditional"):
+                        nq["status"] = "available"
+                        print(f"Unlocked quest: {nq.get('name', nid)}")
+
+        self._save_json(quest_path, data)
+
+        # Best-effort sync into campaign_state.json
+        try:
+            state = self.load_campaign_state() or {}
+            state.setdefault("active_quests", [])
+            state.setdefault("completed_quests", [])
+            key = f"{questline_type}:{quest_id}"
+
+            if new_status == "active":
+                if key not in state["active_quests"]:
+                    state["active_quests"].append(key)
+            elif new_status == "completed":
+                if key in state["active_quests"]:
+                    state["active_quests"].remove(key)
+                if key not in state["completed_quests"]:
+                    state["completed_quests"].append(key)
+
+            self.save_campaign_state(state)
+        except Exception:
+            pass
+
+        print(f"Quest '{target.get('name', quest_id)}' status: {old_status} -> {new_status}")
+
+        # Rewards echo + optional loot roll
+        if echo_rewards:
+            rewards = target.get("rewards") or {}
+            if isinstance(rewards, dict) and rewards:
+                print("Quest Rewards:")
+                if "experience" in rewards:
+                    print(f"  Experience: {rewards['experience']}")
+                if "items" in rewards and isinstance(rewards["items"], list):
+                    print(f"  Items: {', '.join(rewards['items'])}")
+                for k, v in rewards.items():
+                    if k in ("experience", "items"):
+                        continue
+                    pretty = k.replace("_", " ").title()
+                    print(f"  {pretty}: {v}")
+
+                loot_table = rewards.get("loot_table")
+                if loot_table:
+                    try:
+                        from loot_manager import LootManager
+                        lm = LootManager(str(self.data_dir), str(self.state_dir))
+                        rolled = lm.roll_table(loot_table)
+                        if rolled:
+                            print("  Loot Roll:")
+                            for line in rolled:
+                                print(f"    - {line}")
+                    except Exception:
+                        pass
+
+        return True
 
     def get_available_quests(self):
         """
-        Get list of currently available quests based on state
+        Get list of currently available quests across supported questlines.
         """
-        state = self.load_campaign_state()
-        main_quests_data = self.load_main_quests()
-        
-        if not state or not main_quests_data:
-            return []
-        
+        state = self.load_campaign_state() or {}
         available = []
-        
-        # Check main questline
-        for quest in self._iter_quest_records(
-            main_quests_data['main_questline']['quests']
-        ):
-            if quest.get('status') == 'available':
-                available.append({
-                    'type': 'main',
-                    'quest': quest
-                })
 
-        # Check College questline
-        college_state = state.get("college_state", {})
+        # Main campaign questline
+        main_data = self.load_main_quests()
+        if main_data:
+            for quest in self._iter_quest_records(main_data.get("main_questline", {}).get("quests", [])):
+                if quest.get("status") == "available":
+                    available.append({"type": "main", "quest": quest})
+
+        # Civil War questline (filtered by alliance)
+        cw_data = self.load_civil_war_quests()
+        alliance = (state.get("civil_war_state", {}) or {}).get("player_alliance")
+        alliance = (alliance or "").lower().strip()
+
+        if cw_data:
+            for quest in self._iter_quest_records(cw_data.get("civil_war_questline", {}).get("quests", {})):
+                if quest.get("status") != "available":
+                    continue
+
+                q_faction = (quest.get("faction") or "").lower().strip()
+                qid = (quest.get("id") or "").lower()
+
+                if alliance:
+                    if q_faction and q_faction != alliance:
+                        continue
+                    if "imperial" in qid and alliance == "stormcloak":
+                        continue
+                    if "stormcloak" in qid and alliance == "imperial":
+                        continue
+
+                available.append({"type": "civil_war", "quest": quest})
+
+        # College questline (state-driven active quest)
+        college_state = state.get("college_state", {}) or {}
         active_college_quest = college_state.get("active_quest")
         if active_college_quest and self.college_quests:
             quest_data = self.college_quests.get(active_college_quest)
             if quest_data:
-                available.append({
-                    'type': 'college',
-                    'quest': quest_data
-                })
+                available.append({"type": "college", "quest": quest_data})
 
-        # Check Companions questline
-        companions_state = state.get("companions_state", {})
+        # Companions questline (state-driven active quest)
+        companions_state = state.get("companions_state", {}) or {}
         active_companions_quest = companions_state.get("active_quest")
         if active_companions_quest and self.companions_quests:
             quest_data = self.companions_quests.get(active_companions_quest)
             if quest_data:
-                available.append({
-                    'type': 'companions',
-                    'quest': quest_data
-                })
+                available.append({"type": "companions", "quest": quest_data})
 
         return available
-    
+
     def advance_quest(self, quest_id, new_status):
-        """
-        Advance a quest to a new status
-        
-        Args:
-            quest_id: ID of the quest
-            new_status: New status ('available', 'active', 'completed', 'failed')
-        """
-        main_quests_data = self.load_main_quests()
-        if not main_quests_data:
-            return False
-        
-        quests_raw = main_quests_data['main_questline']['quests']
-        
-        # Find and update quest
-        for quest in self._iter_quest_records(quests_raw):
-            if quest.get('id') == quest_id:
-                old_status = quest.get('status')
-                quest['status'] = new_status
-                
-                # If completing a quest, unlock next quest
-                if new_status == 'completed' and 'next_quest' in quest:
-                    next_quest_id = quest['next_quest']
-                    for next_quest in self._iter_quest_records(quests_raw):
-                        if next_quest.get('id') == next_quest_id:
-                            next_quest['status'] = 'available'
-                            print(f"Unlocked quest: {next_quest['name']}")
-                
-                # Save updated data
-                with open(self.main_quests_path, 'w') as f:
-                    json.dump(main_quests_data, f, indent=2)
-                
-                print(f"Quest '{quest['name']}' status: {old_status} -> {new_status}")
-                return True
-        
-        return False
+        """Backward-compatible wrapper for advancing the campaign's MAIN questline."""
+        return self.advance_questline("main", quest_id, new_status)
     
     def check_story_arcs(self):
         """
