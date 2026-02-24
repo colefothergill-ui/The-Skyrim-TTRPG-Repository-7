@@ -1,0 +1,25 @@
+{
+  "item_id": "pelt_ulran_vjarn",
+  "name": "Pelt of the Great Werebear Ulran-Vjarn",
+  "type": "artifact",
+  "level_current": 1,
+  "level_max": 3,
+  "traits": [
+    {
+      "name": "Armor",
+      "rating": 2,
+      "applies_to": "physical",
+      "exceptions": ["silvered_attacks_bypass_armor"]
+    },
+    {
+      "name": "Hide of the Huntsman",
+      "effect": "+2 Physique to Defend vs physical harm and Overcome physical hardship when 2+ physical stress marked OR a physical consequence is present."
+    }
+  ],
+  "stunts": [
+    {"name": "Stunt 1 (Locked)", "unlock": "GM discretion / Level 2"},
+    {"name": "Stunt 2 (Locked)", "unlock": "GM discretion / Level 3"}
+  ],
+  "origin": "Skaal shamans blessed the hide after the Ulran-Vjarn hunt.",
+  "notes": "Designed to replace the Pack Tactics extra for Elitrof via two minor milestones."
+}
