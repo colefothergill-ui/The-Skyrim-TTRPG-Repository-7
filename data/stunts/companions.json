@@ -28,7 +28,7 @@
         "cost": "Once per session; lasts one scene",
         "level_current": 1,
         "level_max": 3,
-        "effect": "Transform into beast form for one scene. While transformed: (1) Bestial Strength & Endurance: +2 Fight and +2 Physique; (2) Pursuit of Prey: you may move up to 2 zones with a single move if not blocked; (3) Gorging: with a Taken Out/helpless body in your zone, you may Overcome with Physique to feed (Fair +2, or Good +3 if actively threatened). On success: Humanoid clears 2 physical stress OR clears one Moderate physical consequence; Wildlife clears 1 physical stress OR clears one Mild physical consequence. Cannot clear Severe. Limits: once per exchange. Silver/fire prevents gorging healing for one full exchange.",
+        "effect": "Transform into beast form for one scene. While transformed: (1) Bestial Strength & Endurance: +2 Fight and +2 Physique; (2) Pursuit of Prey: you may move up to 2 zones with a single move if not blocked; (3) Gorging: with a Taken Out/helpless body in your zone, you may Overcome with Physique to feed (Fair +2, or Good +3 if actively threatened). On success: Humanoid clears 2 physical stress OR clears one Moderate physical consequence; Wildlife clears 1 physical stress OR clears one Mild physical consequence. Cannot clear Severe. Limits: once per exchange.",
         "stunts": [
           "Werewolf Physiology: Your claw/teeth attacks are Weapon:2.",
           "Rampaging Strikes: When you Attack with Fight in beast form, choose a primary target. If you deal shifts to the primary target, you may also deal splash stress to other enemies in the same zone equal to half the shifts (rounded up), max 2 stress per extra target."
@@ -60,14 +60,14 @@
       "oath_of_ysgramor": {
         "id": "oath_of_ysgramor",
         "name": "Oath of Ysgramor",
-        "unlock_condition": "Complete companions_inner_circle_rites with embraced_curse == false",
+        "unlock_condition": "Complete companions_kodlak_cure_or_sacrifice with embraced_curse == false",
         "unlock_flavor": "You refuse the beast blood. In its place, you swear the older oath: to carry Ysgramor's legacy without stain.",
         "type": "persistent_power",
         "cost": "Permanent (Purity Track). Includes once-per-session and once-per-scene stunts.",
         "level_current": 1,
         "level_max": 3,
         "traits": {
-          "man_and_mer": {
+          "bane_of_mer": {
             "effect": "Against Mer (Altmer, Dunmer, Bosmer, Orsimer): when you Attack, gain +1 to your 4dF result.",
             "applies_to": ["Fight", "Shoot", "Athletics (if permitted to Attack)", "Physique (if permitted to Attack)"]
           },
