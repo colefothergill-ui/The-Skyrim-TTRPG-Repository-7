@@ -34,3 +34,6 @@ _statistics.json
 *.tmp
 *.bak
 *.backup
+
+# Generated state files
+state/loot_history.json
