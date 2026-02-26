@@ -267,6 +267,33 @@
       },
       "corruption_risk": "Daedric influence. The spear can be compelled to demand worthy prey, risky timing, or merciless escalation.",
       "story_impact": "Marks the wielder as Hircine-touched. Hunters fear/respect; Thalmor categorize as an anomaly; Companions take interest. At Level 4 awakening, the spear marks its wielder as an apex predator to beasts and lycanthropes."
+    },
+    {
+      "name": "Shield of Ysgramor",
+      "category": "Legendary Shield",
+      "origin": "Ysgramor's ancient shield",
+      "location": "Ysgramor's Tomb (Reliquary of the Five Hundred)",
+      "description": "A massive round shield of ancient Nordic make, etched with longship-prows and the names of the Five Hundred. It feels heavier than metal, like it carries oaths.",
+      "mechanical_stats": {
+        "armor_rating": 3,
+        "base_bonus": "+2 to Defend with Fight or Athletics while wielding",
+        "aspect": "Wall of the Five Hundred",
+        "special_ability": {
+          "name": "Unbroken Shieldwall",
+          "effect": "Once per session, when you or an ally in your zone would take physical stress from an attack, you may spend 1 Fate Point to negate up to 4 shifts of stress from that attack and create the situation aspect 'Shieldwall Stance' with 1 free invoke.",
+          "cost": "1 Fate Point",
+          "limitation": "Once per session"
+        },
+        "secondary_ability": {
+          "name": "Stand Fast",
+          "effect": "Once per scene, you may Create an Advantage with Fight instead of Command to represent disciplined shield-work. On success, create 'No One Passes' with 1 free invoke (or 2 on success with style).",
+          "cost": "Free",
+          "limitation": "Once per scene"
+        }
+      },
+      "requirements": "Shield proficiency; cannot be wielded with two-handed weapons",
+      "lore_significance": "A relic of Ysgramor's migration. The Companions treat it as a piece of their founding oath.",
+      "story_impact": "Bearing this shield marks the wielder as a living symbol of the Companions. Nords show awe; enemies of the Companions take notice."
     }
   ],
   "standard_enchantments": {

@@ -273,6 +273,13 @@
     }
   },
   "clocks": {
+    "thuum_become_ethereal_mastery": {
+      "name": "Become Ethereal Mastery",
+      "current_progress": 1,
+      "total_segments": 4,
+      "segments": ["Feim", "Zii", "Gron", "Mastery"],
+      "notes": "Oath of Ysgramor learning discount applied: halved mastery clock."
+    },
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
       "current_progress": 6,
