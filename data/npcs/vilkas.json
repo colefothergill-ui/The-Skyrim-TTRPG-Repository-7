@@ -14,10 +14,10 @@
     ]
   },
   "skills": {
-    "Great": ["Fight", "Will"],
-    "Good": ["Physique", "Notice"],
-    "Fair": ["Rapport", "Provoke"],
-    "Average": ["Athletics", "Lore", "Empathy"]
+    "Great": ["Fight"],
+    "Good": ["Lore", "Will"],
+    "Fair": ["Notice", "Provoke", "Athletics"],
+    "Average": ["Physique", "Empathy", "Rapport"]
   },
   "stunts": [
     "Tactical Eye: +2 to Notice when assessing enemy formations or combat terrain.",

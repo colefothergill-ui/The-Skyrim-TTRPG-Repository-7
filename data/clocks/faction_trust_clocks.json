@@ -1,7 +1,7 @@
 {
   "faction_trust_clocks": {
     "description": "Track party standing and trust with all major factions in Skyrim",
-    "last_updated": "2026-02-23",
+    "last_updated": "2026-02-26",
     "trust_scale": {
       "0-2": {
         "level": "Stranger",

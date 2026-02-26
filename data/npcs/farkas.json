@@ -14,10 +14,10 @@
     ]
   },
   "skills": {
-    "Great": ["Fight", "Physique"],
-    "Good": ["Athletics", "Will"],
-    "Fair": ["Notice", "Rapport"],
-    "Average": ["Empathy", "Lore", "Provoke"]
+    "Great": ["Physique"],
+    "Good": ["Fight", "Athletics"],
+    "Fair": ["Will", "Notice", "Empathy"],
+    "Average": ["Rapport", "Lore", "Provoke"]
   },
   "stunts": [
     "Shield Wall: +2 to Defend when protecting an adjacent ally.",
