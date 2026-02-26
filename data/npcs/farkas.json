@@ -1,0 +1,73 @@
+{
+  "name": "Farkas",
+  "id": "farkas",
+  "type": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions (Inner Circle)",
+  "aspects": {
+    "high_concept": "Strongest Arm in Jorrvaskr, Simplest Heart",
+    "trouble": "The Wolf Is Easy; People Are Hard",
+    "other_aspects": [
+      "Honor Is What You Do When Nobody Watches",
+      "Brother's Keeper",
+      "Comfortable in Beast Skin"
+    ]
+  },
+  "skills": {
+    "Great": ["Physique"],
+    "Good": ["Fight", "Athletics"],
+    "Fair": ["Will", "Notice", "Empathy"],
+    "Average": ["Rapport", "Lore", "Provoke"]
+  },
+  "stunts": [
+    "Shield Wall: +2 to Defend when protecting an adjacent ally.",
+    "Bear's Endurance: Farkas may absorb one mild consequence per scene without marking stress (recovers at scene end).",
+    "Pack Bond: Once per session, if Farkas is in the same zone as the PC, the PC gains +1 to a Fight roll."
+  ],
+  "stress": {
+    "physical": [false, false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "fate_points": 3,
+  "personality_notes": {
+    "speaking_style": "Plain-spoken, warm, laconic. Says exactly what he means in as few words as possible.",
+    "motivations": [
+      "Protect his Shield-Siblings and Jorrvaskr",
+      "Follow Kodlak's lead without question",
+      "Stand by his twin brother Vilkas"
+    ],
+    "fears": [
+      "Losing his brother or his Harbinger",
+      "Being too slow to protect someone who trusted him",
+      "Being dismissed as simple rather than steady"
+    ],
+    "quirks": [
+      "Always has dried meat or hardtack somewhere on his person",
+      "Stands near people he trusts — proximity is his language of loyalty",
+      "Polishes his greatsword when nervous"
+    ]
+  },
+  "relationships": {
+    "Vilkas": "Twin brother; loves him fiercely, sometimes frustrated by Vilkas's brooding",
+    "Kodlak Whitemane": "Deep filial love; Kodlak is father-figure",
+    "Skjor": "Easy camaraderie; two warriors who don't overthink things",
+    "Aela the Huntress": "Respectful friendship; she's fast, he's strong, they work well together",
+    "Elitrof Whitemane": "Shield-Sibling; respects his straightforward courage and purity path"
+  },
+  "notes": "Circle member. Farkas accepts the beast blood without Vilkas's philosophical torment — the wolf is part of him and he doesn't fight it. On the cure question he is loyal to Kodlak's wish above his own comfort: if the Harbinger wants a cure, Farkas will help without hesitation.",
+  "combat_tactics": "Farkas fights like a force of nature — direct, powerful, relentless. He uses his size to control zones and protect flanks. In werewolf form he is terrifying; even in human form enemies find him almost impossible to move.",
+  "scene_triggers": [
+    "Jorrvaskr training yard",
+    "Companions questline",
+    "Proving Honor quest (witness to trial)",
+    "Inner Circle Rites",
+    "Whiterun defense"
+  ],
+  "act_context": ["Act 1", "Act 2"]
+}

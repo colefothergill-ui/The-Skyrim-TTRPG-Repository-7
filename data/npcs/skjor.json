@@ -1,0 +1,73 @@
+{
+  "name": "Skjor",
+  "id": "skjor",
+  "type": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions (Inner Circle)",
+  "aspects": {
+    "high_concept": "Scarred Veteran of the Circle's Shadow War",
+    "trouble": "The Beast Blood Is Strength, Not Sickness",
+    "other_aspects": [
+      "Hard-Edged and Unapologetic",
+      "Old Wolf, Sharp Fangs",
+      "The Hunt Defines the Hunter"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight", "Stealth"],
+    "Good": ["Notice", "Athletics"],
+    "Fair": ["Provoke", "Deceive"],
+    "Average": ["Physique", "Will", "Rapport"]
+  },
+  "stunts": [
+    "Ambush Predator: +2 to Fight on the first exchange of a conflict if Skjor was hidden or unnoticed beforehand.",
+    "Old Wolf's Cunning: Once per session, Skjor may use Stealth in place of Deceive to set up a tactical misdirection.",
+    "Scarred Survivor: Skjor may ignore one mild consequence per session (he's taken worse and kept fighting)."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "fate_points": 3,
+  "personality_notes": {
+    "speaking_style": "Blunt, rough, challenging. Speaks like someone who has seen too many battles to waste words on diplomacy.",
+    "motivations": [
+      "Keep the Companions strong through strength, not sentiment",
+      "Embrace the beast blood as the gift Hircine intended",
+      "Protect the Circle's secrets at all costs"
+    ],
+    "fears": [
+      "The Companions going soft under gentle leadership",
+      "Losing the beast blood to a cure he never asked for",
+      "The Silver Hand finding and exploiting the Circle's weakness"
+    ],
+    "quirks": [
+      "Traces the scar over his blind eye when sizing someone up",
+      "Speaks of the beast blood the way a smith speaks of good steel — as a tool that defines the craftsman",
+      "Pushes recruits harder than anyone else and respects only those who push back"
+    ]
+  },
+  "relationships": {
+    "Kodlak Whitemane": "Respects the Harbinger but disagrees about the cure; obeys out of loyalty, not conviction",
+    "Aela the Huntress": "Close ally and kindred spirit; both embrace the beast blood fully",
+    "Farkas": "Easy respect between two fighters who prefer action over talk",
+    "Vilkas": "Mutual respect but ideological friction; Vilkas's brooding irritates Skjor",
+    "Elitrof Whitemane": "Wary respect; the newcomer refused the blood but proved himself in battle"
+  },
+  "notes": "Circle member. Skjor is hard-edged and pro-beast blood — he sees the lycanthropy as Hircine's gift and considers Kodlak's cure quest misguided, though he obeys the Harbinger's authority. He is alive in this campaign timeline. His stance on the cure is firmly against it, aligned with Aela.",
+  "combat_tactics": "Skjor fights dirty by Companion standards — ambushes, flanking, striking from stealth. He is the Circle's shadow operative, comfortable in places where honor gets people killed. In werewolf form he is fast and vicious rather than powerful.",
+  "scene_triggers": [
+    "Jorrvaskr mead hall",
+    "Companions questline",
+    "Inner Circle secret meetings",
+    "Underforge rites",
+    "Silver Hand encounters"
+  ],
+  "act_context": ["Act 1", "Act 2"]
+}

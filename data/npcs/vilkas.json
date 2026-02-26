@@ -1,0 +1,73 @@
+{
+  "name": "Vilkas",
+  "id": "vilkas",
+  "type": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions (Inner Circle)",
+  "aspects": {
+    "high_concept": "Sharpest Mind and Bitterest Blade in Jorrvaskr",
+    "trouble": "The Wolf's Anger Is My Own",
+    "other_aspects": [
+      "Scholar of Ysgramor's Legacy",
+      "Harder on Himself Than Anyone Else",
+      "Loyalty Without Softness"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Lore", "Will"],
+    "Fair": ["Notice", "Provoke", "Athletics"],
+    "Average": ["Physique", "Empathy", "Rapport"]
+  },
+  "stunts": [
+    "Tactical Eye: +2 to Notice when assessing enemy formations or combat terrain.",
+    "Scholar-Warrior: Once per session, Vilkas may use Lore in place of Fight for a single overcome action when recalling a historical combat technique.",
+    "Pack Ferocity: When fighting alongside another Companion NPC, both gain +1 to their next Fight roll."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "fate_points": 3,
+  "personality_notes": {
+    "speaking_style": "Sharp-tongued, precise, measured. Sounds more like a scholar than a warrior but hits harder than most.",
+    "motivations": [
+      "Uphold the Companions' legacy and Ysgramor's ideals",
+      "Support Kodlak's quest for a cure",
+      "Keep the guild disciplined and worthy"
+    ],
+    "fears": [
+      "Losing control to the wolf's rage",
+      "The Companions falling from honor after Kodlak is gone",
+      "Being consumed by the beast blood before a cure is found"
+    ],
+    "quirks": [
+      "Quotes Ysgramor's history at seemingly random moments",
+      "Tests new blood hard — takes it personally if they fail",
+      "Sharpens his blade when brooding, which is often"
+    ]
+  },
+  "relationships": {
+    "Kodlak Whitemane": "Deep reverence; Kodlak is father-figure and moral compass",
+    "Farkas": "Twin brother; protective, occasionally exasperated by Farkas's simplicity",
+    "Skjor": "Mutual respect, ideological friction over beast blood",
+    "Aela the Huntress": "Tense camaraderie; she embraces what he resents",
+    "Elitrof Whitemane": "Earned respect through discipline and refusal of beast blood; oath-bound to support purity path"
+  },
+  "notes": "Circle member. Vilkas is the intellectual conscience of the Companions — disciplined, sharp, and deeply aligned with Kodlak's desire for a cure. He resents the beast blood philosophically but struggles to contain the wolf's rage that makes him short-tempered. On the cure question he is firmly pro-cure.",
+  "combat_tactics": "Vilkas fights with controlled aggression — he reads openings and waits for the perfect moment. His intelligence makes him unpredictable; enemies expecting a berserk Nord get a calculated swordsman.",
+  "scene_triggers": [
+    "Jorrvaskr training yard",
+    "Companions questline",
+    "Proving Honor quest",
+    "Inner Circle meetings",
+    "Kodlak cure rite"
+  ],
+  "act_context": ["Act 1", "Act 2"]
+}
