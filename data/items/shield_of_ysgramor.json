@@ -1,0 +1,30 @@
+{
+  "item_id": "shield_of_ysgramor",
+  "name": "Shield of Ysgramor",
+  "type": "artifact",
+  "category": "Legendary Shield",
+  "aspects": ["Wall of the Five Hundred"],
+  "mechanics": {
+    "armor": 3,
+    "defend_bonus": "+2 to Defend with Fight or Athletics while wielding",
+    "special": [
+      {
+        "name": "Unbroken Shieldwall",
+        "frequency": "once_per_session",
+        "cost": "1 Fate Point",
+        "effect": "Negate up to 4 shifts of physical stress from an attack targeting you or an ally in your zone; create 'Shieldwall Stance' with 1 free invoke."
+      },
+      {
+        "name": "Stand Fast",
+        "frequency": "once_per_scene",
+        "cost": "free",
+        "effect": "You may Create an Advantage with Fight instead of Command to represent disciplined shield-work; create 'No One Passes' with 1 free invoke (2 on SWS)."
+      }
+    ]
+  },
+  "lore": {
+    "origin": "Relic of Ysgramor",
+    "found_at": "Ysgramor's Tomb",
+    "notes": "A Companions relic. Traditionally kept in Jorrvaskr or carried only in times of great need."
+  }
+}
