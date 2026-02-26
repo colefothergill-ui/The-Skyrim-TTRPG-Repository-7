@@ -347,9 +347,9 @@
       ]
     }
   },
-  "current_location": "Dustman's Cairn (Exterior)",
-  "current_objective": "Recover the Wuuthrad fragment from Dustman's Cairn and return it to Jorrvaskr.",
-  "current_npcs": ["Draugr", "Bandit Marauder"],
+  "current_location": "Jorrvaskr (Whiterun)",
+  "current_objective": "Return to Jorrvaskr with the Glenmoril heads and prepare for the Companions' cure rite.",
+  "current_npcs": ["Kodlak Whitemane", "Aela the Huntress", "Farkas", "Vilkas"],
   "last_session_ended_at": "2026-02-25",
   "last_session_title": "Session 3: Road Ambush, Underforge Refusal, Glenmoril Heads",
   "next_scene_hint": "jorrvaskr_cure_rite_preparation"
