@@ -1,0 +1,19 @@
+{
+  "patch_id": "2026-02-25_end_session_03_closeout",
+  "created_at": "2026-02-25",
+  "summary": "End Session 3 closeout: freeze session record; confirm Underforge refusal + Circle secret learned; confirm Oath of Ysgramor path; record Silver Hand captives; record Glenmoril heads; tick key clocks; refresh quick reference and world rumors without leaking the secret.",
+  "applies_to": [
+    "data/sessions/session_003.json",
+    "docs/quick_reference.md",
+    "data/world_state/current_state.json",
+    "state/campaign_state.json",
+    "logs/2026-02-25_session-03_Elitrof_Act1.md"
+  ],
+  "changes": [
+    {"path": "data/sessions/session_003.json", "change": "Create Session 03 JSON record with key events, NPCs, locations, quests, loot, end-of-session notes, and next prep."},
+    {"path": "docs/quick_reference.md", "change": "Update snapshot, clocks, PC status, and next-scene hook to Kodlak cure rite chain."},
+    {"path": "data/world_state/current_state.json", "change": "Prepend rumors about Silver Hand captives and Glenmoril silence; add active threat about Silver Hand vendetta without revealing Underforge secret."},
+    {"path": "state/campaign_state.json", "change": "Confirm end markers; ensure flags for road ambush, underforge refusal, and glenmoril raid; tick Elemental Fury mastery +2 for critical use."},
+    {"path": "logs/2026-02-25_session-03_Elitrof_Act1.md", "change": "Create immutable frozen copy of the Session 03 LATEST log."}
+  ]
+}
