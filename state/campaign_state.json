@@ -5,7 +5,7 @@
   "started_date": "2026-02-20",
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "act1_scene_009_dustmans_departure_dawn",
+  "current_scene_id": "act1_scene_014_jorrvaskr_cure_rite_preparation",
   "active_hold": "Whiterun",
   "session_zero_completed": true,
   "session_count": 1,
@@ -142,7 +142,7 @@
     "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": "companions_proving_honor",
+    "active_quest": "companions_kodlak_cure_or_sacrifice",
     "completed_quests": [],
     "quest_progress": {
       "take_up_arms": "active",
@@ -158,8 +158,8 @@
       "pc_elitrof_whitemane": true
     },
     "circle_secret_policy": {
-      "kodlak_policy": "Keep beastblood secret from Elitrof; Skjor forbidden to reveal until rite.",
-      "farkas_vilkas_policy": "Have not told Elitrof; obeying Kodlak."
+      "kodlak_policy": "Revealed in Underforge; Elitrof swore Oath of Silence.",
+      "farkas_vilkas_policy": "Oath-bound; support Elitrof's purity path."
     }
   },
   "relationship_inference": {},
@@ -348,9 +348,9 @@
     }
   },
   "current_location": "Jorrvaskr (Whiterun)",
-  "current_objective": "Return to Jorrvaskr with the Glenmoril heads and prepare for the Companions' cure rite.",
+  "current_objective": "Prepare for the Harbinger's cure rite at Ysgramor's Tomb; secure the witch heads and prevent Silver Hand interference.",
   "current_npcs": ["Kodlak Whitemane", "Aela the Huntress", "Farkas", "Vilkas"],
   "last_session_ended_at": "2026-02-25",
   "last_session_title": "Session 3: Road Ambush, Underforge Refusal, Glenmoril Heads",
-  "next_scene_hint": "jorrvaskr_cure_rite_preparation"
+  "next_scene_hint": "ysgramors_tomb_flame_of_the_harbinger"
 }
