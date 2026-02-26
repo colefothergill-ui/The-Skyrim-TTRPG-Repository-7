@@ -243,6 +243,62 @@ def test_complex_companion_objects():
     print(f"✓ Function handles complex companion objects correctly")
 
 
+def test_kodlak_cure_or_sacrifice_cured():
+    """Test that kodlak_cure_or_sacrifice emits 'lives' text when kodlak is cured"""
+    print("\n=== Testing Kodlak Cure - Cured Branch ===")
+
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "active_quest": "companions_kodlak_cure_or_sacrifice",
+            "kodlak_cured": True,
+        },
+    }
+
+    events = whiterun_location_triggers("jorrvaskr", campaign_state)
+
+    assert any("lives" in e for e in events), "Expected 'lives' text when kodlak is cured"
+    assert not any("struck down" in e for e in events), "Expected no 'struck down' text when kodlak is cured"
+    print(f"✓ Kodlak cured branch works: {events}")
+
+
+def test_kodlak_cure_or_sacrifice_cure_preemptive():
+    """Test that kodlak_cure_or_sacrifice emits 'lives' text when cure_preemptive is set"""
+    print("\n=== Testing Kodlak Cure - Preemptive Branch ===")
+
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "active_quest": "companions_kodlak_cure_or_sacrifice",
+            "cure_preemptive": True,
+        },
+    }
+
+    events = whiterun_location_triggers("jorrvaskr", campaign_state)
+
+    assert any("lives" in e for e in events), "Expected 'lives' text when cure_preemptive is set"
+    assert not any("struck down" in e for e in events), "Expected no 'struck down' text when cure_preemptive is set"
+    print(f"✓ cure_preemptive branch works: {events}")
+
+
+def test_kodlak_cure_or_sacrifice_not_cured():
+    """Test that kodlak_cure_or_sacrifice emits 'struck down' text when kodlak is not cured"""
+    print("\n=== Testing Kodlak Cure - Not Cured Branch ===")
+
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "active_quest": "companions_kodlak_cure_or_sacrifice",
+        },
+    }
+
+    events = whiterun_location_triggers("jorrvaskr", campaign_state)
+
+    assert any("struck down" in e for e in events), "Expected 'struck down' text when kodlak is not cured"
+    assert not any("lives" in e for e in events), "Expected no 'lives' text when kodlak is not cured"
+    print(f"✓ Not cured branch works: {events}")
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -262,6 +318,9 @@ def run_all_tests():
         test_empty_companions_list,
         test_missing_companions_key,
         test_complex_companion_objects,
+        test_kodlak_cure_or_sacrifice_cured,
+        test_kodlak_cure_or_sacrifice_cure_preemptive,
+        test_kodlak_cure_or_sacrifice_not_cured,
     ]
     
     passed = 0

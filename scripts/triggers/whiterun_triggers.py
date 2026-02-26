@@ -216,11 +216,10 @@ def whiterun_location_triggers(loc, campaign_state):
 
         elif active_companions_quest == "companions_kodlak_cure_or_sacrifice":
             if not flags.get("jorrvaskr_kodlak_dying_triggered"):
-                events.append(
-                    "Jorrvaskr is quiet in a way it should never be. The shield-siblings speak "
-                    "in hushed tones and avert their eyes. Kodlak Whitemane has been struck down. "
-                    "His chamber is ahead. Whatever you choose next will define his legacy."
-                )
+                if companions_state.get("kodlak_cured") or companions_state.get("cure_preemptive"):
+                    events.append("Jorrvaskr is tense, but not broken... Kodlak Whitemane lives...")
+                else:
+                    events.append("Jorrvaskr is quiet... Kodlak Whitemane has been struck down...")
                 flags["jorrvaskr_kodlak_dying_triggered"] = True
 
     # Companions deployment: Kodlak sends PC to defend Whiterun's civilians
