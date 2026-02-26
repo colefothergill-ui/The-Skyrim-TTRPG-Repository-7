@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 from utils import location_matches
+from story_manager import StoryManager
 
 
 class GMTools:
@@ -718,6 +719,37 @@ NPC attitudes:
                     if loyalty >= req:
                         print(f"📜 Quest Unlocked: **{quest['name']}** – {quest['description']} (Reward: {quest.get('reward', 'N/A')})")
 
+    def list_available_quests(self):
+        """Print currently available quests across questlines."""
+        sm = StoryManager(str(self.data_dir), str(self.state_dir))
+        quests = sm.get_available_quests() or []
+        print("\n" + "="*70)
+        print("AVAILABLE QUESTS")
+        print("="*70)
+        if not quests:
+            print("No quests currently marked as 'available'.")
+            return
+        for entry in quests:
+            q = entry.get("quest", {})
+            qtype = entry.get("type")
+            qname = q.get("name", q.get("id", "Unknown"))
+            qid = q.get("id", "")
+            act = q.get("act")
+            act_txt = f" | {act}" if act else ""
+            print(f"- [{qtype}] {qname}{act_txt} (id={qid})")
+
+    def record_battle_result(self, battle_name: str, winner: str, quest_id=None):
+        """Record a civil war battle result and auto-advance quest nodes."""
+        sm = StoryManager(str(self.data_dir), str(self.state_dir))
+        payload = {"battle_name": battle_name, "winner": winner}
+        if quest_id:
+            payload["quest_id"] = quest_id
+        ok = sm.update_civil_war_state(battle_result=payload)
+        if ok:
+            print("Battle result recorded and questlines advanced (where applicable).")
+        else:
+            print("Failed to record battle result. Check campaign_state.json exists.")
+
 
 def main():
     """Main function"""
@@ -737,10 +769,12 @@ def main():
     print("9. Get NPC Relationship Advice")
     print("10. Tri-Check System Resolution")
     print("11. Review Companion Loyalty")
-    print("12. Exit")
+    print("12. List Available Quests")
+    print("13. Record Civil War Battle Result")
+    print("14. Exit")
     
     while True:
-        choice = input("\nEnter choice (1-12): ").strip()
+        choice = input("\nEnter choice (1-14): ").strip()
         
         if choice == "1":
             tools.view_all_clocks()
@@ -795,11 +829,20 @@ def main():
             tools.review_companion_loyalty()
         
         elif choice == "12":
+            tools.list_available_quests()
+        
+        elif choice == "13":
+            battle_name = input("Battle name: ").strip()
+            winner = input("Winner (imperial/stormcloak): ").strip()
+            quest_id = input("Quest ID to complete (or blank for auto-detect): ").strip()
+            tools.record_battle_result(battle_name, winner, quest_id or None)
+        
+        elif choice == "14":
             print("Goodbye!")
             break
         
         else:
-            print("Invalid choice. Please enter 1-12.")
+            print("Invalid choice. Please enter 1-14.")
 
 
 if __name__ == "__main__":
