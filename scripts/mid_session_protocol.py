@@ -104,6 +104,7 @@ def extract_clocks(obj: Any, source: str, prefix: str = "") -> List[ClockView]:
 # ---------------------------
 
 RANK_TO_VALUE = {
+    "Superb (+5)": 5,
     "Great (+4)": 4,
     "Good (+3)": 3,
     "Fair (+2)": 2,
