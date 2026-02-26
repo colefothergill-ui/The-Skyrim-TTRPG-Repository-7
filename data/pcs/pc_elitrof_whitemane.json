@@ -8,6 +8,8 @@
   "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
   "aspects": {
     "high_concept": "Warrior-Poet of Jorvaskr",
+    "high_concept_reserved": "Harbinger Elitrof - The Warrior-Poet",
+    "high_concept_reserved_trigger": "Becomes official when Elitrof is formally named Harbinger by the Circle.",
     "trouble": "Righteously Protective, Ill-Tempered Man of Principle",
     "other_aspects": [
       "Nomadic Sage of Skyrim",
@@ -47,9 +49,10 @@
     }
   },
   "skills": {
-    "Great (+4)": [
+    "Superb (+5)": [
       "Fight"
     ],
+    "Great (+4)": [],
     "Good (+3)": [
       "Athletics",
       "Physique"
@@ -186,7 +189,7 @@
       }
     ]
   },
-  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den). Used Elemental Fury (Su Grah Dun) at Pelagia Farm (unmastered; FP spent) to secure a solo giant takeout witnessed by Farkas. Also received Harbinger's Horn Toggle for Dustman's Cairn mission (emergency call for backup). GM NOTE: Elitrof NOW KNOWS the Inner Circle (including Kodlak) are werewolves; Skjor revealed the secret in the Underforge. Elitrof refused the beast blood on Sovngarde principle and swore the Oath of Silence. He has committed to Kodlak's cure-path and sworn the Oath of Ysgramor (Purity Track L1). Cleared Dustman's Cairn solo. Engaged Silver Hand defilers, recovered Wuuthrad fragment, and defeated a Draugr Overlord. Learned the Word Wall 'YOL' and used Fire Breath (unmastered; FP spent) in a critical duel. A Silver Hand survivor escaped. Milestones (x2 Minor): Retired Pack Tactics (Companion Drill) extra; promoted Ulran-Vjarn werebear pelt into Artifact Extra (L1/3) with Armor:2 and Hide of the Huntsman. Led Glenmoril raid with Farkas and Vilkas; secured 3 witch heads for cure rite.",
+  "notes": "Neutral in the Civil War through the Companions. Kodlak found him shipwrecked off Eastmarch; suspects Skaal/Solstheim roots. Learned the Thu'um at High Hrothgar. Mentored by the Skaal; slew a legendary werebear and wears its hide as a cloak while downplaying it as 'just a bear.' Battle Cry used this session (wolf den). Used Elemental Fury (Su Grah Dun) at Pelagia Farm (unmastered; FP spent) to secure a solo giant takeout witnessed by Farkas. Also received Harbinger's Horn Toggle for Dustman's Cairn mission (emergency call for backup). GM NOTE: Elitrof NOW KNOWS the Inner Circle (including Kodlak) are werewolves; Skjor revealed the secret in the Underforge. Elitrof refused the beast blood on Sovngarde principle and swore the Oath of Silence. He has committed to Kodlak's cure-path and sworn the Oath of Ysgramor (Purity Track L1). Cleared Dustman's Cairn solo. Engaged Silver Hand defilers, recovered Wuuthrad fragment, and defeated a Draugr Overlord. Learned the Word Wall 'YOL' and used Fire Breath (unmastered; FP spent) in a critical duel. A Silver Hand survivor escaped. Milestones (x2 Minor): Retired Pack Tactics (Companion Drill) extra; promoted Ulran-Vjarn werebear pelt into Artifact Extra (L1/3) with Armor:2 and Hide of the Huntsman. Led Glenmoril raid with Farkas and Vilkas; secured 3 witch heads for cure rite. Major Milestone Spend (post-Session 3): Breakthrough raised Fight to Superb (+5). High Concept rename reserved: 'Harbinger Elitrof - The Warrior-Poet' (activate when named Harbinger).",
   "knowledge": {
     "companions_circle_knowledge_stage": "revealed_refused",
     "kodlak_reveal_policy": "forbade_until_time",

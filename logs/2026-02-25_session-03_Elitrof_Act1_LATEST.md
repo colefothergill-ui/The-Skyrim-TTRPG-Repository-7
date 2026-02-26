@@ -106,3 +106,9 @@ Elitrof exited Dustman's Cairn at dawn with the Wuuthrad fragment, intercepted a
 
 ### Secrets
 - Circle secret known to Elitrof; beast blood refused; Oath of Silence active; Oath of Ysgramor active.
+
+---
+## Major Milestone Spend (Post-Session 3)
+- **Breakthrough:** Fight raised to **Superb (+5)**.
+- **High Concept rename reserved:** "Harbinger Elitrof - The Warrior-Poet" (becomes official when Elitrof is formally named Harbinger).
+---

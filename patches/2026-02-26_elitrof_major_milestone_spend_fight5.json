@@ -1,0 +1,35 @@
+{
+  "patch_id": "2026-02-26_elitrof_major_milestone_spend_fight5",
+  "created_at": "2026-02-26",
+  "type": "milestone_spend",
+  "summary": "Major milestone spend for Elitrof: Breakthrough raises Fight to Superb (+5). High Concept rename reserved until Harbinger appointment.",
+  "applies_to": [
+    "data/pcs/pc_elitrof_whitemane.json",
+    "scripts/effective_skills.py",
+    "scripts/mid_session_protocol.py",
+    "data/sessions/session_003.json",
+    "logs/2026-02-25_session-03_Elitrof_Act1_LATEST.md"
+  ],
+  "changes": [
+    {
+      "path": "data/pcs/pc_elitrof_whitemane.json",
+      "change": "Move Fight from Great (+4) to Superb (+5); add reserved High Concept rename fields; append milestone spend note."
+    },
+    {
+      "path": "scripts/effective_skills.py",
+      "change": "Add Superb (+5) to RANK_TO_VALUE so effective skill parsing includes Fight +5."
+    },
+    {
+      "path": "scripts/mid_session_protocol.py",
+      "change": "Add Superb (+5) to RANK_TO_VALUE so mid-session summaries correctly display Fight +5."
+    },
+    {
+      "path": "data/sessions/session_003.json",
+      "change": "Record milestone spend details (Fight +5, reserved High Concept rename)."
+    },
+    {
+      "path": "logs/2026-02-25_session-03_Elitrof_Act1_LATEST.md",
+      "change": "Append Major Milestone Spend section."
+    }
+  ]
+}

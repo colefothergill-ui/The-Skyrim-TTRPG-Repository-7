@@ -49,5 +49,12 @@
     "Determine whether prisoners are handed to guards, interrogated again, or retained by Companions",
     "Advance Thalmor witness pressure consequences if rumors spread",
     "Offer compel tied to Oath of Silence + Sovngarde honor vs Circle secrecy"
-  ]
+  ],
+  "milestone_spend": {
+    "type": "Major",
+    "spent_on": [
+      "Fight +1: Great (+4) -> Superb (+5) (Breakthrough)",
+      "High Concept rename RESERVED: 'Harbinger Elitrof - The Warrior-Poet' (triggered on Harbinger appointment)"
+    ]
+  }
 }
