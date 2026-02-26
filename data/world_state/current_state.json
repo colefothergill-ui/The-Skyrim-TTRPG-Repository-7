@@ -54,6 +54,8 @@
   },
   "weather_and_season": "Late summer, generally pleasant weather",
   "rumors_and_news": [
+    "Caravans whisper that a Companion dragged bound Silver Hand through Whiterun after saving a roadside family from intimidation.",
+    "Hunters near Falkreath claim the Glenmoril Coven's smoke went still overnight; crows gathered, and the woods fell quiet in the wrong way.",
     "Pelagia Farm rumor: a lone Companion with two Skyforge axes felled the wandering giant in a blur of wind and verse.",
     "Whiterun whispers: a Thalmor Justiciar was captured at a Talos shrine sting after striking first; witnesses are being quietly questioned.",
     "Rumor: A blue glow poured from the Saarthal excavation at dusk, and the College party returned shaken, speaking in whispers about an \"Eye\".",
@@ -66,6 +68,7 @@
     "Strange reports of dragon sightings in distant lands"
   ],
   "active_threats": [
+    "Silver Hand vendetta: escalated attention on Companions, focused on a 'Great Bear' rumored to be hunting their hunters.",
     "Thalmor narrative control: pressure on witnesses and officials in Whiterun after the Justiciar incident",
     "Thalmor surveillance increasing around the College of Winterhold and notable relics",
     "Civil war escalation",

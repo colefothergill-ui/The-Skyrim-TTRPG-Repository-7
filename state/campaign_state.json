@@ -155,7 +155,7 @@
     "skjor_alive": true,
     "kodlak_cured": false,
     "circle_secret_known_to_pc": {
-      "pc_elitrof_whitemane": false
+      "pc_elitrof_whitemane": true
     },
     "circle_secret_policy": {
       "kodlak_policy": "Keep beastblood secret from Elitrof; Skjor forbidden to reveal until rite.",
@@ -250,12 +250,32 @@
       "silver_hand_cell_engaged": true,
       "word_wall_yol_learned": true,
       "silver_hand_survivor_escaped": true
+    },
+    "road_ambush_2026_02_25": {
+      "silver_hand_dead": 1,
+      "silver_hand_captured": 2,
+      "civilians_rescued": true,
+      "prisoners_delivered_to_jorrvaskr": true
+    },
+    "underforge": {
+      "inner_circle_rites_completed": true,
+      "beast_blood_refused": true,
+      "oath_of_silence_underforge": true
+    },
+    "glenmoril_raid_2026_02_25": {
+      "location": "Falkreath Hold - Glenmoril Coven",
+      "witches_taken_out": 3,
+      "matron_taken_out": true,
+      "witch_heads_collected": 3,
+      "companions_present": ["Farkas", "Vilkas", "Elitrof"],
+      "tactic": "Elitrof bait at bridge; twins flank via hidden hunter trail; killbox executed.",
+      "lingering_consequence": "Glenmoril's Last Curse: Blood Remembers Names"
     }
   },
   "clocks": {
     "thuum_elemental_fury_mastery": {
       "name": "Elemental Fury Mastery",
-      "current_progress": 4,
+      "current_progress": 6,
       "total_segments": 8,
       "segments": [
         "Su",
@@ -285,7 +305,7 @@
     },
     "silver_hand_vendetta_elitrof": {
       "name": "Silver Hand Vendetta: The Great Bear",
-      "current_progress": 1,
+      "current_progress": 4,
       "total_segments": 6,
       "segments": [
         "Rumor",
@@ -313,7 +333,7 @@
     },
     "thalmor_retaliation_whiterun": {
       "name": "Thalmor Retaliation: Whiterun",
-      "current_progress": 1,
+      "current_progress": 2,
       "total_segments": 8,
       "segments": [
         "Rumor Push",
@@ -327,10 +347,10 @@
       ]
     }
   },
-  "current_location": "Dustman's Cairn (Exterior)",
-  "current_objective": "Recover the Wuuthrad fragment from Dustman's Cairn and return it to Jorrvaskr.",
-  "current_npcs": ["Draugr", "Bandit Marauder"],
-  "last_session_ended_at": "2026-02-21",
-  "last_session_title": "Session 1: Whiterun Contracts (Talos Sting, Wolves, Giant)",
-  "next_scene_hint": "dragonsreach_hearing"
+  "current_location": "Jorrvaskr (Whiterun)",
+  "current_objective": "Return to Jorrvaskr with the Glenmoril heads and prepare for the Companions' cure rite.",
+  "current_npcs": ["Kodlak Whitemane", "Aela the Huntress", "Farkas", "Vilkas"],
+  "last_session_ended_at": "2026-02-25",
+  "last_session_title": "Session 3: Road Ambush, Underforge Refusal, Glenmoril Heads",
+  "next_scene_hint": "jorrvaskr_cure_rite_preparation"
 }
