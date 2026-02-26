@@ -38,12 +38,12 @@
   },
   "refresh": 3,
   "fate_points": 3,
-  "notes": "Aela is a master archer and proud member of the Companions' Inner Circle. She embraces her werewolf nature and has no interest in curing it. Fierce, confident, and dedicated to the hunt.",
+  "notes": "Aela is a master archer and proud member of the Companions' Inner Circle. She embraces her werewolf nature and has no interest in curing it. Fierce, confident, and dedicated to the hunt. [Session 4] Witnessed the cures; respects the strength required, distrusts the purity push.",
   "relationships": {
     "Kodlak Whitemane": "Respected Harbinger, though disagrees about the beast blood",
     "Vilkas": "Shield-brother, fellow Circle member",
     "Farkas": "Shield-brother, fellow Circle member",
-    "Skjor": "Mentor and former lover (deceased)",
+    "Skjor": "Mentor and former lover (alive); ideological ally, but wary of Elitrof's purity push",
     "Player": "Potential shield-sibling and companion",
     "The Silver Hand": "Sworn enemies, werewolf hunters"
   },
@@ -81,7 +81,7 @@
       "Respects strength and prowess"
     ]
   },
-  "loyalty": 50,
+  "loyalty": 45,
   "companion_status": {
     "available": "after_joining_companions",
     "current_status": "ready",

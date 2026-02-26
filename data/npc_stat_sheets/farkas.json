@@ -12,7 +12,7 @@
     "other_aspects": [
       "Honor Is What You Do When Nobody Watches",
       "Brother's Keeper",
-      "Comfortable in Beast Skin"
+      "Freedom Earned, Still Loyal"
     ]
   },
   "skills": {
@@ -37,10 +37,11 @@
   },
   "refresh": 3,
   "armor": 3,
-  "notes": "Farkas is the gentlest giant in Jorrvaskr - immensely strong, deeply loyal, and surprisingly perceptive about people despite (or because of) his lack of verbal sophistication. He does not share his twin Vilkas's intellectual torment over the beast blood; he simply accepts what he is and focuses on being a good Companion. His simple, unshakeable honor is one of the most trustworthy constants in the guild.",
+  "cured_beast_blood": true,
+  "notes": "Farkas is the gentlest giant in Jorrvaskr - immensely strong, deeply loyal, and surprisingly perceptive about people despite (or because of) his lack of verbal sophistication. He does not share his twin Vilkas's intellectual torment over the beast blood; he simply accepts what he is and focuses on being a good Companion. His simple, unshakeable honor is one of the most trustworthy constants in the guild. [Session 4] Cured at Ysgramor's Tomb. Wolf-spirit manifested and was destroyed.",
   "trust_clock": {
     "enabled": true,
-    "current": 0,
+    "current": 6,
     "max": 6,
     "description": "Farkas trusts straightforwardness and deeds. He is harder to impress with words than almost anyone in Jorrvaskr.",
     "gain_triggers": [

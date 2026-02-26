@@ -5,10 +5,10 @@
   "started_date": "2026-02-20",
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "act1_scene_014_jorrvaskr_cure_rite_preparation",
+  "current_scene_id": "act1_scene_016_ysgramors_tomb_reliquary_after_rite",
   "active_hold": "Whiterun",
   "session_zero_completed": true,
-  "session_count": 1,
+  "session_count": 4,
   "active_pc_id": "pc_elitrof_whitemane",
   "pcs": {
     "pc_elitrof_whitemane": {
@@ -61,8 +61,8 @@
       "status": "locked"
     },
     "companions": {
-      "current": "take_up_arms",
-      "status": "available"
+      "current": "companions_purity_path_ignites",
+      "status": "active"
     }
   },
   "civil_war_state": {
@@ -101,7 +101,7 @@
     "blades_status": "reformed",
     "greybeards_relations": "respectful",
     "dragon_souls_absorbed": 0,
-    "shouts_learned": [],
+    "shouts_learned": ["Fire Breath (Yol)", "Elemental Fury (Su Grah Dun)", "Become Ethereal (Feim)"],
     "greybeards_training": false,
     "civil_war_involvement": true,
     "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Companions."
@@ -142,18 +142,29 @@
     "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": "companions_kodlak_cure_or_sacrifice",
+    "active_quest": "companions_purity_path_ignites",
     "completed_quests": [],
     "quest_progress": {
       "take_up_arms": "active",
-      "companions_proving_honor": "active",
+      "companions_proving_honor": "completed",
       "contract_talos_shrine": "completed",
       "contract_chillfurrow_wolves": "completed",
-      "contract_pelagia_giant": "completed"
+      "contract_pelagia_giant": "completed",
+      "companions_inner_circle_rites": "completed",
+      "companions_kodlak_cure_chain": "completed",
+      "companions_purity_path_ignites": "active"
     },
     "embraced_curse": false,
     "skjor_alive": true,
-    "kodlak_cured": false,
+    "kodlak_cured": true,
+    "vilkas_cured": true,
+    "farkas_cured": true,
+    "glenmoril_heads_remaining": 0,
+    "cure_targets_remaining": [],
+    "cure_chain_completed": true,
+    "circle_cleansed": ["Kodlak", "Vilkas", "Farkas"],
+    "circle_remaining_werewolves": ["Aela", "Skjor"],
+    "harbingership_succession_hint": "Kodlak privately signaled Elitrof as a future Harbinger candidate; official naming deferred.",
     "circle_secret_known_to_pc": {
       "pc_elitrof_whitemane": true
     },
@@ -297,7 +308,7 @@
     },
     "thuum_fire_breath_mastery": {
       "name": "Fire Breath Mastery",
-      "current_progress": 2,
+      "current_progress": 4,
       "total_segments": 8,
       "segments": [
         "Yol",
@@ -354,8 +365,8 @@
       ]
     }
   },
-  "current_location": "Jorrvaskr (Whiterun)",
-  "current_objective": "Prepare for the Harbinger's cure rite at Ysgramor's Tomb; secure the witch heads and prevent Silver Hand interference.",
+  "current_location": "Ysgramor's Tomb (Winterhold) — Reliquary",
+  "current_objective": "Leave Ysgramor's Tomb and return to Jorrvaskr to secure the Hall, manage Inner Circle fallout, and respond to Silver Hand escalation.",
   "current_npcs": ["Kodlak Whitemane", "Aela the Huntress", "Farkas", "Vilkas"],
   "last_session_ended_at": "2026-02-25",
   "last_session_title": "Session 3: Road Ambush, Underforge Refusal, Glenmoril Heads",

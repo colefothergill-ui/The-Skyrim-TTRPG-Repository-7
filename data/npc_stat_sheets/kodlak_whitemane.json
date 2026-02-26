@@ -7,7 +7,7 @@
   "faction": "The Companions",
   "aspects": {
     "high_concept": "Wise Harbinger of the Companions",
-    "trouble": "Cursed with Beast Blood, Yearns for Peace",
+    "trouble": "Harbinger Carrying a New Era",
     "other_aspects": [
       "Seeks Sovngarde with an Honorable Death",
       "Mentor to the Next Generation",
@@ -37,10 +37,11 @@
   },
   "refresh": 3,
   "armor": 1,
+  "cured_beast_blood": true,
   "notes": "Kodlak Whitemane is the Harbinger of the Companions, the ancient warrior guild based in Jorrvaskr. Old and wise, he leads with honor and wisdom rather than brute strength. Unlike many Companions, he views their werewolf curse as a burden that prevents them from reaching Sovngarde. He's a mentor figure who values honor above all else and seeks to cure the beast blood before his death. Despite his age, he remains a formidable warrior and commands deep respect from all Companions.",
   "trust_clock": {
     "enabled": true,
-    "current": 0,
+    "current": 6,
     "max": 6,
     "description": "Kodlak's personal respect for the PC grows as they show discipline, honor, and compassion for his plight.",
     "gain_triggers": [

@@ -119,6 +119,44 @@
         "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
         "follow_up_quest": "companions_final_journey"
       },
+      "companions_purity_path_ignites": {
+        "name": "Purity Path Ignites",
+        "quest_id": "companions_purity_path_ignites",
+        "quest_giver": "Kodlak Whitemane",
+        "description": "The cure rites at Ysgramor's Tomb are complete. Kodlak, Vilkas, and Farkas have had the beast blood burned from their souls by the Harbinger Flame. Wuuthrad has been reforged and placed in Elitrof's hands. Now the Inner Circle is fractured: three members are cured, two (Aela and Skjor) are not — and the Silver Hand will escalate in response to the tomb's events. Elitrof must return to Jorrvaskr, secure the hall, manage the ideological fallout within the Circle, and prepare for the Silver Hand's next move.",
+        "objectives": [
+          "Leave Ysgramor's Tomb and travel back to Whiterun with the cured Circle members",
+          "Secure Jorrvaskr against Silver Hand retaliation",
+          "Navigate the ideological divide between cured members (Kodlak, Vilkas, Farkas) and the remaining werewolves (Aela, Skjor)",
+          "Respond to Silver Hand escalation triggered by the Nightgate ambush and the cure rites",
+          "Determine next steps for the Companions' future under the Purity Path"
+        ],
+        "rewards": [
+          "Harbinger candidacy signaled (Kodlak's private acknowledgment)",
+          "Wuuthrad (Reforged) permanently carried by Elitrof",
+          "Inner Circle trust advanced for Kodlak, Vilkas, Farkas",
+          "Clarity on Aela and Skjor's stance — potential future complications"
+        ],
+        "branching": {
+          "secure_jorrvaskr_diplomatically": {
+            "description": "Elitrof manages the Circle divide with measured persuasion. Aela and Skjor remain uneasy but stable allies.",
+            "flag": "circle_divide_managed",
+            "value": "diplomatic"
+          },
+          "secure_jorrvaskr_with_authority": {
+            "description": "Elitrof asserts authority as Harbinger-in-waiting. Aela bristles; Skjor backs down. Trust with Aela -5.",
+            "flag": "circle_divide_managed",
+            "value": "authoritative"
+          },
+          "silver_hand_retaliation_preempt": {
+            "description": "If Silver Hand Vendetta clock reaches 5 before the hall is secured, an ambush on Jorrvaskr triggers mid-scene.",
+            "condition": "silver_hand_vendetta_clock >= 5"
+          }
+        },
+        "notes": "This quest opens with the post-Ysgramor's Tomb state: three Circle members cured, Wuuthrad reforged, Fire Breath mastery at 4/8. The harbingership is not yet formal. Silver Hand Vendetta clock is at 4/6 — one more tick and they move on Jorrvaskr. Skjor is alive and wary. Aela witnessed the cures and respects the strength required but distrusts the purity push.",
+        "prerequisites": ["companions_kodlak_cure_chain"],
+        "follow_up_quest": "companions_final_journey"
+      },
       "companions_final_journey": {
         "name": "Dragon at the Barrow",
         "quest_id": "companions_final_journey",
