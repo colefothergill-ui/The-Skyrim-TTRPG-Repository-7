@@ -52,10 +52,11 @@
     "Superb (+5)": [
       "Fight"
     ],
-    "Great (+4)": [],
-    "Good (+3)": [
-      "Athletics",
+    "Great (+4)": [
       "Physique"
+    ],
+    "Good (+3)": [
+      "Athletics"
     ],
     "Fair (+2)": [
       "Command",
