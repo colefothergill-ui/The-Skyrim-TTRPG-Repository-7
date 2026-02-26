@@ -1,0 +1,74 @@
+{
+  "session_number": 4,
+  "date": "2026-02-26",
+  "title": "Ysgramor's Tomb: Purity Path Ignites",
+  "gm": "Charlotte (ChatGPT GM)",
+  "players_present": [
+    "Cole"
+  ],
+  "characters_present": [
+    "pc_elitrof_whitemane"
+  ],
+  "session_summary": "Elitrof led Kodlak, Farkas, and Vilkas north through Nightgate Pass (breaking a Silver Hand ambush with Fire Breath) to Ysgramor's Tomb. At the Harbinger Flame, the three Glenmoril Witch Heads were expended to cure Kodlak, Vilkas, and Farkas of the beast blood. Each wolf-spirit manifested and was destroyed. Kodlak privately signaled Elitrof as a future Harbinger candidate. Wuuthrad was reforged in the Reliquary. Fire Breath Mastery advanced to 4/8. Companions remaining with beast blood: Aela and Skjor.",
+  "key_events": [
+    "Departure from Jorrvaskr with Kodlak, Farkas, Vilkas, and three Glenmoril Witch Heads",
+    "Nightgate Pass Silver Hand ambush broken; Fire Breath (Yol) used (unmastered; FP spent); Mastery 2/8 → 4/8",
+    "Nightgate Pass notes secured; Map Case created (Advantage: Know the Passes)",
+    "Arrival at Ysgramor's Tomb at dusk; Oath-Words spoken at threshold",
+    "Cure rite at Harbinger Flame: Kodlak cured (wolf-spirit destroyed by his own blade)",
+    "Cure rite: Vilkas cured (Elitrof defended will; Vilkas landed finishing strike)",
+    "Cure rite: Farkas cured (wolf-spirit manifested and destroyed)",
+    "All three Glenmoril Witch Heads expended; cure chain complete",
+    "Kodlak privately signals Elitrof as future Harbinger candidate (official naming deferred)",
+    "Wuuthrad (Reforged Legendary Waraxe) forged in the Reliquary from the Wuuthrad Fragment"
+  ],
+  "npcs_encountered": [
+    "Kodlak Whitemane - Harbinger (cured; trust 6/6; Harbingership succession signal)",
+    "Farkas - shield-brother (cured; trust 6/6)",
+    "Vilkas - shield-brother (cured; trust 6/6)",
+    "Silver Hand ambush squad (Nightgate Pass; destroyed)"
+  ],
+  "locations_visited": [
+    "Jorrvaskr / Whiterun (departure)",
+    "Nightgate Pass (Silver Hand ambush site)",
+    "Road north to Winterhold coast",
+    "Ysgramor's Tomb (entrance threshold)",
+    "Ysgramor's Tomb (inner sanctum — Harbinger Flame)",
+    "Ysgramor's Tomb (Reliquary — Wuuthrad reforging)"
+  ],
+  "quests_updated": [
+    {
+      "quest": "Companions: Kodlak Cure Chain",
+      "status": "Completed (all three heads spent; Kodlak, Vilkas, Farkas cured)"
+    },
+    {
+      "quest": "Companions: Purity Path Ignites",
+      "status": "Active"
+    }
+  ],
+  "loot_acquired": [
+    "Wuuthrad (Reforged Legendary Waraxe) [Weapon:4; +3 Fight while wielding; +3 vs Mer; Ancient Fury 1/session]",
+    "Map Case: Nightgate Pass Notes (Advantage: Know the Passes)"
+  ],
+  "items_expended": [
+    "Glenmoril Witch Head x3 (spent in cure rite)",
+    "Wuuthrad Fragment (reforged into Wuuthrad)"
+  ],
+  "experience_gained": 0,
+  "fate_points_awarded": 0,
+  "milestone": "Significant",
+  "notes": "End-of-session state: Elitrof FP 3 (Refresh 2; keeps higher), stress cleared, Mild consequence: Freshly Sealed Wound. Circle cure chain complete. Circle werewolves remaining: Aela, Skjor. Harbingership succession hint active (Kodlak's private signal; official naming deferred). Wuuthrad reforged and carried by Elitrof. Fire Breath Mastery 4/8. Companions Trust: 10/10 (Legend). NPC trust clocks: Kodlak 6/6, Vilkas 6/6, Farkas 6/6, Skjor 4/6.",
+  "next_session_prep": [
+    "Return to Jorrvaskr; Aela and Skjor are watching",
+    "Manage ideological rift: purity path vs beast blood (Aela/Skjor)",
+    "Silver Hand Vendetta 4/6 — escalation expected; they know the Circle was in motion",
+    "Harbingership succession: advance or defer per Kodlak's signal",
+    "Thalmor Retaliation: Whiterun still active at 2/8"
+  ],
+  "milestone_spend": {
+    "type": "Significant",
+    "spent_on": [
+      "Refresh increased: 1 → 2"
+    ]
+  }
+}

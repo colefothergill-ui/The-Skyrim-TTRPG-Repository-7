@@ -1,0 +1,60 @@
+{
+  "session_number": 2,
+  "date": "2026-02-23",
+  "title": "Dustman's Cairn: Wuuthrad Fragment and the Word Wall",
+  "gm": "Charlotte (ChatGPT GM)",
+  "players_present": [
+    "Cole"
+  ],
+  "characters_present": [
+    "pc_elitrof_whitemane"
+  ],
+  "session_summary": "Elitrof ran Dustman's Cairn solo on Harbinger-sanctioned trial. He fought through Silver Hand hunters, disarmed Nordic traps, slew a Draugr Overlord, and recovered the Wuuthrad fragment. He learned YOL (Fire Breath) from the Word Wall inside the cairn and used Fire Breath unmastered in a critical duel. Elemental Fury Mastery advanced to 4/8 via dramatic three-word use. A Silver Hand survivor escaped. Post-cairn milestones spent to upgrade the Ulran-Vjarn pelt into an Artifact Extra.",
+  "key_events": [
+    "Harbinger-sanctioned solo trial: enter Dustman's Cairn alone",
+    "Silver Hand cell inside cairn engaged; hunters defeated",
+    "Draugr Overlord slain in single combat at the relic chamber",
+    "Wuuthrad fragment recovered and secured",
+    "Word Wall YOL (Fire) learned; Fire Breath Mastery now 2/8",
+    "Elemental Fury used dramatically (3-word full shout); Mastery advanced to 4/8",
+    "Silver Hand survivor escaped — vendetta clock ticks",
+    "Post-session: Minor Milestone x2 spent on Pack Tactics → Ulran-Vjarn Artifact Extra (L1/3)"
+  ],
+  "npcs_encountered": [
+    "Kodlak Whitemane - Harbinger (sanctioned the trial)",
+    "Farkas - shield-sibling (in Jorrvaskr; available on horn call)",
+    "Vilkas - shield-sibling (in Whiterun after Dragonsreach hearing)",
+    "Silver Hand hunters (cairn cell; defeated or fled)",
+    "Draugr Overlord (relic chamber; slain)"
+  ],
+  "locations_visited": [
+    "Jorrvaskr (departure briefing)",
+    "Whiterun Hold roads (travel to cairn)",
+    "Dustman's Cairn (exterior)",
+    "Dustman's Cairn (interior — trap corridors, relic chamber, Word Wall)"
+  ],
+  "quests_updated": [
+    {
+      "quest": "Companions: Proving Honor",
+      "status": "Completed (Wuuthrad fragment recovered)"
+    }
+  ],
+  "loot_acquired": [
+    "Wuuthrad Fragment (Quest Item) — recovered from relic chamber",
+    "Rune-Etched Ancient Nord Torc (Hearth-Ward) — minor enchant, warmth vs cold",
+    "+330 septims",
+    "Sapphire x1",
+    "Garnet x1",
+    "Potion: Vigorous Healing x1"
+  ],
+  "experience_gained": 0,
+  "fate_points_awarded": 0,
+  "milestone": "Minor",
+  "notes": "End-of-session state: Elitrof FP 1, Mild consequence: Sliced Upper Arm (cleared next session), physical stress partially marked. Fire Breath Mastery 2/8. Elemental Fury Mastery 4/8. Minor Milestone x2 spent post-session: Pack Tactics (Companion Drill) replaced by Pelt of the Great Werebear Ulran-Vjarn Artifact Extra (L1/3). Silver Hand survivor escaped — Silver Hand Vendetta clock ticks. Log: logs/2026-02-23_session-02_Elitrof_Act1_LATEST.md",
+  "next_session_prep": [
+    "Elitrof exits Dustman's Cairn at dawn with Wuuthrad fragment",
+    "Road back to Whiterun; Silver Hand may have set watchers after survivor report",
+    "Underforge reveal pending: Skjor has authority to initiate Inner Circle rite",
+    "Dragonsreach hearing fallout (captives; Thalmor pressure) may intersect"
+  ]
+}

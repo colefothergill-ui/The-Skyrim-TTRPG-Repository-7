@@ -222,10 +222,19 @@ def whiterun_location_triggers(loc, campaign_state):
                     events.append("Jorrvaskr is quiet... Kodlak Whitemane has been struck down...")
                 flags["jorrvaskr_kodlak_dying_triggered"] = True
 
+        elif active_companions_quest == "companions_purity_path_ignites":
+            if not flags.get("jorrvaskr_purity_path_triggered"):
+                events.append(
+                    "Jorrvaskr stands — but the Circle is fractured. Kodlak, Vilkas, and Farkas "
+                    "bear no beast blood now. Aela and Skjor are watching. The Hall needs a hand "
+                    "steady enough to hold what the cure has left behind."
+                )
+                flags["jorrvaskr_purity_path_triggered"] = True
+
     # Companions deployment: Kodlak sends PC to defend Whiterun's civilians
     if (
         starting_faction == "companions"
-        and active_companions_quest in ("companions_proving_honor", "companions_inner_circle_rites")
+        and active_companions_quest in ("companions_proving_honor", "companions_inner_circle_rites", "companions_purity_path_ignites")
         and siege_active
         and not flags.get("companions_whiterun_deployment_triggered")
     ):

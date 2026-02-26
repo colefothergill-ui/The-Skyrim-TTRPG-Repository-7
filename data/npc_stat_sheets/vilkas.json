@@ -8,7 +8,7 @@
   "role": "Inner Circle member, Companions scholar",
   "aspects": {
     "high_concept": "Sharpest Mind and Bitterest Blade in Jorrvaskr",
-    "trouble": "The Wolf's Anger Is My Own",
+    "trouble": "Learning to Live Without the Wolf's Crutch",
     "other_aspects": [
       "Scholar of Ysgramor's Legacy",
       "Harder on Himself Than Anyone Else",
@@ -40,7 +40,7 @@
   "notes": "Vilkas is the intellectual conscience of the Companions - bookish for a warrior, sharp-tongued, and deeply loyal beneath his prickly surface. He resents the beast blood philosophically (agreeing with Kodlak) but struggles to contain the wolf's rage that makes him short-tempered. He tests new Companions hard because he believes the guild deserves only the best.",
   "trust_clock": {
     "enabled": true,
-    "current": 0,
+    "current": 6,
     "max": 6,
     "description": "Vilkas's respect is earned through demonstrated skill, discipline, and intellectual engagement.",
     "gain_triggers": [
@@ -86,5 +86,7 @@
     "testing": "The shield-siblings will tell you I'm hard on new blood. They're right. Kodlak deserves better than mediocrity.",
     "on_beast_blood": "Power at the cost of your soul is no bargain I'd take willingly. Kodlak is right to seek a cure. I just... struggle to refuse the wolf when it howls.",
     "after_proving_honor": "You passed. Don't let it go to your head - passing the entry trial just means you're not useless yet."
-  }
+  },
+  "cured_beast_blood": true,
+  "notes": "[Session 4] Cured at Ysgramor's Tomb. Elitrof defended his will; Vilkas landed the finishing strike."
 }

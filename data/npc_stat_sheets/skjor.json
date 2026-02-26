@@ -1,0 +1,100 @@
+{
+  "name": "Skjor",
+  "id": "npc_stat_skjor",
+  "type": "Nord Warrior",
+  "category": "Friendly NPC",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions (Inner Circle)",
+  "role": "Inner Circle shadow operative, pro-beast-blood voice",
+  "aspects": {
+    "high_concept": "Scarred Veteran of the Circle's Shadow War",
+    "trouble": "The Beast Blood Is Strength, Not Sickness",
+    "other_aspects": [
+      "Hard-Edged and Unapologetic",
+      "Old Wolf, Sharp Fangs",
+      "The Hunt Defines the Hunter"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight", "Stealth"],
+    "Good": ["Notice", "Athletics"],
+    "Fair": ["Provoke", "Deceive"],
+    "Average": ["Physique", "Will", "Rapport"]
+  },
+  "stunts": [
+    "Ambush Predator: +2 to Fight on the first exchange of a conflict if Skjor was hidden or unnoticed beforehand.",
+    "Old Wolf's Cunning: Once per session, Skjor may use Stealth in place of Deceive to set up a tactical misdirection.",
+    "Scarred Survivor: Skjor may ignore one mild consequence per session (he's taken worse and kept fighting)."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "armor": 2,
+  "trust_clock": {
+    "enabled": true,
+    "current": 4,
+    "max": 6,
+    "description": "Skjor's respect for the PC; earned through strength, resolve, and straight dealing even when opinions differ.",
+    "gain_triggers": [
+      "+1: holding your ground in a fight Skjor rated as unwinnable",
+      "+1: keeping your word to him without being asked twice",
+      "+2: proving your worth in the Circle's shadow work"
+    ],
+    "loss_triggers": [
+      "-1: showing weakness when strength was called for",
+      "-2: undermining the beast blood openly in Skjor's presence"
+    ],
+    "milestones": {
+      "2": "Skjor stops testing and starts briefing",
+      "4": "Skjor shares Circle intelligence the Harbinger hasn't cleared",
+      "6": "Skjor calls you kin — highest endorsement he gives anyone"
+    }
+  },
+  "combat_tactics": "Skjor fights dirty by Companion standards — ambushes, flanking, striking from stealth. He is the Circle's shadow operative, comfortable in places where honor gets people killed. In werewolf form he is fast and vicious rather than powerful.",
+  "scene_triggers": [
+    "Jorrvaskr mead hall",
+    "Companions questline",
+    "Inner Circle secret meetings",
+    "Underforge rites",
+    "Silver Hand encounters"
+  ],
+  "act_context": ["Act 1", "Act 2"],
+  "starting_equipment": {
+    "armor": "Companions Leather Armor (Armor:2)",
+    "weapon": "Skyforge Steel Sword (Weapon:2)",
+    "other": ["Hidden dagger", "Circle seal token"]
+  },
+  "relationships": {
+    "Kodlak Whitemane": "Respects the Harbinger but disagrees about the cure; obeys out of loyalty, not conviction",
+    "Aela the Huntress": "Close ally and kindred spirit; both embrace the beast blood fully",
+    "Farkas": "Easy respect between two fighters who prefer action over talk",
+    "Vilkas": "Mutual respect but ideological friction; Vilkas's brooding irritates Skjor",
+    "Elitrof Whitemane": "Wary respect; the newcomer refused the blood but proved himself in battle"
+  },
+  "personality_notes": {
+    "speaking_style": "Blunt, rough, challenging. Speaks like someone who has seen too many battles to waste words on diplomacy.",
+    "motivations": [
+      "Keep the Companions strong through strength, not sentiment",
+      "Embrace the beast blood as the gift Hircine intended",
+      "Protect the Circle's secrets at all costs"
+    ],
+    "fears": [
+      "The Companions going soft under gentle leadership",
+      "Losing the beast blood to a cure he never asked for",
+      "The Silver Hand finding and exploiting the Circle's weakness"
+    ],
+    "quirks": [
+      "Traces the scar over his blind eye when sizing someone up",
+      "Speaks of the beast blood the way a smith speaks of good steel — as a tool that defines the craftsman",
+      "Pushes recruits harder than anyone else and respects only those who push back"
+    ]
+  },
+  "notes": "Skjor is alive in this campaign timeline. Circle member. Hard-edged and pro-beast blood — considers Kodlak's cure quest misguided. His ideological friction with the purity path will intensify now that Kodlak, Vilkas, and Farkas have been cured."
+}

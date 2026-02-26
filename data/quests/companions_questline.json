@@ -119,6 +119,45 @@
         "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
         "follow_up_quest": "companions_final_journey"
       },
+      "companions_purity_path_ignites": {
+        "name": "Purity Path Ignites",
+        "quest_id": "companions_purity_path_ignites",
+        "quest_giver": "Kodlak Whitemane",
+        "description": "With the beast blood purged from Kodlak, Vilkas, and Farkas at Ysgramor's Tomb, the cure chain is complete. The Circle is fractured — Aela and Skjor remain werewolves and view the cures as a betrayal of Hircine's gift. Elitrof must return to Jorrvaskr, secure the Hall against internal and external pressure, manage the fallout with Aela and Skjor, and prepare to respond to an inevitable Silver Hand escalation that will sense the Circle's vulnerability.",
+        "objectives": [
+          "Return from Ysgramor's Tomb to Jorrvaskr",
+          "Secure the Hall and brief the wider Companions on the cure outcome",
+          "Navigate the ideological rift with Aela and Skjor (purity vs. beast blood)",
+          "Assess and respond to Silver Hand intelligence about the Circle's changed state",
+          "Advance Harbinger succession: act on Kodlak's private signal to Elitrof"
+        ],
+        "rewards": [
+          "Harbinger candidacy formally acknowledged by Kodlak",
+          "Companions Hall secured as a base of operations",
+          "+1 Companions faction standing",
+          "New intelligence on Silver Hand movements post-cure"
+        ],
+        "branching": {
+          "aela_reconciled": {
+            "description": "PC earns Aela's grudging respect despite the purity path. She stays in Jorrvaskr and remains a Circle ally.",
+            "flag": "aela_reconciled",
+            "value": true
+          },
+          "aela_estranged": {
+            "description": "Aela leaves Jorrvaskr temporarily. Loyalty drops further. Available for radiant quests but not Inner Circle planning.",
+            "flag": "aela_estranged",
+            "value": true
+          },
+          "skjor_accepts": {
+            "description": "Skjor remains in the Circle and accepts the new dynamic, even if he disagrees.",
+            "flag": "skjor_accepts_purity_divergence",
+            "value": true
+          }
+        },
+        "notes": "This quest is the direct consequence of the Session 04 cure chain. Canon divergence: Kodlak is alive in this timeline. Skjor is alive. Silver Hand is aware the Circle is weakened. Harbingership succession hint active: Kodlak privately signaled Elitrof as a future Harbinger candidate; official naming deferred. The session 04 canonical events are: cure chain completed (Kodlak, Vilkas, Farkas); Wuuthrad reforged; Shield of Ysgramor recovered; Fire Breath mastery at 4/8.",
+        "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
+        "follow_up_quest": "companions_final_journey"
+      },
       "companions_final_journey": {
         "name": "Dragon at the Barrow",
         "quest_id": "companions_final_journey",

@@ -1,0 +1,84 @@
+{
+  "patch_id": "2026-02-26_end_session_04_closeout",
+  "created_at": "2026-02-26",
+  "summary": "End Session 04 closeout: Purity Path Ignites. Refresh fix, NPC trust clocks, Fire Breath mastery advancement, Whiterun trigger fix and new branch, Skjor alive (both NPC files), companions_purity_path_ignites quest added, session records for sessions 2 and 4, session 04 log created.",
+  "applies_to": [
+    "data/pcs/pc_elitrof_whitemane.json",
+    "state/campaign_state.json",
+    "data/clocks/faction_trust_clocks.json",
+    "data/npcs/kodlak_whitemane.json",
+    "data/npc_stat_sheets/kodlak_whitemane.json",
+    "data/npc_stat_sheets/vilkas.json",
+    "data/npc_stat_sheets/farkas.json",
+    "data/npcs/aela_the_huntress.json",
+    "data/npcs/skjor.json",
+    "data/npc_stat_sheets/skjor.json",
+    "data/quests/companions_questline.json",
+    "scripts/triggers/whiterun_triggers.py",
+    "logs/2026-02-26_session-04_Elitrof_Act1_LATEST.md",
+    "data/sessions/session_002.json",
+    "data/sessions/session_004.json"
+  ],
+  "changes": [
+    {
+      "path": "data/pcs/pc_elitrof_whitemane.json",
+      "change": "refresh 1 → 2; removed Glenmoril Witch Head x3 and Wuuthrad Fragment from equipment; added Wuuthrad (Reforged Legendary Waraxe) and Map Case: Nightgate Pass Notes; appended Session 4 Closeout note to notes field."
+    },
+    {
+      "path": "state/campaign_state.json",
+      "change": "session_count → 4; current_scene_id → act1_scene_016_ysgramors_tomb_reliquary_after_rite; current_location and current_objective updated; quest_state.companions updated to companions_purity_path_ignites/active; companions_state fully updated (kodlak_cured, vilkas_cured, farkas_cured, glenmoril_heads_remaining=0, cure_chain_completed, circle_cleansed, circle_remaining_werewolves, quest_progress updated, harbingership_succession_hint); thuum_fire_breath_mastery.current_progress → 4; shouts_learned populated."
+    },
+    {
+      "path": "data/clocks/faction_trust_clocks.json",
+      "change": "Confirmed last_updated = 2026-02-26 and companions_trust.current_trust = 10 (already correct; no change required)."
+    },
+    {
+      "path": "data/npcs/kodlak_whitemane.json",
+      "change": "trust_clock.current → 6; aspects.trouble → 'Harbinger Carrying a New Era'; cured_beast_blood → true; notes appended: Session 4 cure event."
+    },
+    {
+      "path": "data/npc_stat_sheets/kodlak_whitemane.json",
+      "change": "trust_clock.current → 6; aspects.trouble → 'Harbinger Carrying a New Era'; cured_beast_blood → true added."
+    },
+    {
+      "path": "data/npc_stat_sheets/vilkas.json",
+      "change": "trust_clock.current → 6; cured_beast_blood → true; aspects.trouble → 'Learning to Live Without the Wolf\\'s Crutch'; notes added: Session 4 cure event."
+    },
+    {
+      "path": "data/npc_stat_sheets/farkas.json",
+      "change": "trust_clock.current → 6; cured_beast_blood → true; other_aspects: 'Comfortable in Beast Skin' → 'Freedom Earned, Still Loyal'; notes added: Session 4 cure event."
+    },
+    {
+      "path": "data/npcs/aela_the_huntress.json",
+      "change": "loyalty 50 → 45; relationships.Skjor updated to alive/wary; notes appended: Session 4 witnessed cures."
+    },
+    {
+      "path": "data/npcs/skjor.json",
+      "change": "trust_clock added with current=4; Skjor is alive in this timeline (already noted in file)."
+    },
+    {
+      "path": "data/npc_stat_sheets/skjor.json",
+      "change": "Created new stat sheet for Skjor with trust_clock.current=4; full mechanical stat block matching data/npcs/skjor.json."
+    },
+    {
+      "path": "data/quests/companions_questline.json",
+      "change": "Added companions_purity_path_ignites quest object with objectives, rewards, branching, and canon divergence notes."
+    },
+    {
+      "path": "scripts/triggers/whiterun_triggers.py",
+      "change": "Added elif block for companions_purity_path_ignites in the Jorrvaskr location trigger section; updated deployment tuple to include companions_purity_path_ignites."
+    },
+    {
+      "path": "logs/2026-02-26_session-04_Elitrof_Act1_LATEST.md",
+      "change": "Created Session 04 LATEST log with scene-by-scene events, mechanical fixes, NPC clock updates, end-session protocol."
+    },
+    {
+      "path": "data/sessions/session_002.json",
+      "change": "Created Session 02 JSON record (Dustman's Cairn) with key events, NPCs, loot, milestones."
+    },
+    {
+      "path": "data/sessions/session_004.json",
+      "change": "Created Session 04 JSON record (Ysgramor's Tomb: Purity Path Ignites) with key events, cure chain, Wuuthrad reforging, NPC trust changes, milestone."
+    }
+  ]
+}
