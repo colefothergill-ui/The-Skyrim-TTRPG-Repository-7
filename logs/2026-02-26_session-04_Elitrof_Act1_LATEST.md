@@ -105,3 +105,5 @@
 - Decide how the Inner Circle manages the public narrative (Companions do not advertise lycanthropy or cures).
 - Harbinger succession: Kodlak deferred but signaled; when and how does the formal naming occur?
 - Thalmor Retaliation clock: 2/8 — a witness pressure beat may arrive.
+
+Milestone Award (Session 04): Significant — Cure scenario resolved; +1 skill advance pending.
