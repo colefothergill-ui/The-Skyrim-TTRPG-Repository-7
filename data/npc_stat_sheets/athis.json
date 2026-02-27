@@ -1,0 +1,67 @@
+{
+  "name": "Athis",
+  "id": "npc_stat_athis",
+  "type": "Companion (Dunmer Sword-Brother)",
+  "category": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "aspects": {
+    "high_concept": "Dunmer Duelist Who Earned a Place in Jorrvaskr",
+    "trouble": "An Outsider Under Constant Scrutiny",
+    "other_aspects": [
+      "Quiet Discipline, Sharp Blade",
+      "Doesn't Trust Easy Heroics",
+      "Honor Has Rules (Even If Nords Pretend It Doesn't)",
+      "Keeps His Past Tightly Sheathed"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Will", "Notice"],
+    "Fair": ["Athletics", "Lore", "Stealth"],
+    "Average": ["Rapport", "Provoke", "Physique"]
+  },
+  "stunts": [
+    "Dunmer Duelist: +2 to Fight when facing a single named opponent in a formal or personal duel.",
+    "Ashland Patience: +2 to Will when resisting fear, intimidation, or supernatural 'pressure.'",
+    "Cold Read: Use Notice instead of Empathy to detect lies and tells (social Overcome)."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "armor": 1,
+  "notes": "Athis is quieter than most Companions and twice as observant. He's the type who listens while the mead hall boasts. His arc: proving that 'belonging' isn't bloodline, it's oath. He can become a stabilizing influence when the Hall threatens to fracture into ideology.",
+  "combat_tactics": "Athis fights clean and precise. He excels in one-on-one duels and should be positioned against named enemies. His Ashland Patience makes him unusually resilient against intimidation and fear-based effects. His lower Physique means he avoids grapples; he controls engagement distance instead. Cold Read gives him a social edge in negotiation scenes — he can call out liars before they escalate.",
+  "starting_equipment": {
+    "armor": "Companion Armor, light/medium (Armor:1)",
+    "weapon": "Steel Sword (Weapon:2), Dunmer-crafted Dagger (Weapon:1, flavor/backup)",
+    "other": ["Weapon maintenance kit", "Small scroll of Dunmeri oath formula (personal)"]
+  },
+  "social_interaction": "Athis is reserved and measured. He speaks less than most in the hall and means more. He gives dry, sometimes cutting assessments. He respects those who follow through on their words; he's deeply unimpressed by boasts. He warms slowly but, once trust is established, is one of the steadiest voices in any room.",
+  "relationships": {
+    "Kodlak Whitemane": "Respects his honor; cautious optimism about the Purity Path.",
+    "Vilkas": "Mutual respect through discipline; both value standards.",
+    "Farkas": "Finds him straightforward and trustworthy.",
+    "Aela the Huntress": "Keeps distance; admires skill, distrusts ideology.",
+    "Elitrof Whitemane": "Sees a leader in him; tests if the 'saga' hides a mind."
+  },
+  "personality_notes": {
+    "speaking_style": "Measured, dry, sometimes cutting; speaks less, means more.",
+    "motivations": ["Earn respect that can't be taken away", "Keep the Hall from self-destruction", "Settle an old debt from his past (hook)"],
+    "fears": ["Being used as a scapegoat", "The Companions becoming a cult of impulse"],
+    "quirks": ["Keeps weapons immaculate", "Stands where he can see doors", "Rarely drinks to excess"]
+  },
+  "story_hooks": [
+    "Athis has intel routes in Windhelm and Riften that can connect to the main plot.",
+    "Athis becomes a 'bridge companion' when dealing with Dunmer/outsider communities.",
+    "He can be the first to notice a betrayal plot against Elitrof inside Whiterun."
+  ],
+  "gm_notes": "Athis is the Hall's quiet conscience. He notices everything and says little until it matters. His bond quest should surface the 'old debt' from his past — keep it grounded in personal honor, not grand politics. As a bridge character, he can open Dunmer community doors in Windhelm or Riften that no Nord NPC could. In ideological fractures within the Companions, Athis can be the calm voice that prevents civil war inside Jorrvaskr — or the one who walks away if the Hall fails him."
+}

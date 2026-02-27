@@ -1,0 +1,56 @@
+{
+  "quest_id": "companions_athis_bond_quest",
+  "name": "Athis: A Debt With Teeth",
+  "type": "Faction Quest",
+  "status": "Inactive",
+  "giver": "Athis",
+  "location": "Whiterun, Windhelm (optional thread)",
+  "faction": "The Companions",
+  "description": "Athis has kept a secret since before Jorrvaskr: an old debt to a Dunmer house contact who is now in Whiterun asking to collect. The debt is not gold — it is a name. A witness. And giving it means endangering a current Companion. Athis needs Elitrof to help him find a third path before someone gets hurt — or before the Hall's trust in him collapses.",
+  "prerequisites": ["companions_proving_honor", "take_up_arms"],
+  "objectives": [
+    {
+      "description": "Learn the nature of Athis's old debt: a Dunmer house contact needs testimony against a Companion associate in a Windhelm trade dispute. Athis refuses to give it without knowing the consequences.",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Investigate the Windhelm dispute independently to determine if the house contact's claim is legitimate or a manipulation; gather enough information to advise Athis honestly.",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Help Athis resolve the debt on his own terms — either by brokering a settlement, providing alternative evidence, or confronting the contact directly. The choice must be Athis's.",
+      "status": "Pending",
+      "optional": false
+    }
+  ],
+  "rewards": {
+    "experience": 0,
+    "gold": 100,
+    "items": ["Dunmeri Oath-Seal (flavor; aspect: 'Debt Settled, Oath Intact')"],
+    "reputation": [
+      { "target": "Athis", "change": "major_increase", "reason": "Helped him resolve a past obligation without betraying the Hall.", "loyalty_change": 10 },
+      { "target": "The Companions", "change": "minor_increase", "reason": "Preserved internal trust and demonstrated Hall solidarity across racial lines." }
+    ],
+    "romance_gate_unlocked": "athis_romance_available",
+    "notes": "Loyalty increase of +10 unlocks Athis's romance gate (requires loyalty >= 85)."
+  },
+  "complications": [
+    {
+      "trigger": "Aela suspects the Dunmer contact is a spy and will push to expel Athis preemptively if the situation becomes public — Elitrof must manage information carefully.",
+      "faction": "The Companions (Aela faction)"
+    },
+    {
+      "trigger": "Njada will use any hint of Athis's past to question whether outsiders can truly hold Hall oaths — the ideological friction with the Purity Path makes this explosive.",
+      "faction": "The Companions (Njada friction)"
+    }
+  ],
+  "consequences": {
+    "success": "Athis resolves his past debt without compromising the Hall or himself. His loyalty to Jorrvaskr deepens — he now believes 'home' can survive a crisis. His loyalty increases and he becomes a trusted bridge to outsider communities.",
+    "failure": "The debt is called in publicly, creating a scandal inside the Hall. Athis's standing suffers and his loyalty does not increase. The Dunmer contact becomes an ongoing problem."
+  },
+  "related_npcs": ["Athis", "Aela the Huntress", "Njada Stonearm"],
+  "related_locations": ["Jorrvaskr", "Whiterun", "Windhelm (optional)"],
+  "gm_notes": "Athis's bond quest is about belonging under pressure. The emotional core is the moment he realizes Elitrof investigated on his behalf without being asked — because that's what shield-siblings do. Keep the Dunmer contact morally ambiguous: they're not a villain. The 'third path' resolution should feel earned, not easy. Tie the Windhelm thread loosely to the civil war arc if desired."
+}

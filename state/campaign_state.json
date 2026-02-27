@@ -137,7 +137,44 @@
   },
   "companions": {
     "active_companions": [],
-    "available_companions": [],
+    "available_companions": [
+      {
+        "npc_id": "ria",
+        "name": "Ria",
+        "status": "available",
+        "loyalty": 55,
+        "location": "Jorrvaskr",
+        "recruitment_condition": "After Take Up Arms; speak to her in the mead hall",
+        "faction_affinity": "companions"
+      },
+      {
+        "npc_id": "torvar",
+        "name": "Torvar",
+        "status": "available",
+        "loyalty": 50,
+        "location": "Jorrvaskr",
+        "recruitment_condition": "After Take Up Arms; agree to 'Hall Law' discipline",
+        "faction_affinity": "companions"
+      },
+      {
+        "npc_id": "athis",
+        "name": "Athis",
+        "status": "available",
+        "loyalty": 45,
+        "location": "Jorrvaskr",
+        "recruitment_condition": "After Take Up Arms; earn his respect (spar or dialogue)",
+        "faction_affinity": "companions"
+      },
+      {
+        "npc_id": "njada_stonearm",
+        "name": "Njada Stonearm",
+        "status": "available",
+        "loyalty": 35,
+        "location": "Jorrvaskr",
+        "recruitment_condition": "After Take Up Arms; pass her Trial by Combat / resolve rivalry",
+        "faction_affinity": "companions"
+      }
+    ],
     "dismissed_companions": [],
     "companion_relationships": {}
   },

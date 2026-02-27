@@ -1,0 +1,68 @@
+{
+  "name": "Ria",
+  "id": "npc_stat_ria",
+  "type": "Companion Aspirant (Shield-Sister)",
+  "category": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "aspects": {
+    "high_concept": "Bright-Eyed Shield-Sister of Jorrvaskr",
+    "trouble": "Proving Herself, Even When It Hurts",
+    "other_aspects": [
+      "Hero-Worships the Hall's Legends (Sometimes the Wrong Ones)",
+      "Courage First, Strategy Second",
+      "Soft Heart Hidden Under Hard Training",
+      "Wants a Saga of Her Own"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Athletics", "Physique"],
+    "Fair": ["Will", "Rapport", "Notice"],
+    "Average": ["Provoke", "Survival", "Shoot"]
+  },
+  "stunts": [
+    "Eager Student: +2 to Fight when Ria is following a clear battle plan or direct instruction from a respected leader.",
+    "Shield-Sister: +2 to Fight when defending an ally in her zone (interposing, guarding, or holding a line).",
+    "Second Wind (Once/session): If an ally praises her courage or calls her 'Shield-Sister' in a high-stakes moment, clear 1 physical stress."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 2,
+  "armor": 1,
+  "notes": "Ria is one of the younger Companions in the mead hall: courageous, eager, and desperate to prove she belongs. She's the first to volunteer and the last to admit fear. Her arc is learning that heroism isn't only charging first; it's choosing the right fight at the right time.",
+  "combat_tactics": "Ria charges into melee and looks for an ally to guard. She fights best in formation — her stunts reward following orders and protecting shield-siblings. She is reckless when alone but nearly doubles her effectiveness protecting a named ally. GMs should use her eagerness against her: she can be baited into unfavorable positions.",
+  "starting_equipment": {
+    "armor": "Companion Armor, light/medium (Armor:1)",
+    "weapon": "Steel Sword (Weapon:2), Steel Shield (+1 Defend)",
+    "other": ["Polishing cloth (always out)", "Worn training gloves"]
+  },
+  "social_interaction": "Ria is warm, earnest, and transparent. She blurts things before thinking and laughs after near-death moments to hide the shake in her hands. She responds well to direct praise and struggles with criticism from people she admires. Use her as a morale anchor: she cheers others up even when scared herself.",
+  "relationships": {
+    "Kodlak Whitemane": "Reveres him as the Hall's moral compass.",
+    "Farkas": "Friendly, protective big-brother energy; she trusts him easily.",
+    "Vilkas": "Intimidated by his standards; secretly wants his approval.",
+    "Aela the Huntress": "Admires her, fears her judgment.",
+    "Skjor": "Wary respect; thinks he sees through her bravado.",
+    "Elitrof Whitemane": "Sees him as a living saga; torn between admiration and fear of disappointing him."
+  },
+  "personality_notes": {
+    "speaking_style": "Energetic, earnest, sometimes blurts truth before thinking.",
+    "motivations": ["Become truly worthy of Jorrvaskr", "Protect her shield-siblings", "Earn a saga-name"],
+    "fears": ["Being seen as weak", "Being sent away from the Companions", "Letting a shield-sibling die"],
+    "quirks": ["Over-polishes gear", "Asks too many questions when nervous", "Laughs after near-death to shake it off"]
+  },
+  "story_hooks": [
+    "Ria asks Elitrof to mentor her in 'saga-law' leadership rather than reckless glory.",
+    "A Silver Hand provocation targets her specifically to break morale in the Hall.",
+    "If the Purity Path spreads, Ria becomes one of its loudest younger champions."
+  ],
+  "gm_notes": "Ria is the hall's heart in miniature: all the courage, none of the strategy yet. Use her to show what the Companions ideal looks like when it's untempered. Her bond quest is about letting her grow rather than rescuing her. She thrives when the PC treats her as an equal; she withers if handled as a mascot. In combat, place her where she can shine with her Shield-Sister stunt — she'll die happily defending a doorway."
+}
