@@ -154,7 +154,7 @@
           }
         },
         "notes": "This quest opens with the post-Ysgramor's Tomb state: three Circle members cured, Wuuthrad reforged, Fire Breath mastery at 4/8. The harbingership is not yet formal. Silver Hand Vendetta clock is at 4/6 — one more tick and they move on Jorrvaskr. Skjor is alive and wary. Aela witnessed the cures and respects the strength required but distrusts the purity push.",
-        "prerequisites": ["companions_kodlak_cure_chain"],
+        "prerequisites": ["companions_skjor_dragonbreak"],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_final_journey": {
