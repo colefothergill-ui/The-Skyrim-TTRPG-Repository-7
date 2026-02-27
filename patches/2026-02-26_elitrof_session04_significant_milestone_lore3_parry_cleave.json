@@ -1,0 +1,25 @@
+{
+  "patch_id": "2026-02-26_elitrof_session04_significant_milestone_lore3_parry_cleave",
+  "created_at": "2026-02-26",
+  "type": "milestone_spend",
+  "summary": "Session 4 (Cure Rites) treated as a Significant milestone. Apply +1 skill advance (Lore +3) and rewrite stunt Rake and Rend -> Parry and Cleave (zone sweep + Bleeding Out scene effect).",
+  "applies_to": [
+    "data/pcs/pc_elitrof_whitemane.json",
+    "data/sessions/session_004.json",
+    "logs/2026-02-26_session-04_Elitrof_Act1_LATEST.md"
+  ],
+  "changes": [
+    {
+      "path": "data/pcs/pc_elitrof_whitemane.json",
+      "change": "Move Lore from Fair (+2) to Good (+3). Replace stunt 'Rake and Rend' with 'Parry and Cleave'."
+    },
+    {
+      "path": "data/sessions/session_004.json",
+      "change": "milestone Minor -> Significant; milestone_spend updated; add spend notes for Lore +3 and stunt rewrite."
+    },
+    {
+      "path": "logs/2026-02-26_session-04_Elitrof_Act1_LATEST.md",
+      "change": "Append Significant milestone award note."
+    }
+  ]
+}

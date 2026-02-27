@@ -105,3 +105,14 @@
 - Decide how the Inner Circle manages the public narrative (Companions do not advertise lycanthropy or cures).
 - Harbinger succession: Kodlak deferred but signaled; when and how does the formal naming occur?
 - Thalmor Retaliation clock: 2/8 — a witness pressure beat may arrive.
+
+---
+
+## Significant Milestone Award (Session 4 — Cure Rites)
+
+**Session 4 is treated as a Significant Milestone** (cure rites completed; Inner Circle purity path formally ignited).
+
+### Spend Applied
+- **Skill Advance:** Lore raised from Fair (+2) to **Good (+3)**
+- **Stunt Rewrite:** Rake and Rend → **Parry and Cleave**
+  - *When Elitrof Defends with Fight while dual-wielding and succeeds with style, he may forgo the boost to instead make a zone-sweep attack — all enemies in the zone take 1 physical stress. He may also spend 1 Fate Point to create the scene aspect 'Bleeding Out' with 2 free invokes.*

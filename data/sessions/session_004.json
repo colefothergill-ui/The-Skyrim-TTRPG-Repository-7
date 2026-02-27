@@ -54,7 +54,7 @@
   ],
   "experience_gained": 0,
   "fate_points_awarded": 0,
-  "milestone": "Minor",
+  "milestone": "Significant",
   "notes": "End-of-session state: Elitrof FP 3 (Refresh 2). Stress cleared; Mild consequence: Freshly Sealed Wound. Companions Trust 10/10 (Legend). Fire Breath Mastery 4/8. Elemental Fury Mastery 6/8. Become Ethereal Mastery 1/4. Silver Hand Vendetta 4/6. NPC trust clocks: Kodlak 6/6, Vilkas 6/6, Farkas 6/6, Skjor 4/6. Aela loyalty 45. Glenmoril Witch Heads 0 remaining.",
   "next_session_prep": [
     "Return to Jorrvaskr: Aela and Skjor reaction to cure news",
@@ -64,9 +64,11 @@
     "Manage the Inner Circle divide: three cured, two still wolf-blooded"
   ],
   "milestone_spend": {
-    "type": "Minor",
+    "type": "Significant",
     "spent_on": [
-      "Refresh corrected to 2 (was 1; milestone spend applied this session)"
+      "Refresh corrected to 2 (was 1; milestone spend applied this session)",
+      "Skill advance: Lore raised from Fair (+2) to Good (+3)",
+      "Stunt rewrite: Rake and Rend → Parry and Cleave (zone sweep + Bleeding Out scene effect)"
     ]
   }
 }
