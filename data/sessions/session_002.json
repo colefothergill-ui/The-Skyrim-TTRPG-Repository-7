@@ -1,0 +1,48 @@
+{
+  "session_number": 2,
+  "date": "2026-02-23",
+  "title": "Dustman's Cairn: Wuuthrad Fragment and the Word YOL",
+  "gm": "Charlotte (ChatGPT GM)",
+  "players_present": [
+    "Cole"
+  ],
+  "characters_present": [
+    "pc_elitrof_whitemane"
+  ],
+  "session_summary": "Elitrof entered Dustman's Cairn solo to recover the Wuuthrad fragment. He cleared the Silver Hand cell occupying the dungeon, defeated a Draugr Overlord in the deepest chamber, and recovered the fragment. He also discovered a Word Wall and learned YOL (Fire Breath, first word). Emerged from the cairn at dawn with the fragment in hand.",
+  "key_events": [
+    "Dustman's Cairn entry — solo infiltration",
+    "Silver Hand cell encountered and engaged in the dungeon",
+    "Draugr Overlord defeated in the deepest chamber",
+    "Wuuthrad fragment recovered (Quest Item)",
+    "Word Wall discovered; YOL (Fire Breath, word 1) learned",
+    "Fire Breath used (unmastered; FP spent) in critical duel with the Overlord",
+    "Silver Hand survivor escaped — vendetta clock ticks",
+    "Milestone: x2 Minor — retired Pack Tactics; promoted Ulran-Vjarn Pelt to Artifact Extra (L1/3)"
+  ],
+  "npcs_encountered": [
+    "Silver Hand cell (engaged; 1 survivor escaped)",
+    "Draugr Overlord (defeated)"
+  ],
+  "locations_visited": [
+    "Dustman's Cairn (Whiterun Hold / Pale border)"
+  ],
+  "quests_updated": [
+    {
+      "quest": "Companions: Proving Honor",
+      "status": "Completed (fragment recovered)"
+    }
+  ],
+  "loot_acquired": [
+    "Wuuthrad Fragment (Quest Item) — recovered from Dustman's Cairn"
+  ],
+  "experience_gained": 0,
+  "fate_points_awarded": 0,
+  "milestone": "Minor",
+  "notes": "End-of-session state: Elitrof FP 2 (Refresh 1; keeps higher). Physical stress boxes 1 and 3 marked. No consequences. Word Wall YOL learned; Fire Breath Mastery clock starts at 1/8. Ulran-Vjarn pelt promoted to Artifact Extra (L1/3). Pack Tactics retired. Silver Hand survivor escaped — Silver Hand Vendetta clock ticked.",
+  "next_session_prep": [
+    "Departure from Dustman's Cairn at dawn with fragment",
+    "Road travel to Whiterun; possible Silver Hand road encounter",
+    "Return fragment to Jorrvaskr; Kodlak reaction and Inner Circle reveal?"
+  ]
+}

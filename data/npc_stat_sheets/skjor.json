@@ -1,0 +1,83 @@
+{
+  "name": "Skjor",
+  "id": "npc_stat_skjor",
+  "type": "Nord Warrior",
+  "category": "Friendly NPC",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions (Inner Circle)",
+  "role": "Inner Circle member, Circle enforcer and shadow operative",
+  "aspects": {
+    "high_concept": "Scarred Veteran of the Circle's Shadow War",
+    "trouble": "The Beast Blood Is Strength, Not Sickness",
+    "other_aspects": [
+      "Hard-Edged and Unapologetic",
+      "Old Wolf, Sharp Fangs",
+      "The Hunt Defines the Hunter"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight", "Stealth"],
+    "Good": ["Notice", "Athletics"],
+    "Fair": ["Provoke", "Deceive"],
+    "Average": ["Physique", "Will", "Rapport"]
+  },
+  "stunts": [
+    "Ambush Predator: +2 to Fight on the first exchange of a conflict if Skjor was hidden or unnoticed beforehand.",
+    "Old Wolf's Cunning: Once per session, Skjor may use Stealth in place of Deceive to set up a tactical misdirection.",
+    "Scarred Survivor: Skjor may ignore one mild consequence per session (he's taken worse and kept fighting)."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "armor": 2,
+  "notes": "Skjor is hard-edged and pro-beast blood — the Circle's shadow operative. He is alive in this campaign timeline. Ideological friction with the purity path, but respects Elitrof's battle-proven strength.",
+  "trust_clock": {
+    "enabled": true,
+    "current": 4,
+    "max": 6,
+    "description": "Skjor's wary respect for the PC, built through proven strength and battle deeds despite ideological disagreement over the cure.",
+    "gain_triggers": [
+      "+1: proving superior combat skill in Skjor's presence",
+      "+1: protecting a Circle member at personal cost",
+      "+2: showing the beast blood's value even while refusing it"
+    ],
+    "loss_triggers": [
+      "-1: openly criticizing the beast blood as shameful",
+      "-2: undermining Skjor's authority within the Circle",
+      "-1: appealing to sentiment over strength"
+    ],
+    "milestones": {
+      "2": "Skjor stops testing and starts watching",
+      "4": "Skjor offers a tactical tip — the highest praise he gives",
+      "6": "Skjor calls PC a fellow predator; will back them in a Circle dispute"
+    }
+  },
+  "combat_tactics": "Skjor fights dirty by Companion standards — ambushes, flanking, striking from stealth. He is fast and vicious rather than powerful, relying on positioning and surprise over brute force.",
+  "scene_triggers": [
+    "Jorrvaskr mead hall",
+    "Inner Circle meetings",
+    "Underforge rites",
+    "Silver Hand encounters",
+    "Companions questline"
+  ],
+  "act_context": ["Act 1", "Act 2"],
+  "starting_equipment": {
+    "armor": "Companions Armor (Armor:2)",
+    "weapon": "Skyforge Steel Sword (Weapon:2)",
+    "other": ["Hunting knife (backup)", "Circle token"]
+  },
+  "relationships": {
+    "Kodlak Whitemane": "Respects the Harbinger but disagrees about the cure; obeys out of loyalty, not conviction",
+    "Aela the Huntress": "Close ally and kindred spirit; both embrace the beast blood fully",
+    "Farkas": "Easy respect between two fighters who prefer action over talk",
+    "Vilkas": "Mutual respect but ideological friction; Vilkas's brooding irritates Skjor",
+    "Elitrof Whitemane": "Wary respect; the newcomer refused the blood but proved himself in battle"
+  }
+}

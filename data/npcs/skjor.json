@@ -35,6 +35,12 @@
   },
   "refresh": 3,
   "fate_points": 3,
+  "trust_clock": {
+    "enabled": true,
+    "current": 4,
+    "max": 6,
+    "description": "Skjor's wary respect for the PC, built through proven strength and battle deeds despite ideological disagreement over the cure."
+  },
   "personality_notes": {
     "speaking_style": "Blunt, rough, challenging. Speaks like someone who has seen too many battles to waste words on diplomacy.",
     "motivations": [
