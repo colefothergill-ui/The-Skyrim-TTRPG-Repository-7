@@ -1,0 +1,15 @@
+{
+  "patch_id": "2026-02-26_conflict_resolution",
+  "created_at": "2026-02-26",
+  "type": "conflict_resolution",
+  "summary": "Resolve stale campaign_state fields to match post-Ysgramor's Tomb cure-rite state (scene 016 after rite). Update hold/location/objective/last_session metadata and queue return-to-Jorrvaskr next.",
+  "applies_to": [
+    "state/campaign_state.json"
+  ],
+  "changes": [
+    {
+      "path": "state/campaign_state.json",
+      "change": "active_hold updated from 'Whiterun' to 'Winterhold' (Ysgramor's Tomb location); current_location updated from 'Jorrvaskr (Whiterun)' to 'Ysgramor's Tomb — Reliquary (Winterhold)'; current_objective updated to reflect completed cure rite and queued return to Jorrvaskr; current_npcs updated to cure party (Kodlak, Farkas, Vilkas — Aela was not present); last_session_ended_at updated from '2026-02-25' to '2026-02-26'; last_session_title updated to Session 4 title; next_scene_hint updated from 'ysgramors_tomb_flame_of_the_harbinger' to 'return_to_jorrvaskr_purity_path_reactions'."
+    }
+  ]
+}
