@@ -1,0 +1,56 @@
+{
+  "quest_id": "companions_torvar_bond_quest",
+  "name": "Torvar: The Patron's Name",
+  "type": "Faction Quest",
+  "status": "Inactive",
+  "giver": "Torvar",
+  "location": "Whiterun and surrounding Hold",
+  "faction": "The Companions",
+  "description": "Torvar has learned through a contact that a merchant in Whiterun Hold is quietly funding Silver Hand operations — paying for their safehouses, equipment, and bounties on Companions. He wants to go in loud, smash the operation, and drag the patron's name back to Jorrvaskr. Elitrof has to help him do it smart — before Torvar's rage turns it into a diplomatic disaster.",
+  "prerequisites": ["companions_proving_honor", "take_up_arms"],
+  "objectives": [
+    {
+      "description": "Investigate the contact's lead with Torvar; confirm the local patron's identity and their ties to Silver Hand funding.",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Infiltrate or confront the patron's operation to gather evidence — Torvar must be kept from escalating prematurely (skill challenge or roleplay).",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Expose or neutralize the patron. Torvar earns his chance to deliver the final judgment — but must do it within Hall Law, not his own fury.",
+      "status": "Pending",
+      "optional": false
+    }
+  ],
+  "rewards": {
+    "experience": 0,
+    "gold": 200,
+    "items": ["Silver Hand Ledger (evidence; leverage item)", "Trophy Axe-Head (Torvar's personal gift, flavor)"],
+    "reputation": [
+      { "target": "Torvar", "change": "major_increase", "reason": "Helped him act with discipline, not just fury.", "loyalty_change": 10 },
+      { "target": "The Companions", "change": "minor_increase", "reason": "Disrupted Silver Hand funding network in Whiterun Hold." }
+    ],
+    "romance_gate_unlocked": "torvar_romance_available",
+    "notes": "Loyalty increase of +10 unlocks Torvar's romance gate (requires loyalty >= 75)."
+  },
+  "complications": [
+    {
+      "trigger": "Aela will want the patron killed outright — no evidence, no leverage. If Elitrof tries to use the ledger for political pressure instead, Aela will oppose it publicly.",
+      "faction": "The Companions (Aela faction)"
+    },
+    {
+      "trigger": "Njada will mock Torvar for needing help restraining himself and may try to steal the credit if the operation succeeds cleanly.",
+      "faction": "The Companions (Njada friction)"
+    }
+  ],
+  "consequences": {
+    "success": "The Silver Hand lose a significant financial backer in Whiterun Hold. Torvar learns that 'Hall Law' restraint is a form of strength, not weakness. His loyalty increases and he becomes a more disciplined companion.",
+    "failure": "Torvar goes loud too early, the patron escapes with warning, and Silver Hand operations in the Hold intensify. Torvar's confidence takes a hit and his loyalty does not increase."
+  },
+  "related_npcs": ["Torvar", "Aela the Huntress", "Njada Stonearm"],
+  "related_locations": ["Jorrvaskr", "Whiterun", "Whiterun Hold"],
+  "gm_notes": "The dramatic tension in this quest is Torvar versus his own impulse. Elitrof's role is coach and restraint — not a leash. If Elitrof simply controls Torvar, he learns nothing. If Elitrof gives him the framework to channel his fury productively, the quest resolves into a genuine moment of growth. The patron should have a name, a face, and one sympathetic quality to make the final judgment genuinely difficult."
+}

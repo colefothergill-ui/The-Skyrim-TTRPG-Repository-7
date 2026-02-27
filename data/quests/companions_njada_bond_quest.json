@@ -1,0 +1,57 @@
+{
+  "quest_id": "companions_njada_bond_quest",
+  "name": "Njada: The Stone Cracks",
+  "type": "Faction Quest",
+  "status": "Inactive",
+  "giver": "Njada Stonearm",
+  "location": "Jorrvaskr and Whiterun Hold",
+  "faction": "The Companions",
+  "description": "The Silver Hand have made a move that Njada takes personally: they've used information about her past — the weakness that drove her to Jorrvaskr in the first place — to attempt to turn her against Elitrof. She has to decide whether to confront this manipulation alone (badly) or trust someone for the first time in years. The rivalry clock with Elitrof comes to a head.",
+  "prerequisites": ["companions_proving_honor", "take_up_arms", "rivalry_with_elitrof_clock >= 3"],
+  "objectives": [
+    {
+      "description": "Discover the Silver Hand's leverage over Njada — they have found someone from her past and are using them to feed her false intel about Elitrof's intentions.",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Confront Njada directly about the manipulation; survive her first reaction (social or physical challenge). She won't accept help gracefully.",
+      "status": "Pending",
+      "optional": false
+    },
+    {
+      "description": "Expose the Silver Hand's contact and eliminate the leverage — Njada must participate in the resolution, not just receive it. The rivalry clock resolves to 'Ally' or resets at 1.",
+      "status": "Pending",
+      "optional": false
+    }
+  ],
+  "rewards": {
+    "experience": 0,
+    "gold": 175,
+    "items": ["Stonearm Sparring Wraps (Njada's personal kit; flavor gift — the highest trust she knows how to show)"],
+    "reputation": [
+      { "target": "Njada Stonearm", "change": "major_increase", "reason": "Exposed the manipulation and stood beside her without making her feel weak.", "loyalty_change": 10 },
+      { "target": "The Companions", "change": "minor_increase", "reason": "Neutralized a Silver Hand intelligence asset targeting Companions members." }
+    ],
+    "romance_gate_unlocked": "njada_romance_available",
+    "clock_effect": { "clock": "rivalry_with_elitrof", "resolution": "ally", "notes": "Clock resolves to Ally state; remove from active clocks." },
+    "notes": "Loyalty increase of +10 unlocks Njada's romance gate (requires loyalty >= 90 and resolve_rivalry_clock)."
+  },
+  "complications": [
+    {
+      "trigger": "Aela believes Njada's hostility toward Elitrof is ideologically motivated (Purity Path vs. pragmatism) and may actively discourage Elitrof from helping Njada, seeing it as weakness.",
+      "faction": "The Companions (Aela faction)"
+    },
+    {
+      "trigger": "If the Purity Path is ascendant, Njada's arc crosses with it directly: the Silver Hand contact implies the Purity Path itself is naive — and part of Njada wants to believe that.",
+      "faction": "The Companions (Purity Path / Njada friction)"
+    }
+  ],
+  "consequences": {
+    "success": "The rivalry clock resolves to Ally. Njada still doesn't give compliments, but she stops testing Elitrof and starts backing him. Her loyalty increases significantly and the romance gate opens. The Silver Hand lose an intelligence asset.",
+    "failure": "Njada handles it alone, badly. The manipulation partially succeeds: she pulls away from the Hall for a scene and the Silver Hand asset escapes. The rivalry clock resets to 1 rather than resolving. Loyalty does not increase."
+  },
+  "related_npcs": ["Njada Stonearm", "Aela the Huntress"],
+  "related_locations": ["Jorrvaskr", "Whiterun Hold"],
+  "gm_notes": "This is the most emotionally difficult bond quest in the set. The Silver Hand's manipulation should feel personal and plausible — they know her real weakness, which the GM should have seeded in earlier sessions. The key dramatic beat: Elitrof has to let Njada be angry without flinching. If he pushes back proportionally, or simply refuses to leave when she tells him to, it cracks the armor. The gift of the sparring wraps is Njada's 'I trust you' — she'll never say the words."
+}

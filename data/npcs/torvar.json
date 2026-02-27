@@ -1,0 +1,77 @@
+{
+  "name": "Torvar",
+  "id": "torvar",
+  "type": "Companion (Axe-Brother)",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "tags": ["companions", "jorrvaskr", "nord", "axe", "brawler", "whiterun"],
+  "aspects": {
+    "high_concept": "Boisterous Axe-Brother of the Mead Hall",
+    "trouble": "Fights First, Thinks Later",
+    "other_aspects": [
+      "Loyal to the Hall Over Everything",
+      "Laughs at Pain, Until It's Personal",
+      "Hates the Silver Hand With a Hot, Dumb Passion",
+      "A Good Heart Buried Under Loudness"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Physique", "Provoke"],
+    "Fair": ["Athletics", "Notice", "Will"],
+    "Average": ["Rapport", "Survival", "Shoot"]
+  },
+  "stunts": [
+    "Brawler's Momentum: +2 to Fight if Torvar created an advantage this scene using Physique (grapples, shoves, breaking lines).",
+    "Mead Hall Roar (Once/session): Use Provoke to Create an Advantage 'Shaken' on a group in his zone (opposed by Will).",
+    "Hold the Line: +2 to Fight when defending a chokepoint or doorway."
+  ],
+  "stress": { "physical": [false, false, false], "mental": [false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 2,
+  "fate_points": 2,
+  "notes": "Torvar is a classic hall-warrior: loud, brave, and prone to turning a plan into a brawl. Underneath the noise, he's fiercely loyal. His growth arc is learning to be useful beyond being a hammer: scouting, restraint, and leadership when the Hall needs discipline.",
+  "relationships": {
+    "Kodlak Whitemane": "Respects him; doesn't always understand his patience.",
+    "Farkas": "Gets along well; sees him as 'the reliable one.'",
+    "Vilkas": "Feels judged by him; tries to impress him via bravado.",
+    "Aela the Huntress": "Half terrified, half infatuated with her ferocity.",
+    "Elitrof Whitemane": "Wants to be his 'right-hand brawler'; accepts leadership when framed as 'Hall Law.'"
+  },
+  "quests": ["companions_torvar_bond_quest", "companions_radiant_contracts_support"],
+  "inventory": ["Steel Greatsword", "Companion Armor (medium)", "Throwing Axes (flavor)"],
+  "personality_notes": {
+    "speaking_style": "Loud, joking, simple phrasing; gets serious instantly when someone bleeds.",
+    "motivations": ["Protect the Hall's reputation", "Crush the Silver Hand", "Be remembered"],
+    "fears": ["Being useless in a 'thinking fight'", "Losing his brothers and being unable to stop it"],
+    "quirks": ["Calls everyone 'brother'", "Collects trophies he can't explain later", "Overestimates his stealth constantly"]
+  },
+  "loyalty": 50,
+  "companion_status": {
+    "available": "after_take_up_arms",
+    "current_status": "available",
+    "max_loyalty": 100,
+    "dismissal_location": "Jorrvaskr",
+    "romance_available": true
+  },
+  "romance_arc": {
+    "enabled": true,
+    "tone": "Friends-to-lovers, with loyalty tests",
+    "gates": ["loyalty >= 75", "complete companions_torvar_bond_quest"],
+    "conflict": "He fears he's 'just the loud guy' next to legends. Needs reassurance through deeds."
+  },
+  "dialogue_trees": {
+    "recruitment": {
+      "greeting": "Going out? Finally. Let's make it memorable.",
+      "responses": [
+        { "option": "Join me.", "leads_to": "accepts_companion", "companion_status": "active", "loyalty_change": 1 },
+        { "option": "Stay. Guard the Hall.", "leads_to": "guards_hall", "companion_status": "available", "loyalty_change": 0 }
+      ]
+    }
+  },
+  "story_hooks": [
+    "Torvar's bond quest starts when he learns Silver Hand are funded by a local patron.",
+    "He can be the first to volunteer for 'dangerous distraction' roles.",
+    "He becomes a morale engine in civil-war battles if trained into discipline."
+  ]
+}

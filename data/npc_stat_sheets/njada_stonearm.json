@@ -1,0 +1,70 @@
+{
+  "name": "Njada Stonearm",
+  "id": "npc_stat_njada_stonearm",
+  "type": "Companion (Hard-Edged Shield-Sister)",
+  "category": "Ally",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "aspects": {
+    "high_concept": "Stone-Hearted Shield-Sister Who Tests Everyone",
+    "trouble": "Cruelty As Armor (Until It Breaks)",
+    "other_aspects": [
+      "Respects Pain More Than Promises",
+      "Jealous of Rising Legends",
+      "Strength Is the Only Apology",
+      "Terrified of Being Weak (So She Acts Mean)"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Provoke", "Physique"],
+    "Fair": ["Athletics", "Notice", "Will"],
+    "Average": ["Rapport", "Survival", "Shoot"]
+  },
+  "stunts": [
+    "Stonearm: +2 to Physique when grappling, shoving, or holding someone in place.",
+    "Needle-Tongue: +2 to Provoke when creating an advantage by insulting pride, honor, or reputation.",
+    "Trial by Combat (Once/session): Njada may declare a formal spar/duel. If the target accepts, she gains +2 on her first Fight roll in that exchange."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 2,
+  "armor": 2,
+  "notes": "Njada is the Companions' internal pressure valve: she says what others think but won't admit, and she tests new legends the moment they walk in. She's a rival, not a villain. Her arc is learning that strength isn't only bruises; it's restraint, protection, and trust.",
+  "combat_tactics": "Njada leads with Needle-Tongue taunts to create 'Shaken' or 'Rattled' advantages on enemies, then follows up with Fight or Physique-based grapples. Her Stonearm stunt makes her exceptionally dangerous in close-quarters. Trial by Combat can be used to demand personal duels, forcing enemies or rivals into advantageous ground for her. She fights with vicious efficiency and zero mercy.",
+  "starting_equipment": {
+    "armor": "Companion Armor, medium/heavy (Armor:2)",
+    "weapon": "Steel Warhammer (Weapon:3), Steel Shield (+1 Defend)",
+    "other": ["Sparring wraps (always ready)", "Grudge-list scratched on leather scrap (flavor)"]
+  },
+  "social_interaction": "Njada uses hostility as a first line of defense. She mocks, challenges, and provokes. She responds unexpectedly well to PC actions that demonstrate restraint under pressure — backing down from her without showing weakness earns more of her respect than matching her aggression. She apologizes through deeds, never words; if she saves your life, that's the closest you'll get to 'sorry.'",
+  "relationships": {
+    "Kodlak Whitemane": "Respects the Harbinger's authority; dislikes 'soft' mercy.",
+    "Vilkas": "Mutual respect; both value standards.",
+    "Farkas": "Finds him 'too gentle' (secretly envies that).",
+    "Aela the Huntress": "Competes for 'who is the harshest' in the hall.",
+    "Elitrof Whitemane": "Feels threatened by his rising myth; rivalry can become loyalty or obsession."
+  },
+  "clocks": {
+    "rivalry_with_elitrof": { "current": 2, "max": 6, "notes": "Ticks on public triumphs or ideological clashes; resolves into Ally or Antagonist." }
+  },
+  "personality_notes": {
+    "speaking_style": "Blunt, abrasive, uses mockery as a reflex.",
+    "motivations": ["Never be the weak one again (hook)", "Protect the Hall by hardening it", "Prove she matters"],
+    "fears": ["Being overlooked", "Losing relevance to new legends", "Caring about someone and losing them"],
+    "quirks": ["Paces like a caged bear", "Spars to calm down", "Apologizes by doing something useful, not by words"]
+  },
+  "story_hooks": [
+    "Njada challenges Elitrof's Purity Path publicly unless handled carefully.",
+    "She becomes a terrifying ally if you earn her respect in battle and in policy.",
+    "A Silver Hand plot tries to recruit her rivalry into sabotage."
+  ],
+  "gm_notes": "Njada is the most volatile Companion but also one of the most rewarding to develop. Her rivalry clock is a campaign mechanic: tick it on every public humiliation or ideological clash, and let it resolve organically. She needs to be handled without condescension — PC players who lecture her lose ground; those who challenge her directly and then deliver gain it. Her bond quest arc centers on vulnerability: she has to choose, once, to trust instead of armoring up. Her romance arc, if pursued, is among the most emotionally complex in the Hall."
+}

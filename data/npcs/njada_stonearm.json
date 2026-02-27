@@ -1,0 +1,80 @@
+{
+  "name": "Njada Stonearm",
+  "id": "njada_stonearm",
+  "type": "Companion (Hard-Edged Shield-Sister)",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "tags": ["companions", "jorrvaskr", "nord", "rival", "brawler", "whiterun"],
+  "aspects": {
+    "high_concept": "Stone-Hearted Shield-Sister Who Tests Everyone",
+    "trouble": "Cruelty As Armor (Until It Breaks)",
+    "other_aspects": [
+      "Respects Pain More Than Promises",
+      "Jealous of Rising Legends",
+      "Strength Is the Only Apology",
+      "Terrified of Being Weak (So She Acts Mean)"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Provoke", "Physique"],
+    "Fair": ["Athletics", "Notice", "Will"],
+    "Average": ["Rapport", "Survival", "Shoot"]
+  },
+  "stunts": [
+    "Stonearm: +2 to Physique when grappling, shoving, or holding someone in place.",
+    "Needle-Tongue: +2 to Provoke when creating an advantage by insulting pride, honor, or reputation.",
+    "Trial by Combat (Once/session): Njada may declare a formal spar/duel. If the target accepts, she gains +2 on her first Fight roll in that exchange."
+  ],
+  "stress": { "physical": [false, false, false], "mental": [false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 2,
+  "fate_points": 2,
+  "notes": "Njada is the Companions' internal pressure valve: she says what others think but won't admit, and she tests new legends the moment they walk in. She's a rival, not a villain. Her arc is learning that strength isn't only bruises; it's restraint, protection, and trust.",
+  "relationships": {
+    "Kodlak Whitemane": "Respects the Harbinger's authority; dislikes 'soft' mercy.",
+    "Vilkas": "Mutual respect; both value standards.",
+    "Farkas": "Finds him 'too gentle' (secretly envies that).",
+    "Aela the Huntress": "Competes for 'who is the harshest' in the hall.",
+    "Elitrof Whitemane": "Feels threatened by his rising myth; rivalry can become loyalty or obsession."
+  },
+  "quests": ["companions_njada_bond_quest", "companions_radiant_contracts_support"],
+  "inventory": ["Steel Warhammer", "Steel Shield", "Companion Armor (medium/heavy)"],
+  "personality_notes": {
+    "speaking_style": "Blunt, abrasive, uses mockery as a reflex.",
+    "motivations": ["Never be the weak one again (hook)", "Protect the Hall by hardening it", "Prove she matters"],
+    "fears": ["Being overlooked", "Losing relevance to new legends", "Caring about someone and losing them"],
+    "quirks": ["Paces like a caged bear", "Spars to calm down", "Apologizes by doing something useful, not by words"]
+  },
+  "loyalty": 35,
+  "companion_status": {
+    "available": "after_take_up_arms",
+    "current_status": "available",
+    "max_loyalty": 100,
+    "dismissal_location": "Jorrvaskr",
+    "romance_available": true
+  },
+  "romance_arc": {
+    "enabled": true,
+    "tone": "Enemies-to-allies-to-heat (optional)",
+    "gates": ["loyalty >= 90", "complete companions_njada_bond_quest", "resolve_rivalry_clock"],
+    "conflict": "She doesn't know how to be gentle without feeling exposed."
+  },
+  "clocks": {
+    "rivalry_with_elitrof": { "current": 2, "max": 6, "notes": "Ticks on public triumphs or ideological clashes; resolves into Ally or Antagonist." }
+  },
+  "dialogue_trees": {
+    "recruitment": {
+      "greeting": "You want me along? Fine. Don't slow me down.",
+      "responses": [
+        { "option": "Join me.", "leads_to": "accepts_companion", "companion_status": "active", "loyalty_change": 0 },
+        { "option": "If you can't respect the chain of command, stay.", "leads_to": "stays_home", "companion_status": "available", "loyalty_change": -1 }
+      ]
+    }
+  },
+  "story_hooks": [
+    "Njada challenges Elitrof's Purity Path publicly unless handled carefully.",
+    "She becomes a terrifying ally if you earn her respect in battle and in policy.",
+    "A Silver Hand plot tries to recruit her rivalry into sabotage."
+  ]
+}

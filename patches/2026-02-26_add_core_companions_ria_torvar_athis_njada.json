@@ -1,0 +1,74 @@
+{
+  "patch_id": "2026-02-26_add_core_companions_ria_torvar_athis_njada",
+  "created_at": "2026-02-26",
+  "summary": "Add core Companions (Ria, Torvar, Athis, Njada Stonearm) with full NPC files, stat sheets, bond quests, and campaign_state available_companions entries.",
+  "applies_to": [
+    "data/npcs/ria.json",
+    "data/npcs/torvar.json",
+    "data/npcs/athis.json",
+    "data/npcs/njada_stonearm.json",
+    "data/npc_stat_sheets/ria.json",
+    "data/npc_stat_sheets/torvar.json",
+    "data/npc_stat_sheets/athis.json",
+    "data/npc_stat_sheets/njada_stonearm.json",
+    "data/quests/companions_ria_bond_quest.json",
+    "data/quests/companions_torvar_bond_quest.json",
+    "data/quests/companions_athis_bond_quest.json",
+    "data/quests/companions_njada_bond_quest.json",
+    "state/campaign_state.json"
+  ],
+  "changes": [
+    {
+      "path": "data/npcs/ria.json",
+      "change": "Created NPC file for Ria (Companion Aspirant / Shield-Sister). Great Fight; Good Athletics/Physique; Fair Will/Rapport/Notice; Average Provoke/Survival/Shoot. Loyalty 55, romance arc, companion_status available after Take Up Arms."
+    },
+    {
+      "path": "data/npcs/torvar.json",
+      "change": "Created NPC file for Torvar (Companion / Axe-Brother). Great Fight; Good Physique/Provoke; Fair Athletics/Notice/Will; Average Rapport/Survival/Shoot. Loyalty 50, romance arc, companion_status available after Take Up Arms."
+    },
+    {
+      "path": "data/npcs/athis.json",
+      "change": "Created NPC file for Athis (Companion / Dunmer Sword-Brother). Great Fight; Good Will/Notice; Fair Athletics/Lore/Stealth; Average Rapport/Provoke/Physique. Loyalty 45, refresh 3, romance arc, companion_status available after Take Up Arms."
+    },
+    {
+      "path": "data/npcs/njada_stonearm.json",
+      "change": "Created NPC file for Njada Stonearm (Companion / Hard-Edged Shield-Sister). Great Fight; Good Provoke/Physique; Fair Athletics/Notice/Will; Average Rapport/Survival/Shoot. Loyalty 35, rivalry clock with Elitrof, romance arc, companion_status available after Take Up Arms."
+    },
+    {
+      "path": "data/npc_stat_sheets/ria.json",
+      "change": "Created mechanical stat sheet for Ria. Matches NPC file skills exactly. Includes combat_tactics, starting_equipment, social_interaction, story_hooks, gm_notes."
+    },
+    {
+      "path": "data/npc_stat_sheets/torvar.json",
+      "change": "Created mechanical stat sheet for Torvar. Matches NPC file skills exactly. Includes combat_tactics, starting_equipment, social_interaction, story_hooks, gm_notes."
+    },
+    {
+      "path": "data/npc_stat_sheets/athis.json",
+      "change": "Created mechanical stat sheet for Athis. Matches NPC file skills exactly. Includes combat_tactics, starting_equipment, social_interaction, story_hooks, gm_notes."
+    },
+    {
+      "path": "data/npc_stat_sheets/njada_stonearm.json",
+      "change": "Created mechanical stat sheet for Njada Stonearm. Matches NPC file skills exactly. Includes combat_tactics, starting_equipment, social_interaction, story_hooks, gm_notes, rivalry clock."
+    },
+    {
+      "path": "data/quests/companions_ria_bond_quest.json",
+      "change": "Created bond quest 'Ria: The Right Fight'. Type: Faction Quest. 3 objectives. Reward: +10 loyalty, romance gate unlock. Complications include Aela offensive-strike pressure and Njada Purity Path friction."
+    },
+    {
+      "path": "data/quests/companions_torvar_bond_quest.json",
+      "change": "Created bond quest 'Torvar: The Patron's Name'. Type: Faction Quest. 3 objectives. Reward: +10 loyalty, romance gate unlock. Complications include Aela kill-vs-leverage conflict and Njada credit-stealing friction."
+    },
+    {
+      "path": "data/quests/companions_athis_bond_quest.json",
+      "change": "Created bond quest 'Athis: A Debt With Teeth'. Type: Faction Quest. 3 objectives. Reward: +10 loyalty, romance gate unlock. Complications include Aela spy suspicion and Njada outsider-oath Purity Path friction."
+    },
+    {
+      "path": "data/quests/companions_njada_bond_quest.json",
+      "change": "Created bond quest 'Njada: The Stone Cracks'. Type: Faction Quest. 3 objectives. Reward: +10 loyalty, romance gate unlock, rivalry clock resolution to Ally. Complications include Aela discouragement and Purity Path ideological friction."
+    },
+    {
+      "path": "state/campaign_state.json",
+      "change": "Appended Ria (loyalty 55), Torvar (loyalty 50), Athis (loyalty 45), and Njada Stonearm (loyalty 35) to companions.available_companions array. All set status: available with Jorrvaskr location and appropriate recruitment conditions."
+    }
+  ]
+}

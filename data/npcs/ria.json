@@ -1,0 +1,85 @@
+{
+  "name": "Ria",
+  "id": "ria",
+  "type": "Companion Aspirant (Shield-Sister)",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "tags": ["companions", "jorrvaskr", "nord", "shield-sister", "trainee", "whiterun"],
+  "aspects": {
+    "high_concept": "Bright-Eyed Shield-Sister of Jorrvaskr",
+    "trouble": "Proving Herself, Even When It Hurts",
+    "other_aspects": [
+      "Hero-Worships the Hall's Legends (Sometimes the Wrong Ones)",
+      "Courage First, Strategy Second",
+      "Soft Heart Hidden Under Hard Training",
+      "Wants a Saga of Her Own"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Athletics", "Physique"],
+    "Fair": ["Will", "Rapport", "Notice"],
+    "Average": ["Provoke", "Survival", "Shoot"]
+  },
+  "stunts": [
+    "Eager Student: +2 to Fight when Ria is following a clear battle plan or direct instruction from a respected leader.",
+    "Shield-Sister: +2 to Fight when defending an ally in her zone (interposing, guarding, or holding a line).",
+    "Second Wind (Once/session): If an ally praises her courage or calls her 'Shield-Sister' in a high-stakes moment, clear 1 physical stress."
+  ],
+  "stress": { "physical": [false, false, false], "mental": [false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 2,
+  "fate_points": 2,
+  "notes": "Ria is one of the younger Companions in the mead hall: courageous, eager, and desperate to prove she belongs. She's the first to volunteer and the last to admit fear. Her arc is learning that heroism isn't only charging first; it's choosing the right fight at the right time.",
+  "relationships": {
+    "Kodlak Whitemane": "Reveres him as the Hall's moral compass.",
+    "Farkas": "Friendly, protective big-brother energy; she trusts him easily.",
+    "Vilkas": "Intimidated by his standards; secretly wants his approval.",
+    "Aela the Huntress": "Admires her, fears her judgment.",
+    "Skjor": "Wary respect; thinks he sees through her bravado.",
+    "Elitrof Whitemane": "Sees him as a living saga; torn between admiration and fear of disappointing him."
+  },
+  "quests": [
+    "companions_ria_bond_quest",
+    "companions_radiant_contracts_support"
+  ],
+  "inventory": ["Steel Sword", "Steel Shield", "Companion Armor (light/medium)"],
+  "personality_notes": {
+    "speaking_style": "Energetic, earnest, sometimes blurts truth before thinking.",
+    "motivations": ["Become truly worthy of Jorrvaskr", "Protect her shield-siblings", "Earn a saga-name"],
+    "fears": ["Being seen as weak", "Being sent away from the Companions", "Letting a shield-sibling die"],
+    "quirks": ["Over-polishes gear", "Asks too many questions when nervous", "Laughs after near-death to shake it off"]
+  },
+  "loyalty": 55,
+  "companion_status": {
+    "available": "after_take_up_arms",
+    "current_status": "available",
+    "max_loyalty": 100,
+    "dismissal_location": "Jorrvaskr",
+    "romance_available": true
+  },
+  "romance_arc": {
+    "enabled": true,
+    "tone": "Slow-burn admiration -> mutual respect -> commitment",
+    "gates": ["loyalty >= 80", "complete companions_ria_bond_quest"],
+    "conflict": "She fears being 'the kid sister' forever; needs to be seen as an equal."
+  },
+  "dialogue_trees": {
+    "recruitment": {
+      "greeting": "Need another shield on the line? I'm ready.",
+      "responses": [
+        { "option": "Come with me.", "leads_to": "accepts_companion", "companion_status": "active", "loyalty_change": 2 },
+        { "option": "Not yet. Keep training.", "leads_to": "stays_home", "companion_status": "available", "loyalty_change": 0 }
+      ]
+    },
+    "high_loyalty": {
+      "condition": "loyalty >= 80",
+      "dialogue": "I'm not just trying to be brave anymore. I'm trying to be worthy. And… I think I am, with you."
+    }
+  },
+  "story_hooks": [
+    "Ria asks Elitrof to mentor her in 'saga-law' leadership rather than reckless glory.",
+    "A Silver Hand provocation targets her specifically to break morale in the Hall.",
+    "If the Purity Path spreads, Ria becomes one of its loudest younger champions."
+  ]
+}

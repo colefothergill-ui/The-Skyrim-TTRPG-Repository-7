@@ -1,0 +1,77 @@
+{
+  "name": "Athis",
+  "id": "athis",
+  "type": "Companion (Dunmer Sword-Brother)",
+  "location": "Jorrvaskr, Whiterun",
+  "faction": "The Companions",
+  "tags": ["companions", "jorrvaskr", "dunmer", "outsider", "duelist", "whiterun"],
+  "aspects": {
+    "high_concept": "Dunmer Duelist Who Earned a Place in Jorrvaskr",
+    "trouble": "An Outsider Under Constant Scrutiny",
+    "other_aspects": [
+      "Quiet Discipline, Sharp Blade",
+      "Doesn't Trust Easy Heroics",
+      "Honor Has Rules (Even If Nords Pretend It Doesn't)",
+      "Keeps His Past Tightly Sheathed"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Will", "Notice"],
+    "Fair": ["Athletics", "Lore", "Stealth"],
+    "Average": ["Rapport", "Provoke", "Physique"]
+  },
+  "stunts": [
+    "Dunmer Duelist: +2 to Fight when facing a single named opponent in a formal or personal duel.",
+    "Ashland Patience: +2 to Will when resisting fear, intimidation, or supernatural 'pressure.'",
+    "Cold Read: Use Notice instead of Empathy to detect lies and tells (social Overcome)."
+  ],
+  "stress": { "physical": [false, false, false], "mental": [false, false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 3,
+  "fate_points": 3,
+  "notes": "Athis is quieter than most Companions and twice as observant. He's the type who listens while the mead hall boasts. His arc: proving that 'belonging' isn't bloodline, it's oath. He can become a stabilizing influence when the Hall threatens to fracture into ideology.",
+  "relationships": {
+    "Kodlak Whitemane": "Respects his honor; cautious optimism about the Purity Path.",
+    "Vilkas": "Mutual respect through discipline; both value standards.",
+    "Farkas": "Finds him straightforward and trustworthy.",
+    "Aela the Huntress": "Keeps distance; admires skill, distrusts ideology.",
+    "Elitrof Whitemane": "Sees a leader in him; tests if the 'saga' hides a mind."
+  },
+  "quests": ["companions_athis_bond_quest", "companions_radiant_contracts_support"],
+  "inventory": ["Steel Sword", "Dunmer-crafted Dagger (flavor)", "Companion Armor (light/medium)"],
+  "personality_notes": {
+    "speaking_style": "Measured, dry, sometimes cutting; speaks less, means more.",
+    "motivations": ["Earn respect that can't be taken away", "Keep the Hall from self-destruction", "Settle an old debt from his past (hook)"],
+    "fears": ["Being used as a scapegoat", "The Companions becoming a cult of impulse"],
+    "quirks": ["Keeps weapons immaculate", "Stands where he can see doors", "Rarely drinks to excess"]
+  },
+  "loyalty": 45,
+  "companion_status": {
+    "available": "after_take_up_arms",
+    "current_status": "available",
+    "max_loyalty": 100,
+    "dismissal_location": "Jorrvaskr",
+    "romance_available": true
+  },
+  "romance_arc": {
+    "enabled": true,
+    "tone": "Slow trust, intense loyalty",
+    "gates": ["loyalty >= 85", "complete companions_athis_bond_quest"],
+    "conflict": "He doesn't believe 'home' is real until it survives a crisis."
+  },
+  "dialogue_trees": {
+    "recruitment": {
+      "greeting": "If you're leaving Whiterun, I'll come. Better than sitting in stories.",
+      "responses": [
+        { "option": "Join me.", "leads_to": "accepts_companion", "companion_status": "active", "loyalty_change": 1 },
+        { "option": "Stay. Watch the Hall.", "leads_to": "stays_home", "companion_status": "available", "loyalty_change": 0 }
+      ]
+    }
+  },
+  "story_hooks": [
+    "Athis has intel routes in Windhelm and Riften that can connect to the main plot.",
+    "Athis becomes a 'bridge companion' when dealing with Dunmer/outsider communities.",
+    "He can be the first to notice a betrayal plot against Elitrof inside Whiterun."
+  ]
+}
