@@ -166,7 +166,7 @@ def build_npc_blob(npc: dict) -> str:
     return " ".join(parts).lower()
 
 
-def select_impression_lines(appearance: dict, disposition: str, npc_id: str, npc_blob: str):
+def select_impression_lines(appearance: dict, disposition: str, npc_id: str, npc_blob: str) -> tuple[list, str]:
     conds = appearance.get("conditional_first_impression_lines") or []
     for c in conds:
         if not isinstance(c, dict):
