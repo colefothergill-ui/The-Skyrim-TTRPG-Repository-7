@@ -6,7 +6,7 @@
   "faction": "The Companions",
   "aspects": {
     "high_concept": "Wise Harbinger of the Companions",
-    "trouble": "Burdened by the Curse of Lycanthropy and His Impending Fate",
+    "trouble": "Harbinger Carrying a New Era",
     "other_aspects": [
       "Mentor and Father Figure to Skyrim's Warriors",
       "Honorable Veteran Seeking Redemption",
@@ -36,10 +36,11 @@
   "fate_points": 3,
   "trust_clock": {
     "enabled": true,
-    "current": 0,
+    "current": 6,
     "max": 6,
     "description": "Represents Kodlak's trust and respect for the party, increased by deeds of honor and helping the Companions."
   },
+  "cured_beast_blood": true,
   "relationships": {
     "The Companions": "Harbinger (leader and caretaker of this warrior guild)",
     "Aela the Huntress": "Trusted member of the Circle (like a daughter to him)",
@@ -73,5 +74,6 @@
     "The moment the Silver Hand strike or when a Circle member dies (his personal quest trigger)",
     "Battle of Whiterun involvement if the Companions step in to defend the city's people"
   ],
-  "act_context": ["Act 1", "Act 2"]
+  "act_context": ["Act 1", "Act 2"],
+  "notes": "[Session 4] Cured at Ysgramor's Tomb via Harbinger Flame; remains alive in this timeline."
 }
