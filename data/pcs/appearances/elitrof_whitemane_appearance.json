@@ -1,18 +1,22 @@
 {
   "pc_id": "pc_elitrof_whitemane",
   "pc_name": "Elitrof Whitemane",
-  "portrait_path": "docs/assets/pcs/elitrof_whitemane.png",
+  "appearance_revision": "2026-02-26_elitrof_wuuthrad_warlook_v2",
+  "portrait_path": "docs/assets/pcs/elitrof_whitemane_session4.jpg",
   "recognition_tags": [
     "nord",
     "companions",
     "jorrvaskr",
     "warrior-poet",
-    "dual-wield",
-    "skyforge-steel",
-    "ysgramor-etching",
-    "dragon-etching",
-    "crimson-mane",
-    "werebear-cloak",
+    "wuuthrad",
+    "harbinger-candidate",
+    "steel-plate",
+    "fur-mantle",
+    "blue-sash",
+    "circlet",
+    "blond-hair",
+    "battlefield-smoke",
+    "moonlit-war",
     "talos-amulet",
     "skaal",
     "solstheim",
@@ -20,55 +24,55 @@
   ],
   "first_impression_lines": {
     "neutral": [
-      "Crimson hair like a banner in wind, a Companion's cut of leather, and two Skyforge axes that look old enough to remember Ysgramor.",
-      "He moves like a practiced predator, heavy cloak of 'bear' hide rolling off his shoulders, eyes measuring the room the way hunters measure snow.",
-      "Skyforge steel in both hands. One blade etched with Ysgramor, the other with a dragon… like he's daring the world to decide which legend wins.",
-      "A grin that promises trouble, a stance that promises follow-through. Whoever he is, he's not here to be prey.",
-      "A warrior built for the Old Way: broad-shouldered, scar-ready, and carrying his history on his hips and in his voice."
+      "Blond hair crowned by a war-circlet, a blue sash cut across steel plate, and a fur mantle that moves like a living shadow. He looks like a saga that decided to walk.",
+      "There's smoke in his silhouette and certainty in his stance. The axe in his hands isn't just a weapon, it's a historical argument.",
+      "A Companion by bearing, but not the easy kind. The kind who makes a room check its spine before speaking.",
+      "Steel, fur, and moonlight. He carries himself like someone who has already survived the chapter people fear.",
+      "His eyes track threats the way a commander tracks formations: calm, practiced, and a little too ready."
     ],
     "positive": [
-      "A familiar Jorrvaskr scent to him, like smoke and mead. The Skyforge axes aren't just weapons, they're kin.",
-      "There's honor in his posture: the kind that steps between danger and the weak without asking permission.",
-      "He carries himself like a saga in motion, crimson mane and all, and the room feels safer for it."
+      "That blue sash and circlet aren't vanity. They read like responsibility. Like he's learned to carry a hall on his shoulders.",
+      "There's a steadiness to him that makes danger feel smaller. The kind of man you want at your side when the sky goes dark.",
+      "He looks like Jorrvaskr's promise made flesh: strength, honor, and the will to stand between you and the worst."
     ],
     "negative": [
-      "That red-maned Companion swagger reads like a threat, and those Skyforge axes look eager to 'settle things' the old way.",
-      "He watches like you've already offended him. The 'bear' cloak and Talos trinket dare anyone to comment.",
-      "Too proud. Too ready. The kind of man who turns a small slight into a big funeral."
+      "A war-circlet, a fur mantle, and an axe that looks too comfortable in his hands. He has the posture of a man who thinks the Old Way is the only way.",
+      "That calm isn't peace. It's restraint. The kind that snaps when pushed and leaves bodies in its wake.",
+      "He carries himself like a verdict, not a conversation. If he decides you're wrong, it might become fatal."
     ]
   },
   "conditional_first_impression_lines": [
     {
-      "id": "thalmor_talos_trigger",
+      "id": "thalmor_talos_trigger_v2",
       "if_npc_blob_any": ["thalmor", "justiciar"],
       "lines": {
         "negative": [
-          "A Talos amulet at his throat and Skyforge axes in hand. The Thalmor can feel the duel coming like thunder before rain.",
-          "He doesn't just dislike the Talos ban, he's built a whole personality around breaking it."
+          "The Talos amulet and the war-circlet make a statement the Thalmor can taste. This man isn't hiding what he is.",
+          "He looks like a battlefield sermon aimed directly at elven law."
         ],
         "neutral": [
-          "The red-maned Nord's gaze hardens the moment he clocks Thalmor colors. That's not fear, that's a verdict."
+          "His gaze hardens the instant he clocks Thalmor colors. Not fear. A decision."
         ]
       }
     },
     {
-      "id": "companions_recognition",
+      "id": "companions_recognition_v2",
       "if_npc_blob_any": ["companions", "jorrvaskr"],
       "lines": {
         "positive": [
-          "A shield-sibling's look: leather and fur, Skyforge steel, and that grin that says 'training starts now.'"
+          "A shield-sibling's posture. The kind that says: if you fall, I carry you, and if you're hunted, I hunt back."
         ],
         "neutral": [
-          "Companion leathers, Skyforge steel, and a stance that screams Jorrvaskr."
+          "Companion discipline in the shoulders, Harbinger-fire in the eyes."
         ]
       }
     },
     {
-      "id": "skaal_recognition",
+      "id": "skaal_recognition_v2",
       "if_npc_blob_any": ["skaal", "solstheim"],
       "lines": {
         "positive": [
-          "The cloak, the way he carries it, and the respect in his eyes… that's a man the Skaal would name."
+          "The fur mantle and the quiet respect in his eyes mark him as one of the Skaal's proven. Not by claim, by deed."
         ]
       }
     }

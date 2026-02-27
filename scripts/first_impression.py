@@ -4,6 +4,7 @@ import random
 from pathlib import Path
 from datetime import datetime
 import argparse
+from typing import Optional, Any, Dict
 
 
 def load_json(path):
@@ -25,20 +26,66 @@ def save_json(path, data):
     Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def resolve_active_pc_id(state: dict) -> str | None:
+def resolve_active_pc_id(state: dict) -> Optional[str]:
+    """
+    Robust PC id resolver for multiple schema variants.
+    """
     pc_id = state.get("active_pc_id") or state.get("active_pc")
     if isinstance(pc_id, str) and pc_id.startswith("pc_"):
         return pc_id
-    # fallback: first PC entry
-    pcs = state.get("player_characters") or []
-    if pcs and isinstance(pcs, list) and isinstance(pcs[0], dict):
-        return pcs[0].get("id")
+
+    # fallback: state["pcs"] dict keys
+    pcs = state.get("pcs")
+    if isinstance(pcs, dict) and pcs:
+        k = next(iter(pcs.keys()))
+        if isinstance(k, str) and k.startswith("pc_"):
+            return k
+
+    # older export fallback
+    pcs_list = state.get("player_characters") or []
+    if pcs_list and isinstance(pcs_list, list) and isinstance(pcs_list[0], dict):
+        k = pcs_list[0].get("id")
+        if isinstance(k, str) and k.startswith("pc_"):
+            return k
+
     return None
 
 
 def resolve_pc_appearance_path(repo_root: Path, pc_id: str) -> Path:
     slug = pc_id.replace("pc_", "")
     return repo_root / "data" / "pcs" / "appearances" / f"{slug}_appearance.json"
+
+
+def ensure_npc_first_impressions_schema(state: dict) -> None:
+    """
+    Migrates mixed npc_first_impressions schema:
+    - Old style: npc_first_impressions[npc_id] = "some string note"
+    - New style: npc_first_impressions[npc_id] = { pc_id: {timestamp, line, ...} }
+
+    We move legacy string notes into npc_first_impressions_legacy and replace with {}
+    so the first impression system never crashes.
+    """
+    nf = state.setdefault("npc_first_impressions", {})
+    legacy = state.setdefault("npc_first_impressions_legacy", {})
+
+    if not isinstance(nf, dict):
+        # If the whole thing is corrupted, reset safely.
+        legacy["_corrupt_npc_first_impressions"] = {
+            "migrated_at": datetime.now().isoformat(),
+            "value": str(nf)
+        }
+        state["npc_first_impressions"] = {}
+        return
+
+    for npc_id, v in list(nf.items()):
+        if isinstance(v, dict):
+            continue
+        # migrate legacy note
+        legacy[npc_id] = {
+            "migrated_at": datetime.now().isoformat(),
+            "note": v
+        }
+        nf[npc_id] = {}
 
 
 def load_npc_metadata(repo_root: Path, npc_id: str) -> dict:
@@ -68,7 +115,6 @@ def infer_disposition(repo_root: Path, npc_id: str, state: dict) -> str:
     player_alliance = (state.get("civil_war_state") or {}).get("player_alliance", "")
     player_alliance = (player_alliance or "").lower()
 
-    # gather faction-ish signals from npc
     blobs = []
     for k in ("faction", "affiliation", "allegiance", "side", "tags", "keywords"):
         v = npc.get(k)
@@ -97,11 +143,7 @@ def infer_disposition(repo_root: Path, npc_id: str, state: dict) -> str:
 
 
 def build_npc_blob(npc: dict) -> str:
-    """
-    Build a lower-case text blob from NPC metadata for simple keyword matching.
-    We intentionally include notes/aspects because many NPC files don't have formal tags.
-    """
-    parts: list[str] = []
+    parts = []
 
     def add(v):
         if v is None:
@@ -117,27 +159,19 @@ def build_npc_blob(npc: dict) -> str:
             for _, x in v.items():
                 add(x)
 
-    # common identity fields
     for k in ("id", "name", "type", "faction", "location", "tags", "keywords", "affiliation", "allegiance", "side", "notes"):
         add(npc.get(k))
-
-    # aspects often contain telling words (Daedrologist, Nocturnal, etc.)
     add(npc.get("aspects"))
 
     return " ".join(parts).lower()
 
 
 def select_impression_lines(appearance: dict, disposition: str, npc_id: str, npc_blob: str) -> tuple[list, str]:
-    """
-    Pick impression lines from conditional rules if matched; otherwise fall back to first_impression_lines.
-    Returns: (lines, source_id)
-    """
     conds = appearance.get("conditional_first_impression_lines") or []
     for c in conds:
         if not isinstance(c, dict):
             continue
 
-        # optional id list
         id_list = c.get("if_npc_id_in") or []
         if id_list and npc_id not in id_list:
             continue
@@ -155,31 +189,35 @@ def select_impression_lines(appearance: dict, disposition: str, npc_id: str, npc
         if lines:
             return lines, (c.get("id") or "conditional")
 
-    # default behavior (existing)
     base = appearance.get("first_impression_lines", {}) or {}
     lines = base.get(disposition, []) or base.get("neutral", []) or []
     return lines, "default"
 
 
 def maybe_first_impression(state_path, appearance_path, npc_id, disposition="neutral", force=False):
-    """
-    Records first impressions so NPCs can comment once, then recognize later.
-    disposition: neutral|positive|negative (GM decides based on context)
-    force: if True, overwrites an existing first impression for this npc->pc
-    """
     state = load_json(state_path)
     appearance = load_json(appearance_path)
+
+    ensure_npc_first_impressions_schema(state)
 
     state.setdefault("npc_first_impressions", {})
     state["npc_first_impressions"].setdefault(npc_id, {})
 
-    pc_id = appearance.get("pc_id", "unknown_pc")
+    # Determine which PC key to store under
+    resolved_pc_id = resolve_active_pc_id(state) or appearance.get("pc_id", "unknown_pc")
+    if not isinstance(resolved_pc_id, str):
+        resolved_pc_id = "unknown_pc"
 
-    # Already recorded? do nothing unless force.
-    if (pc_id in state["npc_first_impressions"][npc_id]) and not force:
-        return None
+    # If a record exists, allow auto-refresh if appearance_revision changed.
+    existing = state["npc_first_impressions"][npc_id].get(resolved_pc_id)
+    current_rev = appearance.get("appearance_revision")
+    if existing and not force:
+        old_rev = existing.get("appearance_revision")
+        if current_rev and old_rev and (old_rev != current_rev):
+            pass  # re-roll a new bark because the PC's look changed
+        else:
+            return None
 
-    # Load NPC metadata so we can do conditional first impressions (occult/Guild recognition, etc.)
     repo_root = Path(state_path).resolve().parent.parent
     npc_meta = load_npc_metadata(repo_root, npc_id)
     npc_blob = build_npc_blob(npc_meta)
@@ -187,12 +225,13 @@ def maybe_first_impression(state_path, appearance_path, npc_id, disposition="neu
     lines, source_id = select_impression_lines(appearance, disposition, npc_id, npc_blob)
     line = random.choice(lines) if lines else None
 
-    state["npc_first_impressions"][npc_id][pc_id] = {
+    state["npc_first_impressions"][npc_id][resolved_pc_id] = {
         "timestamp": datetime.now().isoformat(),
         "disposition": disposition,
         "line": line,
         "source": source_id,
-        "recognition_tags": appearance.get("recognition_tags", [])
+        "recognition_tags": appearance.get("recognition_tags", []),
+        "appearance_revision": current_rev
     }
 
     save_json(state_path, state)
@@ -200,14 +239,6 @@ def maybe_first_impression(state_path, appearance_path, npc_id, disposition="neu
 
 
 def auto_first_impression(repo_root, npc_id, disposition=None, force=False, quiet=False, trigger=None):
-    """
-    Convenience wrapper for the repo:
-    - Reads state/campaign_state.json to find active PC
-    - Finds PC appearance bark file
-    - Infers disposition (unless explicitly provided)
-    - Writes state.npc_first_impressions and returns the bark line
-    - trigger parameter is accepted for compatibility but not used
-    """
     repo_root = Path(repo_root).resolve()
     state_path = repo_root / "state" / "campaign_state.json"
     if not state_path.exists():
@@ -217,7 +248,7 @@ def auto_first_impression(repo_root, npc_id, disposition=None, force=False, quie
     pc_id = resolve_active_pc_id(state)
     if not pc_id:
         if not quiet:
-            print("No active PC found in campaign_state.json (active_pc_id/player_characters missing).")
+            print("No active PC found in campaign_state.json (active_pc_id/pcs missing).")
         return None
 
     appearance_path = resolve_pc_appearance_path(repo_root, pc_id)

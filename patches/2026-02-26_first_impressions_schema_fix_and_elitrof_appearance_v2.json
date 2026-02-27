@@ -1,0 +1,51 @@
+{
+  "created_at": "2026-02-26",
+  "applies_to": [
+    "scripts/first_impression.py",
+    "scripts/npc_manager.py",
+    "state/campaign_state.json",
+    "data/pcs/appearances/elitrof_whitemane_appearance.json",
+    "data/pcs/pc_elitrof_whitemane.json",
+    "docs/assets/pcs/elitrof_whitemane_session4.jpg"
+  ],
+  "changes": [
+    {
+      "path": "scripts/first_impression.py",
+      "change": "Full replacement: Python 3.9+ compatible (Optional[str] instead of str | None), added ensure_npc_first_impressions_schema() for legacy string migration, improved resolve_active_pc_id() with state['pcs'] dict fallback, added appearance_revision support to re-trigger barks when PC look changes."
+    },
+    {
+      "path": "scripts/npc_manager.py",
+      "change": "Replaced bare 'from first_impression import auto_first_impression' with sys.path-safe import block using __file__ resolution, so the script works regardless of working directory."
+    },
+    {
+      "path": "state/campaign_state.json",
+      "change": "Migrated legacy string entries in npc_first_impressions to npc_first_impressions_legacy: justiciar_varyn, nazeem, whiterun_guard_imposter. Each replaced with {} in npc_first_impressions. Added top-level npc_first_impressions_legacy key."
+    },
+    {
+      "path": "data/pcs/appearances/elitrof_whitemane_appearance.json",
+      "change": "Full replacement with v2 warlook appearance. Added appearance_revision '2026-02-26_elitrof_wuuthrad_warlook_v2', updated portrait_path to session4.jpg, updated recognition_tags (wuuthrad, harbinger-candidate, steel-plate, fur-mantle, blue-sash, circlet, blond-hair, etc.), replaced all impression lines to match new art. Conditional rules updated to _v2 ids."
+    },
+    {
+      "path": "data/pcs/pc_elitrof_whitemane.json",
+      "change": "Updated portrait_path to 'docs/assets/pcs/elitrof_whitemane_session4.jpg'."
+    },
+    {
+      "path": "docs/assets/pcs/elitrof_whitemane_session4.jpg",
+      "change": "Added new portrait image for session 4 warlook."
+    }
+  ],
+  "npc_first_impressions_legacy_migrated": {
+    "justiciar_varyn": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Cold, prideful Thalmor Justiciar; escalated first at Talos shrine; maimed and captured."
+    },
+    "nazeem": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Smug mouthpiece; buckled under pressure; likely connected to harassment scheme."
+    },
+    "whiterun_guard_imposter": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Borrowed uniform and borrowed courage; used as intimidation muscle."
+    }
+  }
+}

@@ -20,9 +20,9 @@
     }
   },
   "npc_first_impressions": {
-    "justiciar_varyn": "Cold, prideful Thalmor Justiciar; escalated first at Talos shrine; maimed and captured.",
-    "nazeem": "Smug mouthpiece; buckled under pressure; likely connected to harassment scheme.",
-    "whiterun_guard_imposter": "Borrowed uniform and borrowed courage; used as intimidation muscle.",
+    "justiciar_varyn": {},
+    "nazeem": {},
+    "whiterun_guard_imposter": {},
     "test_companion": {
       "pc_elitrof_whitemane": {
         "timestamp": "2026-02-21T11:54:41.015405",
@@ -278,7 +278,11 @@
       "witches_taken_out": 3,
       "matron_taken_out": true,
       "witch_heads_collected": 3,
-      "companions_present": ["Farkas", "Vilkas", "Elitrof"],
+      "companions_present": [
+        "Farkas",
+        "Vilkas",
+        "Elitrof"
+      ],
       "tactic": "Elitrof bait at bridge; twins flank via hidden hunter trail; killbox executed.",
       "lingering_consequence": "Glenmoril's Last Curse: Blood Remembers Names"
     }
@@ -288,7 +292,12 @@
       "name": "Become Ethereal Mastery",
       "current_progress": 1,
       "total_segments": 4,
-      "segments": ["Feim", "Zii", "Gron", "Mastery"],
+      "segments": [
+        "Feim",
+        "Zii",
+        "Gron",
+        "Mastery"
+      ],
       "notes": "Oath of Ysgramor learning discount applied: halved mastery clock."
     },
     "thuum_elemental_fury_mastery": {
@@ -365,10 +374,29 @@
       ]
     }
   },
-  "current_location": "Ysgramor's Tomb (Winterhold) — Reliquary",
-  "current_objective": "Leave Ysgramor's Tomb and return to Jorrvaskr to secure the Hall, manage Inner Circle fallout, and respond to Silver Hand escalation.",
-  "current_npcs": ["Kodlak Whitemane", "Aela the Huntress", "Farkas", "Vilkas"],
+  "current_location": "Jorrvaskr (Whiterun)",
+  "current_objective": "Prepare for the Harbinger's cure rite at Ysgramor's Tomb; secure the witch heads and prevent Silver Hand interference.",
+  "current_npcs": [
+    "Kodlak Whitemane",
+    "Aela the Huntress",
+    "Farkas",
+    "Vilkas"
+  ],
   "last_session_ended_at": "2026-02-25",
   "last_session_title": "Session 3: Road Ambush, Underforge Refusal, Glenmoril Heads",
-  "next_scene_hint": "ysgramors_tomb_flame_of_the_harbinger"
+  "next_scene_hint": "ysgramors_tomb_flame_of_the_harbinger",
+  "npc_first_impressions_legacy": {
+    "justiciar_varyn": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Cold, prideful Thalmor Justiciar; escalated first at Talos shrine; maimed and captured."
+    },
+    "nazeem": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Smug mouthpiece; buckled under pressure; likely connected to harassment scheme."
+    },
+    "whiterun_guard_imposter": {
+      "migrated_at": "2026-02-26T00:05:29",
+      "note": "Borrowed uniform and borrowed courage; used as intimidation muscle."
+    }
+  }
 }

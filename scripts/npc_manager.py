@@ -11,9 +11,13 @@ This script manages:
 
 import json
 import os
+import sys
 from pathlib import Path
 from datetime import datetime
 
+_scripts_dir = Path(__file__).resolve().parent
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
 from first_impression import auto_first_impression
 
 
