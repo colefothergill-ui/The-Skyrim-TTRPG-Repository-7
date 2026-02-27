@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-02-26T00:05:29",
+  "created_at": "2026-02-26",
   "applies_to": [
     "scripts/first_impression.py",
     "scripts/npc_manager.py",
