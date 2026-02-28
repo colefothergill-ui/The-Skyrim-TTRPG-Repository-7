@@ -14,12 +14,7 @@ from .trigger_utils import is_companion_present
 
 try:
     import jorvaskr_events
-except (ModuleNotFoundError, ImportError):
-    warnings.warn(
-        "Optional module 'jorvaskr_events' could not be imported; "
-        "Jorrvaskr scripted events will be disabled.",
-        RuntimeWarning,
-    )
+except ImportError:
     jorvaskr_events = None
 
 
@@ -115,7 +110,7 @@ def whiterun_location_triggers(loc, campaign_state):
         active_comp_quest = companions_state.get("active_quest")
 
         if (
-            active_comp_quest == "companions_investigate_jorvaskr"
+            active_comp_quest == "companions_investigate_jorrvaskr"
             and not flags.get("jorvaskr_athis_spar_resolved")
             and jorvaskr_events is not None
         ):
@@ -268,6 +263,48 @@ def whiterun_location_triggers(loc, campaign_state):
     companions_state = campaign_state.get("companions_state", {}) or {}
     active_companions_quest = companions_state.get("active_quest")
 
+    # ------------------------------------------------------------------
+    # PHASE 2: Jorrvaskr downstairs + Vignar/Eorlund overhear + Harbinger room foreshadow
+    # ------------------------------------------------------------------
+    if jorvaskr_events is not None and "jorrvaskr" in loc_lower:
+        # Downstairs living area detection (accept any of these substrings)
+        downstairs_hit = any(k in loc_lower for k in ["grand hall", "downstairs", "whelps", "harbinger", "jorrvaskr_grand_hall", "jorrvaskr_whelps_quarters", "jorrvaskr_harbinger_room"])
+
+        if downstairs_hit and not flags.get("jorvaskr_downstairs_description_done"):
+            events.extend(jorvaskr_events.downstairs_living_area_description_once(campaign_state))
+
+        # Vignar/Eorlund missable overhear: prompt repeats until resolved, but only begins on first downstairs entry
+        if downstairs_hit and not flags.get("jorvaskr_vignar_notice_resolved"):
+            events.extend(jorvaskr_events.vignar_eorlund_notice_prompt(campaign_state))
+
+        # If resolved, allow optional approach prompt once
+        if flags.get("jorvaskr_vignar_notice_resolved") and not flags.get("jorvaskr_vignar_approach_prompted"):
+            events.append(
+                "[OPTION] You may approach Vignar Gray-Mane to talk politics as Eorlund steps away. "
+                "If you do, resolve via jorvaskr_events.resolve_vignar_politics_talk(state, pc_stance=..., inferred_vignar_side=...)."
+            )
+            flags["jorvaskr_vignar_approach_prompted"] = True
+
+        # Harbinger room first entry (description + foreshadow scene)
+        if any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"]):
+            events.extend(jorvaskr_events.harbinger_room_description_once(campaign_state))
+            events.extend(jorvaskr_events.kodlak_vilkas_foreshadow_scene_once(campaign_state))
+
+        # Training yard Vilkas trial (offer once after Proving Honor becomes active)
+        if any(k in loc_lower for k in ["training yard", "jorrvaskr_training_yard"]):
+            events.extend(jorvaskr_events.offer_vilkas_trial_once(campaign_state))
+
+        # Escort scene fires once after Vilkas duel resolves (regardless of location string)
+        if flags.get("vilkas_trial_resolved") and not flags.get("whelps_quarters_escort_scene_done"):
+            events.extend(jorvaskr_events.escort_to_whelps_quarters_scene(campaign_state))
+
+        # Whelps quarters banter (first entry after Vilkas duel)
+        if any(k in loc_lower for k in ["whelps quarters", "jorrvaskr_whelps_quarters"]):
+            events.extend(jorvaskr_events.whelps_quarters_first_entry_banter(campaign_state))
+
+        # Dustman’s Cairn summon trigger when contracts clock hits 2/2
+        events.extend(jorvaskr_events.maybe_dustmans_cairn_summon(campaign_state))
+
     if "jorrvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
         if active_companions_quest == "companions_proving_honor":
             if not flags.get("jorrvaskr_proving_honor_briefing_done"):
@@ -323,5 +360,4 @@ def whiterun_location_triggers(loc, campaign_state):
         flags["companions_whiterun_deployment_triggered"] = True
 
     flags["last_location"] = loc_lower
-
     return events
