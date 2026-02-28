@@ -56,11 +56,11 @@
       "Physique"
     ],
     "Good (+3)": [
-      "Athletics"
+      "Athletics",
+      "Lore"
     ],
     "Fair (+2)": [
       "Command",
-      "Lore",
       "Provoke"
     ],
     "Average (+1)": [
@@ -78,7 +78,7 @@
     "notes": "Apply as effective +1 when relevant; does not break pyramid."
   },
   "stunts": [
-    "Rake and Rend: When Elitrof Defends with Fight while dual-wielding and succeeds with style, he may forgo the boost to instead inflict 2 physical stress on the attacker. If he also spends 1 Fate Point, he may create the scene aspect 'Rending Blow' with 2 free invokes.",
+    "Parry and Cleave: When Elitrof Defends with Fight while dual-wielding and succeeds with style, he may forgo the boost to instead make a zone-sweep attack — all enemies in the zone take 1 physical stress. He may also spend 1 Fate Point to create the scene aspect 'Bleeding Out' with 2 free invokes.",
     "Flyting Words: +2 to Provoke when insulting, jeering, or intimidating with sharp Nordic verse. On success with style, create the scene aspect 'Brutal Eloquence' with 1 free invoke.",
     "Lore Authority: +2 to Lore for Skyrim/Solstheim history/culture. May use Lore to Overcome as Rapport when persuasion is grounded in precedent, scholarship, or storytelling."
   ],
