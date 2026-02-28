@@ -11,6 +11,7 @@
         "objectives": [
           "Take in the hall and observe the Companions in their home",
           "Descend into Jorrvaskr’s downstairs living area (Grand Hall) for the first time",
+          "Optional: Accept Athis’ sparring challenge (first to impose a Mild consequence wins)",
           "Optional: Speak with Vignar Gray-Mane if you overhear his war conversation",
           "Speak with Kodlak Whitemane about joining the Companions"
         ],
@@ -42,7 +43,9 @@
           "quick_retreat": "You recovered the fragment but left some enemies standing. Vilkas will note it - take -1 trust with Vilkas."
         },
         "notes": "Entry quest for the Companions arc. Mirrors the College's 'First Lessons' in function. Vilkas and Farkas are present in Jorrvaskr; their dispositions toward the PC are set here. If PC demonstrates exceptional combat ability (SWS on Fight), Farkas offers a free sparring stunt for later. Phase 2 hooks: first-time Harbinger Room entry triggers Kodlak/Vilkas foreshadow scene; first-time Yard entry can trigger Vilkas Trial by Combat (first Mild consequence wins). After Vilkas trial, escort-to-whelps logic branches based on active side-quests (Aela vs Farkas vs Vilkas). Phase 3: When Honor Proving — Contracts Done hits 2/2, fire the Harbinger Room briefing. Briefing selects mission companion (Aela/Vilkas/Farkas) based on side quest completion. Dustman’s Cairn uses companion-reactive dungeon triggers and introduces a named Silver Hand antagonist with a recruitment seed for Purity-track PCs.",
-        "prerequisites": [],
+        "prerequisites": [
+          "companions_investigate_jorrvaskr"
+        ],
         "follow_up_quest": "companions_inner_circle_rites"
       },
       "companions_inner_circle_rites": {
@@ -74,7 +77,9 @@
           }
         },
         "notes": "This is the pivotal choice of the arc. The embraced_curse flag governs Kodlak's fate branch and Skjor's role later. If Skjor is alive when companions_kodlak_cure_or_sacrifice is reached and embraced_curse is true, the Dragonbreak branch triggers.",
-        "prerequisites": ["companions_proving_honor"],
+        "prerequisites": [
+          "companions_proving_honor"
+        ],
         "follow_up_quest": "companions_kodlak_cure_or_sacrifice"
       },
       "companions_kodlak_cure_or_sacrifice": {
@@ -107,7 +112,9 @@
           }
         },
         "notes": "Dragonbreak trigger: check state['companions_state']['skjor_alive'] AND state['companions_state']['embraced_curse']. If both true, inject companions_skjor_dragonbreak before final_journey. The GM should present the cure option as costly (requiring travel to Glenmoril Coven) to give the choice real weight.",
-        "prerequisites": ["companions_inner_circle_rites"],
+        "prerequisites": [
+          "companions_inner_circle_rites"
+        ],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_skjor_dragonbreak": {
@@ -132,7 +139,9 @@
           "resolution": "PC makes a Will roll vs Great (+4) to close the fracture; success with style preserves both timeline aspects as boosts"
         },
         "notes": "This is the special Skjor-alive branch described in the problem statement. The DragonbreakManager should be used if available. This quest is skipped if Skjor died or if the PC refused lycanthropy. After this quest, the arc always proceeds to companions_final_journey.",
-        "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
+        "prerequisites": [
+          "companions_kodlak_cure_or_sacrifice"
+        ],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_purity_path_ignites": {
@@ -170,7 +179,9 @@
           }
         },
         "notes": "This quest opens with the post-Ysgramor's Tomb state: three Circle members cured, Wuuthrad reforged, Fire Breath mastery at 4/8. The harbingership is not yet formal. Silver Hand Vendetta clock is at 4/6 — one more tick and they move on Jorrvaskr. Skjor is alive and wary. Aela witnessed the cures and respects the strength required but distrusts the purity push.",
-        "prerequisites": ["companions_skjor_dragonbreak"],
+        "prerequisites": [
+          "companions_skjor_dragonbreak"
+        ],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_final_journey": {
@@ -196,7 +207,9 @@
           "beast_burial": "If not cured, Farkas howls at the barrow entrance. The Companions honor the warrior, not the soul's fate."
         },
         "notes": "Final quest in the Companions arc. After this quest, companions_state.active_quest is set to null. The Harbinger title gives the PC narrative authority over Jorrvaskr NPCs. Breath of Ysgramor stunt is found in data/stunts/companions.json.",
-        "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
+        "prerequisites": [
+          "companions_kodlak_cure_or_sacrifice"
+        ],
         "follow_up_quest": null
       }
     }
