@@ -15,8 +15,19 @@ from .global_story_triggers import global_story_triggers
 
 try:
     import jorvaskr_events
-except ImportError:
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'jorvaskr_events' could not be imported; related features will be disabled: {e!r}"
+    )
     jorvaskr_events = None
+
+try:
+    import dustmans_cairn_events
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'dustmans_cairn_events' could not be imported; related features will be disabled: {e!r}"
+    )
+    dustmans_cairn_events = None
 
 
 def whiterun_location_triggers(loc, campaign_state):
@@ -290,6 +301,7 @@ def whiterun_location_triggers(loc, campaign_state):
         if any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"]):
             events.extend(jorvaskr_events.harbinger_room_description_once(campaign_state))
             events.extend(jorvaskr_events.kodlak_vilkas_foreshadow_scene_once(campaign_state))
+            events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
         # Training yard Vilkas trial (offer once after Proving Honor becomes active)
         if any(k in loc_lower for k in ["training yard", "jorrvaskr_training_yard"]):
@@ -305,6 +317,14 @@ def whiterun_location_triggers(loc, campaign_state):
 
         # Dustman’s Cairn summon trigger when contracts clock hits 2/2
         events.extend(jorvaskr_events.maybe_dustmans_cairn_summon(campaign_state))
+
+        # --- Phase 3: Dustman’s Cairn briefing trigger (Harbinger Room only) ---
+        if (
+            hasattr(jorvaskr_events, "dustmans_cairn_briefing_scene_once")
+            and any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"])
+        ):
+            # Ensure clock exists in state, then fire once it reaches max.
+            events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
     if "jorrvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
         if active_companions_quest == "companions_proving_honor":
@@ -359,6 +379,10 @@ def whiterun_location_triggers(loc, campaign_state):
             "This is honor."
         )
         flags["companions_whiterun_deployment_triggered"] = True
+
+    # --- Phase 3: Dustman’s Cairn dungeon triggers ---
+    if dustmans_cairn_events is not None and "dustman" in loc_lower:
+        events.extend(dustmans_cairn_events.dustmans_cairn_triggers(loc, campaign_state))
 
     events.extend(global_story_triggers(loc, campaign_state))
     return events

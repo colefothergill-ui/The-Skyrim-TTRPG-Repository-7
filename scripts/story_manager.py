@@ -1309,6 +1309,12 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                 "You came hoping to broker peace or protect innocents, but the battle has begun. "
                 "The Way of the Voice teaches restraint, but action is required."
             )
+        elif neutral_subfaction == "silver_hand":
+            encounter["arrival_context"] = (
+                "You arrived on Silver Hand business — tracking a beast-blooded target — "
+                "but the battle erupts around you. Krev's orders were clear: stay unseen. "
+                "The chaos forces your hand."
+            )
         else:
             encounter["arrival_context"] = (
                 "You arrive in Whiterun as a neutral party, but the Battle of Whiterun forces you to take a side."
@@ -1454,6 +1460,18 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                 ),
                 "complications": "Battle begins despite peaceful intentions, must choose side to survive",
                 "rewards": "Moral clarity, respect for trying peace, chosen companion"
+            },
+            "silver_hand": {
+                "quest_name": "The Whiterun Hunt",
+                "quest_giver": "Krev the Skinner",
+                "objective": "Track a beast-blooded target reported near Whiterun and report back to Krev",
+                "starting_dialogue": (
+                    "Krev: 'We've had a sighting near Whiterun — beast-blood, running with the "
+                    "city crowd. Get in, confirm the target, and get out before the civil war "
+                    "draws every guard in Skyrim. Don't get involved in their politics.'"
+                ),
+                "complications": "Battle of Whiterun erupts mid-hunt, forcing faction choice to survive",
+                "rewards": "Silver Hand advancement, Krev's respect, chosen companion"
             }
         }
         
@@ -2203,6 +2221,7 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                     "college": "college_intro_complete",
                     "thieves_guild": "tg_intro_complete",
                     "dark_brotherhood": "db_intro_complete",
+                    "silver_hand": "silver_hand_intro_complete",
                 }
                 intro_flag = _subfaction_flag_map.get(neutral_subfaction, f"{neutral_subfaction}_intro_complete")
                 return flags.get(intro_flag, False)
@@ -2232,6 +2251,7 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
             "college": "college_intro_complete",
             "thieves_guild": "tg_intro_complete",
             "dark_brotherhood": "db_intro_complete",
+            "silver_hand": "silver_hand_intro_complete",
         }
         flag_key = flag_map.get(subfaction)
         if flag_key is None:

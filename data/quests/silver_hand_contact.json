@@ -1,0 +1,18 @@
+{
+  "quest_id": "silver_hand_contact",
+  "name": "A Silver Token",
+  "type": "Faction Seed / Infiltration Hook",
+  "status": "Dormant (seeded in Dustman’s Cairn)",
+  "giver": "Hakon Moonbreaker (Silver Hand)",
+  "location": "Whiterun Hold",
+  "description": "A Silver Hand commander left you a token and a phrase. If you ever reject the beast-blood and want to see the enemy from within, you may have a door to knock on.",
+  "activation_condition": "companions_state.embraced_curse == false AND scene_flags.silver_hand_token_obtained == true",
+  "objectives": [
+    { "description": "Decide whether to pursue the Silver Hand contact (or burn it)", "status": "Pending", "optional": false }
+  ],
+  "rewards": [
+    "Optional infiltration path (future phases)",
+    "Intel leverage against Silver Hand"
+  ],
+  "notes": "This is a seed only. The full infiltration questline is built later after Inner Circle Rites."
+}
