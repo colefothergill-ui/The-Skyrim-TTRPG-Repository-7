@@ -5,17 +5,18 @@ import pytest
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-def test_campaign_state_session_zero_baseline():
+def test_campaign_state_session_one_checkpoint():
     path = os.path.join(REPO_ROOT, "state", "campaign_state.json")
     with open(path) as f:
         state = json.load(f)
-    assert state.get("session_count") == 0
-    assert state.get("session_zero_completed") is False
-    assert state.get("active_pc_id") is None
+    # Campaign has advanced past Session Zero into Session 01
+    assert state.get("session_zero_completed") is True
+    assert state.get("active_pc_id") == "pc_wayn"
+    assert state.get("current_scene_id") == "A1-S2_Jorrvaskr_HarbingerDoor"
     assert state.get("pcs") == {}
-    assert state.get("npc_first_impressions") == {}
-    assert state.get("scene_flags") == {}
-    assert state.get("flags") == {}
+    # scene_flags and npc_trust are now populated for session 01
+    assert "jorvaskr_athis_spar_resolved" in state.get("scene_flags", {})
+    assert "athis" in state.get("npc_trust", {})
 
 
 def test_no_old_pc_names_in_repo():
