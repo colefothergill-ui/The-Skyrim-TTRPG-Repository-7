@@ -15,7 +15,7 @@
           "Swear (or refuse) the Silver Hand's Oath of the Five Hundred"
         ],
         "rewards": [
-          "If sworn: Silver Hand membership (joined=true in silver_hand_state)",
+          "If sworn: Silver Hand membership (silver_hand_joined=true)",
           "Aspect: 'Oath-Warrior of the Old Way' (1 free invoke)",
           "Access to lodge safehouse and quartermaster"
         ],

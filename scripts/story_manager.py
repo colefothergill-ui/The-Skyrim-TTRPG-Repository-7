@@ -535,8 +535,6 @@ class StoryManager:
             return (self.college_path, "college_questline", "quests")
         if questline_type in ("companions", "companions_questline"):
             return (self.companions_path, "companions_questline", "quests")
-        if questline_type in ("silver_hand", "silver_hand_questline"):
-            return (self.silver_hand_path, "silver_hand_questline", "quests")
         raise ValueError(f"Unknown questline_type: {questline_type}")
 
     def advance_questline(self, questline_type: str, quest_id: str, new_status: str, *, echo_rewards: bool = True):
