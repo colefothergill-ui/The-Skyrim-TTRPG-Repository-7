@@ -7,6 +7,7 @@ Verifies that all new tables load correctly and produce results when rolled.
 import json
 import sys
 import os
+import pytest
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
@@ -26,11 +27,9 @@ CIVIL_WAR_TABLES = [
 ]
 
 
-def _manager(tmp_path=None):
+@pytest.fixture
+def loot_manager(tmp_path):
     data_dir = Path(__file__).parent.parent / "data"
-    if tmp_path is None:
-        import tempfile
-        tmp_path = tempfile.mkdtemp()
     return LootManager(data_dir=str(data_dir), state_dir=str(tmp_path))
 
 
@@ -65,38 +64,33 @@ def test_civil_war_tables_present():
         assert table_id in tables, f"Missing civil war loot table: {table_id}"
 
 
-def test_whiterun_common_roll_produces_results():
+def test_whiterun_common_roll_produces_results(loot_manager):
     """Rolling whiterun_common should return at least one result."""
-    mgr = _manager()
-    results = mgr.roll_table("whiterun_common", rolls=1, seed=42)
+    results = loot_manager.roll_table("whiterun_common", rolls=1, seed=42)
     assert len(results) >= 1, "whiterun_common roll returned no results"
     assert all(isinstance(r, str) and len(r) > 0 for r in results), \
         "whiterun_common roll returned non-string or empty entries"
 
 
-def test_whiterun_siege_intelligence_roll():
+def test_whiterun_siege_intelligence_roll(loot_manager):
     """Rolling whiterun_siege_intelligence should return a non-empty result."""
-    mgr = _manager()
-    results = mgr.roll_table("whiterun_siege_intelligence", rolls=1, seed=7)
+    results = loot_manager.roll_table("whiterun_siege_intelligence", rolls=1, seed=7)
     assert len(results) >= 1, "whiterun_siege_intelligence roll returned no results"
 
 
-def test_whiterun_officer_trophy_roll():
+def test_whiterun_officer_trophy_roll(loot_manager):
     """Rolling whiterun_officer_trophy should return a result."""
-    mgr = _manager()
-    results = mgr.roll_table("whiterun_officer_trophy", rolls=1, seed=1)
+    results = loot_manager.roll_table("whiterun_officer_trophy", rolls=1, seed=1)
     assert len(results) >= 1, "whiterun_officer_trophy roll returned no results"
 
 
-def test_civil_war_common_roll():
+def test_civil_war_common_roll(loot_manager):
     """Rolling civil_war_common should return results with default rolls count."""
-    mgr = _manager()
-    results = mgr.roll_table("civil_war_common", seed=99)
+    results = loot_manager.roll_table("civil_war_common", seed=99)
     assert len(results) >= 1, "civil_war_common roll returned no results"
 
 
-def test_unknown_table_returns_empty():
+def test_unknown_table_returns_empty(loot_manager):
     """Rolling an unknown table should return an empty list, not raise."""
-    mgr = _manager()
-    results = mgr.roll_table("nonexistent_table_xyz")
+    results = loot_manager.roll_table("nonexistent_table_xyz")
     assert results == [], "Unknown table should return empty list"

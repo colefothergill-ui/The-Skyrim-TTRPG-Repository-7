@@ -91,10 +91,16 @@ def whiterun_location_triggers(loc, campaign_state):
                 "His accent is impeccably Cyrodiilic. His dispatch case is sealed with an unusual clasp "
                 "you don't quite recognize."
             )
+            # Set both flag names: 'legate_varro_intro_done' for runtime checks here,
+            # and 'varro_intro_done' to match the scene_flags key defined in civil_war_quests.json.
             flags["legate_varro_intro_done"] = True
+            flags["varro_intro_done"] = True
             # Seed the hidden quest hook passively (players can discover cipher_fragment_varro
             # by searching Varro's dispatch case or intercepting a courier during the siege)
-            quest_hooks = campaign_state.setdefault("pending_quest_seeds", [])
+            quest_hooks = campaign_state.get("pending_quest_seeds")
+            if not isinstance(quest_hooks, list):
+                quest_hooks = []
+                campaign_state["pending_quest_seeds"] = quest_hooks
             if "the_hand_behind_the_banner" not in quest_hooks:
                 quest_hooks.append("the_hand_behind_the_banner")
 
