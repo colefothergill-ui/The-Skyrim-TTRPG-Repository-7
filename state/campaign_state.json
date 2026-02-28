@@ -5,13 +5,13 @@
   "started_date": null,
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": null,
+  "current_scene_id": "A1-S2_Jorrvaskr_HarbingerDoor",
   "active_hold": "Whiterun",
   "starting_location": "Whiterun",
   "session_zero_completed": true,
   "session_count": 0,
-  "active_pc_id": null,
-  "active_pc": null,
+  "active_pc_id": "pc_wayn",
+  "active_pc": "pc_wayn",
   "pcs": {},
   "player_characters": [
     {
@@ -38,7 +38,7 @@
   "npc_first_impressions_legacy": {},
   "faction_trust": {},
   "faction_relationships": {
-    "companions": 30,
+    "companions": 40,
     "silver_hand": 0,
     "imperial_legion": 0,
     "stormcloaks": 0,
@@ -160,7 +160,9 @@
     "active_quest": "companions_investigate_jorrvaskr",
     "completed_quests": [],
     "quest_progress": {
-      "companions_investigate_jorrvaskr": "active"
+      "companions_investigate_jorrvaskr": "active",
+      "companions_prey_and_predator": "locked",
+      "greymane_and_the_greater": "memory"
     },
     "embraced_curse": null,
     "skjor_alive": true,
@@ -181,7 +183,11 @@
     "harbingership_succession_hint": null,
     "circle_secret_known_to_pc": {},
     "circle_secret_policy": {},
-    "inner_circle_trust": {}
+    "inner_circle_trust": {},
+    "quest_notes": {
+      "companions_prey_and_predator": "Aela invited me to meet her when the yard goes quiet. Hunt lessons. (Activates once Proving Honor is active.)",
+      "greymane_and_the_greater": "I overheard Vignar: Stormcloaks will attack Whiterun, and Ulfric offered him the Jarlship if they win. No reason to act yet… but I will remember."
+    }
   },
   "college_state": {
     "active_quest": null,
@@ -199,12 +205,59 @@
     "silver_hand_path": null
   },
   "relationship_inference": {},
-  "scene_flags": {},
+  "scene_flags": {
+    "last_location": "whiterun_wind_district",
+    "jorvaskr_entered_from_wind_once": true,
+    "jorvaskr_structural_outline_done": true,
+    "jorvaskr_downstairs_description_done": true,
+    "jorvaskr_athis_spar_offered": true,
+    "jorvaskr_athis_spar_resolved": true,
+    "jorvaskr_athis_spar_record": {
+      "accepted": true,
+      "result": "win"
+    },
+    "jorvaskr_athis_spar_followup": "aela",
+    "jorvaskr_aela_followup_done": true,
+    "aela_hunt_invitation_accepted": true,
+    "jorvaskr_vignar_notice_pending": false,
+    "jorvaskr_vignar_notice_resolved": true,
+    "jorvaskr_vignar_notice_outcome": "sws",
+    "vignar_overhear_stormcloak_attack_whiterun": true,
+    "vignar_overhear_ulfric_jarl_offer": true,
+    "jorvaskr_vignar_politics_talk_done": true,
+    "jorvaskr_vignar_politics_pc_stance": "neutral",
+    "jorvaskr_vignar_politics_trust_delta": 30,
+    "jorvaskr_kodlak_vilkas_scene_done": true,
+    "companions_join_request_pending": true,
+    "wind_district_guard_compel_accepted": true,
+    "wind_district_guard_attention": "heightened"
+  },
   "flags": {},
-  "clocks": {},
-  "current_location": null,
-  "current_objective": null,
-  "current_npcs": [],
+  "clocks": {
+    "whiterun_guard_connects_dots": {
+      "name": "Whiterun Guard Connects the Dots",
+      "current_progress": 3,
+      "total_segments": 4,
+      "segments": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  },
+  "current_location": "Whiterun — Jorrvaskr (Downstairs Hall, outside Harbinger's door)",
+  "current_objective": "Request to join the Companions; secure Kodlak Whitemane's audience.",
+  "current_npcs": [
+    "Kodlak Whitemane",
+    "Vilkas",
+    "Ria",
+    "Athis",
+    "Njada Stonearm",
+    "Torvar",
+    "Aela the Huntress"
+  ],
   "last_session_ended_at": null,
   "last_session_title": null,
   "next_scene_hint": null,
@@ -213,5 +266,49 @@
   "starting_narrative": "You've proven yourself worthy to join the Companions, the ancient warrior guild of Jorrvaskr. Harbinger Kodlak Whitemane speaks with you personally: 'Jarl Balgruuf has sent word that Whiterun faces a threat. The Companions will not stand idle when innocent people need protection. I'm sending you to assess the situation and defend those who cannot defend themselves. This isn't about choosing sides in the civil war - this is about honor.' You arrive in Whiterun as the Battle begins, seeing both Hadvar (Imperial) and Ralof (Stormcloak) rallying forces. You must choose whom to assist.",
   "neutral_subfaction": "companions",
   "starting_npc_contact": "kodlak_whitemane",
-  "starting_faction": "companions"
+  "starting_faction": "companions",
+  "npc_trust": {
+    "athis": {
+      "trust": 60,
+      "scale": "0-100",
+      "last_delta": 10,
+      "notes": "Sparring win: respect earned, not friendship (yet)."
+    },
+    "ria": {
+      "trust": 65,
+      "scale": "0-100",
+      "last_delta": 15,
+      "notes": "Sparring win + extra bonding talk; intrigued by Shehai/Ansei claims."
+    },
+    "njada_stonearm": {
+      "trust": 60,
+      "scale": "0-100",
+      "last_delta": 10,
+      "notes": "Sparring win: grudging respect; still abrasive."
+    },
+    "torvar": {
+      "trust": 60,
+      "scale": "0-100",
+      "last_delta": 10,
+      "notes": "Sparring win: amused respect and betting energy."
+    },
+    "aela_the_huntress": {
+      "trust": 65,
+      "scale": "0-100",
+      "last_delta": 15,
+      "notes": "Impressed by yard performance; hunt invitation accepted."
+    },
+    "vignar_gray_mane": {
+      "trust": 80,
+      "scale": "0-100",
+      "last_delta": 30,
+      "notes": "Approached respectfully as Aldran Cindershroud's son; anti-Empire stance noted."
+    },
+    "eorlund_gray_mane": {
+      "trust": 55,
+      "scale": "0-100",
+      "last_delta": 5,
+      "notes": "Legacy respect: Aldran paid debts with sweat; craft-honor acknowledged."
+    }
+  }
 }
