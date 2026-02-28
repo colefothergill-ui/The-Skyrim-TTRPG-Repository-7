@@ -2283,6 +2283,8 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
         civil_war["allegiance"] = faction
         civil_war["player_alliance"] = faction
         civil_war["battle_of_whiterun_status"] = "active"
+        civil_war["battle_of_whiterun_faction"] = faction
+        civil_war["battle_of_whiterun_stage"] = 0
         civil_war["civil_war_eligible"] = True
         civil_war.pop("civil_war_locked_reason", None)
 

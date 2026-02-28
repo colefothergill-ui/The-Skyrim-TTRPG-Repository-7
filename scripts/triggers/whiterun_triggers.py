@@ -82,6 +82,22 @@ def whiterun_location_triggers(loc, campaign_state):
             f"[Battle of Whiterun | {faction_label} | Stage {battle_stage}/5]"
         )
 
+        # One-time intro sting: Legate Cassian Varro's public debut
+        if battle_stage == 0 and not flags.get("legate_varro_intro_done"):
+            events.append(
+                "[NPC INTRO] A figure in immaculate Imperial officer's plate steps forward at the "
+                "gatehouse — Legate Cassian Varro, newly assigned liaison from the Imperial command. "
+                "He surveys the field with the calm of someone who has already decided how this ends. "
+                "His accent is impeccably Cyrodiilic. His dispatch case is sealed with an unusual clasp "
+                "you don't quite recognize."
+            )
+            flags["legate_varro_intro_done"] = True
+            # Seed the hidden quest hook passively (players can discover cipher_fragment_varro
+            # by searching Varro's dispatch case or intercepting a courier during the siege)
+            quest_hooks = campaign_state.setdefault("pending_quest_seeds", [])
+            if "the_hand_behind_the_banner" not in quest_hooks:
+                quest_hooks.append("the_hand_behind_the_banner")
+
     # ------------------------------------------------------------------
     # District-specific triggers - siege vs. peacetime text
     # ------------------------------------------------------------------

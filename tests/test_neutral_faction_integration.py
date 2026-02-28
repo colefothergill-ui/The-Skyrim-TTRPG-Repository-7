@@ -431,6 +431,8 @@ def test_start_battle_of_whiterun():
 
             result2 = mgr.start_battle_of_whiterun("stormcloak")
             assert result2["civil_war_state"]["player_alliance"] == "stormcloak"
+            assert result2["civil_war_state"]["battle_of_whiterun_faction"] == "stormcloak"
+            assert result2["civil_war_state"]["battle_of_whiterun_stage"] == 0
             print("✓ Neutral-to-stormcloak path resolves correctly")
 
             return True

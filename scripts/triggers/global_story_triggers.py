@@ -30,6 +30,13 @@ def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("campaign_clocks", {})
 
 
+def _active_quests(state: Dict[str, Any]) -> List[Any]:
+    aq = state.get("active_quests")
+    if isinstance(aq, list):
+        return aq
+    return []
+
+
 def _companions_qprog(state: Dict[str, Any]) -> Dict[str, Any]:
     c = state.get("companions_state", {}) or {}
     qp = c.get("quest_progress", {}) or {}
