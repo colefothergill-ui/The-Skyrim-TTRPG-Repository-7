@@ -6,6 +6,19 @@ AthisResult = Literal["win", "lose", "none"]
 Partner = Literal["aela", "vilkas", "farkas"]
 QuestResult = Literal["success", "failure", "unknown"]
 
+# ---------------------------------------------------------------------------
+# PHASE 1 HOTFIX: Athis spar event (offer + resolver)
+# Required because whiterun_triggers.py calls offer_athis_spar_event(...)
+# ---------------------------------------------------------------------------
+
+BET_BASE = 100
+BET_CAP = 500
+BET_PER_SHIFT = 50
+
+Style = Literal["warrior", "tactical", "mixed"]
+Result = Literal["win", "lose"]
+Followup = Literal["farkas", "aela", "none"]
+
 
 def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("scene_flags", {})
@@ -146,6 +159,109 @@ def _athis_duel_result(state: Dict[str, Any]) -> AthisResult:
         return "none"
     r = rec.get("result")
     return r if r in ("win", "lose") else "none"
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# Athis spar event helpers
+# ──────────────────────────────────────────────────────────────────────────
+
+def _clamp_int(v: int, lo: int, hi: int) -> int:
+    try:
+        v = int(v)
+    except (ValueError, TypeError):
+        v = lo
+    return max(lo, min(hi, v))
+
+
+def compute_bet_amount(base: int = BET_BASE, raise_shifts: int = 0, cap: int = BET_CAP) -> int:
+    """
+    Base 100. Each shift on the raise roll adds +50. Cap 500.
+    """
+    raise_shifts = max(0, int(raise_shifts or 0))
+    return _clamp_int(base + raise_shifts * BET_PER_SHIFT, base, cap)
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# Athis spar: offer + resolver
+# ──────────────────────────────────────────────────────────────────────────
+
+def offer_athis_spar_event(state: Dict[str, Any]) -> List[str]:
+    flags = _flags(state)
+    if flags.get("jorvaskr_athis_spar_resolved") or flags.get("jorvaskr_athis_spar_offered"):
+        return []
+
+    flags["jorvaskr_athis_spar_offered"] = True
+
+    return [
+        "[SCRIPTED EVENT] Athis the Dunmer duelist is goading the whelps into a 1v1 spar. He offers a wager.",
+        "Rule: First combatant to impose a Mild Consequence wins (sparring rules; no killing).",
+        "Whelps present: Ria, Njada, Torvar.",
+        "Senior eyes nearby: Farkas and Aela watch from a respectful distance.",
+        "Bet: 100 septims base. You may raise it via a social roll:",
+        " - Roll Rapport or Provoke vs Athis' Will. Each shift of success raises the bet by +50 (cap 500).",
+        "CHOICE: Accept the spar?",
+        " - If YES: call resolve_athis_spar_event(state, accepted=True, result='win|lose', style='warrior|tactical|mixed', raise_shifts=<int>).",
+        " - If NO:  call resolve_athis_spar_event(state, accepted=False).",
+    ]
+
+
+def resolve_athis_spar_event(
+    state: Dict[str, Any],
+    accepted: bool,
+    result: Optional[Result] = None,
+    style: Optional[Style] = None,
+    raise_shifts: int = 0,
+) -> List[str]:
+    flags = _flags(state)
+    if flags.get("jorvaskr_athis_spar_resolved"):
+        return []
+
+    flags["jorvaskr_athis_spar_resolved"] = True
+    flags["jorvaskr_athis_spar_offered"] = True
+
+    bet = compute_bet_amount(raise_shifts=raise_shifts)
+
+    record: Dict[str, Any] = {
+        "accepted": accepted,
+        "result": result,
+        "style": style,
+        "raise_shifts": raise_shifts,
+        "bet": bet,
+    }
+    flags["jorvaskr_athis_spar_record"] = record
+
+    if not accepted:
+        flags["jorvaskr_athis_spar_followup"] = "none"
+        return [
+            "[SPAR DECLINED] You wave off the challenge. Athis shrugs — his grin says he'll ask again.",
+            "The whelps exchange glances. Ria looks mildly disappointed. Njada looks unsurprised.",
+        ]
+
+    lines: List[str] = []
+
+    if result == "win":
+        lines.append(f"[SPAR WIN] You impose a Mild Consequence on Athis. The hall goes quiet — then loud.")
+        lines.append(f'Athis straightens, rubbing the bruise. "Not bad." He means it.')
+        lines.append(f"Wager settled: you collect {bet} septims.")
+        _bump_whelp_loyalty(state, ["ria", "torvar", "njada"], 5)
+
+        # Determine follow-up based on fighting style
+        followup: Followup
+        if style == "warrior":
+            followup = "farkas"
+        else:
+            # tactical or mixed -> Aela notices the hunter's movement
+            followup = "aela"
+        flags["jorvaskr_athis_spar_followup"] = followup
+
+    else:
+        lines.append(f"[SPAR LOSS] Athis lands the decisive blow. You take a Mild Consequence.")
+        lines.append(f"He collects the wager ({bet} septims) with a satisfied look.")
+        lines.append('Athis: "You\'ve got fire. Come back when you\'ve got control."')
+        _bump_whelp_loyalty(state, ["ria", "torvar", "njada"], 2)
+        flags["jorvaskr_athis_spar_followup"] = "none"
+
+    return lines
 
 
 # ──────────────────────────────────────────────────────────────────────────
