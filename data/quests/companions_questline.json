@@ -3,6 +3,21 @@
     "name": "The Companions",
     "description": "Join the ancient warrior guild of Jorrvaskr, earn your place in the Inner Circle, and face the choice of lycanthropy or purity as Kodlak Whitemane's fate hangs in the balance.",
     "quests": {
+      "companions_investigate_jorvaskr": {
+        "name": "Investigate Jorrvaskr",
+        "quest_id": "companions_investigate_jorvaskr",
+        "quest_giver": "Kodlak Whitemane",
+        "description": "You arrive at Jorrvaskr to learn how the Companions live, train, and judge potential recruits before asking to join.",
+        "objectives": [
+          "Take in the hall and observe the Companions in their home",
+          "Descend into Jorrvaskr’s downstairs living area (Grand Hall) for the first time",
+          "Optional: Speak with Vignar Gray-Mane if you overhear his war conversation",
+          "Speak with Kodlak Whitemane about joining the Companions"
+        ],
+        "notes": "Pre-Proving Honor setup quest used to stage first impressions and early social hooks in Jorrvaskr.",
+        "prerequisites": [],
+        "follow_up_quest": "companions_proving_honor"
+      },
       "companions_proving_honor": {
         "name": "Proving Honor",
         "quest_id": "companions_proving_honor",
@@ -25,7 +40,7 @@
           "valor_displayed": "Fighting through with discipline and grit earns a free invoke on 'Proven in Battle' for the next dungeon scene.",
           "quick_retreat": "You recovered the fragment but left some enemies standing. Vilkas will note it - take -1 trust with Vilkas."
         },
-        "notes": "Entry quest for the Companions arc. Mirrors the College's 'First Lessons' in function. Vilkas and Farkas are present in Jorrvaskr; their dispositions toward the PC are set here. If PC demonstrates exceptional combat ability (SWS on Fight), Farkas offers a free sparring stunt for later.",
+        "notes": "Entry quest for the Companions arc. Mirrors the College's 'First Lessons' in function. Vilkas and Farkas are present in Jorrvaskr; their dispositions toward the PC are set here. If PC demonstrates exceptional combat ability (SWS on Fight), Farkas offers a free sparring stunt for later. Phase 2 hooks: first-time Harbinger Room entry triggers Kodlak/Vilkas foreshadow scene; first-time Yard entry can trigger Vilkas Trial by Combat (first Mild consequence wins). After Vilkas trial, escort-to-whelps logic branches based on active side-quests (Aela vs Farkas vs Vilkas).",
         "prerequisites": [],
         "follow_up_quest": "companions_inner_circle_rites"
       },

@@ -299,6 +299,60 @@ def test_kodlak_cure_or_sacrifice_not_cured():
     print(f"✓ Not cured branch works: {events}")
 
 
+def test_jorrvaskr_downstairs_phase2_triggers():
+    """Test downstairs first-entry and repeating Vignar notice prompt."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "scene_flags": {},
+    }
+
+    first_events = whiterun_location_triggers("jorrvaskr_downstairs", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr_downstairs", campaign_state)
+
+    assert any("[TRIGGERED DESCRIPTION] You descend into Jorrvaskr’s downstairs living area." in e for e in first_events), "Expected downstairs first-entry description"
+    assert any("MISSABLE OVERHEAR" in e for e in first_events), "Expected Vignar/Eorlund notice prompt"
+    assert not any("[TRIGGERED DESCRIPTION] You descend into Jorrvaskr’s downstairs living area." in e for e in second_events), "Expected downstairs description only once"
+    assert any("MISSABLE OVERHEAR" in e for e in second_events), "Expected notice prompt repeat until resolved"
+    assert campaign_state.get("scene_flags", {}).get("last_location") == "jorrvaskr_downstairs"
+
+
+def test_jorrvaskr_harbinger_phase2_scene_once():
+    """Test Harbinger room description and foreshadow scene fire once."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "scene_flags": {},
+    }
+
+    first_events = whiterun_location_triggers("jorrvaskr_harbinger_room", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr_harbinger_room", campaign_state)
+
+    assert any("Kodlak’s chamber is humble for a legend" in e for e in first_events), "Expected Harbinger room first-entry description"
+    assert any("SCRIPTED SCENE" in e for e in first_events), "Expected Kodlak/Vilkas foreshadow scene"
+    assert not any("Kodlak’s chamber is humble for a legend" in e for e in second_events), "Expected Harbinger description only once"
+    assert not any("SCRIPTED SCENE" in e for e in second_events), "Expected foreshadow scene only once"
+
+
+def test_jorrvaskr_dustmans_summon_when_contract_clock_full():
+    """Test Dustman's Cairn summon triggers at 2/2 contracts during Proving Honor."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "scene_flags": {},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+        "campaign_clocks": {
+            "honor_proving_contracts_done": {
+                "current_progress": 2,
+                "total_segments": 2
+            }
+        }
+    }
+
+    first_events = whiterun_location_triggers("jorrvaskr", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr", campaign_state)
+
+    assert any("[SUMMON]" in e for e in first_events), "Expected Dustman's Cairn summon at full contracts clock"
+    assert not any("[SUMMON]" in e for e in second_events), "Expected summon to trigger only once"
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -321,6 +375,9 @@ def run_all_tests():
         test_kodlak_cure_or_sacrifice_cured,
         test_kodlak_cure_or_sacrifice_cure_preemptive,
         test_kodlak_cure_or_sacrifice_not_cured,
+        test_jorrvaskr_downstairs_phase2_triggers,
+        test_jorrvaskr_harbinger_phase2_scene_once,
+        test_jorrvaskr_dustmans_summon_when_contract_clock_full,
     ]
     
     passed = 0
