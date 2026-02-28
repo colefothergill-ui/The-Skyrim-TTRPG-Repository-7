@@ -82,13 +82,27 @@ def whiterun_location_triggers(loc, campaign_state):
             f"[Battle of Whiterun | {faction_label} | Stage {battle_stage}/5]"
         )
 
-    # One-time Legate Cassian Varro intro sting (Imperial, Stage 0, Dragonsreach/Cloud District)
-    if siege_active and battle_faction == "imperial" and battle_stage == 0:
-        if ("dragonsreach" in loc_lower or "cloud" in loc_lower) and not flags.get("whiterun_legate_varro_intro_done"):
+        # One-time intro sting: Legate Cassian Varro's public debut
+        if battle_stage == 0 and not flags.get("legate_varro_intro_done"):
             events.append(
-                "🎭 [NEW NPC] Legate Cassian Varro: charismatic 'public face'—and the room tilts around his smile."
+                "[NPC INTRO] A figure in immaculate Imperial officer's plate steps forward at the "
+                "gatehouse — Legate Cassian Varro, newly assigned liaison from the Imperial command. "
+                "He surveys the field with the calm of someone who has already decided how this ends. "
+                "His accent is impeccably Cyrodiilic. His dispatch case is sealed with an unusual clasp "
+                "you don't quite recognize."
             )
-            flags["whiterun_legate_varro_intro_done"] = True
+            # Set both flag names: 'legate_varro_intro_done' for runtime checks here,
+            # and 'varro_intro_done' to match the scene_flags key defined in civil_war_quests.json.
+            flags["legate_varro_intro_done"] = True
+            flags["varro_intro_done"] = True
+            # Seed the hidden quest hook passively (players can discover cipher_fragment_varro
+            # by searching Varro's dispatch case or intercepting a courier during the siege)
+            quest_hooks = campaign_state.get("pending_quest_seeds")
+            if not isinstance(quest_hooks, list):
+                quest_hooks = []
+                campaign_state["pending_quest_seeds"] = quest_hooks
+            if "the_hand_behind_the_banner" not in quest_hooks:
+                quest_hooks.append("the_hand_behind_the_banner")
 
     # ------------------------------------------------------------------
     # District-specific triggers - siege vs. peacetime text

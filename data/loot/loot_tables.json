@@ -169,6 +169,53 @@
         { "text": "Dog-eared letter from home (compel hook: 'Someone Waiting Back Home')", "weight": 1 }
       ]
     },
+    "civil_war_common": {
+      "name": "Civil War - Common Spoils",
+      "rolls": 2,
+      "entries": [
+        { "text": "Iron or steel sword (Weapon:1, no special properties)", "weight": 3 },
+        { "text": "Soldier's coin purse (enough for a night's lodging)", "weight": 3 },
+        { "text": "Hardtack and dried venison (clear 1 mild physical stress)", "weight": 3 },
+        { "text": "Steel-tipped arrows (quiver of 12)", "weight": 2 },
+        { "text": "Torn dispatch order (advantage: 'Knew the Route')", "weight": 2 },
+        { "text": "Crude healing salve (clear 1 physical stress, messy application)", "weight": 2 },
+        { "text": "Faction badge or armband (social aspect with either faction)", "weight": 1 }
+      ]
+    },
+    "whiterun_common": {
+      "name": "Whiterun - Common Finds",
+      "rolls": 2,
+      "entries": [
+        { "text": "Wheel of cheese and bread from a ransacked market stall", "weight": 3 },
+        { "text": "Coin purse from a fleeing merchant (minor gold)", "weight": 3 },
+        { "text": "Steel dagger (Weapon:1, easily concealed)", "weight": 2 },
+        { "text": "Whiterun guard's signal whistle (social aspect: 'Guard Attention')", "weight": 2 },
+        { "text": "Scrawled map of Plains District alleys (advantage: 'I Know a Way Through')", "weight": 2 },
+        { "text": "Wound-binding kit (clear 1 mild physical stress)", "weight": 2 },
+        { "text": "Banded iron shield (Armor:1 for one exchange)", "weight": 1 }
+      ]
+    },
+    "whiterun_siege_intelligence": {
+      "name": "Whiterun Siege - Intelligence Cache",
+      "rolls": 1,
+      "entries": [
+        { "text": "Cipher fragment (quest item: unlocks 'The Hand Behind the Banner')", "weight": 1 },
+        { "text": "Encrypted dispatch orders (advantage: 'Someone's Playing Both Sides')", "weight": 2 },
+        { "text": "Legion counter-sign for the night (advantage: 'Imperial Password')", "weight": 3 },
+        { "text": "Sketch map of Whiterun's hidden postern routes", "weight": 2 },
+        { "text": "Personal letter from a Thalmor asset (non-cipher; corroborating evidence)", "weight": 1 }
+      ]
+    },
+    "whiterun_officer_trophy": {
+      "name": "Whiterun - Officer Trophy",
+      "rolls": 1,
+      "entries": [
+        { "text": "Legate's gladius — Varro's personal blade (Weapon:2, fine Imperial craft)", "weight": 1 },
+        { "text": "Encrypted Thalmor dossier (names three other hold-level Thalmor assets; long-term campaign hook)", "weight": 1 },
+        { "text": "Imperial commission papers with Thalmor counter-signature (proof of network)", "weight": 2 },
+        { "text": "Commander's tactical map of Whiterun's defenses (advantage: 'Know Every Gate')", "weight": 2 }
+      ]
+    },
     "officer_trophy": {
       "rolls": 1,
       "entries": [

@@ -1154,5 +1154,84 @@
     "estimated_sessions": "8-12 sessions to complete civil war",
     "integration_with_main_quest": "Can be completed before, during, or after main quest",
     "peace_option": "Season Unending quest offers temporary truce"
+  },
+  "hidden_quests": {
+    "the_hand_behind_the_banner": {
+      "id": "the_hand_behind_the_banner",
+      "name": "The Hand Behind the Banner",
+      "type": "hidden",
+      "discovery_trigger": "cipher_fragment_decoded",
+      "faction": "any",
+      "description": "During the Battle of Whiterun, a cipher fragment surfaces — encrypted orders that don't quite read like Imperial chain of command. Someone is managing both sides of this war from inside the Legion's own war room.",
+      "prerequisites": [],
+      "discovery_conditions": {
+        "item_required": "cipher_fragment_varro",
+        "decode_roll": "Lore (+3) or Thieves Guild contact",
+        "alternate_path": "High-Rapport conversation with Legate Cipius after Stage 1 siege"
+      },
+      "key_npc": "npc_stat_legate_cassian_varro",
+      "objectives": [
+        "Decode the cipher fragment found in Varro's dispatch case (or dead-drop near the walls)",
+        "Corroborate the cipher with one additional piece of evidence (intercepted courier, Cipius's testimony, or embassy records)",
+        "Choose an outcome: Expose, Blackmail, or Double Agent"
+      ],
+      "outcomes": {
+        "expose": {
+          "description": "Bring evidence to Legate Rikke, General Tullius, or Jarl Balgruuf",
+          "effects": [
+            "Battle of Whiterun shortens by 1 stage",
+            "Varro arrested or flees to Thalmor embassy",
+            "Thalmor retaliation clock advances +2",
+            "Party gains scene aspect: 'Enemies of the Aldmeri Dominion' (double-edged)"
+          ],
+          "rewards": {
+            "experience": 150,
+            "loot_table": "whiterun_siege_intelligence",
+            "consequence": "Thalmor begin actively monitoring the party"
+          }
+        },
+        "blackmail": {
+          "description": "Confront Varro privately and leverage the cipher for resources",
+          "effects": [
+            "Immediate resource gain: gold, a safe-house, or a Legion favor",
+            "Varro becomes a compromised asset — he will turn on the party when convenient",
+            "Corruption clock begins (3 segments); at max, the party is implicated in Thalmor dealings"
+          ],
+          "rewards": {
+            "experience": 100,
+            "loot_table": "civil_war_common",
+            "items": ["200 gold (or equivalent in supplies)", "One Legion logistics favor"]
+          }
+        },
+        "double_agent": {
+          "description": "Convince Varro the party can be trusted as neutral parties; feed false intelligence to the Thalmor",
+          "requirements": "Deceive vs Superb (+5) or Rapport at Great (+4) with established trust",
+          "effects": [
+            "Counterintelligence clock begins (6 segments)",
+            "Party gains secret routes and early warning of Thalmor movements",
+            "If clock completes before exposure: Thalmor Phase 2 is disrupted; entire hold network revealed",
+            "If exposed mid-clock: Varro burns the party and the routes vanish"
+          ],
+          "rewards": {
+            "experience": 200,
+            "loot_table": "whiterun_siege_intelligence",
+            "consequence": "Long-term Thalmor antagonism; access to counterintel missions"
+          }
+        }
+      },
+      "loot_references": {
+        "cipher_fragment_loot_table": "whiterun_siege_intelligence",
+        "standard_battle_loot": "civil_war_common",
+        "varro_personal_loot": "whiterun_officer_trophy"
+      },
+      "scene_flags": {
+        "varro_intro_done": false,
+        "cipher_found": false,
+        "cipher_decoded": false,
+        "quest_outcome": null
+      },
+      "gm_notes": "This quest is present and discoverable, not forced. Place the cipher fragment in a container players are likely to search organically during the siege (Varro's dispatch case, a locked chest, an intercepted courier). If players never find it, Varro simply disappears after the siege with a reassignment order. The Companions 'hidden path' philosophy applies: clues and scene flags, not mandatory gates.",
+      "status": "hidden"
+    }
   }
 }
