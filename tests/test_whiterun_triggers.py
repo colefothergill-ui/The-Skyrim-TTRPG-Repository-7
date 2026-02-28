@@ -449,6 +449,98 @@ def test_dustmans_cairn_additional_room_triggers_once():
         assert campaign_state.get("scene_flags", {}).get(flag) is True
 
 
+def test_offer_athis_spar_idempotent():
+    """offer_athis_spar_event fires once; subsequent calls return []."""
+    state = {"scene_flags": {}}
+    first = jorvaskr_events.offer_athis_spar_event(state)
+    second = jorvaskr_events.offer_athis_spar_event(state)
+    assert any("[SCRIPTED EVENT]" in e for e in first), "Expected spar offer on first call"
+    assert second == [], "Expected empty list on second call (idempotent)"
+    assert state["scene_flags"].get("jorvaskr_athis_spar_offered") is True
+
+
+def test_resolve_athis_spar_win_warrior_sets_farkas_followup():
+    """Win with warrior style should set followup=farkas and record the correct bet."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    lines = jorvaskr_events.resolve_athis_spar_event(
+        state, accepted=True, result="win", style="warrior", raise_shifts=2
+    )
+    flags = state["scene_flags"]
+    assert any("[SPAR WIN]" in e for e in lines), "Expected win message"
+    assert flags.get("jorvaskr_athis_spar_followup") == "farkas"
+    assert flags.get("jorvaskr_athis_spar_resolved") is True
+    record = flags.get("jorvaskr_athis_spar_record", {})
+    assert record.get("bet") == 200       # 100 + 2*50
+    assert record.get("raise_shifts") == 2
+    assert record.get("result") == "win"
+    assert record.get("style") == "warrior"
+
+
+def test_resolve_athis_spar_win_tactical_sets_aela_followup():
+    """Win with tactical style should route followup to aela."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    jorvaskr_events.resolve_athis_spar_event(
+        state, accepted=True, result="win", style="tactical", raise_shifts=0
+    )
+    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "aela"
+
+
+def test_resolve_athis_spar_loss_sets_none_followup():
+    """Loss should set followup to 'none'."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    lines = jorvaskr_events.resolve_athis_spar_event(
+        state, accepted=True, result="lose", style="warrior", raise_shifts=0
+    )
+    assert any("[SPAR LOSS]" in e for e in lines), "Expected loss message"
+    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "none"
+
+
+def test_resolve_athis_spar_declined_does_not_repeat():
+    """Declined spar should set resolved flag and not allow re-offering."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    lines = jorvaskr_events.resolve_athis_spar_event(state, accepted=False)
+    assert any("[SPAR DECLINED]" in e for e in lines), "Expected declined message"
+    assert state["scene_flags"].get("jorvaskr_athis_spar_resolved") is True
+    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "none"
+    assert jorvaskr_events.offer_athis_spar_event(state) == [], "Re-offer should be blocked after decline"
+
+
+def test_resolve_athis_spar_invalid_result_does_not_mutate_state():
+    """Calling resolver with accepted=True but no valid result should not commit state."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    lines = jorvaskr_events.resolve_athis_spar_event(
+        state, accepted=True, result=None, style=None
+    )
+    assert any("[ERROR]" in e for e in lines), "Expected error message for invalid result"
+    assert state["scene_flags"].get("jorvaskr_athis_spar_resolved") is None, \
+        "State should NOT be mutated on invalid call"
+
+
+def test_compute_bet_amount_clamping():
+    """compute_bet_amount should clamp to [base, cap]."""
+    assert jorvaskr_events.compute_bet_amount() == 100                  # base, no shifts
+    assert jorvaskr_events.compute_bet_amount(raise_shifts=2) == 200    # 100 + 2*50
+    assert jorvaskr_events.compute_bet_amount(raise_shifts=8) == 500    # capped at 500
+    assert jorvaskr_events.compute_bet_amount(raise_shifts=-5) == 100   # negative clamps to base
+
+
+def test_resolve_athis_spar_normalizes_raise_shifts():
+    """Negative raise_shifts should be stored as 0 in the record and produce the base bet."""
+    state = {"scene_flags": {}}
+    jorvaskr_events.offer_athis_spar_event(state)
+    jorvaskr_events.resolve_athis_spar_event(
+        state, accepted=True, result="win", style="warrior", raise_shifts=-3
+    )
+    record = state["scene_flags"].get("jorvaskr_athis_spar_record", {})
+    assert record.get("raise_shifts") == 0, "Negative raise_shifts should be normalized to 0"
+    assert record.get("bet") == 100, "Bet should use normalized raise_shifts=0"
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -479,6 +571,14 @@ def run_all_tests():
         test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
         test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
         test_dustmans_cairn_additional_room_triggers_once,
+        test_offer_athis_spar_idempotent,
+        test_resolve_athis_spar_win_warrior_sets_farkas_followup,
+        test_resolve_athis_spar_win_tactical_sets_aela_followup,
+        test_resolve_athis_spar_loss_sets_none_followup,
+        test_resolve_athis_spar_declined_does_not_repeat,
+        test_resolve_athis_spar_invalid_result_does_not_mutate_state,
+        test_compute_bet_amount_clamping,
+        test_resolve_athis_spar_normalizes_raise_shifts,
     ]
     
     passed = 0

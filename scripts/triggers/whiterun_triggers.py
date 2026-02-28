@@ -385,4 +385,8 @@ def whiterun_location_triggers(loc, campaign_state):
         events.extend(dustmans_cairn_events.dustmans_cairn_triggers(loc, campaign_state))
 
     events.extend(global_story_triggers(loc, campaign_state))
+
+    # Track last visited location for subsequent trigger calls
+    flags["last_location"] = loc
+
     return events
