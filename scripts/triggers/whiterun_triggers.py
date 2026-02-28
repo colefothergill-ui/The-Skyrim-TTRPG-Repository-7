@@ -8,11 +8,18 @@ specific to Whiterun Hold.  When the Battle of Whiterun is active, district
 text and companion barks switch to siege context keyed to the current stage.
 """
 
+import warnings
+
 from .trigger_utils import is_companion_present
 
 try:
     import jorvaskr_events
-except Exception:
+except (ModuleNotFoundError, ImportError):
+    warnings.warn(
+        "Optional module 'jorvaskr_events' could not be imported; "
+        "Jorrvaskr scripted events will be disabled.",
+        RuntimeWarning,
+    )
     jorvaskr_events = None
 
 
@@ -75,7 +82,7 @@ def whiterun_location_triggers(loc, campaign_state):
                 "and the smell of fresh bread wafts from the Bannered Mare."
             )
 
-    elif "jorvaskr" in loc_lower:
+    elif "jorrvaskr" in loc_lower:
         # Normalize entry + one-time hall description
         # Detect "entered from Wind District" by last_location bookkeeping
         entered_from_wind = "wind" in last_loc and "whiterun" in last_loc

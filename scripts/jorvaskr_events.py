@@ -74,13 +74,18 @@ def _bump_whelp_loyalty(campaign_state: Dict[str, Any], npc_ids: List[str], delt
 
 def _ensure_side_quest_entry(campaign_state: Dict[str, Any], quest_id: str, status: str, reason: str) -> None:
     """
-    Side quests are tracked in campaign_state['active_quests'] as dicts.
+    Side quests unlocked via Companions events are tracked under
+    campaign_state['companions']['unlocked_side_quests'] as dicts.
+
+    This avoids polluting campaign_state['active_quests'], which is reserved
+    for the story engine's quest key strings (e.g. "questline:quest_id").
     """
-    active = campaign_state.setdefault("active_quests", [])
-    for q in active:
+    companions = campaign_state.setdefault("companions", {})
+    unlocked = companions.setdefault("unlocked_side_quests", [])
+    for q in unlocked:
         if isinstance(q, dict) and q.get("id") == quest_id:
             return
-    active.append({"id": quest_id, "status": status, "reason": reason})
+    unlocked.append({"id": quest_id, "status": status, "reason": reason})
 
 
 def resolve_athis_spar_event(

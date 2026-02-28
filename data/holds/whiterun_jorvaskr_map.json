@@ -41,6 +41,15 @@
     "jorvaskr_yard": "jorvaskr_training_yard",
     "jorvaskr_patio": "jorvaskr_deck_patio",
     "skyforge": "jorvaskr_skyforge",
-    "underforge": "jorvaskr_underforge"
+    "underforge": "jorvaskr_underforge",
+    "_note": "Aliases below support the canonical double-r spelling used in campaign state/tests alongside the single-r map ID prefix.",
+    "jorrvaskr": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_mead_hall": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_entrance": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_hall": "jorvaskr_grand_hall",
+    "jorrvaskr_yard": "jorvaskr_training_yard",
+    "jorrvaskr_patio": "jorvaskr_deck_patio",
+    "jorrvaskr_skyforge": "jorvaskr_skyforge",
+    "jorrvaskr_underforge": "jorvaskr_underforge"
   }
 }

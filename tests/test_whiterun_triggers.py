@@ -299,6 +299,58 @@ def test_kodlak_cure_or_sacrifice_not_cured():
     print(f"✓ Not cured branch works: {events}")
 
 
+def test_jorrvaskr_structural_outline_one_time():
+    """Test that the Jorrvaskr map anchor fires once and is not repeated"""
+    print("\n=== Testing Jorrvaskr Map Anchor (One-Time) ===")
+
+    campaign_state = {
+        "companions": {"active_companions": []},
+    }
+
+    # First visit — anchor should fire
+    events = whiterun_location_triggers("jorrvaskr", campaign_state)
+    anchor_events = [e for e in events if "JORVASKR MAP ANCHOR" in e]
+    assert len(anchor_events) == 1, "Expected map anchor on first Jorrvaskr visit"
+    assert campaign_state["scene_flags"].get("jorvaskr_structural_outline_done"), \
+        "Expected jorvaskr_structural_outline_done flag after first visit"
+
+    # Second visit — anchor must NOT repeat
+    events2 = whiterun_location_triggers("jorrvaskr", campaign_state)
+    anchor_events2 = [e for e in events2 if "JORVASKR MAP ANCHOR" in e]
+    assert len(anchor_events2) == 0, "Expected no map anchor on second Jorrvaskr visit"
+    print("✓ Jorrvaskr map anchor fires once and is then suppressed")
+
+
+def test_jorrvaskr_spar_offer_only_during_investigate_quest():
+    """Test that Athis spar offer is only presented during companions_investigate_jorvaskr"""
+    print("\n=== Testing Athis Spar Offer Gating ===")
+
+    # Wrong active quest — no spar offer
+    campaign_state_wrong = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "active_quest": "companions_proving_honor",
+        },
+    }
+    events = whiterun_location_triggers("jorrvaskr", campaign_state_wrong)
+    spar_events = [e for e in events if "Athis" in e and "spar" in e.lower()]
+    assert len(spar_events) == 0, "Expected no spar offer outside investigate quest"
+
+    # Correct active quest — spar offer should fire
+    campaign_state_correct = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "active_quest": "companions_investigate_jorvaskr",
+        },
+    }
+    events2 = whiterun_location_triggers("jorrvaskr", campaign_state_correct)
+    spar_events2 = [e for e in events2 if "Athis" in e]
+    assert len(spar_events2) > 0, "Expected spar offer during companions_investigate_jorvaskr"
+    assert campaign_state_correct["scene_flags"].get("jorvaskr_athis_spar_offered"), \
+        "Expected jorvaskr_athis_spar_offered flag set after spar offer"
+    print("✓ Athis spar offer correctly gated on companions_investigate_jorvaskr")
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -321,6 +373,8 @@ def run_all_tests():
         test_kodlak_cure_or_sacrifice_cured,
         test_kodlak_cure_or_sacrifice_cure_preemptive,
         test_kodlak_cure_or_sacrifice_not_cured,
+        test_jorrvaskr_structural_outline_one_time,
+        test_jorrvaskr_spar_offer_only_during_investigate_quest,
     ]
     
     passed = 0
