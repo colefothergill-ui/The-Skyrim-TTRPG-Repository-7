@@ -1,0 +1,20 @@
+{
+  "quest_id": "companions_prey_and_predator",
+  "name": "Prey and Predator",
+  "type": "Faction Quest",
+  "status": "Locked",
+  "giver": "Aela the Huntress",
+  "location": "Whiterun — Jorrvaskr / Whiterun Hold Wilds",
+  "description": "Aela tests whether you can hunt with patience and kill with purpose. The wild doesn't reward noise; it rewards teeth and timing.",
+  "objectives": [
+    { "description": "Speak to Aela in Jorrvaskr after Proving Honor is active", "status": "Pending", "optional": false },
+    { "description": "Complete a hunting trial and return proof", "status": "Pending", "optional": false }
+  ],
+  "rewards": [
+    "Aela loyalty/trust increase",
+    "Companions reputation increase",
+    "Unlock: Aela tracking benefit (future phase)"
+  ],
+  "prerequisites": ["companions_proving_honor"],
+  "notes": "Unlocked by winning Athis spar with a tactical/athletic style."
+}

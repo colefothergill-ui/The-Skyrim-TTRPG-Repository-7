@@ -50,10 +50,12 @@ COLLEGE_CHAIN = {
 
 # Companions quest chain order (default / non-dragonbreak path)
 COMPANIONS_CHAIN = {
+    "companions_investigate_jorvaskr": "companions_proving_honor",
     "companions_proving_honor": "companions_inner_circle_rites",
     "companions_inner_circle_rites": "companions_kodlak_cure_or_sacrifice",
-    "companions_kodlak_cure_or_sacrifice": "companions_final_journey",
-    "companions_skjor_dragonbreak": "companions_final_journey",
+    "companions_kodlak_cure_or_sacrifice": "companions_purity_path_ignites",
+    "companions_skjor_dragonbreak": "companions_purity_path_ignites",
+    "companions_purity_path_ignites": "companions_final_journey",
     "companions_final_journey": None,
 }
 
@@ -184,7 +186,7 @@ class StoryManager:
 
     def start_companions_questline(self, state):
         """
-        Activate the first Companions quest (companions_proving_honor).
+        Activate the first Companions quest (companions_investigate_jorvaskr).
 
         Args:
             state: Campaign state dict (mutated in-place).
@@ -197,8 +199,8 @@ class StoryManager:
             "skjor_alive": True,
             "kodlak_cured": False,
         })
-        companions_state["active_quest"] = "companions_proving_honor"
-        companions_state.setdefault("quest_progress", {})["companions_proving_honor"] = "active"
+        companions_state["active_quest"] = "companions_investigate_jorvaskr"
+        companions_state.setdefault("quest_progress", {})["companions_investigate_jorvaskr"] = "active"
 
     def complete_companions_quest(self, state):
         """

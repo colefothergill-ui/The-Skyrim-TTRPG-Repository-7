@@ -24,7 +24,7 @@
         "quest_giver": "Kodlak Whitemane",
         "description": "To earn a place among the Companions of Jorrvaskr, you must prove your honor and battle-worth. Kodlak Whitemane sets you a trial: recover a fragment of Wuuthrad from a bandit-held dungeon and return it to Jorrvaskr. The quest is a test of courage, discipline, and Nordic virtue.",
         "objectives": [
-          "Speak to Kodlak Whitemane in Jorrvaskr's mead hall",
+          "Speak to Kodlak Whitemane in Jorrvaskr's Harbinger Room (after investigating the hall)",
           "Travel to the designated dungeon and defeat its guardian",
           "Recover the Wuuthrad fragment from the depths",
           "Return the fragment to Kodlak and formally join the Companions"

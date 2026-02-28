@@ -1,0 +1,20 @@
+{
+  "quest_id": "companions_honorable_combat",
+  "name": "Honorable Combat",
+  "type": "Faction Quest",
+  "status": "Locked",
+  "giver": "Farkas",
+  "location": "Whiterun — Jorrvaskr",
+  "description": "Farkas offers a rite of steel: tasks meant to measure whether you fight with honor when the easy path is cruelty.",
+  "objectives": [
+    { "description": "Speak to Farkas in Jorrvaskr after Proving Honor is active", "status": "Pending", "optional": false },
+    { "description": "Complete a sanctioned spar or field trial under Farkas' supervision", "status": "Pending", "optional": false }
+  ],
+  "rewards": [
+    "Farkas loyalty/trust increase",
+    "Companions reputation increase",
+    "Unlock: Farkas training benefit (future phase)"
+  ],
+  "prerequisites": ["companions_proving_honor"],
+  "notes": "Unlocked by winning Athis spar with a warrior-forward style."
+}
