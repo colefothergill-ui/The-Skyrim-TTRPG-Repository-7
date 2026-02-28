@@ -23,7 +23,18 @@
       "faction_alignment": "neutral"
     }
   ],
-  "npc_first_impressions": {},
+  "npc_first_impressions": {
+    "test_companion": {
+      "pc_wayn": {
+        "timestamp": "2026-02-28T21:56:27.437502",
+        "disposition": "neutral",
+        "line": null,
+        "source": "default",
+        "recognition_tags": [],
+        "appearance_revision": null
+      }
+    }
+  },
   "npc_first_impressions_legacy": {},
   "faction_trust": {},
   "faction_relationships": {
