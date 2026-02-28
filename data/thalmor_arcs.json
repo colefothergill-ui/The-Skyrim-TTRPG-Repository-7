@@ -162,6 +162,18 @@
       "goals": "Root out Talos worship in the Reach",
       "combat_stats": "Good (+3) Fight, Good (+3) Notice"
     },
+    "legate_cassian_varro": {
+      "name": "Legate Cassian Varro",
+      "title": "Imperial Legate, Whiterun Hold",
+      "role": "Whiterun puppet master; Act I covert antagonist",
+      "personality": "Charming, manipulative, patient",
+      "goals": "Ensure the Battle of Whiterun is long and morally costly; maintain Thalmor deniability",
+      "hold": "whiterun",
+      "arc": "perpetual_war",
+      "stat_sheet": "npc_stat_legate_cassian_varro",
+      "hidden_quest_seed": "the_hand_behind_the_banner",
+      "combat_stats": "Great (+4) Deceive, Good (+3) Rapport, Good (+3) Tactics"
+    },
     "thalmor_soldiers": {
       "name": "Thalmor Soldiers/Justiciars",
       "role": "Enforcers and agents",

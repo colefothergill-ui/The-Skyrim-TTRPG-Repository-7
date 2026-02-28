@@ -316,21 +316,24 @@ def test_civil_war_eligibility_gating():
             assert mgr.check_civil_war_eligibility(state2)
             print("✓ Stormcloak eligibility gating correct")
 
-            # --- Neutral subfactions ---
-            for subfaction, flag in [
-                ("companions", "companions_intro_complete"),
-                ("college", "college_intro_complete"),
-                ("thieves_guild", "tg_intro_complete"),
-                ("dark_brotherhood", "db_intro_complete"),
-            ]:
+            # --- Neutral: war catalyst is now the ONLY eligibility path ---
+            # Subfaction intro flags alone no longer grant eligibility
+            for subfaction in ["companions", "college", "thieves_guild", "dark_brotherhood"]:
                 s = {
                     "civil_war_state": {"player_alliance": "neutral", "neutral_subfaction": subfaction},
-                    "faction_flags": {},
+                    "faction_flags": {f"{subfaction}_intro_complete": True},
                 }
-                assert not mgr.check_civil_war_eligibility(s), f"{subfaction} should be ineligible without flag"
-                s["faction_flags"][flag] = True
-                assert mgr.check_civil_war_eligibility(s), f"{subfaction} should be eligible with {flag}"
-            print("✓ All neutral subfaction eligibility flags correct")
+                assert not mgr.check_civil_war_eligibility(s), f"{subfaction} intro flag alone should NOT grant eligibility"
+            print("✓ Neutral subfaction intro flags alone correctly denied")
+
+            # War catalyst grants eligibility regardless of subfaction
+            s_catalyst_subfaction = {
+                "civil_war_state": {"player_alliance": "neutral", "neutral_subfaction": "companions"},
+                "neutral_war_catalyst_complete": True,
+                "faction_flags": {},
+            }
+            assert mgr.check_civil_war_eligibility(s_catalyst_subfaction), "neutral_war_catalyst_complete should grant eligibility for companions subfaction"
+            print("✓ All neutral war catalyst eligibility correct")
 
             # --- Neutral: war catalyst bypass ---
             s_catalyst = {
@@ -357,10 +360,11 @@ def test_civil_war_eligibility_gating():
             # Neutral players always use the neutral path regardless of faction= param
             s_neutral_override = {
                 "civil_war_state": {"player_alliance": "neutral", "neutral_subfaction": "companions"},
-                "faction_flags": {"companions_intro_complete": True},
+                "neutral_war_catalyst_complete": True,
+                "faction_flags": {},
             }
             assert mgr.check_civil_war_eligibility(s_neutral_override, faction="stormcloak"), \
-                "Neutral player with subfaction intro should be eligible even with faction= override"
+                "Neutral player with war catalyst should be eligible even with faction= override"
             print("✓ faction= override works correctly")
 
             return True
@@ -423,7 +427,8 @@ def test_start_battle_of_whiterun():
             # --- Neutral party choosing a side via faction= override ---
             neutral_state = {
                 "civil_war_state": {"player_alliance": "neutral", "neutral_subfaction": "companions"},
-                "faction_flags": {"companions_intro_complete": True},
+                "neutral_war_catalyst_complete": True,
+                "faction_flags": {},
                 "last_updated": "",
             }
             with open(state_file, "w") as f:
@@ -431,6 +436,8 @@ def test_start_battle_of_whiterun():
 
             result2 = mgr.start_battle_of_whiterun("stormcloak")
             assert result2["civil_war_state"]["player_alliance"] == "stormcloak"
+            assert result2["civil_war_state"]["battle_of_whiterun_faction"] == "stormcloak"
+            assert result2["civil_war_state"]["battle_of_whiterun_stage"] == 0
             print("✓ Neutral-to-stormcloak path resolves correctly")
 
             return True

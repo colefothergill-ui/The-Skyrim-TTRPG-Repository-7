@@ -1,0 +1,17 @@
+{
+  "appearance_id": "wayn_appearance",
+  "pc_id": "pc_wayn",
+  "race": "Redguard",
+  "gender": "Male",
+  "build": "Athletic, lean-muscled warrior's frame honed by years of martial training.",
+  "face": "Strong angular features, dark skin, sharp eyes that carry both wit and deep focus.",
+  "hair": "Close-cropped, natural.",
+  "distinguishing_features": [
+    "Calm, assessing gaze — the look of someone always sizing up the room.",
+    "Subtle scarring consistent with a life of combat and the road.",
+    "Carries himself with the deliberate ease of someone who knows exactly what he is capable of."
+  ],
+  "attire": "Practical traveler's gear suited for both open road and close-quarters combat. Nothing flashy — function over form.",
+  "shehai_manifested_notes": "When the Shehai is drawn, an icy blue-white radiance pulses around Wayn's sword hand. Breath fogs. Nearby metal frosts. The blade itself appears as a jagged, faceted edge of frozen light — cold, sharp, and unmistakably alive.",
+  "tags": ["wayn", "redguard", "ansei", "appearance"]
+}

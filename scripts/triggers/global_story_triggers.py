@@ -30,10 +30,28 @@ def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("campaign_clocks", {})
 
 
+def _active_quests(state: Dict[str, Any]) -> List[Any]:
+    aq = state.setdefault("active_quests", [])
+    if not isinstance(aq, list):
+        aq = []
+        state["active_quests"] = aq
+    return aq
+
+
 def _companions_qprog(state: Dict[str, Any]) -> Dict[str, Any]:
     c = state.get("companions_state", {}) or {}
     qp = c.get("quest_progress", {}) or {}
     return qp if isinstance(qp, dict) else {}
+
+
+def _active_quests(state: Dict[str, Any]) -> List[Any]:
+    """Return the active_quests collection from state; handles both list and dict forms."""
+    aq = state.get("active_quests", [])
+    if isinstance(aq, list):
+        return aq
+    if isinstance(aq, dict):
+        return list(aq.values())
+    return []
 
 
 def _is_settlement(loc_lower: str) -> bool:
