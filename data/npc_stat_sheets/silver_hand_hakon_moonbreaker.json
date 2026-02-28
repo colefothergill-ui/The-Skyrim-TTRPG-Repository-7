@@ -1,0 +1,33 @@
+{
+  "name": "Hakon Moonbreaker",
+  "id": "npc_stat_silver_hand_hakon_moonbreaker",
+  "type": "Named Silver Hand Purifier (Field Commander)",
+  "category": "Elite Humanoid Antagonist",
+  "aspects": {
+    "high_concept": "Silver Hand Purifier Commander With a Crusader’s Certainty",
+    "trouble": "Obsessed With ‘Cleansing’ The Companions",
+    "other_aspects": [
+      "Silvered Chains and Wolf-Hunter Tools",
+      "Knows the Barrows and the Old Ways",
+      "Recruiter’s Smile, Butchering Hands",
+      "Escapes If the Mission Demands It"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight", "Will"],
+    "Good": ["Athletics", "Notice"],
+    "Fair": ["Provoke", "Physique"],
+    "Average": ["Deceive", "Lore"]
+  },
+  "stunts": [
+    "Silver Tools: Hakon’s attacks are Weapon:1; if the target is a werewolf-form creature, Weapon:3 instead.",
+    "Chain Snare: +2 to Create Advantage with Athletics when attempting to place 'Entangled' in the same zone.",
+    "Purifier’s Sermon: +2 to Provoke when offering a ‘moral’ justification for violence."
+  ],
+  "stress": { "physical": [false, false, false, false], "mental": [false, false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 2,
+  "fate_points": 2,
+  "combat_tactics": "Uses chains and positioning. Tries to mark the PC, then withdraws. Prefers to leave a message over dying for pride.",
+  "gm_notes": "Use as the Dustman’s Cairn intro antagonist. He should foreshadow the Silver Hand as a faction with ideology and recruitment hooks."
+}

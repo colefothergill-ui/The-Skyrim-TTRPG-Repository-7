@@ -391,6 +391,41 @@ def test_join_request_promotes_locked_sidequests_with_string_active_quests():
     assert all(isinstance(q, str) for q in state["active_quests"])
 
 
+def test_dustmans_cairn_entrance_trigger_via_whiterun_hooks():
+    """Dustman's Cairn entrance trigger should flow through whiterun trigger wiring."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"proving_honor_assigned_partner": "aela"},
+        "scene_flags": {},
+    }
+
+    events = whiterun_location_triggers("dustmans_entrance", campaign_state)
+
+    assert any("[DUSTMAN’S CAIRN]" in e for e in events), "Expected Dustman's Cairn entrance description"
+    assert any("Aela murmurs" in e for e in events), "Expected Aela entrance bark"
+
+
+def test_dustmans_cairn_silver_hand_seed_for_purity_track_once():
+    """Purity track should seed Silver Hand contact once at camp intro."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "embraced_curse": False,
+            "proving_honor_assigned_partner": "farkas",
+        },
+        "scene_flags": {},
+    }
+
+    first_events = whiterun_location_triggers("dustmans_silver_hand_camp", campaign_state)
+    second_events = whiterun_location_triggers("dustmans_silver_hand_camp", campaign_state)
+
+    assert any("[INTRO ANTAGONIST]" in e for e in first_events), "Expected Hakon intro on first camp trigger"
+    assert any("[SEED]" in e for e in first_events), "Expected Silver Hand seed text for purity track"
+    assert not any("[SEED]" in e for e in second_events), "Expected seed text only once"
+    assert campaign_state.get("scene_flags", {}).get("silver_hand_token_obtained") is True
+    assert "silver_hand_contact" in campaign_state.get("quests", {}).get("active", [])
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -418,6 +453,8 @@ def run_all_tests():
         test_jorrvaskr_dustmans_summon_when_contract_clock_full,
         test_resolve_vilkas_trial_uses_active_pc_id,
         test_join_request_promotes_locked_sidequests_with_string_active_quests,
+        test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
+        test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
     ]
     
     passed = 0
