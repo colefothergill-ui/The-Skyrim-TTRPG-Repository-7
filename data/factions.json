@@ -486,6 +486,38 @@
         "Recruit",
         "Blade"
       ]
+    },
+    "silver_hand": {
+      "name": "The Silver Hand",
+      "type": "neutral",
+      "headquarters": "Frostroot Lodge (The Pale border)",
+      "description": "A militant Nord order claiming to preserve Ysgramor's Old Way. They hunt lycanthropes and 'curse-corrupted' warrior cults, especially the Circle of Jorrvaskr. Internally divided between restorers (cure + reform) and purgers (extermination).",
+      "core_values": [
+        "Old Way honor",
+        "purity of oath",
+        "community defense",
+        "discipline over indulgence",
+        "truth over legend"
+      ],
+      "leadership": {
+        "commander": "Hakon Silvershield",
+        "spiritual_voice": "Sister Ava of Stendarr",
+        "field_captain": "Freydis Wolfbane",
+        "hardliner_faction": "Rogar Icevein"
+      },
+      "relationships": {
+        "companions": "hostile",
+        "imperial_legion": "wary",
+        "stormcloaks": "situational",
+        "thalmor": "hostile",
+        "dawnguard": "respectful"
+      },
+      "joinable": true,
+      "join_hooks": [
+        "Session Zero: choose Silver Hand as neutral start",
+        "Purity Path: courier note after refusing beast blood"
+      ],
+      "notes": "Silver Hand are not 'bandits' in this continuity. Some cells are extremist; others operate as moral guardians. This enables morally grey alignment and player choice."
     }
   },
   "minor_factions": {
