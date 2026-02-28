@@ -407,9 +407,9 @@ class TestCompanionsQuests:
             sm = _make_story_manager(Path(tmpdir))
             sm.start_companions_questline(state)
         cs = state["companions_state"]
-        assert cs["active_quest"] == "companions_investigate_jorvaskr"
-        assert cs["quest_progress"]["companions_investigate_jorvaskr"] == "active"
-        print("  ✓ start_companions_questline sets companions_investigate_jorvaskr as active")
+        assert cs["active_quest"] == "companions_investigate_jorrvaskr"
+        assert cs["quest_progress"]["companions_investigate_jorrvaskr"] == "active"
+        print("  ✓ start_companions_questline sets companions_investigate_jorrvaskr as active")
 
     def test_complete_companions_quest_default_chain(self):
         """complete_companions_quest() advances through the default chain."""
@@ -661,12 +661,12 @@ class TestSessionZeroCompanionsFaction:
 
         assert "companions_state" in state, "companions_state should be present in campaign state"
         cs = state["companions_state"]
-        assert cs["active_quest"] == "companions_investigate_jorvaskr", (
-            f"Expected companions_investigate_jorvaskr as active quest, got: {cs['active_quest']}"
+        assert cs["active_quest"] == "companions_investigate_jorrvaskr", (
+            f"Expected companions_investigate_jorrvaskr as active quest, got: {cs['active_quest']}"
         )
-        assert cs["quest_progress"].get("companions_investigate_jorvaskr") == "active"
+        assert cs["quest_progress"].get("companions_investigate_jorrvaskr") == "active"
         assert state.get("starting_faction") == "companions"
-        print("  ✓ session-zero with Companions queues companions_investigate_jorvaskr")
+        print("  ✓ session-zero with Companions queues companions_investigate_jorrvaskr")
 
     def test_non_companions_faction_does_not_activate_companions_quests(self):
         """Session-zero with non-Companions subfaction should leave companions_state inactive."""

@@ -14,7 +14,7 @@ from .trigger_utils import is_companion_present
 
 try:
     import jorvaskr_events
-except Exception:
+except ImportError:
     jorvaskr_events = None
 
 
@@ -110,7 +110,7 @@ def whiterun_location_triggers(loc, campaign_state):
         active_comp_quest = companions_state.get("active_quest")
 
         if (
-            active_comp_quest == "companions_investigate_jorvaskr"
+            active_comp_quest == "companions_investigate_jorrvaskr"
             and not flags.get("jorvaskr_athis_spar_resolved")
             and jorvaskr_events is not None
         ):

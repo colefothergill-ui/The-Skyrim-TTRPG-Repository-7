@@ -3,9 +3,9 @@
     "name": "The Companions",
     "description": "Join the ancient warrior guild of Jorrvaskr, earn your place in the Inner Circle, and face the choice of lycanthropy or purity as Kodlak Whitemane's fate hangs in the balance.",
     "quests": {
-      "companions_investigate_jorvaskr": {
+      "companions_investigate_jorrvaskr": {
         "name": "Investigate Jorrvaskr",
-        "quest_id": "companions_investigate_jorvaskr",
+        "quest_id": "companions_investigate_jorrvaskr",
         "quest_giver": "Kodlak Whitemane",
         "description": "You arrive at Jorrvaskr to learn how the Companions live, train, and judge potential recruits before asking to join.",
         "objectives": [

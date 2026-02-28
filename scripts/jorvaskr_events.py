@@ -13,7 +13,7 @@ def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("campaign_clocks", {})
 
 
-def _active_quests(state: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _active_quests(state: Dict[str, Any]) -> List[Any]:
     aq = state.setdefault("active_quests", [])
     if not isinstance(aq, list):
         state["active_quests"] = []
@@ -43,19 +43,38 @@ def _ensure_clock(
 
 
 def _ensure_quest_entry(state: Dict[str, Any], quest_id: str, status: str, note: str) -> None:
-    aq = _active_quests(state)
-    for q in aq:
-        if isinstance(q, dict) and q.get("id") == quest_id:
-            return
-    aq.append({"id": quest_id, "status": status, "note": note})
+    cstate = _companions_state(state)
+    qprog = cstate.setdefault("quest_progress", {})
+    qnotes = cstate.setdefault("quest_notes", {})
+    qprog.setdefault(quest_id, status)
+    qnotes.setdefault(quest_id, note)
 
 
 def _set_quest_status(state: Dict[str, Any], quest_id: str, status: str) -> None:
+    cstate = _companions_state(state)
+    qprog = cstate.setdefault("quest_progress", {})
+    qprog[quest_id] = status
+    key = f"companions:{quest_id}"
     aq = _active_quests(state)
-    for q in aq:
+    if status == "active":
+        if key not in aq:
+            aq.append(key)
+    elif key in aq:
+        aq.remove(key)
+
+
+def _quest_status(state: Dict[str, Any], quest_id: str) -> Optional[str]:
+    cstate = _companions_state(state)
+    qprog = cstate.get("quest_progress", {})
+    if isinstance(qprog, dict) and quest_id in qprog:
+        return str(qprog.get(quest_id))
+    key = f"companions:{quest_id}"
+    for q in _active_quests(state):
+        if isinstance(q, str) and q == key:
+            return "active"
         if isinstance(q, dict) and q.get("id") == quest_id:
-            q["status"] = status
-            return
+            return str(q.get("status", "active"))
+    return None
 
 
 def _companions_state(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -254,16 +273,15 @@ def resolve_kodlak_join_request(state: Dict[str, Any], accepted: bool) -> None:
     cstate["active_quest"] = "companions_proving_honor"
     qprog["companions_proving_honor"] = "active"
 
-    # Promote previously unlocked side quests from locked -> active (if they exist in active_quests)
-    for q in _active_quests(state):
-        if isinstance(q, dict) and q.get("status") == "locked" and q.get("id") in ("companions_honorable_combat", "companions_prey_and_predator"):
-            q["status"] = "active"
+    # Promote previously unlocked side quests from locked -> active.
+    for quest_id in ("companions_honorable_combat", "companions_prey_and_predator"):
+        if _quest_status(state, quest_id) == "locked":
+            _set_quest_status(state, quest_id, "active")
 
     # Ensure Swiftclaw clocks exist if Prey and Predator is active
-    for q in _active_quests(state):
-        if isinstance(q, dict) and q.get("id") == "companions_prey_and_predator" and q.get("status") == "active":
-            _ensure_clock(state, "race_is_on_with_aela", "Race is on with Aela", 5, ["0", "1", "2", "3", "4", "5"])
-            _ensure_clock(state, "tracking_swiftclaw", "Tracking Swiftclaw", 3, ["0", "1", "2", "3"])
+    if _quest_status(state, "companions_prey_and_predator") == "active":
+        _ensure_clock(state, "race_is_on_with_aela", "Race is on with Aela", 5, ["0", "1", "2", "3", "4", "5"])
+        _ensure_clock(state, "tracking_swiftclaw", "Tracking Swiftclaw", 3, ["0", "1", "2", "3"])
 
     # Ensure Honor Proving contracts clock exists (gates Dustman’s Cairn summon)
     _ensure_clock(state, "honor_proving_contracts_done", "Honor Proving — Contracts Done", 2, ["0", "1", "2"])
@@ -299,7 +317,8 @@ def resolve_vilkas_trial(state: Dict[str, Any], pc_won: bool) -> None:
 
     # Record aspect reward as a pending PC update (actual file patch is handled post-session)
     pending = state.setdefault("pending_pc_updates", [])
-    pending.append({"type": "add_aspect", "target": "pc_elitrof_whitemane", "aspect": "Whelp of the Companions"})
+    target_pc_id = state.get("active_pc_id", "pc_elitrof_whitemane")
+    pending.append({"type": "add_aspect", "target": target_pc_id, "aspect": "Whelp of the Companions"})
 
     # Vilkas trust note stored in companions_state (lightweight)
     cstate = _companions_state(state)
@@ -311,11 +330,10 @@ def resolve_vilkas_trial(state: Dict[str, Any], pc_won: bool) -> None:
     # Else if Honorable Combat active -> Farkas escorts.
     # Else -> Vilkas escorts.
     escort = "vilkas"
-    for q in _active_quests(state):
-        if isinstance(q, dict) and q.get("id") == "companions_prey_and_predator" and q.get("status") == "active":
-            escort = "aela"
-        if isinstance(q, dict) and q.get("id") == "companions_honorable_combat" and q.get("status") == "active" and escort != "aela":
-            escort = "farkas"
+    if _quest_status(state, "companions_prey_and_predator") == "active":
+        escort = "aela"
+    elif _quest_status(state, "companions_honorable_combat") == "active":
+        escort = "farkas"
 
     flags["whelps_quarters_escort"] = escort
 

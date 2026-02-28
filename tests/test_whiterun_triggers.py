@@ -13,6 +13,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
 from triggers.whiterun_triggers import whiterun_location_triggers
+import jorvaskr_events
 
 
 def test_plains_district_trigger():
@@ -353,6 +354,43 @@ def test_jorrvaskr_dustmans_summon_when_contract_clock_full():
     assert not any("[SUMMON]" in e for e in second_events), "Expected summon to trigger only once"
 
 
+def test_resolve_vilkas_trial_uses_active_pc_id():
+    """Vilkas trial should target active_pc_id when queuing pending aspect updates."""
+    state = {
+        "active_pc_id": "pc_test_runner",
+        "scene_flags": {},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+    }
+
+    jorvaskr_events.resolve_vilkas_trial(state, pc_won=False)
+
+    pending = state.get("pending_pc_updates", [])
+    assert any(p.get("target") == "pc_test_runner" for p in pending), "Expected pending update target to use active_pc_id"
+
+
+def test_join_request_promotes_locked_sidequests_with_string_active_quests():
+    """Locked side quests in quest_progress should promote cleanly without dict entries in active_quests."""
+    state = {
+        "scene_flags": {},
+        "active_quests": [],
+        "companions_state": {
+            "quest_progress": {
+                "companions_honorable_combat": "locked",
+                "companions_prey_and_predator": "locked",
+            }
+        },
+    }
+
+    jorvaskr_events.resolve_kodlak_join_request(state, accepted=True)
+
+    qprog = state["companions_state"]["quest_progress"]
+    assert qprog["companions_honorable_combat"] == "active"
+    assert qprog["companions_prey_and_predator"] == "active"
+    assert "companions:companions_honorable_combat" in state["active_quests"]
+    assert "companions:companions_prey_and_predator" in state["active_quests"]
+    assert all(isinstance(q, str) for q in state["active_quests"])
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -378,6 +416,8 @@ def run_all_tests():
         test_jorrvaskr_downstairs_phase2_triggers,
         test_jorrvaskr_harbinger_phase2_scene_once,
         test_jorrvaskr_dustmans_summon_when_contract_clock_full,
+        test_resolve_vilkas_trial_uses_active_pc_id,
+        test_join_request_promotes_locked_sidequests_with_string_active_quests,
     ]
     
     passed = 0
