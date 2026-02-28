@@ -26,7 +26,8 @@ FACTION_NAME_MAPPING = {
     "thieves_guild": "thieves_guild",
     "dark_brotherhood": "dark_brotherhood",
     "blades": "blades",
-    "greybeards": "greybeards"
+    "greybeards": "greybeards",
+    "silver_hand": "silver_hand",
 }
 
 # Fate Core skill list for Skyrim
@@ -610,6 +611,13 @@ class SessionZeroManager:
                 "start": "Independent decision",
                 "mission": "Intervene in civil war to protect innocent lives",
                 "description": "Follow the Way of the Voice, seeking peace"
+            },
+            {
+                "faction": "The Silver Hand",
+                "contact": "Lodge commander",
+                "start": "Frost-bitten lodge on the Pale border",
+                "mission": "Decide what 'purity' means among oath-warriors who oppose Jorrvaskr's Circle",
+                "description": "Old Way hunters on the Pale border; anti-curse order"
             }
         ]
         
@@ -705,6 +713,17 @@ class SessionZeroManager:
                 "starting_faction": "greybeards",
                 "key_npc": "arngeir",
                 "location": "High Hrothgar, then Whiterun"
+            },
+            "silver_hand": {
+                "narrative": (
+                    "You begin not in a city hall or guild crypt, but in a frost-bitten lodge on the Pale border.\n"
+                    "The Silver Hand are not bandits here — they are oath-warriors who believe Jorrvaskr's Circle\n"
+                    "betrayed Ysgramor by embracing the beast. Some want cure and restoration; others want purges.\n"
+                    "You are offered a place, but also a burden: to decide what 'purity' actually means."
+                ),
+                "starting_faction": "silver_hand",
+                "key_npc": "silver_hand_commander",
+                "location": "Pale border lodge"
             }
         }
         
@@ -852,6 +871,7 @@ class SessionZeroManager:
         # For neutral alignment, record subfaction and set branching start quest
         if faction_alignment == "neutral" and neutral_subfaction:
             campaign_state["civil_war_state"]["neutral_subfaction"] = neutral_subfaction
+            campaign_state["branching_decisions"]["neutral_subfaction"] = neutral_subfaction  # Mirror for StoryManager compatibility
             if "faction_flags" not in campaign_state:
                 campaign_state["faction_flags"] = {}
             neutral_faction_starts = {
@@ -859,6 +879,7 @@ class SessionZeroManager:
                 "companions": "companions_take_up_arms",
                 "thieves_guild": "tg_a_chance_arrangement",
                 "dark_brotherhood": "db_with_friends_like_these",
+                "silver_hand": "silver_hand_pale_lodge_intro",
             }
             if neutral_subfaction in neutral_faction_starts:
                 campaign_state["branching_decisions"]["neutral_faction_start"] = neutral_faction_starts[neutral_subfaction]
@@ -993,6 +1014,10 @@ class SessionZeroManager:
                 "kodlak_cured": False,
             })
 
+        # Set starting_faction for silver_hand
+        if resolved_faction == "silver_hand":
+            campaign_state["starting_faction"] = "silver_hand"
+
         # Update last updated timestamp
         campaign_state["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
@@ -1024,7 +1049,7 @@ class SessionZeroManager:
         
         # Validate neutral subfaction if specified
         if 'neutral_subfaction' in character and character['neutral_subfaction']:
-            valid_subfactions = ['companions', 'thieves_guild', 'college', 'dark_brotherhood', 'blades', 'greybeards']
+            valid_subfactions = ['companions', 'thieves_guild', 'college', 'dark_brotherhood', 'blades', 'greybeards', 'silver_hand']
             if character['neutral_subfaction'] not in valid_subfactions:
                 errors.append(f"Invalid neutral subfaction: {character['neutral_subfaction']}. Must be one of: {', '.join(valid_subfactions)}")
         
@@ -1330,7 +1355,8 @@ the Battle of Whiterun will shape Skyrim's future.
                     print("2. Thieves Guild (Riften)")
                     print("3. College of Winterhold")
                     print("4. Dark Brotherhood")
-                    sub_choice = input("Enter (1-4): ").strip()
+                    print("5. The Silver Hand")
+                    sub_choice = input("Enter (1-5): ").strip()
                     if sub_choice == "1":
                         neutral_sub = "companions"
                     elif sub_choice == "2":
@@ -1339,8 +1365,10 @@ the Battle of Whiterun will shape Skyrim's future.
                         neutral_sub = "college"
                     elif sub_choice == "4":
                         neutral_sub = "dark_brotherhood"
+                    elif sub_choice == "5":
+                        neutral_sub = "silver_hand"
                     else:
-                        print("Invalid. Please choose 1-4.")
+                        print("Invalid. Please choose 1-5.")
                 print(f"\nParty neutral alignment chosen: {neutral_sub.replace('_', ' ').title()}.\n")
             else:
                 print("⚠️  Invalid choice. Please enter 1, 2, or 3.")
