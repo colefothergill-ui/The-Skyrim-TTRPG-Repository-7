@@ -1,0 +1,62 @@
+{
+  "item_id": "anseis_shehai_of_cold_snow",
+  "name": "Ansei's Shehai of Cold Snow",
+  "type": "artifact",
+  "category": "Shehai (Soul-Sword)",
+  "aspects": [
+    "Bright like a Blue-Clad Star",
+    "Jagged Complexity",
+    "Temperature of the Coldest Snow"
+  ],
+  "manifestation": {
+    "description": "\"Bright like a Blue-Clad Star, baring jagged edges of complexity, and a temperature to match a Sayad of the Coldest Snow.\"",
+    "sensory_notes": [
+      "Light: an icy, blue-white radiance that seems to sharpen shadows",
+      "Cold: breath ghosts instantly; rime prickles on nearby steel",
+      "Texture: edges look faceted, like a frozen wave caught mid-crash"
+    ]
+  },
+  "mechanics": {
+    "artifact_level": 2,
+    "artifact_level_max": 4,
+    "refresh_cost_paid": 2,
+    "weapon": 2,
+    "wielding": {
+      "attack_with": "Will",
+      "defend_with": "Will",
+      "roll_bonus": 2,
+      "rules_text": "The Shehai is the wielder's soul given shape. When the Shehai is manifested, Wayn may Attack and Defend with Will instead of Fight. Those Will rolls gain +2. The blade is Weapon:2."
+    },
+    "stunts": [
+      {
+        "name": "Ephemeral Feint",
+        "status": "unlocked",
+        "cost": "1 Fate Point",
+        "effect": "Because Wayn at-Cindershroud is a Sage of the Sword and Ansei of the Cold Sand, when he imposes a situation aspect via Martial Art Maneuvers, he may spend 1 FP to forego the stunt's optional \"inflict 2 physical stress\" rider and instead immediately make one free Attack with his manifested Shehai against that same target."
+      },
+      {
+        "name": "Flourishing Fanning Strike",
+        "status": "unlocked",
+        "frequency": "once_per_scene",
+        "effect": "Because Wayn's pursuit of Sagecraft in swords rewards speed and style, once per scene he may immediately move up to two zones. For the next two exchanges, he gains +2 to Athletics for vaulting, running, parkour, jumping, or dodging projectiles."
+      },
+      {
+        "name": "Locked Stunt Slot 3",
+        "status": "locked",
+        "unlock": "Significant Milestone (Prereq: Proving Honor or further).",
+        "effect": "TBD at unlock."
+      },
+      {
+        "name": "Locked Stunt Slot 4",
+        "status": "locked",
+        "unlock": "Significant Milestone (Prereq: Finish Companions Storyline for Act I).",
+        "effect": "TBD at unlock."
+      }
+    ]
+  },
+  "tags": ["artifact", "shehai", "soul_sword", "redguard", "ansei", "wayn"],
+  "acquisition": {
+    "method": "Born from — manifested during Session Zero character creation.",
+    "notes": "Costs 2 Refresh. Artifact Weapon Level 2/4. Tracked via shehai_cold_snow_awakening clock."
+  }
+}
