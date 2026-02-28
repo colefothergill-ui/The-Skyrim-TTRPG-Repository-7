@@ -441,6 +441,12 @@ def resolve_kodlak_join_request(state: Dict[str, Any], accepted: bool) -> None:
     if not accepted:
         return
 
+    # Guard: companions_investigate_jorrvaskr must be active or completed
+    # before Proving Honor can be activated (Phase 1 spec gate).
+    investigate_status = _quest_status(state, "companions_investigate_jorrvaskr")
+    if investigate_status not in ("active", "completed"):
+        return
+
     # Activate Proving Honor in companions_state if present.
     cstate = _companions_state(state)
     qprog = cstate.setdefault("quest_progress", {})
