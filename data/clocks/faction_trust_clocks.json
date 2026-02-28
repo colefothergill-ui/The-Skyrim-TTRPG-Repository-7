@@ -186,10 +186,10 @@
           "final_judgment_completed": "+4"
         },
         "setback_triggers": {
-          "embrace_beast_blood": "-10 (Irreversible)",
+          "accept_beast_blood": "-10 (Irreversible)",
           "aid_circle_secretly": "-3",
           "kill_innocent_suspected_cursed": "-2",
-          "betray_silver_hand": "-10",
+          "betray_silver_hand": "-10 (Irreversible)",
           "publicly_expose_silver_hand": "-2"
         },
         "trust_benefits": {
@@ -218,7 +218,7 @@
           "companions_if_lycanthrope",
           "werewolf_form"
         ],
-        "notes": "Trust can be earned through either restorative or purger choices, but those paths affect internal politics and which NPCs become allies."
+        "notes": "Trust can be earned through either restorative or purger choices, but those paths affect internal politics and which NPCs become allies. The incompatible_with list is GM guidance only — no runtime enforcement exists."
       },
       "thieves_guild_trust": {
         "faction": "Thieves Guild",
