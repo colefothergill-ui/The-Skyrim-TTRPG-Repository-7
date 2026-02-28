@@ -23,24 +23,147 @@
         { "text": "Crude wolf-pelt cloak (aspect: 'Hunter's Mask')", "weight": 1 }
       ]
     },
-    "civil_war_field": {
-      "name": "Civil War - Battlefield Finds",
+    "whiterun_creature_scavenged": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 8, "text": "Wolf pelt (common); stained with tundra mud" },
+        { "weight": 6, "text": "Sabre cat tooth; chipped" },
+        { "weight": 7, "text": "Bear claw; cracked at the tip" },
+        { "weight": 10, "text": "A handful of bones + sinew (crafting junk)" },
+        { "weight": 7, "text": "Vial of animal fat (lamp oil / alchemy base)" },
+        { "weight": 6, "text": "Small coin pouch: 6–18 septims" },
+        { "weight": 5, "text": "Half-ruined traveler cloak (counts as an advantage once if repaired)" },
+        { "weight": 4, "text": "Minor alchemy bundle: tundra cotton + lavender" },
+        { "weight": 3, "text": "Crude charm on leather cord (minor ward vs fear, one use)" },
+        { "weight": 2, "text": "Map scrap: 'giant camp — west of the road'" }
+      ]
+    },
+    "whiterun_bandit_cache_minor": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "Coin pouch: 12–40 septims" },
+        { "weight": 8, "text": "Lockpicks (1d6), bent but usable" },
+        { "weight": 7, "text": "Cheap mead + stale bread (ration pack)" },
+        { "weight": 6, "text": "Iron dagger (serviceable)" },
+        { "weight": 5, "text": "Hide bracers (poor fit)" },
+        { "weight": 4, "text": "Stolen trinket (necklace / ring), suspiciously familiar" },
+        { "weight": 3, "text": "Minor poison vial (one dose)" },
+        { "weight": 2, "text": "Unsigned bounty note: 'Greymane boy — watch the gates'" },
+        { "weight": 2, "text": "Shabby cloak with a hidden pocket (create an advantage once)" },
+        { "weight": 1, "text": "Small sapphire (fence bait)" }
+      ]
+    },
+    "whiterun_bandit_cache_major": {
+      "rolls": 3,
+      "entries": [
+        { "weight": 10, "text": "Coin pouch: 40–110 septims" },
+        { "weight": 6, "text": "Steel weapon (choose: sword / axe / mace), notched" },
+        { "weight": 6, "text": "Chainmail scraps (can be crafted into 1 armor upgrade)" },
+        { "weight": 5, "text": "Potion bundle: 1 healing + 1 stamina (minor)" },
+        { "weight": 4, "text": "Lockbox key (matches a nearby chest)" },
+        { "weight": 4, "text": "Jewelry: silver ring with carved knotwork" },
+        { "weight": 3, "text": "Spell tome (minor): Flames / Healing / Courage (GM pick)" },
+        { "weight": 2, "text": "Moonstone shard (enchanting reagent)" },
+        { "weight": 2, "text": "Ledger: 'deliveries to Whiterun — paid in white silk'" },
+        { "weight": 1, "text": "Leveled enchanted trinket (minor; GM pick)" }
+      ]
+    },
+    "whiterun_barrow_reliquary": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "Ancient coins (worth 15–45 septims to a collector)" },
+        { "weight": 8, "text": "Nordic urn beads + bone dice" },
+        { "weight": 7, "text": "Draugr weapon (ancient; shoddy unless restored)" },
+        { "weight": 6, "text": "Salt pile + embalming resin (alchemy reagent)" },
+        { "weight": 5, "text": "Rune-scratched amulet (minor ward once per session)" },
+        { "weight": 4, "text": "Gem (common): garnet / amethyst" },
+        { "weight": 3, "text": "Word-wall rubbing (lore clue; not a shout in this campaign)" },
+        { "weight": 2, "text": "Draugr commander insignia (sells to scholars)" },
+        { "weight": 2, "text": "Charm: Skyforge heat (advantage on one craft roll)" },
+        { "weight": 1, "text": "Leveled enchanted weapon (ancient; GM pick)" }
+      ]
+    },
+    "whiterun_giant_camp_haul": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "Mammoth cheese (valuable to the right buyer)" },
+        { "weight": 8, "text": "Giant's toe (rare alchemy; gross)" },
+        { "weight": 7, "text": "Bundle of oversized bones (crafting; bulky)" },
+        { "weight": 6, "text": "Tusk fragment (ivory; 25–60 septims)" },
+        { "weight": 5, "text": "Crude giant fetishes (lore clue)" },
+        { "weight": 4, "text": "Stolen farmer lockbox: 20–80 septims" },
+        { "weight": 3, "text": "Battered shield (repairable)" },
+        { "weight": 2, "text": "Silver necklace tangled in fur" },
+        { "weight": 2, "text": "Map marker: watchtower — smoke at dusk" },
+        { "weight": 1, "text": "Odd relic: smooth black stone (Thalmor interest)" }
+      ]
+    },
+    "whiterun_hidden_treasure_minor": {
       "rolls": 1,
       "entries": [
-        { "text": "Officer's signet or orders (advantage: 'Chain of Command')", "weight": 2 },
-        { "text": "Spare rations and bandages (clear 1 stress after scene)", "weight": 3 },
-        { "text": "Captured banner (compel bait and morale tool)", "weight": 2 },
-        { "text": "Throwing axe / short spear (Weapon:1 for one scene)", "weight": 2 },
-        { "text": "Letter implying Thalmor interest (story hook)", "weight": 1 }
+        { "weight": 10, "text": "Buried jar: 25–70 septims + a child's toy" },
+        { "weight": 8, "text": "Loose floorboard stash: 1 minor potion + 12–30 septims" },
+        { "weight": 7, "text": "Loose brick: small gem (garnet/amethyst)" },
+        { "weight": 5, "text": "Shrine offering bowl: silver necklace (tarnished)" },
+        { "weight": 4, "text": "Hidden note: rumor of executions ordered 'for morale'" },
+        { "weight": 3, "text": "Encrypted letter fragment (starts Hand Behind the Banner trail)" }
+      ]
+    },
+    "whiterun_hidden_treasure_major": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "Sealed coffer: 120–250 septims" },
+        { "weight": 7, "text": "Leveled enchanted weapon (minor-to-mid; GM pick)" },
+        { "weight": 6, "text": "Skyforge scrap ingot (one craft upgrade)" },
+        { "weight": 4, "text": "Letter cache: leverage on a Whiterun notable" },
+        { "weight": 3, "text": "Thalmor cipher ledger (major progress for Hand Behind the Banner)" },
+        { "weight": 2, "text": "Unique relic (campaign artifact; GM define)" }
+      ]
+    },
+    "whiterun_battlefield_minor": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "Broken arrow bundle (1d6 salvageable)" },
+        { "weight": 8, "text": "Damaged shield (repairable)" },
+        { "weight": 7, "text": "Coin pouch: 8–28 septims" },
+        { "weight": 6, "text": "Soldier ration + water skin" },
+        { "weight": 5, "text": "Bloodstained orders (intel; create advantage once)" },
+        { "weight": 4, "text": "Minor healing draught" },
+        { "weight": 3, "text": "Identity token (social leverage)" },
+        { "weight": 2, "text": "Officer insignia (sells to collectors)" },
+        { "weight": 1, "text": "Leveled enchanted trinket (minor)" }
+      ]
+    },
+    "whiterun_battlefield_major": {
+      "rolls": 3,
+      "entries": [
+        { "weight": 10, "text": "War chest spill: 60–160 septims" },
+        { "weight": 8, "text": "Steel weapon (serviceable) + whetstone" },
+        { "weight": 6, "text": "Enchanted weapon (leveled; GM pick)" },
+        { "weight": 5, "text": "Armor piece (repairable) → 1 armor upgrade" },
+        { "weight": 4, "text": "Officer documents: troop movements (major intel)" },
+        { "weight": 3, "text": "Thalmor-marked seal hidden in satchel (trail to puppet master)" },
+        { "weight": 2, "text": "Potion kit (2 minor + 1 moderate)" },
+        { "weight": 1, "text": "Unique trophy (campaign-specific)" }
+      ]
+    },
+    "civil_war_field": {
+      "rolls": 2,
+      "entries": [
+        { "weight": 10, "text": "A handful of septims (10–30)" },
+        { "weight": 8, "text": "Iron/steel scraps (crafting)" },
+        { "weight": 6, "text": "Battle map scrap (intel)" },
+        { "weight": 4, "text": "Minor potion" },
+        { "weight": 2, "text": "Common gem" }
       ]
     },
     "officer_trophy": {
-      "name": "Officer Trophy",
       "rolls": 1,
       "entries": [
-        { "text": "Enchanted blade: 'Winter-Bitten Edge' (invoke once to add +2 vs undead/ice)", "weight": 1 },
-        { "text": "Silver-inlaid greatsword (Weapon:2 vs beasts, attention magnet)", "weight": 1 },
-        { "text": "Commander's map case (advantage: 'Know the Passes')", "weight": 2 }
+        { "weight": 10, "text": "Officer insignia + sealed orders (intel)" },
+        { "weight": 6, "text": "Fine weapon (non-enchanted) with maker's mark" },
+        { "weight": 3, "text": "Leveled enchanted weapon (GM pick)" },
+        { "weight": 1, "text": "Blackmail letter (political leverage)" }
       ]
     }
   }

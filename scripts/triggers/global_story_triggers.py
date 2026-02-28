@@ -36,6 +36,15 @@ def _companions_qprog(state: Dict[str, Any]) -> Dict[str, Any]:
     return qp if isinstance(qp, dict) else {}
 
 
+def _active_quests(state: Dict[str, Any]) -> List[Any]:
+    aq = state.get("active_quests")
+    if isinstance(aq, list):
+        return aq
+    # Normalize: ensure campaign_state['active_quests'] is always a list.
+    state["active_quests"] = []
+    return state["active_quests"]
+
+
 def _is_settlement(loc_lower: str) -> bool:
     return any(k in loc_lower for k in SETTLEMENT_KEYWORDS)
 
