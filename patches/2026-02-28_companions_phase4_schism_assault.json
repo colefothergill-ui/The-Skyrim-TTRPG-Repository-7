@@ -1,0 +1,28 @@
+{
+  "patch_id": "2026-02-28_companions_phase4_schism_assault",
+  "created_at": "2026-02-28",
+  "type": "quest_restructure_phase",
+  "summary": "Phase 4+: Deprecate companions_purity_path_ignites; add Circle Revelation -> Beast Blood/Purity branch -> Tradition vs New Way schism arc -> Silver Hand destruction side-plots -> staged Jorrvaskr assault set-piece -> Ysgramor Funeral Rites finale. Three new clocks: companions_schism_tradition_vs_newway (0/6), companions_whelps_polarization (0/4), silver_hand_assault_preparation (0/6).",
+  "changes": [
+    {
+      "path": "data/quests/companions_questline.json",
+      "change": "Deprecate companions_purity_path_ignites (save-state compatibility retained, follow_up updated to companions_circle_revelation). Add 10 Phase 4 quest nodes: companions_circle_revelation, companions_pack_run_night, companions_oath_of_purity, companions_schism_pressure, companions_schism_breakpoint, companions_silver_hand_intel, companions_silver_hand_strike_gallows_rock, companions_silver_hand_endgame, companions_jorvaskr_assault, companions_funeral_rites."
+    },
+    {
+      "path": "data/clocks/companions_schism_clocks.json",
+      "change": "New file. Three schism-arc clocks: companions_schism_tradition_vs_newway (0/6), companions_whelps_polarization (0/4), silver_hand_assault_preparation (0/6). Each includes story hooks, advancement/setback triggers, and completion effects."
+    },
+    {
+      "path": "data/encounters/companions_jorvaskr_assault.json",
+      "change": "New file. Encounter scaffold for the staged Jorrvaskr assault: three acts (Outer Yard -> Grand Hall -> Harbinger's Chamber), enemy mix, defense pool with named NPC lethal risks, save gates, aftermath flags, skip condition."
+    },
+    {
+      "path": "scripts/companions_schism_events.py",
+      "change": "New file. Event script emitting schism scenes keyed to state flags/clocks and the Beast Blood/Purity decision. Functions: circle_revelation_scene_once, resolve_circle_revelation, pack_run_night_scene_once, resolve_pack_run_night, oath_of_purity_scene_once, resolve_oath_of_purity, schism_secrecy_argument_scene, schism_whelp_recruitment_scene, resolve_schism_scene, resolve_whelp_recruitment, schism_elder_ultimatum_scene, maybe_trigger_schism_breakpoint, resolve_schism_breakpoint, schism_triggers."
+    },
+    {
+      "path": "scripts/jorvaskr_assault_events.py",
+      "change": "New file. Assault event script running the three-act assault in stages and managing the Jorrvaskr Defense Pool group consequence track. Functions: get_defense_pool_summary, apply_defender_consequence, attempt_save_gate, assault_act1_outer_yard, assault_act2_grand_hall, assault_act3_commanders_gambit, resolve_assault_act, resolve_assault_finale, jorrvaskr_assault_triggers."
+    }
+  ]
+}

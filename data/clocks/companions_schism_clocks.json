@@ -1,0 +1,80 @@
+{
+  "companions_schism_clocks": {
+    "description": "Tracks the Tradition vs New Way schism arc and the Silver Hand's assault preparation in the Phase 4 Companions storyline.",
+    "last_updated": "2026-02-28",
+    "clocks": {
+      "companions_schism_tradition_vs_newway": {
+        "name": "Tradition vs New Way",
+        "description": "Tracks the ideological split between the Circle's Tradition faction (Skjor, Aela) and the New Way / Purity faction (Kodlak, Vilkas, Farkas). Completion triggers companions_schism_breakpoint automatically.",
+        "current_progress": 0,
+        "total_segments": 6,
+        "completion_effect": "Schism breakpoint fires; if PC has not chosen a side, faction civil war branch triggers.",
+        "advancement_triggers": [
+          "Secrecy enforced between Circle members (+1)",
+          "Violence erupts between Companions members (+1)",
+          "Public humiliation of one faction by the other (+1)",
+          "Whelp actively recruited to a faction (+1 per recruitment, max 2)",
+          "Elder ultimatum issued (Kodlak or Skjor draws a line) (+1)"
+        ],
+        "setback_triggers": [
+          "PC successfully mediates a schism scene (-1)",
+          "Shared threat (Silver Hand cell uncovered) momentarily unites factions (-1)"
+        ],
+        "story_hooks": [
+          "At 2/6: Whelps notice the tension; Ria and Torvar take sides quietly.",
+          "At 4/6: Skjor publicly challenges the New Way in the Grand Hall.",
+          "At 6/6: Breakpoint triggers — hall-moot called immediately."
+        ]
+      },
+      "companions_whelps_polarization": {
+        "name": "Whelps Polarization",
+        "description": "Tracks how many whelps have been forced to choose a side in the schism. Completion means the whelps have formed two camps and a mini civil war among recruits becomes likely.",
+        "current_progress": 0,
+        "total_segments": 4,
+        "completion_effect": "Sets whelps_polarized=true; increases likelihood of internal_civil_war at breakpoint; reduces Jorrvaskr defense pool by 1 if assault occurs.",
+        "advancement_triggers": [
+          "Athis commits to Tradition or New Way (+1)",
+          "Ria commits to Tradition or New Way (+1)",
+          "Torvar commits to Tradition or New Way (+1)",
+          "Njada Stonearm commits to Tradition or New Way (+1)"
+        ],
+        "setback_triggers": [
+          "PC bonds with a whelp and convinces them to stay neutral (-1)"
+        ],
+        "story_hooks": [
+          "At 2/4: Athis and Njada stop eating together; the hall is split at the tables.",
+          "At 4/4: Ria confronts Torvar over his choice; a fistfight breaks out in the yard."
+        ]
+      },
+      "silver_hand_assault_preparation": {
+        "name": "Silver Hand: Assault Preparation",
+        "description": "Tracks how ready the Silver Hand is to launch their assault on Jorrvaskr. Reaching 6/6 triggers companions_jorvaskr_assault as a staged event. Can be reduced by destroying cells and containing intel leaks.",
+        "current_progress": 0,
+        "total_segments": 6,
+        "completion_effect": "companions_jorvaskr_assault triggers immediately. If already in companions_silver_hand_endgame, the assault begins mid-quest.",
+        "advancement_triggers": [
+          "Silver Hand cell left alive after companions_silver_hand_intel (+1 per cell, max 2)",
+          "Public werewolf incident implicating the Companions (+1)",
+          "Stealth or information-containment failure during intel phase (+1)",
+          "Gallows Rock commander escapes during companions_silver_hand_strike_gallows_rock (+1)",
+          "Skjor killed at Gallows Rock (Silver Hand emboldened) (+1)",
+          "Internal civil war flag set (Silver Hand exploits the division) (+1)"
+        ],
+        "setback_triggers": [
+          "Silver Hand cell destroyed during intel phase (-1 per cell)",
+          "Supply cache destroyed (-1)",
+          "Sympathizer inside Whiterun exposed and removed (-1)",
+          "Gallows Rock fully cleared and commander killed (-2)",
+          "All cells wiped during endgame (clock resets to 0, assault skipped)"
+        ],
+        "story_hooks": [
+          "At 2/6: A Silver Hand scout is spotted near Whiterun's gates.",
+          "At 4/6: Eorlund Gray-Mane reports that someone has been asking about the Skyforge layout.",
+          "At 5/6: A Companions whelp is found beaten outside the city; Silver Hand warning attached.",
+          "At 6/6: Assault begins — fire companions_jorvaskr_assault."
+        ],
+        "gm_notes": "This clock is the key pacing lever for Phase 4. A cautious, thorough group can reduce it to 0 and skip the assault entirely. A reckless group or one that ignores intel will force the assault. Either outcome is valid."
+      }
+    }
+  }
+}
