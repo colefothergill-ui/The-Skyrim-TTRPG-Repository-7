@@ -7,10 +7,10 @@
   "level": 1,
   "aspects": {
     "high_concept": "Master Swordsmen & Martial Artist - The Half-Breed Sayad Sage (Identity).",
-    "trouble": "WANTED: DEAD OR ALIVE - The Half-Breed Bandit of Bravil (Empire Hunted).",
+    "trouble": "WANTED: DEAD OR ALIVE - The Mythless Bandit of Bravil (Empire Hunted).",
     "other_aspects": [
       "The Ansei of the Cold Sand (Title).",
-      "Dry Wit, Smart Mouth.",
+      "Dry Wit, Smart Mouth (Personality / Reputation).",
       "Master Martial Artist. (Combat Prowess)."
     ]
   },
@@ -68,10 +68,10 @@
     "Martial Art Maneuvers: Because Wayn is a Sage of the Martial Art, having trained with the Monastic Khajiit,the Dunmer Marshmerrow, and within his own home of Hammerfell studying the Book of Circles with exceedinly profound insight to the point he could manifest a Shehai. When it comes to close quarter's defense he usually need only let his opponents momentum be their downfall. When defending against one enemy within the same zone, and with no other attacking him, Wayn receieves a bonus of +2 to Defend using Fight. On SWS he may waive the boost in exchange for imposing one of three Situation effects on his target for 2 exchanges: 'Weapon Stolen', 'Swordarm taken out - Pressure Point Struck!', 'Throat chopped - Can't breath!'. If he spends 1 FP he may also inflict two physical stress upon his target affected by one of those situation aspects.",
     "Mental Mastery: Because Wayn has complete control over his Mind from years of disciplining it through his training at becoming an Ansei. When he sets his mind upon battle, there's little that can detour his objective. Once per Scene Wayn can Create Advantage with Will focusing in on his opponents, receiving a +2 Bonus on the 4dF, placing the Scene Aspect: 'Deadly Calm' (2 free Invokes). On SWS the first Physical Mild Consequence he takes can be ignored and soaked, as if having an additional box to check."
   ],
-  "refresh": 3,
-  "fate_points": 3,
+  "refresh": 1,
+  "fate_points": 1,
   "equipment": {
-    "weapons": [],
+    "weapons": ["anseis_shehai_of_cold_snow"],
     "armor": [],
     "items": []
   },
@@ -81,7 +81,27 @@
   "relationships": {},
   "quests": [],
   "session_history": [],
-  "notes": "Created during Session Zero",
+  "notes": "Created during Session Zero\nRefresh spent: 2 (Extra) — Ansei's Shehai of Cold Snow (Artifact Weapon, Level 2/4).",
+  "visual_profile_ref": "data/pcs/visual_profiles/wayn_visual.json",
+  "portrait_path": "docs/assets/pcs/wayn_manifesting.png",
+  "extras": [
+    {
+      "id": "anseis_shehai_of_cold_snow",
+      "type": "artifact_weapon",
+      "name": "Ansei's Shehai of Cold Snow",
+      "ref": "data/items/anseis_shehai_of_cold_snow.json",
+      "level_current": 2,
+      "level_max": 4,
+      "refresh_cost": 2,
+      "stunts_unlocked": ["Ephemeral Feint", "Flourishing Fanning Strike"],
+      "stunts_locked": [
+        "Locked Stunt Slot 3 (Significant Milestone: Proving Honor or further.)",
+        "Locked Stunt Slot 4 (Significant Milestone: Finish Companions Storyline for Act I.)"
+      ],
+      "drawback": "Summoning more than twice per two scenes inflicts 2 mental stress; further summons force Mild mental consequence: 'Weary Soul'.",
+      "tracking_clock": "shehai_cold_snow_awakening"
+    }
+  ],
   "faction_alignment": "neutral",
   "starting_faction": "companions",
   "backstory_tags": [
