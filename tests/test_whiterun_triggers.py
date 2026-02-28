@@ -391,6 +391,45 @@ def test_join_request_promotes_locked_sidequests_with_string_active_quests():
     assert all(isinstance(q, str) for q in state["active_quests"])
 
 
+def test_dustmans_briefing_prefers_prey_and_predator_branch():
+    """When Prey and Predator is completed, briefing should assign Aela and Skjor-led branch."""
+    state = {
+        "scene_flags": {},
+        "clocks": {
+            "honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}
+        },
+        "quests": {"active": [], "completed": ["companions_prey_and_predator"], "failed": []},
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+    }
+
+    events = whiterun_location_triggers("jorrvaskr_harbinger_room", state)
+
+    assert any("Skjor leads the briefing" in e for e in events)
+    assert state["scene_flags"].get("dustmans_partner") == "aela"
+    assert state["companions_state"].get("proving_honor_assigned_partner") == "aela"
+    assert any(isinstance(c, dict) and c.get("npc_id") == "aela" for c in state["companions"]["active_companions"])
+
+
+def test_dustmans_briefing_honorable_combat_branch_assigns_vilkas():
+    """When Honorable Combat is completed and Prey branch is not available, Vilkas is assigned."""
+    state = {
+        "scene_flags": {"vilkas_trial_pc_won": True},
+        "clocks": {
+            "honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}
+        },
+        "quests": {"active": [], "completed": ["companions_honorable_combat"], "failed": []},
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+    }
+
+    lines = jorvaskr_events.dustmans_cairn_briefing_scene_once(state)
+
+    assert any("Kodlak leads the briefing personally" in e for e in lines)
+    assert state["scene_flags"].get("dustmans_partner") == "vilkas"
+    assert any("You’ve got hands. Now show you’ve got judgment." in e for e in lines)
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -418,6 +457,8 @@ def run_all_tests():
         test_jorrvaskr_dustmans_summon_when_contract_clock_full,
         test_resolve_vilkas_trial_uses_active_pc_id,
         test_join_request_promotes_locked_sidequests_with_string_active_quests,
+        test_dustmans_briefing_prefers_prey_and_predator_branch,
+        test_dustmans_briefing_honorable_combat_branch_assigns_vilkas,
     ]
     
     passed = 0
