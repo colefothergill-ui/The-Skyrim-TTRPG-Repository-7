@@ -1,0 +1,27 @@
+{
+  "encounter_id": "companions_dustmans_cairn_proving_honor",
+  "name": "Proving Honor: Dustman’s Cairn",
+  "type": "Dungeon Crawl (Exploration -> Combat -> Boss)",
+  "recommended_rooms": [
+    "dustmans_entrance",
+    "dustmans_anteroom",
+    "dustmans_hall_of_axes",
+    "dustmans_ossuary",
+    "dustmans_silver_hand_camp",
+    "dustmans_deep_crypt",
+    "dustmans_word_wall"
+  ],
+  "enemy_mix": [
+    "Draugr (mob)",
+    "Draugr Guardian (elite)",
+    "Silver Hand Initiates (mob)",
+    "Named Silver Hand Antagonist (cutscene + skirmish)"
+  ],
+  "scene_aspects": [
+    "Cold Air Like a Tomb’s Breath",
+    "Rust and Bone-Dust",
+    "Old Traps That Still Bite",
+    "Silver Charms on Fresh Corpses"
+  ],
+  "gm_notes": "The Silver Hand should feel organized and ideological, not just bandits. The named antagonist should show intent, then escape or fall based on table preference."
+}
