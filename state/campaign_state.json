@@ -1,73 +1,52 @@
 {
   "campaign_id": "skyrim_fate_core",
   "campaign_name": "Skyrim: Civil War and Hidden Hands",
-  "created_at": "2026-02-20",
-  "started_date": "2026-02-20",
+  "created_at": "2026-02-28",
+  "started_date": null,
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "act1_scene_016_ysgramors_tomb_reliquary_after_rite",
-  "active_hold": "Winterhold",
-  "session_zero_completed": true,
-  "session_count": 4,
-  "active_pc_id": "pc_elitrof_whitemane",
-  "pcs": {
-    "pc_elitrof_whitemane": {
-      "name": "Elitrof Whitemane",
-      "player": "Cole",
-      "race": "Nord",
-      "standing_stone": "The Lord Stone",
-      "faction_alignment": "neutral"
-    }
-  },
-  "npc_first_impressions": {
-    "justiciar_varyn": {},
-    "nazeem": {},
-    "whiterun_guard_imposter": {},
-    "test_companion": {
-      "pc_elitrof_whitemane": {
-        "timestamp": "2026-02-21T11:54:41.015405",
-        "disposition": "neutral",
-        "line": "He moves like a practiced predator, heavy cloak of 'bear' hide rolling off his shoulders, eyes measuring the room the way hunters measure snow.",
-        "source": "default",
-        "recognition_tags": [
-          "nord",
-          "companions",
-          "jorrvaskr",
-          "warrior-poet",
-          "dual-wield",
-          "skyforge-steel",
-          "ysgramor-etching",
-          "dragon-etching",
-          "crimson-mane",
-          "werebear-cloak",
-          "talos-amulet",
-          "skaal",
-          "solstheim",
-          "lord-stone"
-        ]
-      }
-    }
-  },
+  "current_scene_id": null,
+  "active_hold": "Whiterun",
+  "starting_location": "Whiterun",
+  "session_zero_completed": false,
+  "session_count": 0,
+  "active_pc_id": null,
+  "active_pc": null,
+  "pcs": {},
+  "player_characters": [],
+  "npc_first_impressions": {},
+  "npc_first_impressions_legacy": {},
   "faction_trust": {},
+  "faction_relationships": {
+    "companions": 0,
+    "silver_hand": 0,
+    "imperial_legion": 0,
+    "stormcloaks": 0,
+    "college_of_winterhold": 0,
+    "thieves_guild": 0,
+    "dark_brotherhood": 0,
+    "greybeards": 0,
+    "blades": 0,
+    "thalmor": 0
+  },
   "active_quests": [],
   "completed_quests": [],
+  "failed_quests": [],
+  "quests": {
+    "active": [],
+    "completed": [],
+    "failed": []
+  },
   "quest_state": {
-    "main": {
-      "current": "battle_of_whiterun",
-      "status": "locked"
-    },
-    "civil_war": {
-      "current": "battle_of_whiterun",
-      "status": "locked"
-    },
-    "companions": {
-      "current": "companions_purity_path_ignites",
-      "status": "active"
-    }
+    "main": { "current": null, "status": "not_started" },
+    "civil_war": { "current": null, "status": "not_started" },
+    "companions": { "current": null, "status": "not_started" },
+    "college": { "current": null, "status": "not_started" },
+    "silver_hand": { "current": null, "status": "not_started" }
   },
   "civil_war_state": {
     "player_alliance": "neutral",
-    "battle_of_whiterun_status": "approaching",
+    "battle_of_whiterun_status": "not_started",
     "battle_of_whiterun_stage": 0,
     "battle_of_whiterun_faction": null,
     "battle_of_whiterun_companion": null,
@@ -84,10 +63,13 @@
       "current": 0,
       "max": 6,
       "notes": "Ticks during set-pieces; resolves into outcomes."
-    }
+    },
+    "civil_war_eligible": false,
+    "civil_war_locked_reason": "incomplete_faction_intro"
   },
   "branching_decisions": {
-    "neutral_subfaction": "companions",
+    "neutral_subfaction": null,
+    "neutral_faction_start": null,
     "civil_war_stance": null,
     "jarl_balgruuf_support": null,
     "thalmor_embassy_approach": null,
@@ -96,343 +78,72 @@
     "battle_of_whiterun_choice": null
   },
   "main_quest_state": {
-    "post_alduin_timeline": true,
-    "dragon_crisis_resolved": true,
-    "blades_status": "reformed",
-    "greybeards_relations": "respectful",
+    "post_alduin_timeline": false,
+    "dragon_crisis_resolved": false,
+    "blades_status": "inactive",
+    "greybeards_relations": "neutral",
     "dragon_souls_absorbed": 0,
-    "shouts_learned": ["Fire Breath (Yol)", "Elemental Fury (Su Grah Dun)", "Become Ethereal (Feim)"],
+    "shouts_learned": [],
     "greybeards_training": false,
-    "civil_war_involvement": true,
-    "timeline_notes": "Campaign occurs after Alduin's defeat. Dragon crisis has ended, focus is on civil war and Companions."
+    "civil_war_involvement": false,
+    "timeline_notes": ""
   },
   "thalmor_arc": {
-    "thalmor_awareness_of_party": "high",
+    "thalmor_awareness_of_party": "none",
     "embassy_infiltrated": false,
     "elenwen_disposition": "neutral",
-    "thalmor_schemes_discovered": [
-      "justiciar_varyn_captured_and_maimed",
-      "whiterun_talos_shrine_sting_exposed"
-    ],
-    "active_plots": [
-      {
-        "plot_id": "undermine_empire",
-        "description": "Thalmor seeks to prolong civil war to weaken both sides",
-        "progress": 0,
-        "clock_segments": 8
-      },
-      {
-        "plot_id": "eliminate_talos_worship",
-        "description": "Continue persecution of Talos worshippers",
-        "progress": 0,
-        "clock_segments": 10
-      },
-      {
-        "plot_id": "retaliate_whiterun_justiciar",
-        "description": "Thalmor retaliate for the capture and maiming of a Justiciar in Whiterun Hold; they will attempt to control the narrative and punish Talos sympathizers.",
-        "progress": 0,
-        "clock_segments": 8
-      }
-    ]
+    "thalmor_schemes_discovered": [],
+    "active_plots": []
   },
   "companions": {
     "active_companions": [],
-    "available_companions": [
-      {
-        "npc_id": "ria",
-        "name": "Ria",
-        "status": "available",
-        "loyalty": 55,
-        "location": "Jorrvaskr",
-        "recruitment_condition": "After Take Up Arms; speak to her in the mead hall",
-        "faction_affinity": "companions"
-      },
-      {
-        "npc_id": "torvar",
-        "name": "Torvar",
-        "status": "available",
-        "loyalty": 50,
-        "location": "Jorrvaskr",
-        "recruitment_condition": "After Take Up Arms; agree to 'Hall Law' discipline",
-        "faction_affinity": "companions"
-      },
-      {
-        "npc_id": "athis",
-        "name": "Athis",
-        "status": "available",
-        "loyalty": 45,
-        "location": "Jorrvaskr",
-        "recruitment_condition": "After Take Up Arms; earn his respect (spar or dialogue)",
-        "faction_affinity": "companions"
-      },
-      {
-        "npc_id": "njada_stonearm",
-        "name": "Njada Stonearm",
-        "status": "available",
-        "loyalty": 35,
-        "location": "Jorrvaskr",
-        "recruitment_condition": "After Take Up Arms; pass her Trial by Combat / resolve rivalry",
-        "faction_affinity": "companions"
-      }
-    ],
+    "available_companions": [],
     "dismissed_companions": [],
     "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": "companions_purity_path_ignites",
+    "active_quest": null,
     "completed_quests": [],
-    "quest_progress": {
-      "take_up_arms": "active",
-      "companions_proving_honor": "completed",
-      "contract_talos_shrine": "completed",
-      "contract_chillfurrow_wolves": "completed",
-      "contract_pelagia_giant": "completed",
-      "companions_inner_circle_rites": "completed",
-      "companions_kodlak_cure_chain": "completed",
-      "companions_purity_path_ignites": "active"
-    },
-    "embraced_curse": false,
+    "quest_progress": {},
+    "embraced_curse": null,
     "skjor_alive": true,
-    "kodlak_cured": true,
-    "vilkas_cured": true,
-    "farkas_cured": true,
+    "kodlak_cured": false,
+    "vilkas_cured": false,
+    "farkas_cured": false,
     "glenmoril_heads_remaining": 0,
     "cure_targets_remaining": [],
-    "cure_chain_completed": true,
-    "circle_cleansed": ["Kodlak", "Vilkas", "Farkas"],
-    "circle_remaining_werewolves": ["Aela", "Skjor"],
-    "harbingership_succession_hint": "Kodlak privately signaled Elitrof as a future Harbinger candidate; official naming deferred.",
-    "circle_secret_known_to_pc": {
-      "pc_elitrof_whitemane": true
-    },
-    "circle_secret_policy": {
-      "kodlak_policy": "Revealed in Underforge; Elitrof swore Oath of Silence.",
-      "farkas_vilkas_policy": "Oath-bound; support Elitrof's purity path."
-    }
+    "cure_chain_completed": false,
+    "circle_cleansed": [],
+    "circle_remaining_werewolves": ["Kodlak", "Skjor", "Aela", "Farkas", "Vilkas"],
+    "harbingership_succession_hint": null,
+    "circle_secret_known_to_pc": {},
+    "circle_secret_policy": {},
+    "inner_circle_trust": {}
+  },
+  "college_state": {
+    "active_quest": null,
+    "completed_quests": [],
+    "quest_progress": {},
+    "eye_instability": 0,
+    "ancano_suspicion": 0,
+    "internal_politics": 0
+  },
+  "silver_hand_state": {
+    "active_quest": null,
+    "completed_quests": [],
+    "quest_progress": {},
+    "silver_hand_joined": false,
+    "silver_hand_path": null
   },
   "relationship_inference": {},
-  "scene_flags": {
-    "scene_001_jorrvaskr_homecoming_completed": true,
-    "scene_001_trouble_compel_taken_public_talos_defiance": true,
-    "scene_002_talos_shrine_sting_completed": true,
-    "vignar_intel_talos_sting": {
-      "source": "Vignar Greymane (Jorrvaskr)",
-      "summary": "Identified the shrine harassment as a fishing operation targeting Talos worshippers; named Nazeem as the mouthpiece; suspected Battle-Born backing; confirmed a Thalmor Justiciar handler present.",
-      "named_actors": {
-        "mouthpiece": "nazeem",
-        "handler": "justiciar_varyn",
-        "muscle": "whiterun_guard_imposter",
-        "suspected_paymaster": "battle_born_patron_suspected"
-      },
-      "confidence": {
-        "nazeem": "high",
-        "justiciar_varyn": "high",
-        "whiterun_guard_imposter": "high",
-        "battle_born_patron_suspected": "medium"
-      }
-    },
-    "party_split": {
-      "elitrof": "solo_at_dustmans_cairn",
-      "farkas": "in_jorrvaskr (available on horn call)",
-      "vilkas": "in_whiterun_after_dragonsreach_hearing"
-    },
-    "mid_session_checkpoint_2026_02_23_01": {
-      "scene_id": "act1_scene_009_dustmans_departure_dawn",
-      "location": "Dustman's Cairn (Exterior)",
-      "objective": "Recover the Wuuthrad fragment from Dustman's Cairn and return it to Jorrvaskr.",
-      "note": "Paused at Dustman's Cairn exterior before first infiltration/entry."
-    },
-    "captives_in_transit": {
-      "justiciar_varyn": "alive_cauterized_missing_sword_hand; escorted by Vilkas to Dragonsreach",
-      "nazeem": "captured; escorted by Vilkas to Dragonsreach",
-      "whiterun_guard_imposter": "captured_disarmed; escorted by Vilkas to Dragonsreach"
-    },
-    "werebear_cloak_truth_told_to_farkas_vilkas": true,
-    "pending_compel_travelers_talos": "offered_not_resolved",
-    "scene_003_chillfurrow_wolves_completed": true,
-    "wolf_den_alpha_taken_out": true,
-    "berserker_draught_brewed_and_consumed": {
-      "dose_1": "consumed_at_wolf_den",
-      "dose_2": "stored_for_later",
-      "refinement": "Nomadic Sage FP + Shamefaced invoke; achieved SWS on brew"
-    },
-    "elitrof_stress_update_checkpoint": {
-      "physical": [
-        true,
-        false,
-        true,
-        false
-      ],
-      "mental": [
-        false,
-        false,
-        false
-      ],
-      "consequences": {
-        "mild": null,
-        "moderate": null,
-        "severe": null
-      }
-    },
-    "farkas_stress_update_checkpoint": {
-      "physical_stress": "1_box_marked (minor bite) while securing farm perimeter"
-    },
-    "battle_cry_used": true,
-    "scene_004_pelagia_giant_completed": true,
-    "pelagia_farm_saved": true,
-    "thuum_elemental_fury_used_pelagia": {
-      "words": [
-        "Su",
-        "Grah",
-        "Dun"
-      ],
-      "unmastered_cost_fp": 1,
-      "reroll_fp_spent": 1,
-      "witness": "Farkas"
-    }
-  },
-  "flags": {
-    "dustmans_cairn": {
-      "wuuthrad_fragment_recovered": true,
-      "draugr_overlord_defeated": true,
-      "silver_hand_cell_engaged": true,
-      "word_wall_yol_learned": true,
-      "silver_hand_survivor_escaped": true
-    },
-    "road_ambush_2026_02_25": {
-      "silver_hand_dead": 1,
-      "silver_hand_captured": 2,
-      "civilians_rescued": true,
-      "prisoners_delivered_to_jorrvaskr": true
-    },
-    "underforge": {
-      "inner_circle_rites_completed": true,
-      "beast_blood_refused": true,
-      "oath_of_silence_underforge": true
-    },
-    "glenmoril_raid_2026_02_25": {
-      "location": "Falkreath Hold - Glenmoril Coven",
-      "witches_taken_out": 3,
-      "matron_taken_out": true,
-      "witch_heads_collected": 3,
-      "companions_present": [
-        "Farkas",
-        "Vilkas",
-        "Elitrof"
-      ],
-      "tactic": "Elitrof bait at bridge; twins flank via hidden hunter trail; killbox executed.",
-      "lingering_consequence": "Glenmoril's Last Curse: Blood Remembers Names"
-    }
-  },
-  "clocks": {
-    "thuum_become_ethereal_mastery": {
-      "name": "Become Ethereal Mastery",
-      "current_progress": 1,
-      "total_segments": 4,
-      "segments": [
-        "Feim",
-        "Zii",
-        "Gron",
-        "Mastery"
-      ],
-      "notes": "Oath of Ysgramor learning discount applied: halved mastery clock."
-    },
-    "thuum_elemental_fury_mastery": {
-      "name": "Elemental Fury Mastery",
-      "current_progress": 6,
-      "total_segments": 8,
-      "segments": [
-        "Su",
-        "Grah",
-        "Dun",
-        "Focus",
-        "Flow",
-        "Tempo",
-        "Edge",
-        "Mastery"
-      ]
-    },
-    "thuum_fire_breath_mastery": {
-      "name": "Fire Breath Mastery",
-      "current_progress": 4,
-      "total_segments": 8,
-      "segments": [
-        "Yol",
-        "Toor",
-        "Shul",
-        "Breath",
-        "Heat",
-        "Control",
-        "Inferno",
-        "Mastery"
-      ]
-    },
-    "silver_hand_vendetta_elitrof": {
-      "name": "Silver Hand Vendetta: The Great Bear",
-      "current_progress": 4,
-      "total_segments": 6,
-      "segments": [
-        "Rumor",
-        "Scout",
-        "Trap",
-        "Ambush",
-        "Blood Price",
-        "Hunt"
-      ]
-    },
-    "battle_of_whiterun_countdown": {
-      "name": "Battle of Whiterun Countdown",
-      "current_progress": 1,
-      "total_segments": 8,
-      "segments": [
-        "Rumors",
-        "Ultimatum",
-        "Supply Lines",
-        "Reinforcements",
-        "Evacuation",
-        "Sabotage",
-        "March",
-        "Battle"
-      ]
-    },
-    "thalmor_retaliation_whiterun": {
-      "name": "Thalmor Retaliation: Whiterun",
-      "current_progress": 2,
-      "total_segments": 8,
-      "segments": [
-        "Rumor Push",
-        "Witness Pressure",
-        "Diplomatic Complaint",
-        "Targeted Arrest Attempt",
-        "Street Informants",
-        "Violent Provocation",
-        "Political Ultimatum",
-        "Retaliation Strike"
-      ]
-    }
-  },
-  "current_location": "Ysgramor's Tomb — Reliquary (Winterhold)",
-  "current_objective": "Return to Jorrvaskr; deliver news of the cure rite to Aela and Skjor; manage the Inner Circle divide.",
-  "current_npcs": [
-    "Kodlak Whitemane",
-    "Farkas",
-    "Vilkas"
-  ],
-  "last_session_ended_at": "2026-02-26",
-  "last_session_title": "Session 4: Ysgramor's Tomb: Purity Path Ignites",
-  "next_scene_hint": "return_to_jorrvaskr_purity_path_reactions",
-  "npc_first_impressions_legacy": {
-    "justiciar_varyn": {
-      "migrated_at": "2026-02-26T00:05:29",
-      "note": "Cold, prideful Thalmor Justiciar; escalated first at Talos shrine; maimed and captured."
-    },
-    "nazeem": {
-      "migrated_at": "2026-02-26T00:05:29",
-      "note": "Smug mouthpiece; buckled under pressure; likely connected to harassment scheme."
-    },
-    "whiterun_guard_imposter": {
-      "migrated_at": "2026-02-26T00:05:29",
-      "note": "Borrowed uniform and borrowed courage; used as intimidation muscle."
-    }
-  }
+  "scene_flags": {},
+  "flags": {},
+  "clocks": {},
+  "current_location": null,
+  "current_objective": null,
+  "current_npcs": [],
+  "last_session_ended_at": null,
+  "last_session_title": null,
+  "next_scene_hint": null,
+  "last_updated": "2026-02-28 00:00:00"
 }

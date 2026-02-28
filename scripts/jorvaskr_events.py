@@ -412,8 +412,9 @@ def resolve_vilkas_trial(state: Dict[str, Any], pc_won: bool) -> None:
 
     # Record aspect reward as a pending PC update (actual file patch is handled post-session)
     pending = state.setdefault("pending_pc_updates", [])
-    target_pc_id = state.get("active_pc_id", "pc_elitrof_whitemane")
-    pending.append({"type": "add_aspect", "target": target_pc_id, "aspect": "Whelp of the Companions"})
+    target_pc_id = state.get("active_pc_id") or state.get("active_pc")
+    if target_pc_id:
+        pending.append({"type": "add_aspect", "target": target_pc_id, "aspect": "Whelp of the Companions"})
 
     # Vilkas trust note stored in companions_state (lightweight)
     cstate = _companions_state(state)

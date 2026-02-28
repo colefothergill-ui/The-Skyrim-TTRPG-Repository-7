@@ -125,9 +125,9 @@
       },
       "companions_trust": {
         "faction": "The Companions",
-        "current_trust": 10,
+        "current_trust": 0,
         "max_trust": 10,
-        "trust_level": "Legend",
+        "trust_level": "Stranger",
         "advancement_triggers": {
           "complete_proving_honor": "+2",
           "complete_companion_quest": "+1 to +2",
@@ -218,7 +218,7 @@
           "companions_if_lycanthrope",
           "werewolf_form"
         ],
-        "notes": "Trust can be earned through either restorative or purger choices, but those paths affect internal politics and which NPCs become allies. The incompatible_with list is GM guidance only — no runtime enforcement exists."
+        "notes": "Trust can be earned through either restorative or purger choices, but those paths affect internal politics and which NPCs become allies. The incompatible_with list is GM guidance only \u2014 no runtime enforcement exists."
       },
       "thieves_guild_trust": {
         "faction": "Thieves Guild",
@@ -271,9 +271,9 @@
       },
       "college_of_winterhold_trust": {
         "faction": "College of Winterhold",
-        "current_trust": 5,
+        "current_trust": 0,
         "max_trust": 10,
-        "trust_level": "Ally",
+        "trust_level": "Stranger",
         "advancement_triggers": {
           "join_college": "+2",
           "complete_college_quest": "+1 to +2",

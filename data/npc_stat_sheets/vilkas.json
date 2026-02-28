@@ -16,10 +16,23 @@
     ]
   },
   "skills": {
-    "Great": ["Fight"],
-    "Good": ["Lore", "Will"],
-    "Fair": ["Notice", "Provoke", "Athletics"],
-    "Average": ["Physique", "Empathy", "Rapport"]
+    "Great": [
+      "Fight"
+    ],
+    "Good": [
+      "Lore",
+      "Will"
+    ],
+    "Fair": [
+      "Notice",
+      "Provoke",
+      "Athletics"
+    ],
+    "Average": [
+      "Physique",
+      "Empathy",
+      "Rapport"
+    ]
   },
   "stunts": [
     "Tactical Eye: +2 to Notice when assessing enemy formations or combat terrain.",
@@ -27,8 +40,16 @@
     "Pack Ferocity: When fighting alongside another Companion NPC, both gain +1 to their next Fight roll."
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -38,7 +59,7 @@
   "refresh": 3,
   "armor": 2,
   "cured_beast_blood": true,
-  "notes": "Vilkas is the intellectual conscience of the Companions - bookish for a warrior, sharp-tongued, and deeply loyal beneath his prickly surface. He resents the beast blood philosophically (agreeing with Kodlak) but struggles to contain the wolf's rage that makes him short-tempered. He tests new Companions hard because he believes the guild deserves only the best. [Session 4] Cured at Ysgramor's Tomb. Elitrof defended his will; Vilkas landed the finishing strike.",
+  "notes": "Vilkas is the intellectual conscience of the Companions - bookish for a warrior, sharp-tongued, and deeply loyal beneath his prickly surface. He resents the beast blood philosophically (agreeing with Kodlak) but struggles to contain the wolf's rage that makes him short-tempered. He tests new Companions hard because he believes the guild deserves only the best. [Session 4] Cured at Ysgramor's Tomb. the player character defended his will; Vilkas landed the finishing strike.",
   "trust_clock": {
     "enabled": true,
     "current": 6,
@@ -69,11 +90,17 @@
     "Inner Circle meetings",
     "Kodlak's death scene"
   ],
-  "act_context": ["Act 1", "Act 2"],
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ],
   "starting_equipment": {
     "armor": "Companions Armor (Armor:2)",
     "weapon": "Skyforge Steel Sword (Weapon:2)",
-    "other": ["Ysgramor's history text (personal copy)", "Sharpening stone"]
+    "other": [
+      "Ysgramor's history text (personal copy)",
+      "Sharpening stone"
+    ]
   },
   "relationships": {
     "Kodlak Whitemane": "Deep reverence; Kodlak is father-figure and moral compass",

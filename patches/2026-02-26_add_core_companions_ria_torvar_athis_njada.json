@@ -32,7 +32,7 @@
     },
     {
       "path": "data/npcs/njada_stonearm.json",
-      "change": "Created NPC file for Njada Stonearm (Companion / Hard-Edged Shield-Sister). Great Fight; Good Provoke/Physique; Fair Athletics/Notice/Will; Average Rapport/Survival/Shoot. Loyalty 35, rivalry clock with Elitrof, romance arc, companion_status available after Take Up Arms."
+      "change": "Created NPC file for Njada Stonearm (Companion / Hard-Edged Shield-Sister). Great Fight; Good Provoke/Physique; Fair Athletics/Notice/Will; Average Rapport/Survival/Shoot. Loyalty 35, rivalry clock with the player character, romance arc, companion_status available after Take Up Arms."
     },
     {
       "path": "data/npc_stat_sheets/ria.json",

@@ -15,11 +15,27 @@
     ]
   },
   "skills": {
-    "Superb": ["Fight"],
-    "Great": ["Will", "Rapport"],
-    "Good": ["Lore", "Empathy", "Notice"],
-    "Fair": ["Athletics", "Physique", "Investigate"],
-    "Average": ["Contacts", "Resources"]
+    "Superb": [
+      "Fight"
+    ],
+    "Great": [
+      "Will",
+      "Rapport"
+    ],
+    "Good": [
+      "Lore",
+      "Empathy",
+      "Notice"
+    ],
+    "Fair": [
+      "Athletics",
+      "Physique",
+      "Investigate"
+    ],
+    "Average": [
+      "Contacts",
+      "Resources"
+    ]
   },
   "stunts": [
     "Master of Combat: +2 to Fight when teaching or demonstrating combat techniques",
@@ -27,8 +43,17 @@
     "Ancient Wisdom: +2 to Lore when recalling warrior traditions or history"
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false, false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": "Aging body growing weary",
@@ -62,12 +87,24 @@
     }
   },
   "combat_tactics": "Kodlak fights with the skill of decades of experience. While age has slowed him, his technique is flawless. He's defensive and strategic, using positioning and timing rather than brute force. He won't transform into werewolf form, as he rejects the beast blood.",
-  "scene_triggers": ["Companions recruitment", "Jorrvaskr leadership", "Beast blood storyline", "Honor quests"],
-  "act_context": ["Act 1", "Act 2"],
+  "scene_triggers": [
+    "Companions recruitment",
+    "Jorrvaskr leadership",
+    "Beast blood storyline",
+    "Honor quests"
+  ],
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ],
   "starting_equipment": {
     "armor": "Ancient Nord Armor (Armor:1, heirloom piece)",
     "weapon": "Wuuthrad Replica (Weapon:3, legendary greatsword)",
-    "other": ["Harbinger's journal", "Ysgramor's writings", "Cure research notes"]
+    "other": [
+      "Harbinger's journal",
+      "Ysgramor's writings",
+      "Cure research notes"
+    ]
   },
   "social_interaction": "Kodlak is warm, grandfatherly, and deeply wise. He speaks with measured authority but always makes people feel heard. He values honor and sees potential in others. He's patient with mistakes but firm about principles. He often speaks in parables or references to old warrior traditions. With his inner circle, he shares his burden about the curse and his fears about dying with beast blood.",
   "relationships": {
@@ -84,9 +121,26 @@
   },
   "personality_notes": {
     "speaking_style": "Calm, wise, uses warrior metaphors, speaks of honor and tradition, encouraging but firm",
-    "motivations": ["Cure the beast blood for all Companions", "Lead with honor until death", "Reach Sovngarde as a true warrior, not beast", "Mentor next generation", "Preserve Companions' honorable traditions", "Protect Whiterun"],
-    "fears": ["Dying with beast blood and being denied Sovngarde", "Companions losing their honor", "Being remembered as a cursed creature rather than warrior", "Failing to cure the lycanthropy"],
-    "quirks": ["Sits in his chair gazing at fire contemplatively", "Quotes Ysgramor and ancient heroes", "Refuses to discuss his werewolf form", "Wakes early for dawn training"],
+    "motivations": [
+      "Cure the beast blood for all Companions",
+      "Lead with honor until death",
+      "Reach Sovngarde as a true warrior, not beast",
+      "Mentor next generation",
+      "Preserve Companions' honorable traditions",
+      "Protect Whiterun"
+    ],
+    "fears": [
+      "Dying with beast blood and being denied Sovngarde",
+      "Companions losing their honor",
+      "Being remembered as a cursed creature rather than warrior",
+      "Failing to cure the lycanthropy"
+    ],
+    "quirks": [
+      "Sits in his chair gazing at fire contemplatively",
+      "Quotes Ysgramor and ancient heroes",
+      "Refuses to discuss his werewolf form",
+      "Wakes early for dawn training"
+    ],
     "character_growth": "May find peace through curing curse, pass leadership to worthy successor, or die with honor"
   },
   "werewolf_curse": {

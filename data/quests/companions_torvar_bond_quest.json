@@ -6,7 +6,7 @@
   "giver": "Torvar",
   "location": "Whiterun and surrounding Hold",
   "faction": "The Companions",
-  "description": "Torvar has learned through a contact that a merchant in Whiterun Hold is quietly funding Silver Hand operations — paying for their safehouses, equipment, and bounties on Companions. He wants to go in loud, smash the operation, and drag the patron's name back to Jorrvaskr. Elitrof has to help him do it smart — before Torvar's rage turns it into a diplomatic disaster.",
+  "description": "Torvar has learned through a contact that a merchant in Whiterun Hold is quietly funding Silver Hand operations — paying for their safehouses, equipment, and bounties on Companions. He wants to go in loud, smash the operation, and drag the patron's name back to Jorrvaskr. the player character has to help him do it smart — before Torvar's rage turns it into a diplomatic disaster.",
   "prerequisites": ["companions_proving_honor", "take_up_arms"],
   "objectives": [
     {
@@ -38,7 +38,7 @@
   },
   "complications": [
     {
-      "trigger": "Aela will want the patron killed outright — no evidence, no leverage. If Elitrof tries to use the ledger for political pressure instead, Aela will oppose it publicly.",
+      "trigger": "Aela will want the patron killed outright — no evidence, no leverage. If the player character tries to use the ledger for political pressure instead, Aela will oppose it publicly.",
       "faction": "The Companions (Aela faction)"
     },
     {
@@ -52,5 +52,5 @@
   },
   "related_npcs": ["Torvar", "Aela the Huntress", "Njada Stonearm"],
   "related_locations": ["Jorrvaskr", "Whiterun", "Whiterun Hold"],
-  "gm_notes": "The dramatic tension in this quest is Torvar versus his own impulse. Elitrof's role is coach and restraint — not a leash. If Elitrof simply controls Torvar, he learns nothing. If Elitrof gives him the framework to channel his fury productively, the quest resolves into a genuine moment of growth. The patron should have a name, a face, and one sympathetic quality to make the final judgment genuinely difficult."
+  "gm_notes": "The dramatic tension in this quest is Torvar versus his own impulse. the player character's role is coach and restraint — not a leash. If the player character simply controls Torvar, he learns nothing. If the player character gives him the framework to channel his fury productively, the quest resolves into a genuine moment of growth. The patron should have a name, a face, and one sympathetic quality to make the final judgment genuinely difficult."
 }

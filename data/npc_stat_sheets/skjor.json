@@ -16,10 +16,23 @@
     ]
   },
   "skills": {
-    "Great": ["Fight", "Stealth"],
-    "Good": ["Notice", "Athletics"],
-    "Fair": ["Provoke", "Deceive"],
-    "Average": ["Physique", "Will", "Rapport"]
+    "Great": [
+      "Fight",
+      "Stealth"
+    ],
+    "Good": [
+      "Notice",
+      "Athletics"
+    ],
+    "Fair": [
+      "Provoke",
+      "Deceive"
+    ],
+    "Average": [
+      "Physique",
+      "Will",
+      "Rapport"
+    ]
   },
   "stunts": [
     "Ambush Predator: +2 to Fight on the first exchange of a conflict if Skjor was hidden or unnoticed beforehand.",
@@ -27,8 +40,16 @@
     "Scarred Survivor: Skjor may ignore one mild consequence per session (he's taken worse and kept fighting)."
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -37,7 +58,7 @@
   },
   "refresh": 3,
   "armor": 2,
-  "notes": "Skjor is hard-edged and pro-beast blood — the Circle's shadow operative. He is alive in this campaign timeline. Ideological friction with the purity path, but respects Elitrof's battle-proven strength.",
+  "notes": "Skjor is hard-edged and pro-beast blood \u2014 the Circle's shadow operative. He is alive in this campaign timeline. Ideological friction with the purity path, but respects the player character's battle-proven strength.",
   "trust_clock": {
     "enabled": true,
     "current": 4,
@@ -55,11 +76,11 @@
     ],
     "milestones": {
       "2": "Skjor stops testing and starts watching",
-      "4": "Skjor offers a tactical tip — the highest praise he gives",
+      "4": "Skjor offers a tactical tip \u2014 the highest praise he gives",
       "6": "Skjor calls PC a fellow predator; will back them in a Circle dispute"
     }
   },
-  "combat_tactics": "Skjor fights dirty by Companion standards — ambushes, flanking, striking from stealth. He is fast and vicious rather than powerful, relying on positioning and surprise over brute force.",
+  "combat_tactics": "Skjor fights dirty by Companion standards \u2014 ambushes, flanking, striking from stealth. He is fast and vicious rather than powerful, relying on positioning and surprise over brute force.",
   "scene_triggers": [
     "Jorrvaskr mead hall",
     "Inner Circle meetings",
@@ -67,17 +88,23 @@
     "Silver Hand encounters",
     "Companions questline"
   ],
-  "act_context": ["Act 1", "Act 2"],
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ],
   "starting_equipment": {
     "armor": "Companions Armor (Armor:2)",
     "weapon": "Skyforge Steel Sword (Weapon:2)",
-    "other": ["Hunting knife (backup)", "Circle token"]
+    "other": [
+      "Hunting knife (backup)",
+      "Circle token"
+    ]
   },
   "relationships": {
     "Kodlak Whitemane": "Respects the Harbinger but disagrees about the cure; obeys out of loyalty, not conviction",
     "Aela the Huntress": "Close ally and kindred spirit; both embrace the beast blood fully",
     "Farkas": "Easy respect between two fighters who prefer action over talk",
     "Vilkas": "Mutual respect but ideological friction; Vilkas's brooding irritates Skjor",
-    "Elitrof Whitemane": "Wary respect; the newcomer refused the blood but proved himself in battle"
+    "the player character": "Wary respect; the newcomer refused the blood but proved himself in battle"
   }
 }

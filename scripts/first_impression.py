@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime
 import argparse
 from typing import Optional, Any, Dict
+from utils import EXAMPLE_PC_FILENAME
 
 
 def load_json(path):
@@ -28,25 +29,31 @@ def save_json(path, data):
 
 def resolve_active_pc_id(state: dict) -> Optional[str]:
     """
-    Robust PC id resolver for multiple schema variants.
+    Robust PC id resolver. Only returns a PC id if it is explicitly set
+    or if there is exactly one real live PC (not example_pc).
+    Returns None if ambiguous, empty, or no active PC is configured.
     """
     pc_id = state.get("active_pc_id") or state.get("active_pc")
     if isinstance(pc_id, str) and pc_id.startswith("pc_"):
         return pc_id
 
-    # fallback: state["pcs"] dict keys
+    # Only fall back to pcs dict if there is exactly one real live PC
     pcs = state.get("pcs")
-    if isinstance(pcs, dict) and pcs:
-        k = next(iter(pcs.keys()))
-        if isinstance(k, str) and k.startswith("pc_"):
-            return k
+    if isinstance(pcs, dict):
+        real_pcs = [k for k in pcs.keys() if isinstance(k, str) and k.startswith("pc_") and k != EXAMPLE_PC_FILENAME.replace(".json", "")]
+        if len(real_pcs) == 1:
+            return real_pcs[0]
 
-    # older export fallback
+    # Only fall back to player_characters list if there is exactly one real entry
     pcs_list = state.get("player_characters") or []
-    if pcs_list and isinstance(pcs_list, list) and isinstance(pcs_list[0], dict):
-        k = pcs_list[0].get("id")
-        if isinstance(k, str) and k.startswith("pc_"):
-            return k
+    if isinstance(pcs_list, list):
+        real_list = [
+            p.get("id") for p in pcs_list
+            if isinstance(p, dict) and isinstance(p.get("id"), str)
+            and p["id"].startswith("pc_") and p["id"] != EXAMPLE_PC_FILENAME.replace(".json", "")
+        ]
+        if len(real_list) == 1:
+            return real_list[0]
 
     return None
 
@@ -204,9 +211,12 @@ def maybe_first_impression(state_path, appearance_path, npc_id, disposition="neu
     state["npc_first_impressions"].setdefault(npc_id, {})
 
     # Determine which PC key to store under
-    resolved_pc_id = resolve_active_pc_id(state) or appearance.get("pc_id", "unknown_pc")
+    resolved_pc_id = resolve_active_pc_id(state)
+    if not resolved_pc_id:
+        # No active PC - skip silently during Session 0
+        return None
     if not isinstance(resolved_pc_id, str):
-        resolved_pc_id = "unknown_pc"
+        return None
 
     # If a record exists, allow auto-refresh if appearance_revision changed.
     existing = state["npc_first_impressions"][npc_id].get(resolved_pc_id)

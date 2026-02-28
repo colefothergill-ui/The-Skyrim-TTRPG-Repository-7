@@ -3,7 +3,7 @@
   "clocks": {
     "ancano_powerplay": {
       "name": "Ancano Powerplay",
-      "current": 1,
+      "current": 0,
       "max": 4,
       "notes": "Tracks Ancano escalating from open grabs to subtle interference; at 4, he makes a decisive move."
     }

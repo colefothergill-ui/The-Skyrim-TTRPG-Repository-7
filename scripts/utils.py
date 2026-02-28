@@ -2,6 +2,9 @@
 Utility functions for Skyrim TTRPG scripts
 """
 
+# Filename of the template/example PC file that should never be treated as a live character
+EXAMPLE_PC_FILENAME = "example_pc.json"
+
 
 def location_matches(search_location, sheet_location):
     """

@@ -15,10 +15,22 @@
     ]
   },
   "skills": {
-    "Great": ["Shoot"],
-    "Good": ["Notice", "Athletics"],
-    "Fair": ["Fight", "Survival", "Provoke"],
-    "Average": ["Physique", "Stealth"]
+    "Great": [
+      "Shoot"
+    ],
+    "Good": [
+      "Notice",
+      "Athletics"
+    ],
+    "Fair": [
+      "Fight",
+      "Survival",
+      "Provoke"
+    ],
+    "Average": [
+      "Physique",
+      "Stealth"
+    ]
   },
   "stunts": [
     "Master Archer: +2 to Shoot at long range, can make called shots",
@@ -28,8 +40,15 @@
     "Never Miss: Once per session, automatically succeed on a crucial Shoot roll"
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -43,7 +62,7 @@
     "Kodlak Whitemane": "Respected Harbinger, though disagrees about the beast blood",
     "Vilkas": "Shield-brother, fellow Circle member",
     "Farkas": "Shield-brother, fellow Circle member",
-    "Skjor": "Mentor and former lover (alive); ideological ally, but wary of Elitrof's purity push",
+    "Skjor": "Mentor and former lover (alive); ideological ally, but wary of the player character's purity push",
     "Player": "Potential shield-sibling and companion",
     "The Silver Hand": "Sworn enemies, werewolf hunters"
   },
@@ -91,19 +110,52 @@
   },
   "loyalty_modifiers": {
     "positive": [
-      {"action": "Complete Companions quests", "change": 5},
-      {"action": "Hunt powerful creatures together", "change": 3},
-      {"action": "Accept beast blood", "change": 10},
-      {"action": "Fight Silver Hand", "change": 5},
-      {"action": "Show prowess in combat", "change": 2},
-      {"action": "Embrace werewolf nature", "change": 3}
+      {
+        "action": "Complete Companions quests",
+        "change": 5
+      },
+      {
+        "action": "Hunt powerful creatures together",
+        "change": 3
+      },
+      {
+        "action": "Accept beast blood",
+        "change": 10
+      },
+      {
+        "action": "Fight Silver Hand",
+        "change": 5
+      },
+      {
+        "action": "Show prowess in combat",
+        "change": 2
+      },
+      {
+        "action": "Embrace werewolf nature",
+        "change": 3
+      }
     ],
     "negative": [
-      {"action": "Cure beast blood", "change": -15},
-      {"action": "Show cowardice", "change": -5},
-      {"action": "Refuse to hunt", "change": -2},
-      {"action": "Disrespect Companions", "change": -5},
-      {"action": "Attack her", "change": -20}
+      {
+        "action": "Cure beast blood",
+        "change": -15
+      },
+      {
+        "action": "Show cowardice",
+        "change": -5
+      },
+      {
+        "action": "Refuse to hunt",
+        "change": -2
+      },
+      {
+        "action": "Disrespect Companions",
+        "change": -5
+      },
+      {
+        "action": "Attack her",
+        "change": -20
+      }
     ]
   },
   "werewolf_form": {

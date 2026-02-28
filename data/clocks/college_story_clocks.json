@@ -7,7 +7,7 @@
         "current": 0,
         "max": 6,
         "status": "active",
-        "notes": "Tracks the expedition staging → ruins entry → breach.\n1=briefed+supplied; 2=arrive; 3=outer wards breached; 4=first draugr; 5=inner threshold reached; 6=Eye chamber (secured for withdrawal)."
+        "notes": "Tracks the expedition staging \u2192 ruins entry \u2192 breach.\n1=briefed+supplied; 2=arrive; 3=outer wards breached; 4=first draugr; 5=inner threshold reached; 6=Eye chamber (secured for withdrawal)."
       },
       "student_safety_pressure": {
         "name": "Student Safety Pressure",
@@ -25,10 +25,10 @@
       },
       "eye_of_magnus_discovery": {
         "name": "Eye of Magnus Discovery",
-        "current": 3,
+        "current": 0,
         "max": 5,
         "status": "active",
-        "notes": "Progresses from first sighting → containment → transport to College.\nAt 5, it becomes the College's central crisis."
+        "notes": "Progresses from first sighting \u2192 containment \u2192 transport to College.\nAt 5, it becomes the College's central crisis."
       },
       "college_internal_politics": {
         "name": "College Internal Politics",

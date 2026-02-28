@@ -16,10 +16,22 @@
     ]
   },
   "skills": {
-    "Great": ["Fight"],
-    "Good": ["Athletics", "Physique"],
-    "Fair": ["Provoke", "Notice"],
-    "Average": ["Will", "Rapport", "Intimidate"]
+    "Great": [
+      "Fight"
+    ],
+    "Good": [
+      "Athletics",
+      "Physique"
+    ],
+    "Fair": [
+      "Provoke",
+      "Notice"
+    ],
+    "Average": [
+      "Will",
+      "Rapport",
+      "Intimidate"
+    ]
   },
   "stunts": [
     "Shield-Sibling: +2 to Fight when fighting alongside another Companion",
@@ -27,8 +39,17 @@
     "Beast Form (some): If a werewolf, can transform once per session into beast form (Fight+2, Physique+2, move 2 zones, Weapon:2 claws; can gorge to heal; social skills locked)."
   ],
   "stress": {
-    "physical": [false, false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -52,12 +73,40 @@
   },
   "personality_notes": {
     "speaking_style": "Direct, values strength, uses warrior metaphors, honorable speech",
-    "motivations": ["Prove worth in battle", "Honor Ysgramor's legacy", "Protect shield-siblings", "Find glory", "Manage/cure beast blood"],
-    "fears": ["Losing control to beast blood", "Dishonor", "Weakness", "Silver weapons (if werewolf)"],
-    "quirks": ["Tests others' mettle", "Drinks mead enthusiastically", "Tells battle stories", "May have tells when full moon approaches"]
+    "motivations": [
+      "Prove worth in battle",
+      "Honor Ysgramor's legacy",
+      "Protect shield-siblings",
+      "Find glory",
+      "Manage/cure beast blood"
+    ],
+    "fears": [
+      "Losing control to beast blood",
+      "Dishonor",
+      "Weakness",
+      "Silver weapons (if werewolf)"
+    ],
+    "quirks": [
+      "Tests others' mettle",
+      "Drinks mead enthusiastically",
+      "Tells battle stories",
+      "May have tells when full moon approaches"
+    ]
   },
   "combat_tactics": "Companions fight with aggressive, honorable tactics. They prefer melee combat and direct confrontation. Those with beast blood may transform if the battle is desperate. They never abandon shield-siblings and fight to protect their brothers and sisters.",
-  "scene_triggers": ["Companions questline", "Jorrvaskr visits", "Honorable combat contracts", "Werewolf storyline"],
-  "act_context": ["Act 1", "Act 2", "Act 3"],
-  "loot": ["Quality steel weapons", "Companion armor pieces"]
+  "scene_triggers": [
+    "Companions questline",
+    "Jorrvaskr visits",
+    "Honorable combat contracts",
+    "Werewolf storyline"
+  ],
+  "act_context": [
+    "Act 1",
+    "Act 2",
+    "Act 3"
+  ],
+  "loot": [
+    "Quality steel weapons",
+    "Companion armor pieces"
+  ]
 }

@@ -1,6 +1,5 @@
-# Skyrim TTRPG Quick Reference
+# Quick Reference (Session 0 Placeholder)
 
-## Active Quests
+No active campaign in progress. This file will be populated once Session Zero is complete and a new PC is created.
 
-## Player Characters
-<img width="1024" height="768" alt="Elitrof Whitemane" src="https://github.com/user-attachments/assets/e3f28444-911d-40ee-8835-cc2d08b0748f" />
+See `docs/quick_reference.md` for the canonical reference template.

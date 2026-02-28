@@ -14,10 +14,23 @@
     ]
   },
   "skills": {
-    "Great": ["Fight"],
-    "Good": ["Lore", "Will"],
-    "Fair": ["Notice", "Provoke", "Athletics"],
-    "Average": ["Physique", "Empathy", "Rapport"]
+    "Great": [
+      "Fight"
+    ],
+    "Good": [
+      "Lore",
+      "Will"
+    ],
+    "Fair": [
+      "Notice",
+      "Provoke",
+      "Athletics"
+    ],
+    "Average": [
+      "Physique",
+      "Empathy",
+      "Rapport"
+    ]
   },
   "stunts": [
     "Tactical Eye: +2 to Notice when assessing enemy formations or combat terrain.",
@@ -25,8 +38,16 @@
     "Pack Ferocity: When fighting alongside another Companion NPC, both gain +1 to their next Fight roll."
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -49,7 +70,7 @@
     ],
     "quirks": [
       "Quotes Ysgramor's history at seemingly random moments",
-      "Tests new blood hard — takes it personally if they fail",
+      "Tests new blood hard \u2014 takes it personally if they fail",
       "Sharpens his blade when brooding, which is often"
     ]
   },
@@ -58,10 +79,10 @@
     "Farkas": "Twin brother; protective, occasionally exasperated by Farkas's simplicity",
     "Skjor": "Mutual respect, ideological friction over beast blood",
     "Aela the Huntress": "Tense camaraderie; she embraces what he resents",
-    "Elitrof Whitemane": "Earned respect through discipline and refusal of beast blood; oath-bound to support purity path"
+    "the player character": "Earned respect through discipline and refusal of beast blood; oath-bound to support purity path"
   },
-  "notes": "Circle member. Vilkas is the intellectual conscience of the Companions — disciplined, sharp, and deeply aligned with Kodlak's desire for a cure. He resents the beast blood philosophically but struggles to contain the wolf's rage that makes him short-tempered. On the cure question he is firmly pro-cure.",
-  "combat_tactics": "Vilkas fights with controlled aggression — he reads openings and waits for the perfect moment. His intelligence makes him unpredictable; enemies expecting a berserk Nord get a calculated swordsman.",
+  "notes": "Circle member. Vilkas is the intellectual conscience of the Companions \u2014 disciplined, sharp, and deeply aligned with Kodlak's desire for a cure. He resents the beast blood philosophically but struggles to contain the wolf's rage that makes him short-tempered. On the cure question he is firmly pro-cure.",
+  "combat_tactics": "Vilkas fights with controlled aggression \u2014 he reads openings and waits for the perfect moment. His intelligence makes him unpredictable; enemies expecting a berserk Nord get a calculated swordsman.",
   "scene_triggers": [
     "Jorrvaskr training yard",
     "Companions questline",
@@ -69,5 +90,8 @@
     "Inner Circle meetings",
     "Kodlak cure rite"
   ],
-  "act_context": ["Act 1", "Act 2"]
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ]
 }
