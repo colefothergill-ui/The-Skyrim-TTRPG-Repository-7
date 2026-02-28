@@ -999,7 +999,7 @@ class SessionZeroManager:
                 "active_quest": None,
                 "completed_quests": [],
                 "quest_progress": {},
-                "embraced_curse": False,
+                "embraced_curse": None,
                 "skjor_alive": True,
                 "kodlak_cured": False,
             })
@@ -1012,7 +1012,7 @@ class SessionZeroManager:
                 "active_quest": None,
                 "completed_quests": [],
                 "quest_progress": {},
-                "embraced_curse": False,
+                "embraced_curse": None,
                 "skjor_alive": True,
                 "kodlak_cured": False,
             })

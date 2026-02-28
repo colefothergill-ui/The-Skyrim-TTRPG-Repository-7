@@ -462,9 +462,9 @@ def test_athis_spar_investigate_quest_no_crash_and_resolve():
     assert any("Athis" in e for e in events), "Expected Athis spar offer during investigate quest"
     assert not state["scene_flags"].get("jorvaskr_athis_spar_resolved"), "Spar should not be resolved yet"
 
-    jorvaskr_events.resolve_athis_spar_event(state, accepted=True, result="win")
+    jorvaskr_events.resolve_athis_spar_event(state, accepted=True, result="win", style="tactical")
     assert state["scene_flags"]["jorvaskr_athis_spar_resolved"] is True
-    assert state["scene_flags"]["jorvaskr_athis_spar_followup"] == "aela", "Win should set Aela follow-up"
+    assert state["scene_flags"]["jorvaskr_athis_spar_followup"] == "aela", "Win with tactical style should set Aela follow-up"
 
     events2 = whiterun_location_triggers("jorrvaskr", state)
     assert any("Aela" in e for e in events2), "Expected Aela follow-up event after spar win"

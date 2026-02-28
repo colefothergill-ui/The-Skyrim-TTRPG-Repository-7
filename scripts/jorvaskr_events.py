@@ -20,6 +20,11 @@ Result = Literal["win", "lose"]
 Followup = Literal["farkas", "aela", "none"]
 
 
+def compute_bet_amount(raise_shifts: int = 0) -> int:
+    """Return the spar wager amount given how many shifts the bet was raised."""
+    return min(BET_CAP, BET_BASE + BET_PER_SHIFT * max(0, int(raise_shifts)))
+
+
 def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("scene_flags", {})
 
@@ -181,17 +186,99 @@ def offer_athis_spar_event(state: Dict[str, Any]) -> List[str]:
 
 
 def resolve_athis_spar_event(
-    state: Dict[str, Any], accepted: bool, result: AthisResult = "none"
-) -> None:
-    """Resolve the Athis spar outcome and set follow-up flags."""
+    state: Dict[str, Any],
+    accepted: bool,
+    result: Optional[Result] = None,
+    style: Optional[Style] = None,
+    raise_shifts: int = 0,
+) -> List[str]:
+    """Resolve the Athis spar outcome, recording gold delta and side quest unlock markers."""
     flags = _flags(state)
+    if flags.get("jorvaskr_athis_spar_resolved"):
+        return []
+
+    # Normalize raise_shifts once so stored record and bet calculation agree.
+    try:
+        normalized_raise_shifts = int(raise_shifts)
+    except (TypeError, ValueError):
+        normalized_raise_shifts = 0
+    if normalized_raise_shifts < 0:
+        normalized_raise_shifts = 0
+
+    # Validate outcome before committing state; return error prompt without mutating.
+    if accepted and result not in ("win", "lose"):
+        return [
+            f"[ERROR] resolve_athis_spar_event: when accepted=True you must supply result='win' or 'lose', got {result!r}.",
+            "State has NOT been modified. Resubmit with a valid result.",
+        ]
+
     flags["jorvaskr_athis_spar_resolved"] = True
-    actual_result = result if accepted and result in ("win", "lose") else "none"
-    flags["jorvaskr_athis_spar_record"] = {"accepted": accepted, "result": actual_result}
+    flags["jorvaskr_athis_spar_offered"] = True
+
+    bet = compute_bet_amount(raise_shifts=normalized_raise_shifts)
+
+    record: Dict[str, Any] = {
+        "accepted": accepted,
+        "result": result,
+        "style": style or "mixed",
+        "raise_shifts": normalized_raise_shifts,
+        "bet": bet,
+    }
+    flags["jorvaskr_athis_spar_record"] = record
+
     if not accepted:
-        return
-    # Set follow-up NPC based on spar result
-    flags["jorvaskr_athis_spar_followup"] = "aela" if actual_result == "win" else "farkas"
+        flags["jorvaskr_athis_spar_followup"] = "none"
+        return [
+            "[SPAR DECLINED] You wave off the challenge. Athis shrugs, grin fading as he turns back to his mead.",
+            "The whelps exchange glances. Ria looks mildly disappointed. Njada looks unsurprised.",
+        ]
+
+    # Store gold change as a pending update so the post-step or GM can apply it safely.
+    pc_id = state.get("active_pc_id") or "pc_001"
+    pending = state.setdefault("pending_pc_updates", [])
+    if not isinstance(pending, list):
+        state["pending_pc_updates"] = []
+        pending = state["pending_pc_updates"]
+
+    gold_delta = bet if result == "win" else -bet
+    pending.append({"type": "gold_delta", "target": pc_id, "delta": gold_delta, "reason": "Athis spar wager"})
+
+    lines: List[str] = []
+    if result == "win":
+        lines.append("[SPAR WIN] You impose a Mild Consequence on Athis. The hall goes quiet — then loud.")
+        lines.append('Athis straightens, rubbing the bruise. "Not bad." He means it.')
+        lines.append(f"[WAGER] Pending gold change recorded: +{bet} septims (apply via pending_pc_updates).")
+
+        # +10 loyalty to whelps who witness + Athis.
+        _bump_whelp_loyalty(state, ["ria", "njada_stonearm", "torvar", "athis"], 10)
+
+        # Follow-up based on fight style; set side quest stubs to locked.
+        followup: Followup = "none"
+        if style == "warrior":
+            followup = "farkas"
+            _ensure_quest_entry(
+                state,
+                quest_id="companions_honorable_combat",
+                status="locked",
+                note="Unlocked by winning Athis spar (warrior style). Activates once Proving Honor is active."
+            )
+        elif style == "tactical":
+            followup = "aela"
+            _ensure_quest_entry(
+                state,
+                quest_id="companions_prey_and_predator",
+                status="locked",
+                note="Unlocked by winning Athis spar (tactical style). Activates once Proving Honor is active."
+            )
+        flags["jorvaskr_athis_spar_followup"] = followup
+
+    else:
+        lines.append("[SPAR LOSS] Athis lands the decisive blow. You take a Mild Consequence.")
+        lines.append(f"[WAGER] Pending gold change recorded: -{bet} septims (apply via pending_pc_updates).")
+        lines.append('Athis: "You\'ve got fire. Come back when you\'ve got control."')
+        flags["jorvaskr_athis_spar_followup"] = "none"
+
+    return lines
 
 
 # ──────────────────────────────────────────────────────────────────────────
@@ -412,7 +499,7 @@ def resolve_vilkas_trial(state: Dict[str, Any], pc_won: bool) -> None:
 
     # Record aspect reward as a pending PC update (actual file patch is handled post-session)
     pending = state.setdefault("pending_pc_updates", [])
-    target_pc_id = state.get("active_pc_id", "pc_elitrof_whitemane")
+    target_pc_id = state.get("active_pc_id") or "pc_001"
     pending.append({"type": "add_aspect", "target": target_pc_id, "aspect": "Whelp of the Companions"})
 
     # Vilkas trust note stored in companions_state (lightweight)

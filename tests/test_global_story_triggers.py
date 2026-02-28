@@ -59,7 +59,7 @@ def test_global_story_trigger_wired_to_hold_modules():
         (whiterun_location_triggers, "whiterun"),
         (windhelm_location_triggers, "windhelm"),
         (winterhold_location_triggers, "winterhold"),
-        (solitude_location_triggers, "solitude"),https://github.com/colefothergill-ui/The-Skyrim-TTRPG-Repository-7/pull/40/conflict?name=tests%252Ftest_whiterun_triggers.py&ancestor_oid=5449b36e2c1f477de08d09f357cefd96ffea63bb&base_oid=99fa0005ff45693bc2833059525a03f544091ac7&head_oid=9e5b885b6935697d2771bee62e378b94757424e5
+        (solitude_location_triggers, "solitude"),
         (markarth_location_triggers, "markarth"),
         (rift_location_triggers, "riften"),
         (pale_location_triggers, "dawnstar"),
