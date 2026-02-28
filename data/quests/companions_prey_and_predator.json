@@ -1,0 +1,22 @@
+{
+  "quest_id": "companions_prey_and_predator",
+  "name": "Prey and Predator",
+  "type": "Faction Quest",
+  "status": "Locked (becomes Active when Proving Honor is active)",
+  "giver": "Aela the Huntress",
+  "location": "Whiterun Hold Wilds",
+  "description": "Aela challenges you to a hunt-game with teeth: slay Swiftclaw, the infamous sabre cat terrorizing Whiterun’s roads, before she does.",
+  "objectives": [
+    { "description": "Meet Aela outside Jorrvaskr and accept the hunt terms", "status": "Pending", "optional": false },
+    { "description": "Track Swiftclaw’s signs and locate its lair (fills Tracking Swiftclaw clock)", "status": "Pending", "optional": false },
+    { "description": "Kill Swiftclaw before Aela does (Race is on with Aela clock)", "status": "Pending", "optional": false },
+    { "description": "Return to Aela with proof", "status": "Pending", "optional": false }
+  ],
+  "rewards": [
+    "Aela loyalty/trust increase",
+    "Mechanical boon: Aela’s Tracking lesson (GM grants one free invoke on a 'Trail Sign' aspect once per hunt scene for the next arc)",
+    "Unlock: deeper Aela bond hooks"
+  ],
+  "prerequisites": ["companions_proving_honor"],
+  "notes": "On activation, create clocks: Tracking Swiftclaw (0/3) and Race is on with Aela (0/5). Race ticks when time is wasted or leads go cold; at max, quest fails (Aela kills it first)."
+}

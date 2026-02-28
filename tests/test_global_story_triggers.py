@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""
+Tests for global story triggers and hold-module wiring.
+"""
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+
+from triggers.falkreath_triggers import falkreath_location_triggers
+from triggers.global_story_triggers import global_story_triggers
+from triggers.hjaalmarch_triggers import hjaalmarch_location_triggers
+from triggers.markarth_triggers import markarth_location_triggers
+from triggers.pale_triggers import pale_location_triggers
+from triggers.rift_triggers import rift_location_triggers
+from triggers.solitude_triggers import solitude_location_triggers
+from triggers.whiterun_triggers import whiterun_location_triggers
+from triggers.windhelm_triggers import windhelm_location_triggers
+from triggers.winterhold_triggers import winterhold_location_triggers
+
+
+def _state(progress=6):
+    return {
+        "campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": progress}},
+        "active_quests": [{"id": "greymane_and_the_greater", "status": "memory"}],
+    }
+
+
+def test_global_story_trigger_activates_greymane_from_memory():
+    campaign_state = _state(6)
+    events = global_story_triggers("whiterun_city", campaign_state)
+
+    assert any("[TOWN CRIER]" in event for event in events)
+    assert any("[QUEST ACTIVATED]" in event for event in events)
+    assert campaign_state["scene_flags"]["battle_of_whiterun_march_announcement_done"] is True
+    assert campaign_state["active_quests"][0]["status"] == "active"
+    assert "Stormcloak mobilization has begun" in campaign_state["active_quests"][0]["note"]
+
+
+def test_global_story_trigger_uses_courier_in_wilderness():
+    campaign_state = {"campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": 6}}}
+    events = global_story_triggers("frozen_tundra_road", campaign_state)
+
+    assert any("[COURIER]" in event for event in events)
+
+
+def test_global_story_trigger_fires_once():
+    campaign_state = _state(6)
+    first = global_story_triggers("whiterun", campaign_state)
+    second = global_story_triggers("whiterun", campaign_state)
+
+    assert first
+    assert second == []
+
+
+def test_global_story_trigger_wired_to_hold_modules():
+    trigger_calls = [
+        (whiterun_location_triggers, "whiterun"),
+        (windhelm_location_triggers, "windhelm"),
+        (winterhold_location_triggers, "winterhold"),
+        (solitude_location_triggers, "solitude"),
+        (markarth_location_triggers, "markarth"),
+        (rift_location_triggers, "riften"),
+        (pale_location_triggers, "dawnstar"),
+        (hjaalmarch_location_triggers, "morthal"),
+        (falkreath_location_triggers, "falkreath"),
+    ]
+
+    for trigger_func, loc in trigger_calls:
+        events = trigger_func(loc, _state(6))
+        assert any(
+            marker in event for event in events for marker in ("[TOWN CRIER]", "[COURIER]")
+        ), f"Expected global march announcement in {trigger_func.__name__}"

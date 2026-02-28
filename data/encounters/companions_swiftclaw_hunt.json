@@ -1,0 +1,18 @@
+{
+  "encounter_id": "companions_swiftclaw_hunt",
+  "name": "Hunt: Swiftclaw",
+  "type": "Exploration -> Combat",
+  "recommended_zones": ["Whiterun Hold Wilds — Pine Ridge", "Rocky Ravine", "Swiftclaw Lair"],
+  "npc_ids": ["npc_stat_swiftclaw"],
+  "scene_aspects": [
+    "Wind-Buried Tracks",
+    "Blood on Snow",
+    "Ravine Echoes",
+    "Hidden Lair Mouth"
+  ],
+  "clock_hooks": [
+    { "clock_id": "tracking_swiftclaw", "tick_on": "successful lead / advantage", "max_effect": "Lair discovered" },
+    { "clock_id": "race_is_on_with_aela", "tick_on": "wasted time / cold lead / detour", "max_effect": "Aela kills Swiftclaw first (quest fails)" }
+  ],
+  "gm_notes": "Run as a hunt mini-game: clue beats fill tracking; delays fill race. When tracking hits 3/3, reveal lair and trigger boss fight."
+}

@@ -8,6 +8,7 @@ Key quest integrations include the vampire investigation "Laid to Rest" and Fali
 Faction alignment is subtle here, but shifts (Imperial vs. Stormcloak control of the hold) can alter the Jarl and local atmosphere.
 """
 from .trigger_utils import is_companion_present, is_quest_active, is_night_time
+from .global_story_triggers import global_story_triggers
 
 def hjaalmarch_location_triggers(loc, campaign_state):
     """
@@ -78,4 +79,5 @@ def hjaalmarch_location_triggers(loc, campaign_state):
             events.append("Morthal has quietly returned to Imperial control. Jarl Idgrod Ravencrone sits once again in Highmoon Hall, her gaze as distant as ever, but there's a slight relief among the Imperial loyalists in town. A few more Legion guards now stand at the sparse wooden barricades, their red dragon sigils barely visible in the fog. Life in Morthal continues much as it always has—slow and cautious—but under the surface, people gossip about the futility of these power swaps.")
             campaign_state["morthal_imperial_restored"] = True
     
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

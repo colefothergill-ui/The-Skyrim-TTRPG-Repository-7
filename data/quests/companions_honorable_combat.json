@@ -1,0 +1,21 @@
+{
+  "quest_id": "companions_honorable_combat",
+  "name": "Honorable Combat",
+  "type": "Faction Quest",
+  "status": "Locked (becomes Active when Proving Honor is active)",
+  "giver": "Farkas",
+  "location": "Whiterun — Jorrvaskr / Whiterun Hold",
+  "description": "Farkas offers a chain of sanctioned tests: win without cruelty, protect without posturing, and learn why the Companions fear becoming what they fight.",
+  "objectives": [
+    { "description": "Speak to Farkas after Proving Honor becomes active", "status": "Pending", "optional": false },
+    { "description": "Complete a sanctioned spar or field trial chosen by Farkas", "status": "Pending", "optional": false },
+    { "description": "Return to Farkas and accept the Hall’s judgment", "status": "Pending", "optional": false }
+  ],
+  "rewards": [
+    "Mechanical boon: 'Farkas’ Guard' (GM grants a 1/session free +2 on a Fight defense when protecting an ally in your zone; write as a stunt on completion)",
+    "Farkas loyalty/trust increase",
+    "Unlock follow-up: a Vilkas standards quest chain (added in Phase 3)"
+  ],
+  "prerequisites": ["companions_proving_honor"],
+  "notes": "Unlocked by winning Athis spar with warrior-forward style in Phase 1."
+}

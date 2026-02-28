@@ -5,6 +5,15 @@ This script defines location-based scene descriptors and quest triggers for The 
 It covers arrival ambiance, the nightmare plague quest hook, local bounty quests, environmental hazards, and integrates with the broader narrative trigger system.
 """
 
+from .global_story_triggers import global_story_triggers
+
+
+def pale_location_triggers(loc, campaign_state):
+    events = []
+    events.extend(global_story_triggers(loc, campaign_state))
+    return events
+
+
 def pale_get_next_scene(campaign_state):
     """
     Main scene assembly function for The Pale.

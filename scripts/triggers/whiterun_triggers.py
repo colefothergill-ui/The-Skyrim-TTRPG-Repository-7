@@ -9,6 +9,7 @@ text and companion barks switch to siege context keyed to the current stage.
 """
 
 from .trigger_utils import is_companion_present
+from .global_story_triggers import global_story_triggers
 
 
 def whiterun_location_triggers(loc, campaign_state):
@@ -249,4 +250,5 @@ def whiterun_location_triggers(loc, campaign_state):
         )
         flags["companions_whiterun_deployment_triggered"] = True
 
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

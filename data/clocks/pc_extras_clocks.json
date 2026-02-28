@@ -2,6 +2,40 @@
   "pc_extras_clocks": {
     "description": "Clocks tied to PC extras, artifact awakening, and persistent consequences created mid-session.",
     "last_updated": "2026-02-20",
-    "clocks": {}
+    "clocks": {
+      "tracking_swiftclaw": {
+        "name": "Tracking Swiftclaw",
+        "description": "Successful leads and ground gained while hunting Swiftclaw",
+        "current": 0,
+        "max": 3,
+        "completion_effect": "Swiftclaw’s lair is found",
+        "advancement_triggers": [
+          "Successful Investigate/Notice/Survival lead (+1)",
+          "Create Advantage: clear tracks, blood trail, witness report (+1)"
+        ]
+      },
+      "race_is_on_with_aela": {
+        "name": "Race is on with Aela",
+        "description": "Time pressure: Aela may kill Swiftclaw first if you waste time",
+        "current": 0,
+        "max": 5,
+        "completion_effect": "Quest fails: Aela kills Swiftclaw first; no special reward",
+        "advancement_triggers": [
+          "Cold lead / wasted time (+1)",
+          "Detour / avoidable delay (+1)"
+        ]
+      },
+      "honor_proving_contracts_done": {
+        "name": "Honor Proving — Contracts Done",
+        "description": "Complete Hall contracts to prove reliability before the Harbinger assigns the Wuuthrad fragment mission",
+        "current": 0,
+        "max": 2,
+        "completion_effect": "Summoned to Kodlak and Skjor; Dustman’s Cairn mission assigned",
+        "advancement_triggers": [
+          "Complete an easy contract (+1)",
+          "Complete a hard contract (+1, may also add a bonus reward)"
+        ]
+      }
+    }
   }
 }

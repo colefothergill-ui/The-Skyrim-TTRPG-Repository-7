@@ -8,6 +8,7 @@ It also includes triggers to initiate Thieves Guild recruitment when appropriate
 """
 
 from .trigger_utils import is_companion_present
+from .global_story_triggers import global_story_triggers
 
 def rift_location_triggers(loc, campaign_state):
     """
@@ -59,4 +60,5 @@ def rift_location_triggers(loc, campaign_state):
         events.append('Iona adjusts her stance and rests a hand on her sword hilt as she surveys Riften. "As your housecarl, my Thane, I\'ll be keeping a close eye. Riften\'s streets can be as treacherous as its wilderness," she says, her voice low but resolute.')
     # (Additional companion triggers can be added for other Riften natives, e.g., Mjoll the Lioness if she is a follower, commenting on the corruption she despises.)
 
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

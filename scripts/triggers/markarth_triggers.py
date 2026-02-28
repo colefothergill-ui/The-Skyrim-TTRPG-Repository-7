@@ -7,6 +7,7 @@ It provides contextual events, quest hooks, and companion commentary specific to
 """
 
 from .trigger_utils import is_companion_present
+from .global_story_triggers import global_story_triggers
 
 def markarth_location_triggers(loc, campaign_state):
     """
@@ -75,4 +76,5 @@ def markarth_location_triggers(loc, campaign_state):
     # Lydia or other vanilla companions might also react if appropriate, but none are Markarth natives. This is just an example structure.
 
     # Additional companion commentary could be added here following the pattern above, checking for specific companions and location.
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

@@ -1,0 +1,20 @@
+{
+  "quest_id": "greymane_and_the_greater",
+  "name": "Greymane and the Greater",
+  "type": "Civil War / Intrigue",
+  "status": "Dormant (Memory until Battle of Whiterun Countdown 6/8)",
+  "giver": "Vignar Gray-Mane",
+  "location": "Whiterun — Jorrvaskr / Whiterun Hold",
+  "description": "You overheard Vignar’s intent before the war fully moved. When the Stormcloaks begin their march, that knowledge becomes leverage: warn Balgruuf, or aid Vignar’s bid to shape Whiterun’s future.",
+  "activation_condition": "campaign_clocks.battle_of_whiterun_countdown.current_progress >= 6",
+  "objectives": [
+    { "description": "When the march is announced, decide whether to warn Balgruuf or approach Vignar", "status": "Pending", "optional": false },
+    { "description": "If warning Balgruuf: deliver the intel discreetly (avoid Thalmor ears)", "status": "Pending", "optional": true },
+    { "description": "If conspiring with Vignar: discuss terms, risks, and what he expects of you", "status": "Pending", "optional": true }
+  ],
+  "rewards": [
+    "Political leverage in Whiterun",
+    "Potential faction trust shifts (Stormcloaks / Imperials / Whiterun Guard posture)"
+  ],
+  "notes": "This quest is unlocked only by Success with Style on the Vignar overhear scene in Phase 2."
+}

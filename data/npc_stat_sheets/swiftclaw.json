@@ -1,0 +1,34 @@
+{
+  "name": "Swiftclaw",
+  "id": "npc_stat_swiftclaw",
+  "type": "Named Sabre Cat (Infamous Predator)",
+  "category": "Elite Beast",
+  "location": "Whiterun Hold Wilds",
+  "aspects": {
+    "high_concept": "Infamous Sabre Cat That Hunts Like a Ghost",
+    "trouble": "Territorial Fury — It Will Not Flee Its Lair",
+    "other_aspects": [
+      "Silent Pounce From Nowhere",
+      "Knife-Claws and Bone-Bite",
+      "Wounded Pride Makes It More Dangerous",
+      "Eyes That Read Weakness"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight", "Athletics"],
+    "Good": ["Notice", "Physique"],
+    "Fair": ["Stealth", "Will"],
+    "Average": ["Provoke"]
+  },
+  "stunts": [
+    "Pounce: +2 to Fight when attacking from Stealth or when Swiftclaw moves into a zone and attacks in the same exchange.",
+    "Raking Claws: Swiftclaw’s attacks are Weapon:2.",
+    "Predator’s Patience: Use Stealth to Create Advantage even while observed if the environment has cover."
+  ],
+  "stress": { "physical": [false, false, false, false], "mental": [false, false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
+  "refresh": 2,
+  "fate_points": 2,
+  "combat_tactics": "Hit-and-run until it smells blood, then commits. Uses terrain and fear. If cornered, becomes brutally direct.",
+  "gm_notes": "Make this fight cinematic and lethal. Swiftclaw should feel like a named boss: stealth pressure, sudden pounce, and a brutal close."
+}

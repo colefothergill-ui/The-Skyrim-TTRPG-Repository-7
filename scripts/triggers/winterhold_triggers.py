@@ -27,6 +27,8 @@ Location keys (recommended):
 - saarthal_excavation
 """
 
+from .global_story_triggers import global_story_triggers
+
 
 def _lower(x):
     return (x or "").strip().lower()
@@ -217,4 +219,5 @@ def winterhold_location_triggers(loc: str, campaign_state: dict) -> list[str]:
             events.append(hook["bark"])
             flags[hook["flag"]] = True
 
+    events.extend(global_story_triggers(loc, campaign_state))
     return events
