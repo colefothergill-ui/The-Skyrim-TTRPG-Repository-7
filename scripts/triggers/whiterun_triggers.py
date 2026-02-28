@@ -29,6 +29,22 @@ except (ImportError, ModuleNotFoundError) as e:
     )
     dustmans_cairn_events = None
 
+try:
+    import companions_schism_events
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'companions_schism_events' could not be imported; related features will be disabled: {e!r}"
+    )
+    companions_schism_events = None
+
+try:
+    import jorvaskr_assault_events
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'jorvaskr_assault_events' could not be imported; related features will be disabled: {e!r}"
+    )
+    jorvaskr_assault_events = None
+
 
 def whiterun_location_triggers(loc, campaign_state):
     """
@@ -383,6 +399,14 @@ def whiterun_location_triggers(loc, campaign_state):
     # --- Phase 3: Dustman’s Cairn dungeon triggers ---
     if dustmans_cairn_events is not None and "dustman" in loc_lower:
         events.extend(dustmans_cairn_events.dustmans_cairn_triggers(loc, campaign_state))
+
+    # --- Phase 4: Schism arc triggers (Underforge, tundra, Jorrvaskr locations) ---
+    if companions_schism_events is not None:
+        events.extend(companions_schism_events.schism_triggers(loc, campaign_state))
+
+    # --- Phase 4: Jorrvaskr assault triggers (active only during companions_jorvaskr_assault) ---
+    if jorvaskr_assault_events is not None:
+        events.extend(jorvaskr_assault_events.jorrvaskr_assault_triggers(loc, campaign_state))
 
     events.extend(global_story_triggers(loc, campaign_state))
     return events

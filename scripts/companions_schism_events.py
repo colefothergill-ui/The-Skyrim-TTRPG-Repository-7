@@ -7,8 +7,8 @@ Covers the Tradition vs New Way arc from companions_circle_revelation
 through companions_schism_breakpoint.
 
 Integration:
-- Called from scripts/triggers/whiterun_triggers.py for jorrvaskr locations.
-- Standalone: call schism_triggers(loc, state) like dustmans_cairn_triggers.
+- Wired into scripts/triggers/whiterun_triggers.py via schism_triggers(loc, state).
+- Standalone: call schism_triggers(loc, state) directly.
 """
 
 from __future__ import annotations
@@ -206,6 +206,8 @@ def resolve_pack_run_night(state: Dict[str, Any], honest: bool) -> List[str]:
         return []
     flags["pack_run_night_resolved"] = True
 
+    _ensure_schism_clocks(state)
+
     cstate = _companions_state(state)
     cstate["active_quest"] = "companions_schism_pressure"
 
@@ -270,6 +272,7 @@ def resolve_oath_of_purity(state: Dict[str, Any], take_oath: bool) -> List[str]:
 
     if take_oath:
         flags["oath_of_purity_taken"] = True
+        _ensure_schism_clocks(state)
         _tick_clock(state, "companions_schism_tradition_vs_newway", 1)
         return [
             "[OATH TAKEN] Kodlak speaks the old binding words. You answer them.",
@@ -353,6 +356,8 @@ def resolve_schism_scene(
 ) -> List[str]:
     flags = _flags(state)
     result_key = "schism_scene_{}_outcome".format(scene_id)
+    if flags.get(result_key) is not None:
+        return []
     flags[result_key] = outcome
 
     events: List[str] = []
@@ -377,7 +382,10 @@ def resolve_whelp_recruitment(
     side: Literal["new_way", "tradition", "neutral"],
 ) -> List[str]:
     flags = _flags(state)
-    flags["whelp_{}_side".format(whelp)] = side
+    side_key = "whelp_{}_side".format(whelp)
+    if flags.get(side_key) is not None:
+        return []
+    flags[side_key] = side
 
     events: List[str] = []
     if side in ("new_way", "tradition"):
@@ -408,6 +416,7 @@ def schism_elder_ultimatum_scene(state: Dict[str, Any]) -> List[str]:
     if not _once(state, "schism_elder_ultimatum_done"):
         return []
 
+    _ensure_schism_clocks(state)
     _tick_clock(state, "companions_schism_tradition_vs_newway", 1)
 
     beast_blood = _beast_blood_embraced(state)
@@ -567,7 +576,9 @@ def schism_triggers(loc: str, state: Dict[str, Any]) -> List[str]:
     if any(k in loc_lower for k in ["jorrvaskr", "grand_hall", "downstairs", "jorrvaskr_downstairs"]):
         if active_quest == "companions_schism_pressure":
             events.extend(schism_secrecy_argument_scene(state))
-            events.extend(schism_elder_ultimatum_scene(state))
+            # Gate the elder ultimatum so it fires late in the schism pressure arc
+            if _get_clock_progress(state, "companions_schism_tradition_vs_newway") >= 4:
+                events.extend(schism_elder_ultimatum_scene(state))
 
         if active_quest in ("companions_schism_pressure", "companions_schism_breakpoint"):
             events.extend(maybe_trigger_schism_breakpoint(state))

@@ -58,7 +58,7 @@
     "pool_modifiers": [
       { "condition": "internal_civil_war == true", "effect": "Defense pool reduced by 2 (whelps do not fight coherently)" },
       { "condition": "whelps_polarized == true", "effect": "Defense pool reduced by 1" },
-      { "condition": "skjor_dead_gallows_rock == true", "effect": "Skjor not present; pool reduced by 1" },
+      { "condition": "skjor_dead == true", "effect": "Skjor not present; pool reduced by 1" },
       { "condition": "schism_resolution == 'reconcile'", "effect": "Defense pool +1 (whelps fight as a unit)" }
     ]
   },

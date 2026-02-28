@@ -6,9 +6,8 @@ Runs the Silver Hand assault on Jorrvaskr in three acts and manages
 the defender group consequence track (defense pool).
 
 Integration:
-- Called from scripts/triggers/whiterun_triggers.py when
-  companions_jorvaskr_assault is the active quest.
-- Standalone: call jorrvaskr_assault_triggers(loc, state).
+- Wired into scripts/triggers/whiterun_triggers.py via jorrvaskr_assault_triggers(loc, state).
+- Standalone: call jorrvaskr_assault_triggers(loc, state) directly.
 """
 
 from __future__ import annotations
@@ -168,20 +167,24 @@ def attempt_save_gate(
 ) -> List[str]:
     """
     Attempt a save gate for a lethal-risk NPC.
-    On success: NPC survives with existing consequence.
+    On success: NPC survives but is withdrawn (status -> 'wounded'); cannot absorb further consequences.
     On failure: NPC is taken out (killed).
     """
     pool = _build_defense_pool(state)
     if npc_id not in _LETHAL_RISK_NPCS:
         return [f"[SAVE GATE] {npc_id} is not a lethal-risk NPC."]
 
+    if npc_id not in pool["defenders"]:
+        return [f"[SAVE GATE] {npc_id} is not in the defense pool (already removed before assault)."]
+
     if roll_result == "success":
+        pool["defenders"][npc_id]["status"] = "wounded"
         return [
-            f"[SAVE GATE — SUCCESS] {npc_id} pulls through. Battered, but alive.",
-            f"Their consequence stands. They will not fight again this assault.",
+            f"[SAVE GATE -- SUCCESS] {npc_id} pulls through. Battered, but alive.",
+            f"{npc_id} is withdrawn from the fight (status: wounded). They cannot absorb further consequences.",
         ]
     else:
-        events = [f"[SAVE GATE — FAILURE] {npc_id} falls. The hall loses a veteran."]
+        events = [f"[SAVE GATE -- FAILURE] {npc_id} falls. The hall loses a veteran."]
         pool["defenders"][npc_id]["status"] = "taken_out"
         _record_npc_death(state, npc_id)
         return events
@@ -376,14 +379,15 @@ def jorrvaskr_assault_triggers(loc: str, state: Dict[str, Any]) -> List[str]:
 
     # Verify assault should fire (clock-based)
     clock_val = _get_clock_progress(state, "silver_hand_assault_preparation")
-    assault_prep_clock_full = clock_val >= 6
     assault_skipped = (
         cstate.get("silver_hand_endgame_cleared") is True and clock_val == 0
     )
     if assault_skipped:
+        if _once(state, "assault_skip_state_advanced"):
+            cstate["active_quest"] = "companions_funeral_rites"
         return [
             "[ASSAULT SKIPPED] The Silver Hand's cells were wiped out. Jorrvaskr is never directly assaulted. "
-            "Proceed to companions_funeral_rites."
+            "Proceeding to companions_funeral_rites."
         ]
 
     loc_lower = str(loc).lower()

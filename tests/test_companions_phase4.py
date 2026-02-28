@@ -301,6 +301,81 @@ def test_schism_triggers_no_events_wrong_location():
     assert len(events) == 0
 
 
+def test_schism_triggers_elder_ultimatum_gated_by_clock():
+    """Elder ultimatum should NOT fire when clock < 4; should fire when clock >= 4."""
+    state_low = _base_state("companions_schism_pressure")
+    schism._ensure_schism_clocks(state_low)
+    state_low["clocks"]["companions_schism_tradition_vs_newway"]["current_progress"] = 2
+    events_low = schism.schism_triggers("jorrvaskr_downstairs", state_low)
+    assert not any("ELDER ULTIMATUM" in e for e in events_low), \
+        "Elder ultimatum should not fire at clock < 4"
+
+    state_high = _base_state("companions_schism_pressure")
+    schism._ensure_schism_clocks(state_high)
+    state_high["clocks"]["companions_schism_tradition_vs_newway"]["current_progress"] = 4
+    events_high = schism.schism_triggers("jorrvaskr_downstairs", state_high)
+    assert any("ELDER ULTIMATUM" in e for e in events_high), \
+        "Elder ultimatum should fire at clock >= 4"
+
+
+def test_resolve_schism_scene_idempotent():
+    """Calling resolve_schism_scene twice for the same scene should be a no-op on second call."""
+    state = _base_state("companions_schism_pressure")
+    schism._ensure_schism_clocks(state)
+    state["clocks"]["companions_schism_tradition_vs_newway"]["current_progress"] = 3
+    schism.resolve_schism_scene(state, "secrecy_argument", "ignore")
+    clock_after_first = schism._get_clock_progress(state, "companions_schism_tradition_vs_newway")
+    events2 = schism.resolve_schism_scene(state, "secrecy_argument", "mediate")
+    clock_after_second = schism._get_clock_progress(state, "companions_schism_tradition_vs_newway")
+    assert len(events2) == 0, "Second call should be no-op"
+    assert clock_after_second == clock_after_first, "Clock should not change on second call"
+
+
+def test_resolve_whelp_recruitment_idempotent():
+    """Calling resolve_whelp_recruitment twice for the same whelp is a no-op on second call."""
+    state = _base_state("companions_schism_pressure")
+    schism._ensure_schism_clocks(state)
+    schism.resolve_whelp_recruitment(state, "ria", "new_way")
+    clock_after_first = schism._get_clock_progress(state, "companions_whelps_polarization")
+    events2 = schism.resolve_whelp_recruitment(state, "ria", "tradition")
+    clock_after_second = schism._get_clock_progress(state, "companions_whelps_polarization")
+    assert len(events2) == 0, "Second call should be no-op"
+    assert clock_after_second == clock_after_first, "Clock should not change on second call"
+    assert state["scene_flags"]["whelp_ria_side"] == "new_way", "First choice preserved"
+
+
+def test_resolve_pack_run_night_ensures_clocks():
+    """resolve_pack_run_night should work even without pre-initialized clocks."""
+    state = {
+        "companions_state": {"active_quest": "companions_pack_run_night"},
+        "scene_flags": {},
+    }
+    events = schism.resolve_pack_run_night(state, honest=True)
+    assert len(events) > 0, "Should work without pre-initialized clocks"
+    assert "companions_schism_tradition_vs_newway" in state.get("clocks", {})
+
+
+def test_resolve_oath_of_purity_ensures_clocks():
+    """resolve_oath_of_purity should work even without pre-initialized clocks."""
+    state = {
+        "companions_state": {"active_quest": "companions_oath_of_purity"},
+        "scene_flags": {},
+    }
+    events = schism.resolve_oath_of_purity(state, take_oath=True)
+    assert len(events) > 0, "Should work without pre-initialized clocks"
+    assert "companions_schism_tradition_vs_newway" in state.get("clocks", {})
+
+
+def test_elder_ultimatum_ensures_clocks():
+    """schism_elder_ultimatum_scene should work without pre-initialized clocks."""
+    state = {
+        "companions_state": {"active_quest": "companions_schism_pressure"},
+        "scene_flags": {},
+    }
+    events = schism.schism_elder_ultimatum_scene(state)
+    assert len(events) > 0, "Should work without pre-initialized clocks"
+
+
 # ──────────────────────────────────────────────────────────────────────────
 # Assault events — defense pool
 # ──────────────────────────────────────────────────────────────────────────
@@ -371,7 +446,8 @@ def test_save_gate_success_preserves_npc():
     assault.apply_defender_consequence(state, "kodlak_whitemane", "Near Fatal")
     events = assault.attempt_save_gate(state, "kodlak_whitemane", "success")
     pool = assault._build_defense_pool(state)
-    assert pool["defenders"]["kodlak_whitemane"]["status"] == "active"
+    # NPC survives but is withdrawn (status: wounded) -- no longer "active"
+    assert pool["defenders"]["kodlak_whitemane"]["status"] == "wounded"
     assert any("SUCCESS" in e for e in events)
 
 
@@ -490,3 +566,45 @@ def test_jorrvaskr_assault_triggers_act3_harbinger():
     state = _assault_state()
     events = assault.jorrvaskr_assault_triggers("jorrvaskr_harbinger", state)
     assert any("ACT 3" in e for e in events)
+
+
+def test_save_gate_wounds_npc_blocks_further_consequences():
+    """After save gate success, wounded NPC cannot absorb further consequences."""
+    state = _assault_state()
+    assault.apply_defender_consequence(state, "kodlak_whitemane", "Near Fatal")
+    assault.attempt_save_gate(state, "kodlak_whitemane", "success")
+    # Now wounded -- further consequences should be blocked
+    events = assault.apply_defender_consequence(state, "kodlak_whitemane", "Second Hit")
+    pool = assault._build_defense_pool(state)
+    assert pool["defenders"]["kodlak_whitemane"]["status"] == "wounded", \
+        "Wounded NPC should stay wounded, not become taken_out from another hit"
+    assert any("cannot apply" in e.lower() or "already" in e.lower() for e in events)
+
+
+def test_save_gate_removed_npc_returns_message():
+    """attempt_save_gate on an NPC removed from pool returns a clear message."""
+    state = _assault_state("reform")
+    # Remove Skjor pre-assault
+    state["companions_state"]["skjor_dead"] = True
+    events = assault.attempt_save_gate(state, "skjor", "failure")
+    assert any("not in the defense pool" in e for e in events)
+
+
+def test_jorrvaskr_assault_skipped_advances_quest():
+    """When assault is skipped, active_quest advances to companions_funeral_rites."""
+    state = _assault_state()
+    state["companions_state"]["silver_hand_endgame_cleared"] = True
+    state["clocks"]["silver_hand_assault_preparation"]["current_progress"] = 0
+    assault.jorrvaskr_assault_triggers("jorrvaskr_yard", state)
+    assert state["companions_state"]["active_quest"] == "companions_funeral_rites"
+
+
+def test_jorrvaskr_assault_skipped_is_stable():
+    """After skip, repeated trigger calls don't re-fire (state already advanced)."""
+    state = _assault_state()
+    state["companions_state"]["silver_hand_endgame_cleared"] = True
+    state["clocks"]["silver_hand_assault_preparation"]["current_progress"] = 0
+    assault.jorrvaskr_assault_triggers("jorrvaskr_yard", state)
+    # second call: quest is now funeral_rites, so triggers return nothing
+    events2 = assault.jorrvaskr_assault_triggers("jorrvaskr_yard", state)
+    assert len(events2) == 0, "After quest advances, triggers should be silent"
