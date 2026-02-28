@@ -8,17 +8,26 @@
   "current_scene_id": null,
   "active_hold": "Whiterun",
   "starting_location": "Whiterun",
-  "session_zero_completed": false,
+  "session_zero_completed": true,
   "session_count": 0,
   "active_pc_id": null,
   "active_pc": null,
   "pcs": {},
-  "player_characters": [],
+  "player_characters": [
+    {
+      "id": "pc_wayn",
+      "name": "Wayn",
+      "player": "Cole",
+      "race": "Redguard",
+      "standing_stone": "The Steed Stone",
+      "faction_alignment": "neutral"
+    }
+  ],
   "npc_first_impressions": {},
   "npc_first_impressions_legacy": {},
   "faction_trust": {},
   "faction_relationships": {
-    "companions": 0,
+    "companions": 30,
     "silver_hand": 0,
     "imperial_legion": 0,
     "stormcloaks": 0,
@@ -38,15 +47,30 @@
     "failed": []
   },
   "quest_state": {
-    "main": { "current": null, "status": "not_started" },
-    "civil_war": { "current": null, "status": "not_started" },
-    "companions": { "current": null, "status": "not_started" },
-    "college": { "current": null, "status": "not_started" },
-    "silver_hand": { "current": null, "status": "not_started" }
+    "main": {
+      "current": null,
+      "status": "not_started"
+    },
+    "civil_war": {
+      "current": null,
+      "status": "not_started"
+    },
+    "companions": {
+      "current": null,
+      "status": "not_started"
+    },
+    "college": {
+      "current": null,
+      "status": "not_started"
+    },
+    "silver_hand": {
+      "current": null,
+      "status": "not_started"
+    }
   },
   "civil_war_state": {
     "player_alliance": "neutral",
-    "battle_of_whiterun_status": "not_started",
+    "battle_of_whiterun_status": "approaching",
     "battle_of_whiterun_stage": 0,
     "battle_of_whiterun_faction": null,
     "battle_of_whiterun_companion": null,
@@ -65,11 +89,12 @@
       "notes": "Ticks during set-pieces; resolves into outcomes."
     },
     "civil_war_eligible": false,
-    "civil_war_locked_reason": "incomplete_faction_intro"
+    "civil_war_locked_reason": "incomplete_faction_intro",
+    "neutral_subfaction": "companions"
   },
   "branching_decisions": {
-    "neutral_subfaction": null,
-    "neutral_faction_start": null,
+    "neutral_subfaction": "companions",
+    "neutral_faction_start": "companions_take_up_arms",
     "civil_war_stance": null,
     "jarl_balgruuf_support": null,
     "thalmor_embassy_approach": null,
@@ -97,14 +122,35 @@
   },
   "companions": {
     "active_companions": [],
-    "available_companions": [],
+    "available_companions": [
+      {
+        "npc_id": "npc_stat_hadvar",
+        "name": "Hadvar",
+        "status": "available",
+        "loyalty": 50,
+        "location": "Riverwood or Whiterun",
+        "recruitment_condition": "Party encounters Hadvar and helps with Imperial-related task",
+        "faction_affinity": "imperial_legion"
+      },
+      {
+        "npc_id": "npc_stat_ralof",
+        "name": "Ralof",
+        "status": "available",
+        "loyalty": 50,
+        "location": "Riverwood or Stormcloak camps",
+        "recruitment_condition": "Party encounters Ralof and helps with Stormcloak-related task",
+        "faction_affinity": "stormcloaks"
+      }
+    ],
     "dismissed_companions": [],
     "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": null,
+    "active_quest": "companions_investigate_jorrvaskr",
     "completed_quests": [],
-    "quest_progress": {},
+    "quest_progress": {
+      "companions_investigate_jorrvaskr": "active"
+    },
     "embraced_curse": null,
     "skjor_alive": true,
     "kodlak_cured": false,
@@ -114,7 +160,13 @@
     "cure_targets_remaining": [],
     "cure_chain_completed": false,
     "circle_cleansed": [],
-    "circle_remaining_werewolves": ["Kodlak", "Skjor", "Aela", "Farkas", "Vilkas"],
+    "circle_remaining_werewolves": [
+      "Kodlak",
+      "Skjor",
+      "Aela",
+      "Farkas",
+      "Vilkas"
+    ],
     "harbingership_succession_hint": null,
     "circle_secret_known_to_pc": {},
     "circle_secret_policy": {},
@@ -145,5 +197,10 @@
   "last_session_ended_at": null,
   "last_session_title": null,
   "next_scene_hint": null,
-  "last_updated": "2026-02-28 00:00:00"
+  "last_updated": "2026-02-28 03:39:43",
+  "faction_flags": {},
+  "starting_narrative": "You've proven yourself worthy to join the Companions, the ancient warrior guild of Jorrvaskr. Harbinger Kodlak Whitemane speaks with you personally: 'Jarl Balgruuf has sent word that Whiterun faces a threat. The Companions will not stand idle when innocent people need protection. I'm sending you to assess the situation and defend those who cannot defend themselves. This isn't about choosing sides in the civil war - this is about honor.' You arrive in Whiterun as the Battle begins, seeing both Hadvar (Imperial) and Ralof (Stormcloak) rallying forces. You must choose whom to assist.",
+  "neutral_subfaction": "companions",
+  "starting_npc_contact": "kodlak_whitemane",
+  "starting_faction": "companions"
 }

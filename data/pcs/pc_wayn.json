@@ -1,0 +1,93 @@
+{
+  "name": "Wayn",
+  "id": "pc_wayn",
+  "player": "Cole",
+  "race": "Redguard",
+  "standing_stone": "The Steed Stone",
+  "level": 1,
+  "aspects": {
+    "high_concept": "Master Swordsmen & Martial Artist - The Half-Breed Sayad Sage (Identity).",
+    "trouble": "WANTED: DEAD OR ALIVE - The Half-Breed Bandit of Bravil (Empire Hunted).",
+    "other_aspects": [
+      "The Ansei of the Cold Sand (Title).",
+      "Dry Wit, Smart Mouth.",
+      "Master Martial Artist. (Combat Prowess)."
+    ]
+  },
+  "skills": {
+    "Great (+4)": [
+      "Fight"
+    ],
+    "Good (+3)": [
+      "Will",
+      "Physique"
+    ],
+    "Fair (+2)": [
+      "Athletics",
+      "Notice",
+      "Empathy"
+    ],
+    "Average (+1)": [
+      "Crafts",
+      "Shoot",
+      "Survival",
+      "Lore"
+    ]
+  },
+  "racial_bonuses": {
+    "ability": {
+      "name": "Resist Poison",
+      "effect": "+2 to Physique rolls to resist poison"
+    },
+    "power": {
+      "name": "Adrenaline Rush",
+      "effect": "Once per session, ignore all stress boxes for one scene"
+    },
+    "skill_bonuses": [
+      "Fight (+1)",
+      "Physique (+1)"
+    ]
+  },
+  "stress": {
+    "physical": [
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false
+    ]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "stunts": [
+    "Warrior of the Mind: Because Wayn has spent years learning to size his opponent up, learning integral truths about people's personas comes as if second nature. A talent he then uses, to disarm his opposition mentally, before proceeding to do so physically as well. Rolls used to read someone with Empathy receive a +2 Bonus to their 4dF rolls. On SWS Wayn audibly points out a character flaw of his enemy, and imposes a Situation Aspect on them for a Scene: 'In their Head' making attacks made by the Attacker using Fight or Shoot receieve a -1 to their 4dF rolls against Wayn.",
+    "Martial Art Maneuvers: Because Wayn is a Sage of the Martial Art, having trained with the Monastic Khajiit,the Dunmer Marshmerrow, and within his own home of Hammerfell studying the Book of Circles with exceedinly profound insight to the point he could manifest a Shehai. When it comes to close quarter's defense he usually need only let his opponents momentum be their downfall. When defending against one enemy within the same zone, and with no other attacking him, Wayn receieves a bonus of +2 to Defend using Fight. On SWS he may waive the boost in exchange for imposing one of three Situation effects on his target for 2 exchanges: 'Weapon Stolen', 'Swordarm taken out - Pressure Point Struck!', 'Throat chopped - Can't breath!'. If he spends 1 FP he may also inflict two physical stress upon his target affected by one of those situation aspects.",
+    "Mental Mastery: Because Wayn has complete control over his Mind from years of disciplining it through his training at becoming an Ansei. When he sets his mind upon battle, there's little that can detour his objective. Once per Scene Wayn can Create Advantage with Will focusing in on his opponents, receiving a +2 Bonus on the 4dF, placing the Scene Aspect: 'Deadly Calm' (2 free Invokes). On SWS the first Physical Mild Consequence he takes can be ignored and soaked, as if having an additional box to check."
+  ],
+  "refresh": 3,
+  "fate_points": 3,
+  "equipment": {
+    "weapons": [],
+    "armor": [],
+    "items": []
+  },
+  "gold": 100,
+  "experience": 0,
+  "backstory": "**Civil War Entry**: Wayn's Response: \"I drew the short-straw and allied with the Stormcloaks. What is Oblivion do you think, Milk-Drinker? I'm a Sayad Half-breed of Skyrim. My Father was the: 'True Son of Skyrim' type, and Veteran of the Great War, while my Mother was Forebear who fought against the Aldmeri Dominion in Hammerfell when the Empire released us from their protection. Got a long history of Hating the Empire you could say.\"\n\n**Civil War Stance**: Wayn's Response: \"I don't. I support not ending up in the Empire's dungeon in Cyrodil. Took really unkindly when both of my parents demises were correlated to their former loyalties to the Emperor. So right around the time my Mother died in the line of duty leaving behind only a copy of the Five Circles, her journal, and a pension that was then absconded by the Count of Bravil, I decided to establish a little group of my own outside the City limits. Called ourselves: The Mythless Brotherhood. Raked up over a million septim or so, before the might of the Emperor fell onto our heads and forced me to go on the run. Hm.. Guess it wasn't all for not though, it helped me become the Sage I am today, and lead me back to the place that my Father Loved almost as much as my Mother. Think I'll.. Check into those Companions he said he use to run with.\"\n\n**Motivation**: Wayn's Response: \"Hmph, you mean besides stay off the Empire's radar? It's enough to have actually manifested my Shehai, and to be called Ansei, by my Brother's of the Blade. Still, there's the want in me to go further, to be known as a legendary warrior across Skyrim, and to personally be the one to jam a sword into the Empire's heart here in Skyrim, like my fellow Warrior-Wave did to the Dominion in Hammerfell. Other than that, hell, I wouldn't mind doing this Mercenary thing with the Companions as my Father before me.\"\n\n**Connections**: Wayn's Response: \"Other than being born here, no. My Parents moved back to Hammerfell with me when I was ten years of age. My Father always spoke Highly of the Warriors of Jorrvaskr, perhaps I'll enlist! Running pretty low on Septim from my days of righteous crime against the Empire anyhow.\"",
+  "relationships": {},
+  "quests": [],
+  "session_history": [],
+  "notes": "Created during Session Zero",
+  "faction_alignment": "neutral",
+  "starting_faction": "companions",
+  "backstory_tags": [
+    "companions",
+    "jorrvaskr",
+    "honor"
+  ],
+  "additional_faction_interests": "Stormcloak, The Greybeards,"
+}
