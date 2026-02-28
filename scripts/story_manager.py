@@ -78,12 +78,12 @@ class StoryManager:
         self.civil_war_path = self.data_dir / "quests" / "civil_war_quests.json"
         self.college_path = self.data_dir / "quests" / "college_of_winterhold_quests.json"
         self.companions_path = self.data_dir / "quests" / "companions_questline.json"
+        self.silver_hand_path = self.data_dir / "quests" / "silver_hand_questline.json"
         self.thalmor_path = self.data_dir / "thalmor_arcs.json"
         self.npc_stat_sheets_dir = self.data_dir / "npc_stat_sheets"
         self.query_manager = DataQueryManager(str(self.data_dir))
         self.college_quests = self.load_college_quests()
         self.companions_quests = self.load_companions_quests()
-        self.silver_hand_path = self.data_dir / "quests" / "silver_hand_questline.json"
         self.silver_hand_quests = self.load_silver_hand_quests()
 
         # Initialize Dragonbreak Manager if available
@@ -138,7 +138,7 @@ class StoryManager:
     def load_silver_hand_quests(self):
         """Load Silver Hand questline data"""
         if self.silver_hand_path.exists():
-            with open(self.silver_hand_path, "r", encoding="utf-8") as f:
+            with open(self.silver_hand_path, 'r') as f:
                 data = json.load(f)
             return data.get("silver_hand_questline", {}).get("quests", {})
         return {}
@@ -290,15 +290,15 @@ class StoryManager:
         Args:
             state: Campaign state dict (mutated in-place).
         """
-        sh_state = state.setdefault("silver_hand_state", {
+        silver_hand_state = state.setdefault("silver_hand_state", {
             "active_quest": None,
             "completed_quests": [],
             "quest_progress": {},
-            "internal_politics": {"restorers": 0, "purgers": 0},
-            "joined": False,
+            "silver_hand_joined": False,
+            "silver_hand_path": None,
         })
-        sh_state["active_quest"] = "silver_hand_frostroot_contact"
-        sh_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
+        silver_hand_state["active_quest"] = "silver_hand_frostroot_contact"
+        silver_hand_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
 
     def complete_silver_hand_quest(self, state):
         """
@@ -310,22 +310,24 @@ class StoryManager:
         Returns:
             The newly activated quest ID, or None if the arc is finished.
         """
-        sh_state = state.get("silver_hand_state", {}) or {}
-        current = sh_state.get("active_quest")
+        silver_hand_state = state.get("silver_hand_state", {})
+        current = silver_hand_state.get("active_quest")
         if not current:
             return None
 
-        completed = sh_state.setdefault("completed_quests", [])
+        completed = silver_hand_state.setdefault("completed_quests", [])
         if current not in completed:
             completed.append(current)
-        sh_state.setdefault("quest_progress", {})[current] = "completed"
+        silver_hand_state.setdefault("quest_progress", {})[current] = "completed"
 
         next_q = SILVER_HAND_CHAIN.get(current)
+
         if next_q:
-            sh_state["active_quest"] = next_q
-            sh_state["quest_progress"][next_q] = "active"
+            silver_hand_state["active_quest"] = next_q
+            silver_hand_state["quest_progress"][next_q] = "active"
         else:
-            sh_state["active_quest"] = None
+            silver_hand_state["active_quest"] = None
+
         return next_q
 
     def record_branching_decision(self, decision_key, choice):
@@ -693,9 +695,9 @@ class StoryManager:
 
         # Silver Hand questline (state-driven active quest)
         silver_hand_state = state.get("silver_hand_state", {}) or {}
-        active_sh_quest = silver_hand_state.get("active_quest")
-        if active_sh_quest and self.silver_hand_quests:
-            quest_data = self.silver_hand_quests.get(active_sh_quest)
+        active_silver_hand_quest = silver_hand_state.get("active_quest")
+        if active_silver_hand_quest and self.silver_hand_quests:
+            quest_data = self.silver_hand_quests.get(active_silver_hand_quest)
             if quest_data:
                 available.append({"type": "silver_hand", "quest": quest_data})
 

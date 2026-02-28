@@ -23,6 +23,7 @@ FACTION_NAME_MAPPING = {
     "college": "college_of_winterhold",
     "college_of_winterhold": "college_of_winterhold",
     "companions": "companions",
+    "silver_hand": "silver_hand",
     "thieves_guild": "thieves_guild",
     "dark_brotherhood": "dark_brotherhood",
     "blades": "blades",
@@ -716,14 +717,16 @@ class SessionZeroManager:
             },
             "silver_hand": {
                 "narrative": (
-                    "You begin not in a city hall or guild crypt, but in a frost-bitten lodge on the Pale border.\n"
-                    "The Silver Hand are not bandits here — they are oath-warriors who believe Jorrvaskr's Circle\n"
-                    "betrayed Ysgramor by embracing the beast. Some want cure and restoration; others want purges.\n"
-                    "You are offered a place, but also a burden: to decide what 'purity' actually means."
+                    "A sealed note bearing the mark of the Old Way has reached you. Hakon Silvershield of the Silver Hand "
+                    "requests your presence at Frostroot Lodge on the Pale border. The note reads: 'Jorrvaskr harbors a "
+                    "rot. The Circle bleeds beast-blood into the Companions, and none dare name it. The Old Way demands "
+                    "truth — and those who swear the Oath of the Five Hundred carry the blade of that truth.' You travel "
+                    "to Whiterun first, watching the Companions from the shadows, before riding north to meet Hakon. The "
+                    "Silver Hand's path is neither merciful nor cruel by nature — only the oaths you keep will decide that."
                 ),
                 "starting_faction": "silver_hand",
-                "key_npc": "silver_hand_commander",
-                "location": "Pale border lodge"
+                "key_npc": "hakon_silvershield",
+                "location": "Whiterun (observation), then Frostroot Lodge (The Pale border)"
             }
         }
         
@@ -1014,9 +1017,27 @@ class SessionZeroManager:
                 "kodlak_cured": False,
             })
 
-        # Set starting_faction for silver_hand
+        # Initialize silver_hand_state and queue first quest when starting as Silver Hand member
         if resolved_faction == "silver_hand":
+            silver_hand_state = campaign_state.setdefault("silver_hand_state", {
+                "active_quest": None,
+                "completed_quests": [],
+                "quest_progress": {},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
+            })
+            if not silver_hand_state.get("active_quest"):
+                silver_hand_state["active_quest"] = "silver_hand_frostroot_contact"
+                silver_hand_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
             campaign_state["starting_faction"] = "silver_hand"
+        else:
+            campaign_state.setdefault("silver_hand_state", {
+                "active_quest": None,
+                "completed_quests": [],
+                "quest_progress": {},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
+            })
 
         # Update last updated timestamp
         campaign_state["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
