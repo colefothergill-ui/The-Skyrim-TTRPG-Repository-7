@@ -1,0 +1,130 @@
+{
+  "silver_hand_questline": {
+    "name": "The Silver Hand",
+    "description": "A morally grey Old Way order that opposes the Circle's beast-blood leadership. Players can reform it into a restorative force or drive it into purges.",
+    "quests": {
+      "silver_hand_frostroot_contact": {
+        "name": "Frostroot Lodge Contact",
+        "quest_id": "silver_hand_frostroot_contact",
+        "quest_giver": "Hakon Silvershield",
+        "description": "A sealed note draws you to Frostroot Lodge on the Pale border. You are tested as a potential oath-warrior — not for cruelty, but for discipline.",
+        "objectives": [
+          "Travel to Frostroot Lodge (The Pale border)",
+          "Meet Hakon Silvershield and hear the Silver Hand's claim to the Old Way",
+          "Survive a nonlethal 'Oath Trial' spar (first Mild consequence wins) or pass a discipline test (Will/Physique)",
+          "Swear (or refuse) the Silver Hand's Oath of the Five Hundred"
+        ],
+        "rewards": [
+          "If sworn: Silver Hand membership (joined=true in silver_hand_state)",
+          "Aspect: 'Oath-Warrior of the Old Way' (1 free invoke)",
+          "Access to lodge safehouse and quartermaster"
+        ],
+        "branching": {
+          "refuse": {
+            "description": "You refuse the Silver Hand's oath. They let you walk — but mark you as watched.",
+            "flag": "silver_hand_joined",
+            "value": false
+          },
+          "swear": {
+            "description": "You swear the oath and become a Silver Hand oath-warrior.",
+            "flag": "silver_hand_joined",
+            "value": true
+          }
+        },
+        "prerequisites": [],
+        "follow_up_quest": "silver_hand_prove_the_oath"
+      },
+
+      "silver_hand_prove_the_oath": {
+        "name": "Prove the Oath",
+        "quest_id": "silver_hand_prove_the_oath",
+        "quest_giver": "Freydis Wolfbane",
+        "description": "To earn trust, you're sent on a hunt that is not simple slaughter: track a cursed creature and decide whether it is a monster or a victim.",
+        "objectives": [
+          "Track a suspected lycanthrope or werebeast incident",
+          "Secure conclusive evidence (blood, witness, silver wound, or confession)",
+          "Decide: capture for cure (restorer tick) or kill (purger tick)",
+          "Return to Frostroot Lodge with proof"
+        ],
+        "rewards": [
+          "+1 to Silver Hand trust (or +2 if choice aligned with lodge leadership)",
+          "Quartermaster reward: silvered weapon or silver bolts (GM pick)",
+          "Clock seed: 'Circle Exposure Pressure' (0/6) if pursuing Jorrvaskr links"
+        ],
+        "prerequisites": ["silver_hand_frostroot_contact"],
+        "follow_up_quest": "silver_hand_oath_records"
+      },
+
+      "silver_hand_oath_records": {
+        "name": "The Oath Records",
+        "quest_id": "silver_hand_oath_records",
+        "quest_giver": "Sister Ava of Stendarr",
+        "description": "Inside the lodge lies a record of broken oaths: names, dates, and old Companions who rejected the beast-blood. The lodge wants truth — but truth can be weapon or medicine.",
+        "objectives": [
+          "Study the lodge's Oath Records (Lore/Investigate)",
+          "Identify the Silver Hand's origin: a rejected Inner Circle candidate who founded the order",
+          "Learn key weaknesses of Circle lycanthropy (silver, fire, shame, cure rites)",
+          "Choose how you'll pursue Jorrvaskr: expose and redeem, or purge and replace"
+        ],
+        "rewards": [
+          "Aspect: 'I Know Where the Rot Began' (1 free invoke)",
+          "Unlock branch quest: Restorer vs Purger split"
+        ],
+        "prerequisites": ["silver_hand_prove_the_oath"],
+        "follow_up_quest": "silver_hand_split_restorer_or_purger"
+      },
+
+      "silver_hand_split_restorer_or_purger": {
+        "name": "Restoration or Purge",
+        "quest_id": "silver_hand_split_restorer_or_purger",
+        "quest_giver": "Hakon Silvershield (Restorer) or Rogar Icevein (Purger)",
+        "description": "The lodge fractures: one side wants to save victims and restore the Companions' oath; the other wants to burn out the beast-blood entirely.",
+        "objectives": [
+          "Attend the lodge council",
+          "Choose faction line: restorers or purgers",
+          "Undertake a mission proving your chosen line",
+          "Prevent internal collapse (extremists may sabotage either path)"
+        ],
+        "branching": {
+          "restorer": {
+            "description": "You commit to cure-focused hunts and targeted strikes on true monsters only.",
+            "flag": "silver_hand_path",
+            "value": "restorer"
+          },
+          "purger": {
+            "description": "You commit to extermination. Collateral becomes a moral hazard you must own.",
+            "flag": "silver_hand_path",
+            "value": "purger"
+          }
+        },
+        "rewards": [
+          "Restorer: access to cure rites + healer support",
+          "Purger: access to heavier silvered kit + strike-team authority"
+        ],
+        "prerequisites": ["silver_hand_oath_records"],
+        "follow_up_quest": "silver_hand_final_judgment"
+      },
+
+      "silver_hand_final_judgment": {
+        "name": "Judgment of the Five Hundred",
+        "quest_id": "silver_hand_final_judgment",
+        "quest_giver": "Hakon Silvershield",
+        "description": "The final confrontation: Jorrvaskr cannot remain unchanged. You decide whether the Companions are redeemed, replaced, or destroyed.",
+        "objectives": [
+          "Enter Whiterun Hold with a plan (covert, diplomatic, or assault)",
+          "Force the truth of the Circle into the open — privately or publicly",
+          "Choose the fate of key Circle members (cure, exile, execution, or alliance)",
+          "Resolve the Silver Hand's internal extremists (optional but heavily recommended)"
+        ],
+        "rewards": [
+          "Major trust gain and leadership influence in Silver Hand",
+          "Artifact reward hook (GM: silvered relic tied to Ysgramor's oath)",
+          "Campaign consequence: Companions arc altered or terminated"
+        ],
+        "notes": "This quest is designed to interface with the Companions finale. If the PC is a lycanthrope, Silver Hand membership should be locked out.",
+        "prerequisites": ["silver_hand_split_restorer_or_purger"],
+        "follow_up_quest": null
+      }
+    }
+  }
+}

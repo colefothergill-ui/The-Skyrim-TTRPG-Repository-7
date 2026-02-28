@@ -25,7 +25,7 @@ from pathlib import Path
 _REPO_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_REPO_ROOT / "scripts"))
 
-from story_manager import StoryManager, COLLEGE_CHAIN, COMPANIONS_CHAIN
+from story_manager import StoryManager, COLLEGE_CHAIN, COMPANIONS_CHAIN, SILVER_HAND_CHAIN
 from session_zero import SessionZeroManager
 
 
@@ -713,17 +713,255 @@ class TestSessionZeroCompanionsFaction:
         print("  ✓ companions_state always initialised by session-zero")
 
 
-def run_all_tests():
-    """Run all test classes"""
-    print("=" * 60)
-    print("STORY MANAGER — COLLEGE & COMPANIONS QUESTLINE TEST SUITE")
-    print("=" * 60)
+class TestSilverHandQuests:
+    """Tests for the Silver Hand questline integration."""
 
+    def test_load_silver_hand_quests_returns_all_five(self):
+        """load_silver_hand_quests() should return a dict with all five quests."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            quests = sm.silver_hand_quests
+            assert isinstance(quests, dict), "silver_hand_quests should be a dict"
+            expected_ids = {
+                "silver_hand_frostroot_contact",
+                "silver_hand_prove_the_oath",
+                "silver_hand_oath_records",
+                "silver_hand_split_restorer_or_purger",
+                "silver_hand_final_judgment",
+            }
+            assert expected_ids.issubset(quests.keys()), (
+                f"Missing quests: {expected_ids - quests.keys()}"
+            )
+            print(f"  ✓ {len(quests)} Silver Hand quests loaded")
+
+    def test_start_silver_hand_questline_sets_active_quest(self):
+        """start_silver_hand_questline() should set silver_hand_frostroot_contact as active."""
+        state = {
+            "silver_hand_state": {
+                "active_quest": None,
+                "completed_quests": [],
+                "quest_progress": {},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            sm.start_silver_hand_questline(state)
+        sh = state["silver_hand_state"]
+        assert sh["active_quest"] == "silver_hand_frostroot_contact"
+        assert sh["quest_progress"]["silver_hand_frostroot_contact"] == "active"
+        print("  ✓ start_silver_hand_questline sets silver_hand_frostroot_contact as active")
+
+    def test_complete_silver_hand_quest_chains_in_order(self):
+        """complete_silver_hand_quest() advances through the chain in order."""
+        ordered = [
+            "silver_hand_frostroot_contact",
+            "silver_hand_prove_the_oath",
+            "silver_hand_oath_records",
+            "silver_hand_split_restorer_or_purger",
+            "silver_hand_final_judgment",
+        ]
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            state = {
+                "silver_hand_state": {
+                    "active_quest": "silver_hand_frostroot_contact",
+                    "completed_quests": [],
+                    "quest_progress": {"silver_hand_frostroot_contact": "active"},
+                    "silver_hand_joined": False,
+                    "silver_hand_path": None,
+                }
+            }
+            for current_id in ordered:
+                assert state["silver_hand_state"]["active_quest"] == current_id, (
+                    f"Expected active quest '{current_id}', got "
+                    f"'{state['silver_hand_state']['active_quest']}'"
+                )
+                next_q = sm.complete_silver_hand_quest(state)
+                expected_next = SILVER_HAND_CHAIN[current_id]
+                assert next_q == expected_next, (
+                    f"After completing '{current_id}', expected next '{expected_next}', "
+                    f"got '{next_q}'"
+                )
+                assert current_id in state["silver_hand_state"]["completed_quests"]
+                assert state["silver_hand_state"]["quest_progress"][current_id] == "completed"
+
+        print("  ✓ complete_silver_hand_quest chains through all five quests correctly")
+
+    def test_complete_silver_hand_quest_arc_ends_cleanly(self):
+        """After completing silver_hand_final_judgment, active_quest should be None."""
+        state = {
+            "silver_hand_state": {
+                "active_quest": "silver_hand_final_judgment",
+                "completed_quests": [],
+                "quest_progress": {"silver_hand_final_judgment": "active"},
+                "silver_hand_joined": True,
+                "silver_hand_path": "restorer",
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            result = sm.complete_silver_hand_quest(state)
+        assert result is None
+        assert state["silver_hand_state"]["active_quest"] is None
+        assert "silver_hand_final_judgment" in state["silver_hand_state"]["completed_quests"]
+        print("  ✓ complete_silver_hand_quest ends arc cleanly at final_judgment")
+
+    def test_get_available_quests_includes_active_silver_hand_quest(self):
+        """get_available_quests() should list the active Silver Hand quest."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            state = sm.load_campaign_state() or {}
+            state["silver_hand_state"] = {
+                "active_quest": "silver_hand_frostroot_contact",
+                "completed_quests": [],
+                "quest_progress": {"silver_hand_frostroot_contact": "active"},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
+            }
+            sm.save_campaign_state(state)
+            available = sm.get_available_quests()
+
+        sh_entries = [q for q in available if q.get("type") == "silver_hand"]
+        assert len(sh_entries) >= 1, (
+            "Expected at least one silver_hand quest in available quests"
+        )
+        quest_data = sh_entries[0]["quest"]
+        assert quest_data.get("quest_id") == "silver_hand_frostroot_contact", (
+            f"Expected quest_id 'silver_hand_frostroot_contact', got: {quest_data.get('quest_id')!r}"
+        )
+        print("  ✓ get_available_quests surfaces active Silver Hand quest")
+
+    def test_get_available_quests_no_silver_hand_when_inactive(self):
+        """get_available_quests() should not include Silver Hand quest when none is active."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sm = _make_story_manager(Path(tmpdir))
+            available = sm.get_available_quests()
+
+        sh_entries = [q for q in available if q.get("type") == "silver_hand"]
+        assert len(sh_entries) == 0, (
+            "Expected no silver_hand quests when active_quest is null"
+        )
+        print("  ✓ get_available_quests hides Silver Hand quest when inactive")
+
+
+class TestSessionZeroSilverHandFaction:
+    """Tests for session_zero Silver Hand faction initialization."""
+
+    def _make_session_zero_env(self, tmpdir: Path):
+        data_dir = tmpdir / "data"
+        state_dir = tmpdir / "state"
+        (data_dir / "pcs").mkdir(parents=True)
+        state_dir.mkdir(parents=True)
+
+        (state_dir / "campaign_state.json").write_text(json.dumps({
+            "campaign_id": "test_001",
+            "current_act": 1,
+            "civil_war_state": {
+                "player_alliance": "neutral",
+                "battle_of_whiterun_status": "approaching",
+                "imperial_victories": 0,
+                "stormcloak_victories": 0,
+                "key_battles_completed": [],
+                "faction_relationship": {"imperial_legion": 0, "stormcloaks": 0},
+            },
+            "main_quest_state": {},
+            "thalmor_arc": {},
+            "branching_decisions": {},
+            "world_consequences": {"major_choices": []},
+            "active_story_arcs": [],
+            "companions": {
+                "active_companions": [],
+                "available_companions": [],
+                "dismissed_companions": [],
+                "companion_relationships": {},
+            },
+        }, indent=2))
+
+        return SessionZeroManager(data_dir=str(data_dir), state_dir=str(state_dir))
+
+    def test_silver_hand_faction_queues_frostroot_contact(self):
+        """Session-zero with Silver Hand subfaction should activate silver_hand_frostroot_contact."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            mgr = self._make_session_zero_env(Path(tmpdir))
+            characters = [{
+                "id": "pc_test",
+                "name": "Test Oath-Warrior",
+                "player": "Player One",
+                "race": "Nord",
+                "standing_stone": "The Warrior Stone",
+                "faction_alignment": "neutral",
+            }]
+            state = mgr.update_campaign_state(
+                faction_alignment="neutral",
+                characters=characters,
+                neutral_subfaction="silver_hand",
+            )
+
+        assert "silver_hand_state" in state, "silver_hand_state should be present in campaign state"
+        sh = state["silver_hand_state"]
+        assert sh["active_quest"] == "silver_hand_frostroot_contact", (
+            f"Expected silver_hand_frostroot_contact as active quest, got: {sh['active_quest']}"
+        )
+        assert sh["quest_progress"].get("silver_hand_frostroot_contact") == "active"
+        assert state.get("starting_faction") == "silver_hand"
+        print("  ✓ session-zero with Silver Hand queues silver_hand_frostroot_contact")
+
+    def test_non_silver_hand_faction_does_not_activate_silver_hand_quests(self):
+        """Session-zero with non-Silver Hand subfaction should leave silver_hand_state inactive."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            mgr = self._make_session_zero_env(Path(tmpdir))
+            characters = [{
+                "id": "pc_test2",
+                "name": "Test Companion",
+                "player": "Player Two",
+                "race": "Nord",
+                "standing_stone": "The Warrior Stone",
+                "faction_alignment": "neutral",
+            }]
+            state = mgr.update_campaign_state(
+                faction_alignment="neutral",
+                characters=characters,
+                neutral_subfaction="companions",
+            )
+
+        sh = state.get("silver_hand_state", {})
+        assert sh.get("active_quest") is None, (
+            f"Expected no active silver_hand quest for Companions faction, got: {sh.get('active_quest')}"
+        )
+        print("  ✓ non-Silver Hand faction does not activate Silver Hand quests")
+
+    def test_silver_hand_state_initialised_for_all_factions(self):
+        """silver_hand_state should always be present after session-zero."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            mgr = self._make_session_zero_env(Path(tmpdir))
+            characters = [{
+                "id": "pc_test3",
+                "name": "Test Imperial",
+                "player": "Player Three",
+                "race": "Imperial",
+                "standing_stone": "The Lord Stone",
+                "faction_alignment": "imperial",
+            }]
+            state = mgr.update_campaign_state(
+                faction_alignment="imperial",
+                characters=characters,
+            )
+
+        assert "silver_hand_state" in state, "silver_hand_state should be present even for Imperial start"
+        print("  ✓ silver_hand_state always initialised by session-zero")
+
+
+def run_all_tests():
+    """Run all test classes for College, Companions, and Silver Hand questlines."""
     test_classes = [
         TestCollegeQuests,
         TestSessionZeroCollegeFaction,
         TestCompanionsQuests,
         TestSessionZeroCompanionsFaction,
+        TestSilverHandQuests,
+        TestSessionZeroSilverHandFaction,
     ]
     passed = 0
     failed = 0

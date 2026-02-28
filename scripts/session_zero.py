@@ -23,6 +23,7 @@ FACTION_NAME_MAPPING = {
     "college": "college_of_winterhold",
     "college_of_winterhold": "college_of_winterhold",
     "companions": "companions",
+    "silver_hand": "silver_hand",
     "thieves_guild": "thieves_guild",
     "dark_brotherhood": "dark_brotherhood",
     "blades": "blades",
@@ -705,6 +706,19 @@ class SessionZeroManager:
                 "starting_faction": "greybeards",
                 "key_npc": "arngeir",
                 "location": "High Hrothgar, then Whiterun"
+            },
+            "silver_hand": {
+                "narrative": (
+                    "A sealed note bearing the mark of the Old Way has reached you. Hakon Silvershield of the Silver Hand "
+                    "requests your presence at Frostroot Lodge on the Pale border. The note reads: 'Jorrvaskr harbors a "
+                    "rot. The Circle bleeds beast-blood into the Companions, and none dare name it. The Old Way demands "
+                    "truth — and those who swear the Oath of the Five Hundred carry the blade of that truth.' You travel "
+                    "to Whiterun first, watching the Companions from the shadows, before riding north to meet Hakon. The "
+                    "Silver Hand's path is neither merciful nor cruel by nature — only the oaths you keep will decide that."
+                ),
+                "starting_faction": "silver_hand",
+                "key_npc": "hakon_silvershield",
+                "location": "Whiterun (observation), then Frostroot Lodge (The Pale border)"
             }
         }
         
@@ -991,6 +1005,28 @@ class SessionZeroManager:
                 "embraced_curse": False,
                 "skjor_alive": True,
                 "kodlak_cured": False,
+            })
+
+        # Initialize silver_hand_state and queue first quest when starting as Silver Hand member
+        if resolved_faction == "silver_hand":
+            silver_hand_state = campaign_state.setdefault("silver_hand_state", {
+                "active_quest": None,
+                "completed_quests": [],
+                "quest_progress": {},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
+            })
+            if not silver_hand_state.get("active_quest"):
+                silver_hand_state["active_quest"] = "silver_hand_frostroot_contact"
+                silver_hand_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
+            campaign_state["starting_faction"] = "silver_hand"
+        else:
+            campaign_state.setdefault("silver_hand_state", {
+                "active_quest": None,
+                "completed_quests": [],
+                "quest_progress": {},
+                "silver_hand_joined": False,
+                "silver_hand_path": None,
             })
 
         # Update last updated timestamp

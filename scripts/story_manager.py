@@ -59,6 +59,15 @@ COMPANIONS_CHAIN = {
     "companions_final_journey": None,
 }
 
+# Silver Hand quest chain order
+SILVER_HAND_CHAIN = {
+    "silver_hand_frostroot_contact": "silver_hand_prove_the_oath",
+    "silver_hand_prove_the_oath": "silver_hand_oath_records",
+    "silver_hand_oath_records": "silver_hand_split_restorer_or_purger",
+    "silver_hand_split_restorer_or_purger": "silver_hand_final_judgment",
+    "silver_hand_final_judgment": None,
+}
+
 
 class StoryManager:
     def __init__(self, data_dir="../data", state_dir="../state"):
@@ -69,11 +78,13 @@ class StoryManager:
         self.civil_war_path = self.data_dir / "quests" / "civil_war_quests.json"
         self.college_path = self.data_dir / "quests" / "college_of_winterhold_quests.json"
         self.companions_path = self.data_dir / "quests" / "companions_questline.json"
+        self.silver_hand_path = self.data_dir / "quests" / "silver_hand_questline.json"
         self.thalmor_path = self.data_dir / "thalmor_arcs.json"
         self.npc_stat_sheets_dir = self.data_dir / "npc_stat_sheets"
         self.query_manager = DataQueryManager(str(self.data_dir))
         self.college_quests = self.load_college_quests()
         self.companions_quests = self.load_companions_quests()
+        self.silver_hand_quests = self.load_silver_hand_quests()
 
         # Initialize Dragonbreak Manager if available
         if DRAGONBREAK_AVAILABLE:
@@ -122,6 +133,14 @@ class StoryManager:
             with open(self.companions_path, 'r') as f:
                 data = json.load(f)
             return data.get("companions_questline", {}).get("quests", {})
+        return {}
+
+    def load_silver_hand_quests(self):
+        """Load Silver Hand questline data"""
+        if self.silver_hand_path.exists():
+            with open(self.silver_hand_path, 'r') as f:
+                data = json.load(f)
+            return data.get("silver_hand_questline", {}).get("quests", {})
         return {}
 
     def start_college_questline(self, state):
@@ -263,6 +282,53 @@ class StoryManager:
             ):
                 return True
         return False
+
+    def start_silver_hand_questline(self, state):
+        """
+        Activate the first Silver Hand quest (silver_hand_frostroot_contact).
+
+        Args:
+            state: Campaign state dict (mutated in-place).
+        """
+        silver_hand_state = state.setdefault("silver_hand_state", {
+            "active_quest": None,
+            "completed_quests": [],
+            "quest_progress": {},
+            "silver_hand_joined": False,
+            "silver_hand_path": None,
+        })
+        silver_hand_state["active_quest"] = "silver_hand_frostroot_contact"
+        silver_hand_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
+
+    def complete_silver_hand_quest(self, state):
+        """
+        Complete the current active Silver Hand quest and advance to the next one.
+
+        Args:
+            state: Campaign state dict (mutated in-place).
+
+        Returns:
+            The newly activated quest ID, or None if the arc is finished.
+        """
+        silver_hand_state = state.get("silver_hand_state", {})
+        current = silver_hand_state.get("active_quest")
+        if not current:
+            return None
+
+        completed = silver_hand_state.setdefault("completed_quests", [])
+        if current not in completed:
+            completed.append(current)
+        silver_hand_state.setdefault("quest_progress", {})[current] = "completed"
+
+        next_q = SILVER_HAND_CHAIN.get(current)
+
+        if next_q:
+            silver_hand_state["active_quest"] = next_q
+            silver_hand_state["quest_progress"][next_q] = "active"
+        else:
+            silver_hand_state["active_quest"] = None
+
+        return next_q
 
     def record_branching_decision(self, decision_key, choice):
         """
@@ -469,6 +535,8 @@ class StoryManager:
             return (self.college_path, "college_questline", "quests")
         if questline_type in ("companions", "companions_questline"):
             return (self.companions_path, "companions_questline", "quests")
+        if questline_type in ("silver_hand", "silver_hand_questline"):
+            return (self.silver_hand_path, "silver_hand_questline", "quests")
         raise ValueError(f"Unknown questline_type: {questline_type}")
 
     def advance_questline(self, questline_type: str, quest_id: str, new_status: str, *, echo_rewards: bool = True):
@@ -626,6 +694,14 @@ class StoryManager:
             quest_data = self.companions_quests.get(active_companions_quest)
             if quest_data:
                 available.append({"type": "companions", "quest": quest_data})
+
+        # Silver Hand questline (state-driven active quest)
+        silver_hand_state = state.get("silver_hand_state", {}) or {}
+        active_silver_hand_quest = silver_hand_state.get("active_quest")
+        if active_silver_hand_quest and self.silver_hand_quests:
+            quest_data = self.silver_hand_quests.get(active_silver_hand_quest)
+            if quest_data:
+                available.append({"type": "silver_hand", "quest": quest_data})
 
         return available
 
