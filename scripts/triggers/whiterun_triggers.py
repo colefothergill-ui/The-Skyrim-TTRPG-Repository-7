@@ -82,6 +82,14 @@ def whiterun_location_triggers(loc, campaign_state):
             f"[Battle of Whiterun | {faction_label} | Stage {battle_stage}/5]"
         )
 
+    # One-time Legate Cassian Varro intro sting (Imperial, Stage 0, Dragonsreach/Cloud District)
+    if siege_active and battle_faction == "imperial" and battle_stage == 0:
+        if ("dragonsreach" in loc_lower or "cloud" in loc_lower) and not flags.get("whiterun_legate_varro_intro_done"):
+            events.append(
+                "🎭 [NEW NPC] Legate Cassian Varro: charismatic 'public face'—and the room tilts around his smile."
+            )
+            flags["whiterun_legate_varro_intro_done"] = True
+
     # ------------------------------------------------------------------
     # District-specific triggers - siege vs. peacetime text
     # ------------------------------------------------------------------

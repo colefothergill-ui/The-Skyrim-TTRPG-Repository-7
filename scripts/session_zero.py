@@ -568,7 +568,7 @@ class SessionZeroManager:
         print("NEUTRAL FACTION STARTING PATHS")
         print("="*60)
         print("\nIf you choose a neutral alignment, you can start with one of these factions:")
-        print("Each provides a unique path leading to the Battle of Whiterun.\n")
+        print("Each provides a unique prologue (and a War Catalyst chain) before you enter the civil war.\n")
         
         neutral_starts = [
             {
@@ -630,8 +630,8 @@ class SessionZeroManager:
             print(f"   Description: {start['description']}\n")
         
         print("="*60)
-        print("All paths lead to the Battle of Whiterun, where you'll encounter")
-        print("both Hadvar (Imperial) and Ralof (Stormcloak) and must choose whom to assist.")
+        print("These prologues do NOT start at the Battle of Whiterun. Only Civil War-aligned starts do.")
+        print("Neutral prologues unlock a War Catalyst chain that can later lead into the war.")
         print("="*60)
     
     def get_neutral_faction_narrative(self, specific_faction=None):
@@ -643,12 +643,12 @@ class SessionZeroManager:
                     "Harbinger Kodlak Whitemane speaks with you personally: 'Jarl Balgruuf has sent word that "
                     "Whiterun faces a threat. The Companions will not stand idle when innocent people need protection. "
                     "I'm sending you to assess the situation and defend those who cannot defend themselves. This isn't "
-                    "about choosing sides in the civil war - this is about honor.' You arrive in Whiterun as the Battle "
-                    "begins, seeing both Hadvar (Imperial) and Ralof (Stormcloak) rallying forces. You must choose whom to assist."
+                    "about choosing sides in the civil war - this is about honor.' Your prologue begins in Jorrvaskr. "
+                    "The war is approaching, but you will not start at its opening battle."
                 ),
                 "starting_faction": "companions",
                 "key_npc": "kodlak_whitemane",
-                "location": "Jorrvaskr, then Whiterun"
+                "location": "Jorrvaskr (Whiterun)"
             },
             "thieves_guild": {
                 "narrative": (
@@ -776,13 +776,63 @@ class SessionZeroManager:
         
         # Update with session zero data
         campaign_state["session_zero_completed"] = True
-        campaign_state["starting_location"] = "Whiterun"
-        campaign_state["civil_war_state"]["player_alliance"] = faction_alignment
-        campaign_state["civil_war_state"]["battle_of_whiterun_status"] = "approaching"
-        
-        # Set civil war eligibility gate — players must complete faction intro first
-        campaign_state["civil_war_state"]["civil_war_eligible"] = False
-        campaign_state["civil_war_state"]["civil_war_locked_reason"] = "incomplete_faction_intro"
+
+        cw = campaign_state.setdefault("civil_war_state", {})
+        cw["player_alliance"] = faction_alignment
+
+        start_loc = None
+        if faction_alignment == "imperial":
+            start_loc = "Whiterun - Dragonsreach (War Room)"
+            cw["battle_of_whiterun_status"] = "active"
+            cw["battle_of_whiterun_faction"] = "imperial"
+            cw["battle_of_whiterun_stage"] = 0
+        elif faction_alignment == "stormcloak":
+            start_loc = "Whiterun Tundra - Stormcloak Camp"
+            cw["battle_of_whiterun_status"] = "active"
+            cw["battle_of_whiterun_faction"] = "stormcloak"
+            cw["battle_of_whiterun_stage"] = 0
+        else:
+            resolved = FACTION_NAME_MAPPING.get(neutral_subfaction or "", neutral_subfaction or "")
+            if resolved == "companions":
+                start_loc = "Whiterun - Jorrvaskr"
+            elif resolved == "thieves_guild":
+                start_loc = "Riften - The Ragged Flagon"
+            elif resolved == "college_of_winterhold":
+                start_loc = "College of Winterhold"
+            elif resolved == "dark_brotherhood":
+                start_loc = "Falkreath - Dark Brotherhood Sanctuary"
+            elif resolved == "blades":
+                start_loc = "Riverwood - Sleeping Giant Inn"
+            elif resolved == "greybeards":
+                start_loc = "High Hrothgar"
+            elif resolved == "silver_hand":
+                start_loc = "Frostroot Lodge (Pale border)"
+            else:
+                start_loc = "Skyrim - On the Road"
+            cw["battle_of_whiterun_status"] = "not_started"
+
+        campaign_state["starting_location"] = start_loc
+
+        # Set civil war eligibility gate
+        if faction_alignment in ("imperial", "stormcloak"):
+            cw["civil_war_eligible"] = True
+            cw.pop("civil_war_locked_reason", None)
+            ff = campaign_state.setdefault("faction_flags", {})
+            ff[f"{faction_alignment}_intro_complete"] = True
+        else:
+            cw["civil_war_eligible"] = False
+            cw["civil_war_locked_reason"] = "war_catalyst_required"
+
+        # Seed battle countdown clock
+        clocks = campaign_state.setdefault("clocks", {})
+        clocks.setdefault("battle_of_whiterun_countdown", {
+            "name": "Battle of Whiterun Countdown",
+            # Imperial/Stormcloak starts at stage 3 (Scouts) because the battle is already imminent;
+            # neutral starts at 0 since they haven't entered the war yet.
+            "current_progress": 0 if faction_alignment not in ("imperial", "stormcloak") else 3,
+            "total_segments": 8,
+            "segments": ["Rumors", "Muster", "Ultimatum", "Scouts", "Sabotage", "March", "Siege", "Aftermath"]
+        })
         
         # Set initial faction relationships based on alignment
         if faction_alignment == "imperial":
@@ -1048,7 +1098,7 @@ class SessionZeroManager:
             json.dump(campaign_state, f, indent=2)
         
         print(f"\nCampaign state updated: {campaign_state_file}")
-        print(f"Starting location: Whiterun")
+        print(f"Starting location: {campaign_state.get('starting_location')}")
         print(f"Faction alignment: {faction_alignment}")
         return campaign_state
 

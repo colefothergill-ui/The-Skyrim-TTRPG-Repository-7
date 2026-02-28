@@ -407,6 +407,9 @@ class StoryManager:
 
             if battle_name and "whiterun" in battle_name.lower():
                 cw_state["battle_of_whiterun_status"] = "completed"
+                if winner:
+                    cw_state["whiterun_control"] = winner
+                    cw_state["battle_of_whiterun_faction"] = winner
                 print(f"Battle of Whiterun completed - Winner: {winner or 'unknown'}")
                 self.advance_questline("main", "battle_of_whiterun", "completed")
 
@@ -658,6 +661,7 @@ class StoryManager:
         cw_data = self.load_civil_war_quests()
         alliance = (state.get("civil_war_state", {}) or {}).get("player_alliance")
         alliance = (alliance or "").lower().strip()
+        civil_war_eligible = bool(state.get("civil_war_state", {}).get("civil_war_eligible"))
 
         if cw_data:
             for quest in self._iter_quest_records(cw_data.get("civil_war_questline", {}).get("quests", {})):
@@ -673,6 +677,10 @@ class StoryManager:
                     if "imperial" in qid and alliance == "stormcloak":
                         continue
                     if "stormcloak" in qid and alliance == "imperial":
+                        continue
+                else:
+                    # Neutral players only see civil war quests once eligible
+                    if not civil_war_eligible:
                         continue
 
                 available.append({"type": "civil_war", "quest": quest})
@@ -2209,20 +2217,8 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
         elif alliance == "stormcloak":
             return flags.get("stormcloak_intro_complete", False)
         else:  # neutral
-            if state.get("neutral_war_catalyst", False) or state.get("neutral_war_catalyst_complete", False):
-                return True
-            neutral_subfaction = civil_war.get("neutral_subfaction")
-            if neutral_subfaction:
-                _subfaction_flag_map = {
-                    "companions": "companions_intro_complete",
-                    "college": "college_intro_complete",
-                    "thieves_guild": "tg_intro_complete",
-                    "dark_brotherhood": "db_intro_complete",
-                    "silver_hand": "silver_hand_intro_complete",
-                }
-                intro_flag = _subfaction_flag_map.get(neutral_subfaction, f"{neutral_subfaction}_intro_complete")
-                return flags.get(intro_flag, False)
-            return False
+            # Neutral eligibility is ONLY granted via a War Catalyst completion gate.
+            return bool(state.get("neutral_war_catalyst") or state.get("neutral_war_catalyst_complete"))
 
     def mark_faction_intro_complete(self, subfaction, state=None):
         """
@@ -2283,6 +2279,8 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
         civil_war["allegiance"] = faction
         civil_war["player_alliance"] = faction
         civil_war["battle_of_whiterun_status"] = "active"
+        civil_war["battle_of_whiterun_faction"] = faction
+        civil_war["battle_of_whiterun_stage"] = 0
         civil_war["civil_war_eligible"] = True
         civil_war.pop("civil_war_locked_reason", None)
 

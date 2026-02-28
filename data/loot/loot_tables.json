@@ -34,6 +34,18 @@
         { "text": "Letter implying Thalmor interest (story hook)", "weight": 1 }
       ]
     },
+    "civil_war_common": {
+      "name": "Civil War - Common Soldier Gear",
+      "rolls": 1,
+      "entries": [
+        { "text": "Iron or steel sword, notched but serviceable (Weapon:1)", "weight": 3 },
+        { "text": "Dented shield (Armor:1 until scene ends)", "weight": 3 },
+        { "text": "Bedroll and travel rations (aspect: 'Prepared for the Road')", "weight": 2 },
+        { "text": "Small pouch of coin (1d6 x 5 gold)", "weight": 3 },
+        { "text": "Propaganda pamphlet - Imperial or Stormcloak (story prop)", "weight": 2 },
+        { "text": "Dog-eared letter from home (compel hook: 'Someone Waiting Back Home')", "weight": 1 }
+      ]
+    },
     "officer_trophy": {
       "name": "Officer Trophy",
       "rolls": 1,
@@ -41,6 +53,42 @@
         { "text": "Enchanted blade: 'Winter-Bitten Edge' (invoke once to add +2 vs undead/ice)", "weight": 1 },
         { "text": "Silver-inlaid greatsword (Weapon:2 vs beasts, attention magnet)", "weight": 1 },
         { "text": "Commander's map case (advantage: 'Know the Passes')", "weight": 2 }
+      ]
+    },
+    "whiterun_market": {
+      "name": "Whiterun - Market District Find",
+      "rolls": 2,
+      "entries": [
+        { "text": "Fresh bread and dried meat (clear 1 mental stress: comfort)", "weight": 3 },
+        { "text": "Warmaiden's steel: spare blade or arrow bundle (Weapon:1 supply)", "weight": 2 },
+        { "text": "Arcadia's remedy: potion clearing 1 physical stress", "weight": 2 },
+        { "text": "Belethor's curio: odd trinket with one free invoke on 'Curious Object'", "weight": 2 },
+        { "text": "Gray-Mane or Battle-Born token (social advantage in Whiterun circles)", "weight": 1 },
+        { "text": "Guard's confiscated lockpick set (Burglary tool, raises eyebrows)", "weight": 1 }
+      ]
+    },
+    "whiterun_siege": {
+      "name": "Whiterun - Siege Battlefield",
+      "rolls": 2,
+      "entries": [
+        { "text": "Intact Imperial supply crate: 50 gold + minor enchanted gear", "weight": 2 },
+        { "text": "Stormcloak war-axe, still sharp (Weapon:2 for one scene)", "weight": 2 },
+        { "text": "Legate's sealed orders (story hook: Thalmor cipher fragment)", "weight": 1 },
+        { "text": "Whiterun guard helm, dented (Armor:1, recognized in Whiterun)", "weight": 3 },
+        { "text": "Field surgeon's kit (create advantage: 'Battlefield Triage' once per scene)", "weight": 2 },
+        { "text": "Scavenged arrows x8 (Shoot supply for next scene)", "weight": 2 },
+        { "text": "Battle-Born strongbox: documents relevant to Thalmor sub-plot", "weight": 1 }
+      ]
+    },
+    "whiterun_dragonsreach": {
+      "name": "Whiterun - Dragonsreach Treasury/Study",
+      "rolls": 1,
+      "entries": [
+        { "text": "Farengar's annotated dragon scroll (Lore +1 on dragon topics, one scene)", "weight": 2 },
+        { "text": "Jarl's signet wax seal (social leverage in Whiterun Hold)", "weight": 1 },
+        { "text": "Court wizard's reagents: one free invoke on 'Prepared Alchemical Mixture'", "weight": 2 },
+        { "text": "Map of Whiterun Hold with patrol notes (create advantage: 'Know the Routes')", "weight": 2 },
+        { "text": "Imperial dispatch case: coded letter hinting at Thalmor oversight", "weight": 1 }
       ]
     }
   }
