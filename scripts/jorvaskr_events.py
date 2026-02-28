@@ -216,16 +216,31 @@ def resolve_athis_spar_event(
     if flags.get("jorvaskr_athis_spar_resolved"):
         return []
 
+    # Normalize raise_shifts once so stored record and bet calculation agree.
+    try:
+        normalized_raise_shifts = int(raise_shifts)
+    except (TypeError, ValueError):
+        normalized_raise_shifts = 0
+    if normalized_raise_shifts < 0:
+        normalized_raise_shifts = 0
+
+    # Validate outcome before committing state; return error prompt without mutating.
+    if accepted and result not in ("win", "lose"):
+        return [
+            "[ERROR] resolve_athis_spar_event: when accepted=True you must supply result='win' or 'lose'.",
+            "State has NOT been modified. Resubmit with a valid result.",
+        ]
+
     flags["jorvaskr_athis_spar_resolved"] = True
     flags["jorvaskr_athis_spar_offered"] = True
 
-    bet = compute_bet_amount(raise_shifts=raise_shifts)
+    bet = compute_bet_amount(raise_shifts=normalized_raise_shifts)
 
     record: Dict[str, Any] = {
         "accepted": accepted,
         "result": result,
         "style": style,
-        "raise_shifts": raise_shifts,
+        "raise_shifts": normalized_raise_shifts,
         "bet": bet,
     }
     flags["jorvaskr_athis_spar_record"] = record
@@ -233,7 +248,7 @@ def resolve_athis_spar_event(
     if not accepted:
         flags["jorvaskr_athis_spar_followup"] = "none"
         return [
-            "[SPAR DECLINED] You wave off the challenge. Athis shrugs — his grin says he'll ask again.",
+            "[SPAR DECLINED] You wave off the challenge. Athis shrugs, grin fading as he turns back to his mead.",
             "The whelps exchange glances. Ria looks mildly disappointed. Njada looks unsurprised.",
         ]
 
