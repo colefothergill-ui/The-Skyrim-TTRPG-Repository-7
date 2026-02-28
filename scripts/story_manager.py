@@ -407,6 +407,9 @@ class StoryManager:
 
             if battle_name and "whiterun" in battle_name.lower():
                 cw_state["battle_of_whiterun_status"] = "completed"
+                if winner:
+                    cw_state["whiterun_control"] = winner
+                    cw_state["battle_of_whiterun_faction"] = winner
                 print(f"Battle of Whiterun completed - Winner: {winner or 'unknown'}")
                 self.advance_questline("main", "battle_of_whiterun", "completed")
 
@@ -658,6 +661,7 @@ class StoryManager:
         cw_data = self.load_civil_war_quests()
         alliance = (state.get("civil_war_state", {}) or {}).get("player_alliance")
         alliance = (alliance or "").lower().strip()
+        civil_war_eligible = self.check_civil_war_eligibility(state)
 
         if cw_data:
             for quest in self._iter_quest_records(cw_data.get("civil_war_questline", {}).get("quests", {})):
@@ -673,6 +677,10 @@ class StoryManager:
                     if "imperial" in qid and alliance == "stormcloak":
                         continue
                     if "stormcloak" in qid and alliance == "imperial":
+                        continue
+                else:
+                    # Neutral players only see civil war quests once eligible
+                    if not civil_war_eligible:
                         continue
 
                 available.append({"type": "civil_war", "quest": quest})
@@ -2177,8 +2185,9 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
 
         A party is eligible only after completing their faction's intro quest:
         - Imperial / Stormcloak: their respective intro flag must be set
-        - Neutral: must have completed the neutral_war_catalyst quest OR their
-          neutral subfaction's intro quest
+        - Neutral: must have completed the War Catalyst gate
+          (state['neutral_war_catalyst'] or state['neutral_war_catalyst_complete']
+          must be truthy). Subfaction intro flags alone do NOT grant eligibility.
 
         Args:
             state: The campaign_state dict
@@ -2197,8 +2206,8 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
         # The `faction` parameter lets callers check eligibility against a target
         # faction that differs from player_alliance (e.g., the battle has just been
         # triggered and state hasn't been updated yet).  However, neutral players
-        # must always be evaluated on the neutral path because they completed a
-        # neutral-faction intro, not an imperial/stormcloak one.
+        # must always be evaluated on the neutral path because they unlock via the
+        # War Catalyst gate, not an imperial/stormcloak intro flag.
         if faction and current_alliance != "neutral":
             alliance = faction
         else:
@@ -2209,20 +2218,8 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
         elif alliance == "stormcloak":
             return flags.get("stormcloak_intro_complete", False)
         else:  # neutral
-            if state.get("neutral_war_catalyst", False) or state.get("neutral_war_catalyst_complete", False):
-                return True
-            neutral_subfaction = civil_war.get("neutral_subfaction")
-            if neutral_subfaction:
-                _subfaction_flag_map = {
-                    "companions": "companions_intro_complete",
-                    "college": "college_intro_complete",
-                    "thieves_guild": "tg_intro_complete",
-                    "dark_brotherhood": "db_intro_complete",
-                    "silver_hand": "silver_hand_intro_complete",
-                }
-                intro_flag = _subfaction_flag_map.get(neutral_subfaction, f"{neutral_subfaction}_intro_complete")
-                return flags.get(intro_flag, False)
-            return False
+            # Neutral eligibility is ONLY granted via a War Catalyst completion gate.
+            return bool(state.get("neutral_war_catalyst") or state.get("neutral_war_catalyst_complete"))
 
     def mark_faction_intro_complete(self, subfaction, state=None):
         """
@@ -2276,7 +2273,13 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
             state = self.load_campaign_state() or {}
 
         if not self.check_civil_war_eligibility(state, faction=faction):
-            raise Exception("Civil War locked: complete your faction intro first.")
+            alliance = (state.get("civil_war_state", {}) or {}).get("player_alliance", "neutral")
+            if alliance not in ("imperial", "stormcloak"):
+                raise Exception(
+                    "Civil War locked: complete the War Catalyst chain first "
+                    "(neutral_war_catalyst_complete must be set)."
+                )
+            raise Exception(f"Civil War locked: complete your {alliance} faction intro first.")
 
         civil_war = state.setdefault("civil_war_state", {})
         # Set both fields: 'allegiance' for new code, 'player_alliance' for legacy consumers

@@ -35,6 +35,19 @@
           "Complete an easy contract (+1)",
           "Complete a hard contract (+1, may also add a bonus reward)"
         ]
+      },
+      "shehai_cold_snow_awakening": {
+        "name": "Shehai Awakening \u2014 Cold Snow",
+        "description": "Tracks the spiritual deepening of Wayn's Ansei's Shehai of Cold Snow as he grows into true Sagecraft",
+        "current": 0,
+        "max": 4,
+        "completion_effect": "Shehai reaches full awakening (Level 4/4); unlocks all stunt slots",
+        "advancement_triggers": [
+          "Significant Milestone: Proving Honor (+1)",
+          "Significant Milestone: Finish Companions Storyline Act I (+1)",
+          "Major narrative moment of soul-forging or personal breakthrough (+1)",
+          "GM award for exceptional roleplay of Ansei discipline (+1)"
+        ]
       }
     }
   }
