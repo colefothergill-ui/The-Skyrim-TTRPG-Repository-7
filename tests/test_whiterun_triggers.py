@@ -13,6 +13,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
 from triggers.whiterun_triggers import whiterun_location_triggers
+import jorvaskr_events
 
 
 def test_plains_district_trigger():
@@ -299,56 +300,95 @@ def test_kodlak_cure_or_sacrifice_not_cured():
     print(f"✓ Not cured branch works: {events}")
 
 
-def test_jorrvaskr_structural_outline_one_time():
-    """Test that the Jorrvaskr map anchor fires once and is not repeated"""
-    print("\n=== Testing Jorrvaskr Map Anchor (One-Time) ===")
-
+def test_jorrvaskr_downstairs_phase2_triggers():
+    """Test downstairs first-entry and repeating Vignar notice prompt."""
     campaign_state = {
         "companions": {"active_companions": []},
+        "scene_flags": {},
     }
 
-    # First visit — anchor should fire
-    events = whiterun_location_triggers("jorrvaskr", campaign_state)
-    anchor_events = [e for e in events if "JORVASKR MAP ANCHOR" in e]
-    assert len(anchor_events) == 1, "Expected map anchor on first Jorrvaskr visit"
-    assert campaign_state["scene_flags"].get("jorvaskr_structural_outline_done"), \
-        "Expected jorvaskr_structural_outline_done flag after first visit"
+    first_events = whiterun_location_triggers("jorrvaskr_downstairs", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr_downstairs", campaign_state)
 
-    # Second visit — anchor must NOT repeat
-    events2 = whiterun_location_triggers("jorrvaskr", campaign_state)
-    anchor_events2 = [e for e in events2 if "JORVASKR MAP ANCHOR" in e]
-    assert len(anchor_events2) == 0, "Expected no map anchor on second Jorrvaskr visit"
-    print("✓ Jorrvaskr map anchor fires once and is then suppressed")
+    assert any("[TRIGGERED DESCRIPTION] You descend into Jorrvaskr’s downstairs living area." in e for e in first_events), "Expected downstairs first-entry description"
+    assert any("MISSABLE OVERHEAR" in e for e in first_events), "Expected Vignar/Eorlund notice prompt"
+    assert not any("[TRIGGERED DESCRIPTION] You descend into Jorrvaskr’s downstairs living area." in e for e in second_events), "Expected downstairs description only once"
+    assert any("MISSABLE OVERHEAR" in e for e in second_events), "Expected notice prompt repeat until resolved"
+    assert campaign_state.get("scene_flags", {}).get("last_location") == "jorrvaskr_downstairs"
 
 
-def test_jorrvaskr_spar_offer_only_during_investigate_quest():
-    """Test that Athis spar offer is only presented during companions_investigate_jorvaskr"""
-    print("\n=== Testing Athis Spar Offer Gating ===")
-
-    # Wrong active quest — no spar offer
-    campaign_state_wrong = {
+def test_jorrvaskr_harbinger_phase2_scene_once():
+    """Test Harbinger room description and foreshadow scene fire once."""
+    campaign_state = {
         "companions": {"active_companions": []},
+        "scene_flags": {},
+    }
+
+    first_events = whiterun_location_triggers("jorrvaskr_harbinger_room", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr_harbinger_room", campaign_state)
+
+    assert any("Kodlak’s chamber is humble for a legend" in e for e in first_events), "Expected Harbinger room first-entry description"
+    assert any("SCRIPTED SCENE" in e for e in first_events), "Expected Kodlak/Vilkas foreshadow scene"
+    assert not any("Kodlak’s chamber is humble for a legend" in e for e in second_events), "Expected Harbinger description only once"
+    assert not any("SCRIPTED SCENE" in e for e in second_events), "Expected foreshadow scene only once"
+
+
+def test_jorrvaskr_dustmans_summon_when_contract_clock_full():
+    """Test Dustman's Cairn summon triggers at 2/2 contracts during Proving Honor."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "scene_flags": {},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+        "campaign_clocks": {
+            "honor_proving_contracts_done": {
+                "current_progress": 2,
+                "total_segments": 2
+            }
+        }
+    }
+
+    first_events = whiterun_location_triggers("jorrvaskr", campaign_state)
+    second_events = whiterun_location_triggers("jorrvaskr", campaign_state)
+
+    assert any("[SUMMON]" in e for e in first_events), "Expected Dustman's Cairn summon at full contracts clock"
+    assert not any("[SUMMON]" in e for e in second_events), "Expected summon to trigger only once"
+
+
+def test_resolve_vilkas_trial_uses_active_pc_id():
+    """Vilkas trial should target active_pc_id when queuing pending aspect updates."""
+    state = {
+        "active_pc_id": "pc_test_runner",
+        "scene_flags": {},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+    }
+
+    jorvaskr_events.resolve_vilkas_trial(state, pc_won=False)
+
+    pending = state.get("pending_pc_updates", [])
+    assert any(p.get("target") == "pc_test_runner" for p in pending), "Expected pending update target to use active_pc_id"
+
+
+def test_join_request_promotes_locked_sidequests_with_string_active_quests():
+    """Locked side quests in quest_progress should promote cleanly without dict entries in active_quests."""
+    state = {
+        "scene_flags": {},
+        "active_quests": [],
         "companions_state": {
-            "active_quest": "companions_proving_honor",
+            "quest_progress": {
+                "companions_honorable_combat": "locked",
+                "companions_prey_and_predator": "locked",
+            }
         },
     }
-    events = whiterun_location_triggers("jorrvaskr", campaign_state_wrong)
-    spar_events = [e for e in events if "Athis" in e and "spar" in e.lower()]
-    assert len(spar_events) == 0, "Expected no spar offer outside investigate quest"
 
-    # Correct active quest — spar offer should fire
-    campaign_state_correct = {
-        "companions": {"active_companions": []},
-        "companions_state": {
-            "active_quest": "companions_investigate_jorvaskr",
-        },
-    }
-    events2 = whiterun_location_triggers("jorrvaskr", campaign_state_correct)
-    spar_events2 = [e for e in events2 if "Athis" in e]
-    assert len(spar_events2) > 0, "Expected spar offer during companions_investigate_jorvaskr"
-    assert campaign_state_correct["scene_flags"].get("jorvaskr_athis_spar_offered"), \
-        "Expected jorvaskr_athis_spar_offered flag set after spar offer"
-    print("✓ Athis spar offer correctly gated on companions_investigate_jorvaskr")
+    jorvaskr_events.resolve_kodlak_join_request(state, accepted=True)
+
+    qprog = state["companions_state"]["quest_progress"]
+    assert qprog["companions_honorable_combat"] == "active"
+    assert qprog["companions_prey_and_predator"] == "active"
+    assert "companions:companions_honorable_combat" in state["active_quests"]
+    assert "companions:companions_prey_and_predator" in state["active_quests"]
+    assert all(isinstance(q, str) for q in state["active_quests"])
 
 
 def run_all_tests():
@@ -373,8 +413,11 @@ def run_all_tests():
         test_kodlak_cure_or_sacrifice_cured,
         test_kodlak_cure_or_sacrifice_cure_preemptive,
         test_kodlak_cure_or_sacrifice_not_cured,
-        test_jorrvaskr_structural_outline_one_time,
-        test_jorrvaskr_spar_offer_only_during_investigate_quest,
+        test_jorrvaskr_downstairs_phase2_triggers,
+        test_jorrvaskr_harbinger_phase2_scene_once,
+        test_jorrvaskr_dustmans_summon_when_contract_clock_full,
+        test_resolve_vilkas_trial_uses_active_pc_id,
+        test_join_request_promotes_locked_sidequests_with_string_active_quests,
     ]
     
     passed = 0
