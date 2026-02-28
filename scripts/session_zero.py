@@ -810,8 +810,25 @@ class SessionZeroManager:
             else:
                 start_loc = "Skyrim - On the Road"
             cw["battle_of_whiterun_status"] = "not_started"
+            cw.pop("battle_of_whiterun_faction", None)
+            cw.pop("battle_of_whiterun_stage", None)
 
-        campaign_state["starting_location"] = start_loc
+        # Store the full detail; keep starting_location as the hold/city name for backward compat.
+        # Each tuple is (substring_to_match, canonical_city_name); first match wins.
+        _LOC_CITY_MAP = [
+            ("Riften", "Riften"),
+            ("Winterhold", "Winterhold"),
+            ("Falkreath", "Falkreath"),
+            ("Riverwood", "Riverwood"),
+            ("High Hrothgar", "High Hrothgar"),
+            ("Pale", "The Pale"),
+        ]
+        city = next(
+            (city for fragment, city in _LOC_CITY_MAP if start_loc and fragment in start_loc),
+            "Whiterun",
+        )
+        campaign_state["starting_location_detail"] = start_loc
+        campaign_state["starting_location"] = city
 
         # Set civil war eligibility gate
         if faction_alignment in ("imperial", "stormcloak"):
@@ -1098,7 +1115,7 @@ class SessionZeroManager:
             json.dump(campaign_state, f, indent=2)
         
         print(f"\nCampaign state updated: {campaign_state_file}")
-        print(f"Starting location: {campaign_state.get('starting_location')}")
+        print(f"Starting location: {campaign_state.get('starting_location_detail') or campaign_state.get('starting_location')}")
         print(f"Faction alignment: {faction_alignment}")
         return campaign_state
 
