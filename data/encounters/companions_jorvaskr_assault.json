@@ -1,0 +1,94 @@
+{
+  "encounter_id": "companions_jorvaskr_assault",
+  "name": "The Assault on Jorrvaskr",
+  "type": "Staged Set-Piece (Defense -> Breach -> Boss)",
+  "trigger_condition": "silver_hand_assault_preparation clock reaches 6 OR companions_silver_hand_endgame fails",
+  "skip_condition": "silver_hand_assault_preparation == 0 after companions_silver_hand_endgame",
+  "zones": [
+    {
+      "id": "jorrvaskr_outer_yard",
+      "name": "Outer Yard",
+      "act": 1,
+      "description": "The training yard and approach. First Silver Hand wave hits here.",
+      "scene_aspects": [
+        "Open Ground — No Cover",
+        "Skyforge Silhouette Against the Night Sky",
+        "Silver Torches Burning Toward Jorrvaskr"
+      ]
+    },
+    {
+      "id": "jorrvaskr_grand_hall",
+      "name": "Grand Hall",
+      "act": 2,
+      "description": "The main hall of Jorrvaskr. Second wave breaches through windows and the main door.",
+      "scene_aspects": [
+        "Tables Overturned as Barricades",
+        "Smoke from a Burning Beam",
+        "The Companions' Weapons on the Walls — Take Them if You Dare"
+      ]
+    },
+    {
+      "id": "jorrvaskr_harbingers_chamber",
+      "name": "Harbinger's Chamber",
+      "act": 3,
+      "description": "Kodlak's room. The Silver Hand commander makes for the Harbinger.",
+      "scene_aspects": [
+        "Narrow Doorway — One at a Time",
+        "Kodlak's Writing Table — Evidence of the Cure Research",
+        "The Smell of Old Leather and Juniper — and Now Blood"
+      ]
+    }
+  ],
+  "enemy_mix": [
+    "Silver Hand Footsoldiers (mob, Act 1)",
+    "Silver Hand Veterans (elite, Act 2)",
+    "Silver Hand Siege Engineer (support — sets fire aspects, Act 2)",
+    "Silver Hand Commander (boss, Act 3)"
+  ],
+  "defense_pool": {
+    "description": "Named NPCs each absorb one consequence before being taken out. Taken-out NPCs are dead.",
+    "defenders": [
+      { "npc": "Kodlak Whitemane", "lethal_risk": true, "save_gate": "PC Physique vs Great (+4) to pull Kodlak from killing blow" },
+      { "npc": "Skjor", "lethal_risk": true, "save_gate": "PC Fight vs Great (+4) to shield Skjor at the breach" },
+      { "npc": "Aela the Huntress", "lethal_risk": false },
+      { "npc": "Vilkas", "lethal_risk": false },
+      { "npc": "Farkas", "lethal_risk": false },
+      { "npc": "Vignar Gray-Mane", "lethal_risk": false }
+    ],
+    "pool_modifiers": [
+      { "condition": "internal_civil_war == true", "effect": "Defense pool reduced by 2 (whelps do not fight coherently)" },
+      { "condition": "whelps_polarized == true", "effect": "Defense pool reduced by 1" },
+      { "condition": "skjor_dead == true", "effect": "Skjor not present; pool reduced by 1" },
+      { "condition": "schism_resolution == 'reconcile'", "effect": "Defense pool +1 (whelps fight as a unit)" }
+    ]
+  },
+  "act_structure": [
+    {
+      "act": 1,
+      "name": "Hold the Yard",
+      "mechanics": "Zone conflict. PC and available defenders vs first Silver Hand wave. Physique or Fight to create advantages. Failure: breach doors to Grand Hall.",
+      "save_gate": "PC Will vs Good (+3) to prevent whelp panic — failure loses 1 whelp defender"
+    },
+    {
+      "act": 2,
+      "name": "Protect the Grand Hall",
+      "mechanics": "Chase + combat hybrid. Silver Hand veterans push into the hall. Fire aspect created by Siege Engineer if not stopped. PC Fight vs Superb (+5) to hold the breach.",
+      "save_gate": "PC Athletics vs Fair (+2) to drag a wounded NPC clear of fire"
+    },
+    {
+      "act": 3,
+      "name": "The Commander's Gambit",
+      "mechanics": "Boss fight (Silver Hand Commander) in narrow Harbinger's chamber. Commander targets Kodlak directly. PC must split actions between combat and protection.",
+      "save_gate": "PC Physique vs Great (+4) to physically interpose between Commander and Kodlak"
+    }
+  ],
+  "aftermath_flags": {
+    "hall_holds": "Set hall_assault_repelled=true",
+    "kodlak_survives": "Set kodlak_survived_assault=true",
+    "kodlak_falls": "Set kodlak_dead_assault=true",
+    "skjor_survives": "Set skjor_survived_assault=true",
+    "skjor_falls": "Set skjor_dead_assault=true",
+    "both_veterans_fall": "Set hall_shattered_state=true"
+  },
+  "gm_notes": "The assault should feel genuinely dangerous. The GM should NOT protect Kodlak and Skjor by default — their deaths are meaningful outcomes. The save gates exist to give the PC agency, not to guarantee survival. Run each act as a full scene with its own consequences track before advancing."
+}
