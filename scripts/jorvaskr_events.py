@@ -6,6 +6,19 @@ AthisResult = Literal["win", "lose", "none"]
 Partner = Literal["aela", "vilkas", "farkas"]
 QuestResult = Literal["success", "failure", "unknown"]
 
+# ---------------------------------------------------------------------------
+# PHASE 1 HOTFIX: Athis spar event (offer + resolver)
+# Required because whiterun_triggers.py calls offer_athis_spar_event(...)
+# ---------------------------------------------------------------------------
+
+BET_BASE = 100
+BET_CAP = 500
+BET_PER_SHIFT = 50
+
+Style = Literal["warrior", "tactical", "mixed"]
+Result = Literal["win", "lose"]
+Followup = Literal["farkas", "aela", "none"]
+
 
 def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("scene_flags", {})
@@ -341,6 +354,12 @@ def resolve_kodlak_join_request(state: Dict[str, Any], accepted: bool) -> None:
     flags["companions_join_request_accepted"] = accepted
 
     if not accepted:
+        return
+
+    # Guard: companions_investigate_jorrvaskr must be active or completed
+    # before Proving Honor can be activated (Phase 1 spec gate).
+    investigate_status = _quest_status(state, "companions_investigate_jorrvaskr")
+    if investigate_status not in ("active", "completed"):
         return
 
     # Activate Proving Honor in companions_state if present.

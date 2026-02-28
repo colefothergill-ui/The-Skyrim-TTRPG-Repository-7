@@ -375,6 +375,7 @@ def test_join_request_promotes_locked_sidequests_with_string_active_quests():
         "active_quests": [],
         "companions_state": {
             "quest_progress": {
+                "companions_investigate_jorrvaskr": "completed",
                 "companions_honorable_combat": "locked",
                 "companions_prey_and_predator": "locked",
             }

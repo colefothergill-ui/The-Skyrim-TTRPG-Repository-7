@@ -30,11 +30,10 @@ def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
     return state.setdefault("campaign_clocks", {})
 
 
-def _active_quests(state: Dict[str, Any]) -> List[Dict[str, Any]]:
-    aq = state.setdefault("active_quests", [])
-    if not isinstance(aq, list):
-        state["active_quests"] = []
-    return state["active_quests"]
+def _companions_qprog(state: Dict[str, Any]) -> Dict[str, Any]:
+    c = state.get("companions_state", {}) or {}
+    qp = c.get("quest_progress", {}) or {}
+    return qp if isinstance(qp, dict) else {}
 
 
 def _is_settlement(loc_lower: str) -> bool:
@@ -46,10 +45,9 @@ def global_story_triggers(loc: str, campaign_state: Dict[str, Any]) -> List[str]
     loc_lower = str(loc).lower()
     flags = _flags(campaign_state)
 
-    # Battle of Whiterun Countdown at 6/8: “Stormcloaks on the march”
     clocks = _clocks(campaign_state)
-    bow = clocks.get("battle_of_whiterun_countdown", {})
-    cur = int(bow.get("current_progress", 0) or 0)
+    bow = clocks.get("battle_of_whiterun_countdown", {}) or {}
+    cur = int(bow.get("current_progress", bow.get("current", 0)) or 0)
 
     if cur >= 6 and not flags.get("battle_of_whiterun_march_announcement_done"):
         if _is_settlement(loc_lower):
@@ -60,7 +58,7 @@ def global_story_triggers(loc: str, campaign_state: Dict[str, Any]) -> List[str]
         else:
             events.append(
                 "[COURIER] A rider finds you with frozen lashes and a sealed note: Stormcloak forces are officially on the march for Whiterun Hold. "
-                "The Battle of Whiterun is no longer rumor. It is schedule."
+                "The Battle of Whiterun is no longer rumor. It is scheduled."
             )
         flags["battle_of_whiterun_march_announcement_done"] = True
 

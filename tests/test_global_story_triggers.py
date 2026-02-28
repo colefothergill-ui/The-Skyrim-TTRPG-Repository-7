@@ -23,7 +23,7 @@ from triggers.winterhold_triggers import winterhold_location_triggers
 def _state(progress=6):
     return {
         "campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": progress}},
-        "active_quests": [{"id": "greymane_and_the_greater", "status": "memory"}],
+        "companions_state": {"quest_progress": {"greymane_and_the_greater": "memory"}},
     }
 
 
@@ -34,8 +34,8 @@ def test_global_story_trigger_activates_greymane_from_memory():
     assert any("[TOWN CRIER]" in event for event in events)
     assert any("[QUEST ACTIVATED]" in event for event in events)
     assert campaign_state["scene_flags"]["battle_of_whiterun_march_announcement_done"] is True
-    assert campaign_state["active_quests"][0]["status"] == "active"
-    assert "Stormcloak mobilization has begun" in campaign_state["active_quests"][0]["note"]
+    qp = campaign_state["companions_state"]["quest_progress"]
+    assert qp["greymane_and_the_greater"] == "active"
 
 
 def test_global_story_trigger_uses_courier_in_wilderness():
@@ -59,7 +59,7 @@ def test_global_story_trigger_wired_to_hold_modules():
         (whiterun_location_triggers, "whiterun"),
         (windhelm_location_triggers, "windhelm"),
         (winterhold_location_triggers, "winterhold"),
-        (solitude_location_triggers, "solitude"),
+        (solitude_location_triggers, "solitude"),https://github.com/colefothergill-ui/The-Skyrim-TTRPG-Repository-7/pull/40/conflict?name=tests%252Ftest_whiterun_triggers.py&ancestor_oid=5449b36e2c1f477de08d09f357cefd96ffea63bb&base_oid=99fa0005ff45693bc2833059525a03f544091ac7&head_oid=9e5b885b6935697d2771bee62e378b94757424e5
         (markarth_location_triggers, "markarth"),
         (rift_location_triggers, "riften"),
         (pale_location_triggers, "dawnstar"),
