@@ -1103,6 +1103,25 @@
           "world_change": "The Stormcloak rebellion is crushed. Skyrim remains Imperial territory."
         },
         "status": "locked"
+      },
+      "whiterun_intrigue": {
+        "id": "the_hand_behind_the_banner",
+        "name": "The Hand Behind the Banner",
+        "type": "hidden",
+        "faction": "shared",
+        "status": "locked",
+        "description": "Staged justice, suspicious orders, and morale spectacles suggest someone in the Legion wants Whiterun to bleed for as long as possible.",
+        "objectives": [
+          "Secure a cipher fragment from an officer dispatch case",
+          "Identify the public-face Legate feeding false intel and pushing executions",
+          "Choose: expose him, blackmail him, or feed him false intel"
+        ],
+        "branching_choices": {
+          "expose": { "effects": ["reduce_whiterun_disarray", "increase_anti_puppetmaster_heat"] },
+          "blackmail": { "effects": ["gain_leverage_cache", "increase_whiterun_corruption"] },
+          "double_agent": { "effects": ["start_counterintel_clock", "unlock_secret_routes"] }
+        },
+        "rewards": { "gold": 0, "loot_table": "whiterun_hidden_treasure_major" }
       }
     }
   },

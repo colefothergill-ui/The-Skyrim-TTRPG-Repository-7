@@ -166,6 +166,14 @@
       "name": "Thalmor Soldiers/Justiciars",
       "role": "Enforcers and agents",
       "typical_stats": "Fair (+2) Fight, Fair (+2) Shoot, Average (+1) Stealth"
+    },
+    "cassian_varro": {
+      "name": "Cassian Varro",
+      "role": "Whiterun puppet master (embedded Imperial Legate)",
+      "description": "Charismatic spellblade operative who manipulates morale, executions, and chaos to prolong the war",
+      "importance": "major",
+      "personality": "inviting, charming, and terrifyingly pragmatic",
+      "goals": ["accelerate_ulfric_assault", "prolong_whiterun_bloodshed", "maximize_moral_injury", "remain_unexposed"]
     }
   },
   "gm_guidance": {
