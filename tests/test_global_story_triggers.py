@@ -72,3 +72,25 @@ def test_global_story_trigger_wired_to_hold_modules():
         assert any(
             marker in event for event in events for marker in ("[TOWN CRIER]", "[COURIER]")
         ), f"Expected global march announcement in {trigger_func.__name__}"
+
+
+def test_global_story_trigger_uses_clocks_namespace():
+    """Battle countdown stored under 'clocks' (not 'campaign_clocks') should still fire."""
+    campaign_state = {"clocks": {"battle_of_whiterun_countdown": {"current_progress": 6}}}
+    events = global_story_triggers("whiterun_city", campaign_state)
+    assert any("[TOWN CRIER]" in e for e in events), "Expected town crier when clock in 'clocks' namespace"
+
+
+def test_global_story_trigger_activates_greymane_from_companions_state():
+    """Greymane quest stored in companions_state.quest_progress as 'memory' should activate."""
+    campaign_state = {
+        "campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": 6}},
+        "companions_state": {
+            "quest_progress": {"greymane_and_the_greater": "memory"},
+        },
+    }
+    events = global_story_triggers("whiterun_city", campaign_state)
+    assert any("[QUEST ACTIVATED]" in e for e in events), "Expected [QUEST ACTIVATED] for Greymane"
+    assert campaign_state["companions_state"]["quest_progress"]["greymane_and_the_greater"] == "active", (
+        "Expected greymane_and_the_greater to shift from memory to active"
+    )

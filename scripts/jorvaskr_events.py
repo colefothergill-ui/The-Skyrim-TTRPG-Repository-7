@@ -149,6 +149,39 @@ def _athis_duel_result(state: Dict[str, Any]) -> AthisResult:
 
 
 # ──────────────────────────────────────────────────────────────────────────
+# Athis spar — Phase 1 (during companions_investigate_jorrvaskr)
+# ──────────────────────────────────────────────────────────────────────────
+def offer_athis_spar_event(state: Dict[str, Any]) -> List[str]:
+    """Offer the Athis spar once during the Investigate Jorrvaskr quest."""
+    flags = _flags(state)
+    if flags.get("jorvaskr_athis_spar_offered"):
+        return []
+    flags["jorvaskr_athis_spar_offered"] = True
+    return [
+        "[SCRIPTED ENCOUNTER] Athis eyes you from across the hall — a Dunmer with the stillness of someone who fights for real.",
+        "His gaze tracks your weapons before your face. There's an unspoken question in the way he stands.",
+        "[CHOICE] You may challenge Athis to a friendly spar (or wait for him to challenge you).",
+        " - Accept: Call resolve_athis_spar_event(state, accepted=True, result='win'|'lose').",
+        " - Decline: Call resolve_athis_spar_event(state, accepted=False).",
+        "This is missable. If you leave Jorrvaskr without resolving, Athis will not offer again.",
+    ]
+
+
+def resolve_athis_spar_event(
+    state: Dict[str, Any], accepted: bool, result: AthisResult = "none"
+) -> None:
+    """Resolve the Athis spar outcome and set follow-up flags."""
+    flags = _flags(state)
+    flags["jorvaskr_athis_spar_resolved"] = True
+    actual_result = result if accepted and result in ("win", "lose") else "none"
+    flags["jorvaskr_athis_spar_record"] = {"accepted": accepted, "result": actual_result}
+    if not accepted:
+        return
+    # Set follow-up NPC based on spar result
+    flags["jorvaskr_athis_spar_followup"] = "aela" if actual_result == "win" else "farkas"
+
+
+# ──────────────────────────────────────────────────────────────────────────
 # Downstairs first-entry description
 # ──────────────────────────────────────────────────────────────────────────
 def downstairs_living_area_description_once(state: Dict[str, Any]) -> List[str]:

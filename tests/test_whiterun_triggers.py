@@ -449,6 +449,64 @@ def test_dustmans_cairn_additional_room_triggers_once():
         assert campaign_state.get("scene_flags", {}).get(flag) is True
 
 
+def test_athis_spar_investigate_quest_no_crash_and_resolve():
+    """Whiterun trigger should offer Athis spar during investigate quest; resolve sets follow-up flags."""
+    state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_investigate_jorrvaskr"},
+        "scene_flags": {},
+    }
+
+    events = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Athis" in e for e in events), "Expected Athis spar offer during investigate quest"
+    assert not state["scene_flags"].get("jorvaskr_athis_spar_resolved"), "Spar should not be resolved yet"
+
+    jorvaskr_events.resolve_athis_spar_event(state, accepted=True, result="win")
+    assert state["scene_flags"]["jorvaskr_athis_spar_resolved"] is True
+    assert state["scene_flags"]["jorvaskr_athis_spar_followup"] == "aela", "Win should set Aela follow-up"
+
+    events2 = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Aela" in e for e in events2), "Expected Aela follow-up event after spar win"
+
+
+def test_jorrvaskr_both_spellings_fire():
+    """Both jorvaskr (single-r) and jorrvaskr (double-r) location keys should trigger events."""
+    for loc in ("jorvaskr_mead_hall_entrance", "jorrvaskr_mead_hall_entrance"):
+        state = {"companions": {"active_companions": []}, "scene_flags": {}}
+        events = whiterun_location_triggers(loc, state)
+        assert any(e for e in events), f"Expected events for location: {loc}"
+        assert state["scene_flags"].get("last_location") == loc.lower(), f"last_location not set for {loc}"
+
+
+def test_entered_from_wind_district_fires_once():
+    """entered_from_wind description fires once when coming from Wind District; not again on re-entry."""
+    state = {"companions": {"active_companions": []}, "scene_flags": {}}
+
+    whiterun_location_triggers("whiterun_wind_district", state)
+    events = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Wind District" in e and "doors" in e for e in events), (
+        "Expected entered_from_wind description after coming from Wind District"
+    )
+
+    events2 = whiterun_location_triggers("jorrvaskr", state)
+    assert not any("Wind District" in e and "doors" in e for e in events2), (
+        "Expected entered_from_wind description only once"
+    )
+
+
+def test_silver_hand_seed_no_fire_when_embraced_curse_none():
+    """Silver Hand seed must NOT fire before Inner Circle choice (embraced_curse absent/None)."""
+    state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"proving_honor_assigned_partner": "farkas"},
+        "scene_flags": {},
+    }
+    events = whiterun_location_triggers("dustmans_silver_hand_camp", state)
+    assert not any("[SEED]" in e for e in events), (
+        "Expected no Silver Hand seed when embraced_curse is not set"
+    )
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -479,6 +537,10 @@ def run_all_tests():
         test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
         test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
         test_dustmans_cairn_additional_room_triggers_once,
+        test_athis_spar_investigate_quest_no_crash_and_resolve,
+        test_jorrvaskr_both_spellings_fire,
+        test_entered_from_wind_district_fires_once,
+        test_silver_hand_seed_no_fire_when_embraced_curse_none,
     ]
     
     passed = 0

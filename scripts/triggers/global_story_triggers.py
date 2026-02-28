@@ -23,6 +23,10 @@ def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
+    # Bridge: prefer 'clocks' namespace (jorvaskr_events convention), fall back to 'campaign_clocks'.
+    clocks = state.get("clocks")
+    if isinstance(clocks, dict):
+        return clocks
     return state.setdefault("campaign_clocks", {})
 
 
@@ -60,14 +64,28 @@ def global_story_triggers(loc: str, campaign_state: Dict[str, Any]) -> List[str]
             )
         flags["battle_of_whiterun_march_announcement_done"] = True
 
-        # If Greymane quest exists as memory, activate it now.
+        # If Greymane quest exists as memory in active_quests (dict entries), activate it.
+        greymane_activated = False
         for q in _active_quests(campaign_state):
             if isinstance(q, dict) and q.get("id") == "greymane_and_the_greater" and q.get("status") == "memory":
                 q["status"] = "active"
                 q["note"] = "Stormcloak mobilization has begun. Vignar’s words matter now."
-                events.append(
-                    "[QUEST ACTIVATED] Greymane and the Greater: Vignar’s whispered plan now intersects the coming battle. "
-                    "You may warn Balgruuf… or conspire with Vignar."
-                )
+                greymane_activated = True
+
+        # Also check companions_state.quest_progress (set by jorvaskr_events._ensure_quest_entry).
+        cstate = campaign_state.get("companions_state") or {}
+        qprog = cstate.get("quest_progress") or {}
+        if isinstance(qprog, dict) and qprog.get("greymane_and_the_greater") == "memory":
+            qprog["greymane_and_the_greater"] = "active"
+            cstate.setdefault("quest_notes", {})["greymane_and_the_greater"] = (
+                "Stormcloak mobilization has begun. Vignar’s words matter now."
+            )
+            greymane_activated = True
+
+        if greymane_activated:
+            events.append(
+                "[QUEST ACTIVATED] Greymane and the Greater: Vignar’s whispered plan now intersects the coming battle. "
+                "You may warn Balgruuf… or conspire with Vignar."
+            )
 
     return events

@@ -89,7 +89,7 @@ def whiterun_location_triggers(loc, campaign_state):
                 "and the smell of fresh bread wafts from the Bannered Mare."
             )
 
-    elif "jorrvaskr" in loc_lower:
+    elif "jorrvaskr" in loc_lower or "jorvaskr" in loc_lower:
         # Normalize entry + one-time hall description
         # Detect "entered from Wind District" by last_location bookkeeping
         entered_from_wind = "wind" in last_loc and "whiterun" in last_loc
@@ -278,7 +278,7 @@ def whiterun_location_triggers(loc, campaign_state):
     # ------------------------------------------------------------------
     # PHASE 2: Jorrvaskr downstairs + Vignar/Eorlund overhear + Harbinger room foreshadow
     # ------------------------------------------------------------------
-    if jorvaskr_events is not None and "jorrvaskr" in loc_lower:
+    if jorvaskr_events is not None and ("jorrvaskr" in loc_lower or "jorvaskr" in loc_lower):
         # Downstairs living area detection (accept any of these substrings)
         downstairs_hit = any(k in loc_lower for k in ["grand hall", "downstairs", "whelps", "harbinger", "jorrvaskr_grand_hall", "jorrvaskr_whelps_quarters", "jorrvaskr_harbinger_room"])
 
@@ -326,7 +326,7 @@ def whiterun_location_triggers(loc, campaign_state):
             # Ensure clock exists in state, then fire once it reaches max.
             events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
-    if "jorrvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
+    if "jorrvaskr" in loc_lower or "jorvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
         if active_companions_quest == "companions_proving_honor":
             if not flags.get("jorrvaskr_proving_honor_briefing_done"):
                 events.append(
@@ -385,4 +385,5 @@ def whiterun_location_triggers(loc, campaign_state):
         events.extend(dustmans_cairn_events.dustmans_cairn_triggers(loc, campaign_state))
 
     events.extend(global_story_triggers(loc, campaign_state))
+    flags["last_location"] = loc_lower
     return events
