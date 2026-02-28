@@ -488,10 +488,22 @@
       ]
     },
     "silver_hand": {
+      "id": "silver_hand",
       "name": "The Silver Hand",
       "type": "neutral",
+      "alignment": "Neutral",
       "headquarters": "Frostroot Lodge (The Pale border)",
       "description": "A militant Nord order claiming to preserve Ysgramor's Old Way. They hunt lycanthropes and 'curse-corrupted' warrior cults, especially the Circle of Jorrvaskr. Internally divided between restorers (cure + reform) and purgers (extermination).",
+      "leader": {
+        "name": "Hakon Silvershield",
+        "role": "Commander"
+      },
+      "goals": [
+        "Preserve Ysgramor's Old Way and its martial traditions",
+        "Hunt and contain lycanthropes and curse-corrupted warrior cults",
+        "Protect Nord communities from supernatural threats",
+        "Debate and decide between purification and extermination approaches within the order"
+      ],
       "core_values": [
         "Old Way honor",
         "purity of oath",
@@ -506,11 +518,11 @@
         "hardliner_faction": "Rogar Icevein"
       },
       "relationships": {
-        "companions": "hostile",
-        "imperial_legion": "wary",
-        "stormcloaks": "situational",
-        "thalmor": "hostile",
-        "dawnguard": "respectful"
+        "companions": -80,
+        "imperial_legion": -30,
+        "stormcloaks": 0,
+        "thalmor": -80,
+        "dawnguard": 40
       },
       "joinable": true,
       "join_hooks": [
@@ -533,7 +545,6 @@
       "Winterhold (Jarl Korir)"
     ],
     "criminal_groups": [
-      "Silver Hand (werewolf hunters)",
       "Forsworn (Reach natives)",
       "Bandits (various groups)"
     ]
