@@ -166,7 +166,7 @@ def resolve_vignar_politics_talk(
     flags["jorvaskr_vignar_politics_talk_done"] = True
 
     npc_trust = state.setdefault("npc_trust", {})
-    vignar = npc_trust.setdefault("vignar_grey_mane", {"trust": 50, "scale": "0-100"})
+    vignar = npc_trust.setdefault("vignar_gray_mane", {"trust": 50, "scale": "0-100"})
     trust = int(vignar.get("trust", 50))
 
     # Base for engaging sincerely
@@ -186,7 +186,7 @@ def resolve_vignar_politics_talk(
         # distrust penalty; halved if Athis duel occurred (per spec)
         penalty = -20
         if athis in ("win", "lose"):
-            penalty = int(penalty / 2)  # -10
+            penalty = penalty // 2  # halved
         delta += penalty
 
     # Optional: If player explicitly INFERS Vignar correctly, small bonus;
