@@ -162,121 +162,36 @@ def _athis_duel_result(state: Dict[str, Any]) -> AthisResult:
 
 
 # ──────────────────────────────────────────────────────────────────────────
-# Athis spar event helpers
+# Athis spar — Phase 1 (during companions_investigate_jorrvaskr)
 # ──────────────────────────────────────────────────────────────────────────
-
-def _clamp_int(v: int, lo: int, hi: int) -> int:
-    try:
-        v = int(v)
-    except (ValueError, TypeError):
-        v = lo
-    return max(lo, min(hi, v))
-
-
-def compute_bet_amount(base: int = BET_BASE, raise_shifts: int = 0, cap: int = BET_CAP) -> int:
-    """
-    Base 100. Each shift on the raise roll adds +50. Cap 500.
-    """
-    raise_shifts = max(0, int(raise_shifts or 0))
-    return _clamp_int(base + raise_shifts * BET_PER_SHIFT, base, cap)
-
-
-# ──────────────────────────────────────────────────────────────────────────
-# Athis spar: offer + resolver
-# ──────────────────────────────────────────────────────────────────────────
-
 def offer_athis_spar_event(state: Dict[str, Any]) -> List[str]:
+    """Offer the Athis spar once during the Investigate Jorrvaskr quest."""
     flags = _flags(state)
-    if flags.get("jorvaskr_athis_spar_resolved") or flags.get("jorvaskr_athis_spar_offered"):
+    if flags.get("jorvaskr_athis_spar_offered"):
         return []
-
     flags["jorvaskr_athis_spar_offered"] = True
-
     return [
-        "[SCRIPTED EVENT] Athis the Dunmer duelist is goading the whelps into a 1v1 spar. He offers a wager.",
-        "Rule: First combatant to impose a Mild Consequence wins (sparring rules; no killing).",
-        "Whelps present: Ria, Njada, Torvar.",
-        "Senior eyes nearby: Farkas and Aela watch from a respectful distance.",
-        "Bet: 100 septims base. You may raise it via a social roll:",
-        " - Roll Rapport or Provoke vs Athis' Will. Each shift of success raises the bet by +50 (cap 500).",
-        "CHOICE: Accept the spar?",
-        " - If YES: call resolve_athis_spar_event(state, accepted=True, result='win|lose', style='warrior|tactical|mixed', raise_shifts=<int>).",
-        " - If NO:  call resolve_athis_spar_event(state, accepted=False).",
+        "[SCRIPTED ENCOUNTER] Athis eyes you from across the hall — a Dunmer with the stillness of someone who fights for real.",
+        "His gaze tracks your weapons before your face. There's an unspoken question in the way he stands.",
+        "[CHOICE] You may challenge Athis to a friendly spar (or wait for him to challenge you).",
+        " - Accept: Call resolve_athis_spar_event(state, accepted=True, result='win'|'lose').",
+        " - Decline: Call resolve_athis_spar_event(state, accepted=False).",
+        "This is missable. If you leave Jorrvaskr without resolving, Athis will not offer again.",
     ]
 
 
 def resolve_athis_spar_event(
-    state: Dict[str, Any],
-    accepted: bool,
-    result: Optional[Result] = None,
-    style: Optional[Style] = None,
-    raise_shifts: int = 0,
-) -> List[str]:
+    state: Dict[str, Any], accepted: bool, result: AthisResult = "none"
+) -> None:
+    """Resolve the Athis spar outcome and set follow-up flags."""
     flags = _flags(state)
-    if flags.get("jorvaskr_athis_spar_resolved"):
-        return []
-
-    # Normalize raise_shifts once so stored record and bet calculation agree.
-    try:
-        normalized_raise_shifts = int(raise_shifts)
-    except (TypeError, ValueError):
-        normalized_raise_shifts = 0
-    if normalized_raise_shifts < 0:
-        normalized_raise_shifts = 0
-
-    # Validate outcome before committing state; return error prompt without mutating.
-    if accepted and result not in ("win", "lose"):
-        return [
-            "[ERROR] resolve_athis_spar_event: when accepted=True you must supply result='win' or 'lose'.",
-            "State has NOT been modified. Resubmit with a valid result.",
-        ]
-
     flags["jorvaskr_athis_spar_resolved"] = True
-    flags["jorvaskr_athis_spar_offered"] = True
-
-    bet = compute_bet_amount(raise_shifts=normalized_raise_shifts)
-
-    record: Dict[str, Any] = {
-        "accepted": accepted,
-        "result": result,
-        "style": style,
-        "raise_shifts": normalized_raise_shifts,
-        "bet": bet,
-    }
-    flags["jorvaskr_athis_spar_record"] = record
-
+    actual_result = result if accepted and result in ("win", "lose") else "none"
+    flags["jorvaskr_athis_spar_record"] = {"accepted": accepted, "result": actual_result}
     if not accepted:
-        flags["jorvaskr_athis_spar_followup"] = "none"
-        return [
-            "[SPAR DECLINED] You wave off the challenge. Athis shrugs, grin fading as he turns back to his mead.",
-            "The whelps exchange glances. Ria looks mildly disappointed. Njada looks unsurprised.",
-        ]
-
-    lines: List[str] = []
-
-    if result == "win":
-        lines.append(f"[SPAR WIN] You impose a Mild Consequence on Athis. The hall goes quiet — then loud.")
-        lines.append(f'Athis straightens, rubbing the bruise. "Not bad." He means it.')
-        lines.append(f"Wager settled: you collect {bet} septims.")
-        _bump_whelp_loyalty(state, ["ria", "torvar", "njada"], 5)
-
-        # Determine follow-up based on fighting style
-        followup: Followup
-        if style == "warrior":
-            followup = "farkas"
-        else:
-            # tactical or mixed -> Aela notices the hunter's movement
-            followup = "aela"
-        flags["jorvaskr_athis_spar_followup"] = followup
-
-    else:
-        lines.append(f"[SPAR LOSS] Athis lands the decisive blow. You take a Mild Consequence.")
-        lines.append(f"He collects the wager ({bet} septims) with a satisfied look.")
-        lines.append('Athis: "You\'ve got fire. Come back when you\'ve got control."')
-        _bump_whelp_loyalty(state, ["ria", "torvar", "njada"], 2)
-        flags["jorvaskr_athis_spar_followup"] = "none"
-
-    return lines
+        return
+    # Set follow-up NPC based on spar result
+    flags["jorvaskr_athis_spar_followup"] = "aela" if actual_result == "win" else "farkas"
 
 
 # ──────────────────────────────────────────────────────────────────────────

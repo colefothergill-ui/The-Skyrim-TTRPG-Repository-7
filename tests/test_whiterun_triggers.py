@@ -450,96 +450,100 @@ def test_dustmans_cairn_additional_room_triggers_once():
         assert campaign_state.get("scene_flags", {}).get(flag) is True
 
 
-def test_offer_athis_spar_idempotent():
-    """offer_athis_spar_event fires once; subsequent calls return []."""
-    state = {"scene_flags": {}}
-    first = jorvaskr_events.offer_athis_spar_event(state)
-    second = jorvaskr_events.offer_athis_spar_event(state)
-    assert any("[SCRIPTED EVENT]" in e for e in first), "Expected spar offer on first call"
-    assert second == [], "Expected empty list on second call (idempotent)"
-    assert state["scene_flags"].get("jorvaskr_athis_spar_offered") is True
+def test_athis_spar_investigate_quest_no_crash_and_resolve():
+    """Whiterun trigger should offer Athis spar during investigate quest; resolve sets follow-up flags."""
+    state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_investigate_jorrvaskr"},
+        "scene_flags": {},
+    }
+
+    events = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Athis" in e for e in events), "Expected Athis spar offer during investigate quest"
+    assert not state["scene_flags"].get("jorvaskr_athis_spar_resolved"), "Spar should not be resolved yet"
+
+    jorvaskr_events.resolve_athis_spar_event(state, accepted=True, result="win")
+    assert state["scene_flags"]["jorvaskr_athis_spar_resolved"] is True
+    assert state["scene_flags"]["jorvaskr_athis_spar_followup"] == "aela", "Win should set Aela follow-up"
+
+    events2 = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Aela" in e for e in events2), "Expected Aela follow-up event after spar win"
 
 
-def test_resolve_athis_spar_win_warrior_sets_farkas_followup():
-    """Win with warrior style should set followup=farkas and record the correct bet."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    lines = jorvaskr_events.resolve_athis_spar_event(
-        state, accepted=True, result="win", style="warrior", raise_shifts=2
+def test_jorrvaskr_both_spellings_fire():
+    """Both jorvaskr (single-r) and jorrvaskr (double-r) location keys should trigger events."""
+    for loc in ("jorvaskr_mead_hall_entrance", "jorrvaskr_mead_hall_entrance"):
+        state = {"companions": {"active_companions": []}, "scene_flags": {}}
+        events = whiterun_location_triggers(loc, state)
+        assert any(e for e in events), f"Expected events for location: {loc}"
+        assert state["scene_flags"].get("last_location") == loc.lower(), f"last_location not set for {loc}"
+
+
+def test_entered_from_wind_district_fires_once():
+    """entered_from_wind description fires once when coming from Wind District; not again on re-entry."""
+    state = {"companions": {"active_companions": []}, "scene_flags": {}}
+
+    whiterun_location_triggers("whiterun_wind_district", state)
+    events = whiterun_location_triggers("jorrvaskr", state)
+    assert any("Wind District" in e and "doors" in e for e in events), (
+        "Expected entered_from_wind description after coming from Wind District"
     )
-    flags = state["scene_flags"]
-    assert any("[SPAR WIN]" in e for e in lines), "Expected win message"
-    assert flags.get("jorvaskr_athis_spar_followup") == "farkas"
-    assert flags.get("jorvaskr_athis_spar_resolved") is True
-    record = flags.get("jorvaskr_athis_spar_record", {})
-    assert record.get("bet") == 200       # 100 + 2*50
-    assert record.get("raise_shifts") == 2
-    assert record.get("result") == "win"
-    assert record.get("style") == "warrior"
 
-
-def test_resolve_athis_spar_win_tactical_sets_aela_followup():
-    """Win with tactical style should route followup to aela."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    jorvaskr_events.resolve_athis_spar_event(
-        state, accepted=True, result="win", style="tactical", raise_shifts=0
+    events2 = whiterun_location_triggers("jorrvaskr", state)
+    assert not any("Wind District" in e and "doors" in e for e in events2), (
+        "Expected entered_from_wind description only once"
     )
-    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "aela"
 
 
-def test_resolve_athis_spar_loss_sets_none_followup():
-    """Loss should set followup to 'none'."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    lines = jorvaskr_events.resolve_athis_spar_event(
-        state, accepted=True, result="lose", style="warrior", raise_shifts=0
+def test_silver_hand_seed_no_fire_when_embraced_curse_none():
+    """Silver Hand seed must NOT fire before Inner Circle choice (embraced_curse absent/None)."""
+    state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"proving_honor_assigned_partner": "farkas"},
+        "scene_flags": {},
+    }
+    events = whiterun_location_triggers("dustmans_silver_hand_camp", state)
+    assert not any("[SEED]" in e for e in events), (
+        "Expected no Silver Hand seed when embraced_curse is not set"
     )
-    assert any("[SPAR LOSS]" in e for e in lines), "Expected loss message"
-    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "none"
 
 
-def test_resolve_athis_spar_declined_does_not_repeat():
-    """Declined spar should set resolved flag and not allow re-offering."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    lines = jorvaskr_events.resolve_athis_spar_event(state, accepted=False)
-    assert any("[SPAR DECLINED]" in e for e in lines), "Expected declined message"
-    assert state["scene_flags"].get("jorvaskr_athis_spar_resolved") is True
-    assert state["scene_flags"].get("jorvaskr_athis_spar_followup") == "none"
-    assert jorvaskr_events.offer_athis_spar_event(state) == [], "Re-offer should be blocked after decline"
-
-
-def test_resolve_athis_spar_invalid_result_does_not_mutate_state():
-    """Calling resolver with accepted=True but no valid result should not commit state."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    lines = jorvaskr_events.resolve_athis_spar_event(
-        state, accepted=True, result=None, style=None
+def test_jorvaskr_single_r_sublocation_ids_trigger_phase2():
+    """Canonical single-r sub-location IDs (jorvaskr_grand_hall, jorvaskr_harbinger_room, etc.) should fire Phase 2 events."""
+    # jorvaskr_grand_hall (single-r, underscore) triggers downstairs description
+    state = {"companions": {"active_companions": []}, "scene_flags": {}}
+    events = whiterun_location_triggers("jorvaskr_grand_hall", state)
+    assert any("[TRIGGERED DESCRIPTION]" in e and "downstairs" in e.lower() for e in events), (
+        "Expected downstairs description for jorvaskr_grand_hall"
     )
-    assert any("[ERROR]" in e for e in lines), "Expected error message for invalid result"
-    assert state["scene_flags"].get("jorvaskr_athis_spar_resolved") is None, \
-        "State should NOT be mutated on invalid call"
-
-
-def test_compute_bet_amount_clamping():
-    """compute_bet_amount should clamp to [base, cap]."""
-    assert jorvaskr_events.compute_bet_amount() == 100                  # base, no shifts
-    assert jorvaskr_events.compute_bet_amount(raise_shifts=2) == 200    # 100 + 2*50
-    assert jorvaskr_events.compute_bet_amount(raise_shifts=8) == 500    # capped at 500
-    assert jorvaskr_events.compute_bet_amount(raise_shifts=-5) == 100   # negative clamps to base
-
-
-def test_resolve_athis_spar_normalizes_raise_shifts():
-    """Negative raise_shifts should be stored as 0 in the record and produce the base bet."""
-    state = {"scene_flags": {}}
-    jorvaskr_events.offer_athis_spar_event(state)
-    jorvaskr_events.resolve_athis_spar_event(
-        state, accepted=True, result="win", style="warrior", raise_shifts=-3
+    assert any("MISSABLE OVERHEAR" in e for e in events), (
+        "Expected Vignar/Eorlund notice prompt for jorvaskr_grand_hall"
     )
-    record = state["scene_flags"].get("jorvaskr_athis_spar_record", {})
-    assert record.get("raise_shifts") == 0, "Negative raise_shifts should be normalized to 0"
-    assert record.get("bet") == 100, "Bet should use normalized raise_shifts=0"
+
+    # jorvaskr_harbinger_room (single-r, underscore) triggers Harbinger room description
+    state2 = {"companions": {"active_companions": []}, "scene_flags": {}}
+    events2 = whiterun_location_triggers("jorvaskr_harbinger_room", state2)
+    assert any("[TRIGGERED DESCRIPTION]" in e and "Kodlak" in e for e in events2), (
+        "Expected Harbinger room description for jorvaskr_harbinger_room"
+    )
+
+    # jorvaskr_whelps_quarters (single-r, underscore) — banter fires only after vilkas trial
+    state3 = {"companions": {"active_companions": []}, "scene_flags": {"vilkas_trial_resolved": True, "vilkas_trial_pc_won": True}}
+    events3 = whiterun_location_triggers("jorvaskr_whelps_quarters", state3)
+    assert any("whelps" in e.lower() or "Whelps" in e or "WHELPS" in e for e in events3), (
+        "Expected whelps quarters banter for jorvaskr_whelps_quarters"
+    )
+
+    # jorvaskr_training_yard (single-r, underscore) — Vilkas trial offered when Proving Honor active
+    state4 = {
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+        "scene_flags": {},
+    }
+    events4 = whiterun_location_triggers("jorvaskr_training_yard", state4)
+    assert any("SCRIPTED TRIAL" in e or "Vilkas" in e for e in events4), (
+        "Expected Vilkas trial offer for jorvaskr_training_yard"
+    )
 
 
 def run_all_tests():
@@ -572,14 +576,11 @@ def run_all_tests():
         test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
         test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
         test_dustmans_cairn_additional_room_triggers_once,
-        test_offer_athis_spar_idempotent,
-        test_resolve_athis_spar_win_warrior_sets_farkas_followup,
-        test_resolve_athis_spar_win_tactical_sets_aela_followup,
-        test_resolve_athis_spar_loss_sets_none_followup,
-        test_resolve_athis_spar_declined_does_not_repeat,
-        test_resolve_athis_spar_invalid_result_does_not_mutate_state,
-        test_compute_bet_amount_clamping,
-        test_resolve_athis_spar_normalizes_raise_shifts,
+        test_athis_spar_investigate_quest_no_crash_and_resolve,
+        test_jorrvaskr_both_spellings_fire,
+        test_entered_from_wind_district_fires_once,
+        test_silver_hand_seed_no_fire_when_embraced_curse_none,
+        test_jorvaskr_single_r_sublocation_ids_trigger_phase2,
     ]
     
     passed = 0

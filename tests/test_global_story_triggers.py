@@ -59,7 +59,7 @@ def test_global_story_trigger_wired_to_hold_modules():
         (whiterun_location_triggers, "whiterun"),
         (windhelm_location_triggers, "windhelm"),
         (winterhold_location_triggers, "winterhold"),
-        (solitude_location_triggers, "solitude"),
+        (solitude_location_triggers, "solitude"),https://github.com/colefothergill-ui/The-Skyrim-TTRPG-Repository-7/pull/40/conflict?name=tests%252Ftest_whiterun_triggers.py&ancestor_oid=5449b36e2c1f477de08d09f357cefd96ffea63bb&base_oid=99fa0005ff45693bc2833059525a03f544091ac7&head_oid=9e5b885b6935697d2771bee62e378b94757424e5
         (markarth_location_triggers, "markarth"),
         (rift_location_triggers, "riften"),
         (pale_location_triggers, "dawnstar"),
@@ -74,36 +74,23 @@ def test_global_story_trigger_wired_to_hold_modules():
         ), f"Expected global march announcement in {trigger_func.__name__}"
 
 
-def test_clocks_bridges_from_campaign_clocks():
-    """_clocks() must merge legacy campaign_clocks into clocks when clocks is empty."""
-    from triggers.global_story_triggers import _clocks
-    state = {"campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": 7}}}
-    clocks = _clocks(state)
-    assert "battle_of_whiterun_countdown" in clocks
-    assert clocks["battle_of_whiterun_countdown"]["current_progress"] == 7
+def test_global_story_trigger_uses_clocks_namespace():
+    """Battle countdown stored under 'clocks' (not 'campaign_clocks') should still fire."""
+    campaign_state = {"clocks": {"battle_of_whiterun_countdown": {"current_progress": 6}}}
+    events = global_story_triggers("whiterun_city", campaign_state)
+    assert any("[TOWN CRIER]" in e for e in events), "Expected town crier when clock in 'clocks' namespace"
 
 
-def test_clocks_uses_clocks_key_directly():
-    """_clocks() uses clocks when it is already populated."""
-    from triggers.global_story_triggers import _clocks
-    state = {"clocks": {"battle_of_whiterun_countdown": {"current": 8}}}
-    clocks = _clocks(state)
-    assert clocks["battle_of_whiterun_countdown"]["current"] == 8
-
-
-def test_cur_uses_current_fallback():
-    """global_story_triggers() reads 'current' as fallback when 'current_progress' is absent."""
-    state = {
-        "clocks": {"battle_of_whiterun_countdown": {"current": 6}},
-    }
-    events = global_story_triggers("whiterun", state)
-    assert any("[TOWN CRIER]" in e for e in events)
-
-
-def test_greymane_not_activated_when_absent():
-    """No [QUEST ACTIVATED] emitted if greymane quest is not in quest_progress."""
-    state = {
+def test_global_story_trigger_activates_greymane_from_companions_state():
+    """Greymane quest stored in companions_state.quest_progress as 'memory' should activate."""
+    campaign_state = {
         "campaign_clocks": {"battle_of_whiterun_countdown": {"current_progress": 6}},
+        "companions_state": {
+            "quest_progress": {"greymane_and_the_greater": "memory"},
+        },
     }
-    events = global_story_triggers("whiterun", state)
-    assert not any("[QUEST ACTIVATED]" in e for e in events)
+    events = global_story_triggers("whiterun_city", campaign_state)
+    assert any("[QUEST ACTIVATED]" in e for e in events), "Expected [QUEST ACTIVATED] for Greymane"
+    assert campaign_state["companions_state"]["quest_progress"]["greymane_and_the_greater"] == "active", (
+        "Expected greymane_and_the_greater to shift from memory to active"
+    )

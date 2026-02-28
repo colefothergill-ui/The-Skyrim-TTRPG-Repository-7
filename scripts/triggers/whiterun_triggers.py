@@ -105,7 +105,7 @@ def whiterun_location_triggers(loc, campaign_state):
                 "and the smell of fresh bread wafts from the Bannered Mare."
             )
 
-    elif "jorrvaskr" in loc_lower:
+    elif "jorrvaskr" in loc_lower or "jorvaskr" in loc_lower:
         # Normalize entry + one-time hall description
         # Detect "entered from Wind District" by last_location bookkeeping
         entered_from_wind = "wind" in last_loc and "whiterun" in last_loc
@@ -294,9 +294,9 @@ def whiterun_location_triggers(loc, campaign_state):
     # ------------------------------------------------------------------
     # PHASE 2: Jorrvaskr downstairs + Vignar/Eorlund overhear + Harbinger room foreshadow
     # ------------------------------------------------------------------
-    if jorvaskr_events is not None and "jorrvaskr" in loc_lower:
+    if jorvaskr_events is not None and ("jorrvaskr" in loc_lower or "jorvaskr" in loc_lower):
         # Downstairs living area detection (accept any of these substrings)
-        downstairs_hit = any(k in loc_lower for k in ["grand hall", "downstairs", "whelps", "harbinger", "jorrvaskr_grand_hall", "jorrvaskr_whelps_quarters", "jorrvaskr_harbinger_room"])
+        downstairs_hit = any(k in loc_lower for k in ["grand hall", "grand_hall", "downstairs", "whelps", "harbinger", "jorrvaskr_grand_hall", "jorrvaskr_whelps_quarters", "jorrvaskr_harbinger_room", "jorvaskr_grand_hall", "jorvaskr_whelps_quarters", "jorvaskr_harbinger_room"])
 
         if downstairs_hit and not flags.get("jorvaskr_downstairs_description_done"):
             events.extend(jorvaskr_events.downstairs_living_area_description_once(campaign_state))
@@ -314,13 +314,13 @@ def whiterun_location_triggers(loc, campaign_state):
             flags["jorvaskr_vignar_approach_prompted"] = True
 
         # Harbinger room first entry (description + foreshadow scene)
-        if any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"]):
+        if any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room", "jorvaskr_harbinger_room"]):
             events.extend(jorvaskr_events.harbinger_room_description_once(campaign_state))
             events.extend(jorvaskr_events.kodlak_vilkas_foreshadow_scene_once(campaign_state))
             events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
         # Training yard Vilkas trial (offer once after Proving Honor becomes active)
-        if any(k in loc_lower for k in ["training yard", "jorrvaskr_training_yard"]):
+        if any(k in loc_lower for k in ["training yard", "training_yard", "jorrvaskr_training_yard", "jorvaskr_training_yard"]):
             events.extend(jorvaskr_events.offer_vilkas_trial_once(campaign_state))
 
         # Escort scene fires once after Vilkas duel resolves (regardless of location string)
@@ -328,7 +328,7 @@ def whiterun_location_triggers(loc, campaign_state):
             events.extend(jorvaskr_events.escort_to_whelps_quarters_scene(campaign_state))
 
         # Whelps quarters banter (first entry after Vilkas duel)
-        if any(k in loc_lower for k in ["whelps quarters", "jorrvaskr_whelps_quarters"]):
+        if any(k in loc_lower for k in ["whelps quarters", "whelps_quarters", "jorrvaskr_whelps_quarters", "jorvaskr_whelps_quarters"]):
             events.extend(jorvaskr_events.whelps_quarters_first_entry_banter(campaign_state))
 
         # Dustman’s Cairn summon trigger when contracts clock hits 2/2
@@ -337,12 +337,12 @@ def whiterun_location_triggers(loc, campaign_state):
         # --- Phase 3: Dustman’s Cairn briefing trigger (Harbinger Room only) ---
         if (
             hasattr(jorvaskr_events, "dustmans_cairn_briefing_scene_once")
-            and any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"])
+            and any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room", "jorvaskr_harbinger_room"])
         ):
             # Ensure clock exists in state, then fire once it reaches max.
             events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
-    if "jorrvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
+    if "jorrvaskr" in loc_lower or "jorvaskr" in loc_lower or ("wind" in loc_lower and "whiterun" in loc_lower):
         if active_companions_quest == "companions_proving_honor":
             if not flags.get("jorrvaskr_proving_honor_briefing_done"):
                 events.append(
@@ -409,8 +409,5 @@ def whiterun_location_triggers(loc, campaign_state):
         events.extend(jorvaskr_assault_events.jorrvaskr_assault_triggers(loc, campaign_state))
 
     events.extend(global_story_triggers(loc, campaign_state))
-
-    # Track last visited location for subsequent trigger calls
-    flags["last_location"] = loc
-
+    flags["last_location"] = loc_lower
     return events
