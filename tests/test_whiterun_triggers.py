@@ -430,6 +430,42 @@ def test_dustmans_briefing_honorable_combat_branch_assigns_vilkas():
     assert any("You’ve got hands. Now show you’ve got judgment." in e for e in lines)
 
 
+def test_dustmans_briefing_requires_proving_honor_active():
+    """Dustman's Harbinger briefing should not fire outside active Proving Honor quest."""
+    state = {
+        "scene_flags": {},
+        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
+        "companions_state": {"active_quest": "companions_inner_circle_rites"},
+    }
+    assert jorvaskr_events.dustmans_cairn_briefing_scene_once(state) == []
+    assert state["scene_flags"].get("dustmans_briefing_done") is not True
+
+
+def test_harbinger_room_emits_single_summon_with_briefing():
+    """At 2/2 contracts in Harbinger room, summon text should not be duplicated."""
+    state = {
+        "scene_flags": {},
+        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+        "companions": {"active_companions": []},
+    }
+    events = whiterun_location_triggers("jorrvaskr_harbinger_room", state)
+    assert sum(1 for e in events if "[SUMMON]" in e) == 1
+
+
+def test_dustmans_briefing_seeds_silver_hand_offer_for_purity_track():
+    """Purity-track PCs should receive Silver Hand foreshadow seed during briefing."""
+    state = {
+        "scene_flags": {},
+        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
+        "companions_state": {"active_quest": "companions_proving_honor", "embraced_curse": False},
+        "quests": {"active": [], "completed": [], "failed": []},
+    }
+    jorvaskr_events.dustmans_cairn_briefing_scene_once(state)
+    assert state["scene_flags"].get("silver_hand_join_seeded") is True
+    assert "silver_hand_contact" in state["quests"]["active"]
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -459,6 +495,9 @@ def run_all_tests():
         test_join_request_promotes_locked_sidequests_with_string_active_quests,
         test_dustmans_briefing_prefers_prey_and_predator_branch,
         test_dustmans_briefing_honorable_combat_branch_assigns_vilkas,
+        test_dustmans_briefing_requires_proving_honor_active,
+        test_harbinger_room_emits_single_summon_with_briefing,
+        test_dustmans_briefing_seeds_silver_hand_offer_for_purity_track,
     ]
     
     passed = 0

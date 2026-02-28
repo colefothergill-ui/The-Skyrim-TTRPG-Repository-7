@@ -3,6 +3,8 @@ from typing import Any, Dict, List, Literal, Optional
 NoticeOutcome = Literal["fail", "success", "sws"]
 WarStance = Literal["pro_stormcloak", "pro_empire", "neutral"]
 AthisResult = Literal["win", "lose", "none"]
+Partner = Literal["aela", "vilkas", "farkas"]
+QuestResult = Literal["success", "failure", "unknown"]
 
 
 def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -10,7 +12,20 @@ def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
-    return state.setdefault("campaign_clocks", {})
+    clocks = state.setdefault("clocks", {})
+    if not isinstance(clocks, dict):
+        state["clocks"] = {}
+        clocks = state["clocks"]
+    legacy = state.get("campaign_clocks")
+    if isinstance(legacy, dict):
+        if not clocks:
+            state["clocks"] = legacy
+            return legacy
+        for key, value in legacy.items():
+            clocks.setdefault(key, value)
+    else:
+        state.setdefault("campaign_clocks", clocks)
+    return clocks
 
 
 def _active_quests(state: Dict[str, Any]) -> List[Any]:
@@ -18,6 +33,14 @@ def _active_quests(state: Dict[str, Any]) -> List[Any]:
     if not isinstance(aq, list):
         state["active_quests"] = []
     return state["active_quests"]
+
+
+def _quests(state: Dict[str, Any]) -> Dict[str, Any]:
+    q = state.setdefault("quests", {})
+    q.setdefault("active", [])
+    q.setdefault("completed", [])
+    q.setdefault("failed", [])
+    return q
 
 
 def _get_clock_progress(state: Dict[str, Any], clock_id: str) -> int:
@@ -68,6 +91,17 @@ def _quest_status(state: Dict[str, Any], quest_id: str) -> Optional[str]:
     qprog = cstate.get("quest_progress", {})
     if isinstance(qprog, dict) and quest_id in qprog:
         return str(qprog.get(quest_id))
+    q = _quests(state)
+    if quest_id in q.get("completed", []):
+        return "completed"
+    if quest_id in q.get("failed", []):
+        return "failed"
+    if quest_id in q.get("active", []):
+        return "active"
+    if quest_id in state.get("completed_quests", []):
+        return "completed"
+    if quest_id in state.get("active_quests", []):
+        return "active"
     key = f"companions:{quest_id}"
     for q in _active_quests(state):
         if isinstance(q, str) and q == key:
@@ -75,6 +109,15 @@ def _quest_status(state: Dict[str, Any], quest_id: str) -> Optional[str]:
         if isinstance(q, dict) and q.get("id") == quest_id:
             return str(q.get("status", "active"))
     return None
+
+
+def _quest_result(state: Dict[str, Any], quest_id: str) -> QuestResult:
+    s = _quest_status(state, quest_id)
+    if s == "completed":
+        return "success"
+    if s == "failed":
+        return "failure"
+    return "unknown"
 
 
 def _companions_state(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -408,6 +451,8 @@ def maybe_dustmans_cairn_summon(state: Dict[str, Any]) -> List[str]:
     cstate = _companions_state(state)
     if cstate.get("active_quest") != "companions_proving_honor":
         return []
+    if flags.get("dustmans_briefing_done"):
+        return []
     if flags.get("dustmans_cairn_summon_done"):
         return []
     cur = _get_clock_progress(state, "honor_proving_contracts_done")
@@ -421,92 +466,6 @@ def maybe_dustmans_cairn_summon(state: Dict[str, Any]) -> List[str]:
         "In Kodlak’s chamber, Kodlak and Skjor wait. The Hall’s tone is different now: you’ve done the contracts. Now you get the real trial.",
         "MISSION: Retrieve the next fragment of Wuuthrad from Dustman’s Cairn. (This advances Proving Honor into its dungeon phase.)"
     ]
-
-
-from typing import Any, Dict, List, Optional, Literal
-
-Partner = Literal["aela", "vilkas", "farkas"]
-QuestResult = Literal["success", "failure", "unknown"]
-
-
-def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
-    return state.setdefault("scene_flags", {})
-
-
-def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
-    clocks = state.setdefault("clocks", {})
-    if not isinstance(clocks, dict):
-        state["clocks"] = {}
-        clocks = state["clocks"]
-    legacy = state.get("campaign_clocks")
-    if isinstance(legacy, dict):
-        if not clocks:
-            state["clocks"] = legacy
-            return legacy
-        for key, value in legacy.items():
-            clocks.setdefault(key, value)
-    else:
-        state.setdefault("campaign_clocks", clocks)
-    return clocks
-
-
-def _quests(state: Dict[str, Any]) -> Dict[str, Any]:
-    q = state.setdefault("quests", {})
-    q.setdefault("active", [])
-    q.setdefault("completed", [])
-    q.setdefault("failed", [])
-    return q
-
-
-def _quest_status(state: Dict[str, Any], quest_id: str) -> str:
-    cstate = state.get("companions_state", {}) or {}
-    qprog = cstate.get("quest_progress", {})
-    if isinstance(qprog, dict) and quest_id in qprog:
-        return str(qprog.get(quest_id))
-
-    q = _quests(state)
-    if quest_id in q.get("completed", []):
-        return "completed"
-    if quest_id in q.get("failed", []):
-        return "failed"
-    if quest_id in q.get("active", []):
-        return "active"
-    # Also check top-level state lists if they exist (compat with other systems)
-    if quest_id in state.get("completed_quests", []):
-        return "completed"
-    if quest_id in state.get("active_quests", []):
-        return "active"
-    if f"companions:{quest_id}" in state.get("active_quests", []):
-        return "active"
-    for entry in state.get("active_quests", []):
-        if isinstance(entry, dict) and entry.get("id") == quest_id:
-            return str(entry.get("status", "active"))
-    return "unknown"
-
-
-def _quest_result(state: Dict[str, Any], quest_id: str) -> QuestResult:
-    s = _quest_status(state, quest_id)
-    if s == "completed":
-        return "success"
-    if s == "failed":
-        return "failure"
-    return "unknown"
-
-
-def _clock_progress(state: Dict[str, Any], clock_id: str) -> int:
-    c = _clocks(state).get(clock_id, {})
-    return int(c.get("current_progress", 0) or 0)
-
-
-def _clock_max(state: Dict[str, Any], clock_id: str, default: int) -> int:
-    c = _clocks(state).get(clock_id, {})
-    return int(c.get("total_segments", default) or default)
-
-
-def ensure_clock_in_state(state: Dict[str, Any], clock_id: str, name: str, total: int) -> None:
-    clocks = _clocks(state)
-    if clock_id not in clocks:
-        clocks[clock_id] = {"name": name, "current_progress": 0, "total_segments": total, "segments": []}
 
 
 def _set_partner(state: Dict[str, Any], partner: Partner) -> None:
@@ -575,22 +534,27 @@ def dustmans_cairn_briefing_scene_once(state: Dict[str, Any]) -> List[str]:
       - companions_honorable_combat
     """
     flags = _flags(state)
+    cstate = _companions_state(state)
+    if cstate.get("active_quest") != "companions_proving_honor":
+        return []
     if flags.get("dustmans_briefing_done"):
         return []
 
-    # Ensure the contracts clock exists
-    ensure_clock_in_state(state, "honor_proving_contracts_done", "Honor Proving — Contracts Done", 2)
-
-    if _clock_progress(state, "honor_proving_contracts_done") < _clock_max(state, "honor_proving_contracts_done", 2):
+    if _get_clock_progress(state, "honor_proving_contracts_done") < int(_clocks(state).get("honor_proving_contracts_done", {}).get("total_segments", 2) or 2):
         return []
 
+    summon_already_done = bool(flags.get("dustmans_cairn_summon_done"))
     flags["dustmans_briefing_done"] = True
+    flags["dustmans_cairn_summon_done"] = True
 
     prey_res = _quest_result(state, "companions_prey_and_predator")
     honor_res = _quest_result(state, "companions_honorable_combat")
 
     lines: List[str] = []
-    lines.append("[SUMMON] You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
+    if not summon_already_done:
+        lines.append("[SUMMON] You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
+    else:
+        lines.append("You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
     lines.append("On the table: a map mark and a fragment case. The air tastes like the moment before a storm breaks.")
 
     # Branch 1: Prey & Predator completed (success OR fail)
@@ -644,6 +608,7 @@ def dustmans_cairn_briefing_scene_once(state: Dict[str, Any]) -> List[str]:
     # Mission briefing (shared)
     lines.append("")
     lines.append("[MISSION] Retrieve the Wuuthrad fragment from Dustman’s Cairn. Expect draugr, traps, and Silver Hand defilers.")
+    seed_silver_hand_join_offer(state)
     lines.append("GM NOTE: After this briefing, set location to 'Dustman’s Cairn — Entrance' to begin the dungeon triggers.")
 
     return lines
