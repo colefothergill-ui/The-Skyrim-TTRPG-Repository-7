@@ -37,12 +37,13 @@ def _companions_qprog(state: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _active_quests(state: Dict[str, Any]) -> List[Any]:
-    aq = state.get("active_quests")
+    """Return the active_quests collection from state; handles both list and dict forms."""
+    aq = state.get("active_quests", [])
     if isinstance(aq, list):
         return aq
-    # Normalize: ensure campaign_state['active_quests'] is always a list.
-    state["active_quests"] = []
-    return state["active_quests"]
+    if isinstance(aq, dict):
+        return list(aq.values())
+    return []
 
 
 def _is_settlement(loc_lower: str) -> bool:

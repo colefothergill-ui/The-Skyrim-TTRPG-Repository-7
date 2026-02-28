@@ -1,0 +1,54 @@
+{
+  "name": "Legate Cassian Varro",
+  "id": "npc_stat_legate_cassian_varro",
+  "type": "Imperial Legate",
+  "category": "Antagonist NPC",
+  "location": "Dragonsreach, Whiterun (Battle of Whiterun, Stage 0)",
+  "faction": "Imperial Legion",
+  "role": "Public-face Legate; covert Thalmor puppet master for Whiterun Hold",
+  "aspects": {
+    "high_concept": "Charming Imperial Legate with a Smile That Tilts the Room",
+    "trouble": "The Thalmor Hold My Commission — and My Secrets",
+    "other_aspects": [
+      "War Is Best Won Before It Is Fought",
+      "Every Ally Is Also a Lever",
+      "Cipher in My Boot, Dagger in My Words"
+    ]
+  },
+  "skills": {
+    "Great": ["Deceive"],
+    "Good": ["Rapport", "Tactics"],
+    "Fair": ["Fight", "Notice", "Resources"],
+    "Average": ["Will", "Stealth", "Lore", "Empathy"]
+  },
+  "stunts": [
+    "Public Face: +2 to Rapport when making a first impression in an official capacity; observers must succeed at Fair (+2) Empathy to sense any deception.",
+    "Cipher Fragment: Once per session, Varro can plant a coded message on a scene aspect; players who examine it with Lore Fair (+2) unlock discovery of the hidden quest 'The Hand Behind the Banner'.",
+    "Thalmor Backing: +2 to Resources when acquiring Imperial military support, as long as his Thalmor link remains secret."
+  ],
+  "stress": {
+    "physical": [false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "fate_points": 3,
+  "equipment": [
+    "Legate's enchanted cuirass (Armor:1)",
+    "Fine longsword (Weapon:2)",
+    "Thalmor cipher scroll (story item)",
+    "Imperial signet ring"
+  ],
+  "thalmor_integration": {
+    "role": "whiterun_hold_puppet_master",
+    "arc": "perpetual_war",
+    "hidden_quest_seed": "the_hand_behind_the_banner",
+    "discovery_trigger": "Players examine the cipher fragment or roll Notice/Empathy vs Great (+4) during Stage 0 intro"
+  },
+  "intro_event": "whiterun_legate_varro_intro_done",
+  "gm_notes": "Varro appears publicly as a competent, likeable Imperial officer — the kind of man who makes a room relax. His actual agenda is to ensure the siege is long, costly, and morally injurious to both sides, per Thalmor doctrine. He is not a villain who announces himself; players must be suspicious first."
+}
