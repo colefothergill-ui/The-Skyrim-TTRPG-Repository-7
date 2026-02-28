@@ -1,29 +1,35 @@
 {
   "name": "Legate Cassian Varro",
   "id": "npc_stat_legate_cassian_varro",
+  "type": "npc",
+  "category": "legate",
+  "location": "Whiterun",
+  "faction": "Imperial Legion",
   "race": "Imperial",
   "role": "Whiterun Imperial Legate (public face) — secret puppet master",
   "disposition": "friendly",
-  "high_concept": "Charismatic Imperial Legate, Spellblade Strategist",
-  "trouble": "Every Smile Is a Knife",
-  "aspects": [
-    "Public Face of Order",
-    "Spellblade Duellist",
-    "Knows Everyone's Weakness",
-    "Makes Executions Look Like Justice"
-  ],
+  "aspects": {
+    "high_concept": "Charismatic Imperial Legate, Spellblade Strategist",
+    "trouble": "Every Smile Is a Knife",
+    "other_aspects": [
+      "Public Face of Order",
+      "Spellblade Duellist",
+      "Knows Everyone's Weakness",
+      "Makes Executions Look Like Justice"
+    ]
+  },
   "skills": {
-    "Great (+4)": ["Rapport", "Deceive"],
-    "Good (+3)": ["Fight", "Lore"],
-    "Fair (+2)": ["Will", "Notice", "Athletics"],
-    "Average (+1)": ["Empathy", "Crafts", "Stealth", "Survival", "Shoot", "Physique"]
+    "Great": ["Rapport", "Deceive"],
+    "Good": ["Fight", "Lore"],
+    "Fair": ["Will", "Notice", "Athletics"],
+    "Average": ["Empathy", "Crafts", "Stealth", "Survival", "Shoot", "Physique"]
   },
   "stunts": [
     "Spellblade: Once per conflict, use Lore instead of Fight to attack at range within the same zone (fire/ice arc).",
     "Golden Tongue: +2 to Rapport when creating an advantage in a formal setting (court, war room, speeches).",
     "Public Execution: Once per session, on a successful Provoke or Deceive create-advantage, gain an extra free invoke if the scene involves justice, punishment, or morale."
   ],
-  "stress": { "physical": 3, "mental": 4 },
+  "stress": { "physical": [false, false, false], "mental": [false, false, false, false] },
   "consequences": { "mild": null, "moderate": null, "severe": null },
   "equipment": {
     "weapons": ["Imperial officer sword", "Rune dagger (concealed)"],
