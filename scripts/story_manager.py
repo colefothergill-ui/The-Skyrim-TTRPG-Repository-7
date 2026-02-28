@@ -59,6 +59,15 @@ COMPANIONS_CHAIN = {
     "companions_final_journey": None,
 }
 
+# Silver Hand quest chain order
+SILVER_HAND_CHAIN = {
+    "silver_hand_frostroot_contact": "silver_hand_prove_the_oath",
+    "silver_hand_prove_the_oath": "silver_hand_oath_records",
+    "silver_hand_oath_records": "silver_hand_split_restorer_or_purger",
+    "silver_hand_split_restorer_or_purger": "silver_hand_final_judgment",
+    "silver_hand_final_judgment": None,
+}
+
 
 class StoryManager:
     def __init__(self, data_dir="../data", state_dir="../state"):
@@ -74,6 +83,8 @@ class StoryManager:
         self.query_manager = DataQueryManager(str(self.data_dir))
         self.college_quests = self.load_college_quests()
         self.companions_quests = self.load_companions_quests()
+        self.silver_hand_path = self.data_dir / "quests" / "silver_hand_questline.json"
+        self.silver_hand_quests = self.load_silver_hand_quests()
 
         # Initialize Dragonbreak Manager if available
         if DRAGONBREAK_AVAILABLE:
@@ -122,6 +133,14 @@ class StoryManager:
             with open(self.companions_path, 'r') as f:
                 data = json.load(f)
             return data.get("companions_questline", {}).get("quests", {})
+        return {}
+
+    def load_silver_hand_quests(self):
+        """Load Silver Hand questline data"""
+        if self.silver_hand_path.exists():
+            with open(self.silver_hand_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return data.get("silver_hand_questline", {}).get("quests", {})
         return {}
 
     def start_college_questline(self, state):
@@ -263,6 +282,55 @@ class StoryManager:
             ):
                 return True
         return False
+
+    def start_silver_hand_questline(self, state):
+        """
+        Activate the first Silver Hand quest (silver_hand_frostroot_contact).
+
+        Args:
+            state: Campaign state dict (mutated in-place).
+
+        Returns:
+            The quest ID of the first Silver Hand quest.
+        """
+        sh_state = state.setdefault("silver_hand_state", {
+            "active_quest": None,
+            "completed_quests": [],
+            "quest_progress": {},
+            "internal_politics": {"restorers": 0, "purgers": 0},
+            "joined": True,
+        })
+        sh_state["active_quest"] = "silver_hand_frostroot_contact"
+        sh_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
+        return "silver_hand_frostroot_contact"
+
+    def complete_silver_hand_quest(self, state):
+        """
+        Complete the current active Silver Hand quest and advance to the next one.
+
+        Args:
+            state: Campaign state dict (mutated in-place).
+
+        Returns:
+            The newly activated quest ID, or None if the arc is finished.
+        """
+        sh_state = state.get("silver_hand_state", {}) or {}
+        current = sh_state.get("active_quest")
+        if not current:
+            return None
+
+        completed = sh_state.setdefault("completed_quests", [])
+        if current not in completed:
+            completed.append(current)
+        sh_state.setdefault("quest_progress", {})[current] = "completed"
+
+        next_q = SILVER_HAND_CHAIN.get(current)
+        if next_q:
+            sh_state["active_quest"] = next_q
+            sh_state["quest_progress"][next_q] = "active"
+        else:
+            sh_state["active_quest"] = None
+        return next_q
 
     def record_branching_decision(self, decision_key, choice):
         """
@@ -626,6 +694,14 @@ class StoryManager:
             quest_data = self.companions_quests.get(active_companions_quest)
             if quest_data:
                 available.append({"type": "companions", "quest": quest_data})
+
+        # Silver Hand questline (state-driven active quest)
+        silver_hand_state = state.get("silver_hand_state", {}) or {}
+        active_sh_quest = silver_hand_state.get("active_quest")
+        if active_sh_quest and self.silver_hand_quests:
+            quest_data = self.silver_hand_quests.get(active_sh_quest)
+            if quest_data:
+                available.append({"type": "silver_hand", "quest": quest_data})
 
         return available
 
@@ -1235,6 +1311,12 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                 "You came hoping to broker peace or protect innocents, but the battle has begun. "
                 "The Way of the Voice teaches restraint, but action is required."
             )
+        elif neutral_subfaction == "silver_hand":
+            encounter["arrival_context"] = (
+                "You arrived on Silver Hand business — tracking a beast-blooded target — "
+                "but the battle erupts around you. Krev's orders were clear: stay unseen. "
+                "The chaos forces your hand."
+            )
         else:
             encounter["arrival_context"] = (
                 "You arrive in Whiterun as a neutral party, but the Battle of Whiterun forces you to take a side."
@@ -1380,6 +1462,18 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                 ),
                 "complications": "Battle begins despite peaceful intentions, must choose side to survive",
                 "rewards": "Moral clarity, respect for trying peace, chosen companion"
+            },
+            "silver_hand": {
+                "quest_name": "The Whiterun Hunt",
+                "quest_giver": "Krev the Skinner",
+                "objective": "Track a beast-blooded target reported near Whiterun and report back to Krev",
+                "starting_dialogue": (
+                    "Krev: 'We've had a sighting near Whiterun — beast-blood, running with the "
+                    "city crowd. Get in, confirm the target, and get out before the civil war "
+                    "draws every guard in Skyrim. Don't get involved in their politics.'"
+                ),
+                "complications": "Battle of Whiterun erupts mid-hunt, forcing faction choice to survive",
+                "rewards": "Silver Hand advancement, Krev's respect, chosen companion"
             }
         }
         
@@ -2129,6 +2223,7 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
                     "college": "college_intro_complete",
                     "thieves_guild": "tg_intro_complete",
                     "dark_brotherhood": "db_intro_complete",
+                    "silver_hand": "silver_hand_intro_complete",
                 }
                 intro_flag = _subfaction_flag_map.get(neutral_subfaction, f"{neutral_subfaction}_intro_complete")
                 return flags.get(intro_flag, False)
@@ -2158,6 +2253,7 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
             "college": "college_intro_complete",
             "thieves_guild": "tg_intro_complete",
             "dark_brotherhood": "db_intro_complete",
+            "silver_hand": "silver_hand_intro_complete",
         }
         flag_key = flag_map.get(subfaction)
         if flag_key is None:

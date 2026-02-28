@@ -1,0 +1,142 @@
+{
+  "silver_hand_questline": {
+    "name": "The Silver Hand",
+    "description": "Join the Silver Hand, Skyrim's most zealous werewolf-hunting order, and pursue their agenda of purging the beast-blood curse — even if it means clashing with the Companions of Jorrvaskr.",
+    "quests": {
+      "silver_hand_frostroot_contact": {
+        "name": "Frostroot Contact",
+        "quest_id": "silver_hand_frostroot_contact",
+        "quest_giver": "Krev the Skinner",
+        "description": "A scarred warrior named Krev the Skinner approaches you at a roadside inn near Whiterun with a covert offer: the Silver Hand is recruiting agents willing to stand against the beast-blood. Your first task is to meet their Frostroot cell and prove you're not a spy.",
+        "objectives": [
+          "Travel to the Frostroot camp northeast of Whiterun",
+          "Pass Krev's suspicion test without revealing prior Companions ties",
+          "Recover a stolen Silver Hand ledger from a local bandit cache",
+          "Return the ledger to Krev as proof of trustworthiness"
+        ],
+        "rewards": [
+          "Silver Hand provisional membership",
+          "Access to Krev's safehouse near Rorikstead",
+          "+1 Silver Hand standing"
+        ],
+        "notes": "Entry quest for the Silver Hand arc. If the PC has prior Companions ties (companions_state.active_quest is not None), Krev's suspicion roll difficulty increases by +1. Recovering the ledger without violence earns a free invoke on 'Discreet Operative'.",
+        "prerequisites": [],
+        "follow_up_quest": "silver_hand_prove_the_oath"
+      },
+      "silver_hand_prove_the_oath": {
+        "name": "Prove the Oath",
+        "quest_id": "silver_hand_prove_the_oath",
+        "quest_giver": "Krev the Skinner",
+        "description": "Krev demands you prove your commitment to the Silver Hand's oath by participating in a werewolf hunt. A pack of beast-blooded bandits has taken over a Nordic ruin near Morthal. You must help clear them out and retrieve a fragment of silver-forged chain used in Silver Hand initiation rites.",
+        "objectives": [
+          "Travel to Ironbind Barrow with Krev's hunting party",
+          "Clear the beast-blooded threat from the ruin",
+          "Recover the silver chain fragment from the pack leader",
+          "Swear the Silver Hand oath before Krev and two witnesses"
+        ],
+        "rewards": [
+          "Full Silver Hand membership (rank: Hunter)",
+          "Silver-edged weapon (Weapon:1 against lycanthropes)",
+          "+2 Silver Hand standing"
+        ],
+        "outcomes": {
+          "oath_sworn_cleanly": "You swear the oath and are welcomed as a Hunter. Krev nods with rare approval.",
+          "showed_mercy": "Krev notes your hesitation. Take -1 trust with Krev; the other hunters will watch you more closely.",
+          "decisive_kill": "Your kill of the pack leader impresses the hunters. Free invoke on 'Proven Hunter' for the next combat scene against lycanthropes."
+        },
+        "notes": "Mirrors companions_proving_honor in function. The oath-swearing ceremony sets silver_hand_state.joined=true. If the PC secretly refused to kill a surrendering werewolf, set silver_hand_state.mercy_shown=true for later branching.",
+        "prerequisites": ["silver_hand_frostroot_contact"],
+        "follow_up_quest": "silver_hand_oath_records"
+      },
+      "silver_hand_oath_records": {
+        "name": "Oath Records",
+        "quest_id": "silver_hand_oath_records",
+        "quest_giver": "Moric Sidrey",
+        "description": "Moric Sidrey, the Silver Hand's aging archivist, directs you to retrieve stolen oath records from a Thalmor courier intercepted near Solitude. The records contain names of Silver Hand members and their weaknesses — in Thalmor hands they become leverage for forced collaboration. Recover them before the courier reaches the Thalmor Embassy.",
+        "objectives": [
+          "Intercept the Thalmor courier on the road between Dragon Bridge and Solitude",
+          "Recover the oath records without alerting the Thalmor Embassy",
+          "Return the records to Moric at the Silver Hand's Pale archive",
+          "Optional: Destroy the copies rather than returning them (triggers internal_politics consequence)"
+        ],
+        "rewards": [
+          "Moric's trust (+2 trust with Moric Sidrey)",
+          "Access to the Silver Hand's Pale archive and lore entries",
+          "+1 Silver Hand standing"
+        ],
+        "branching": {
+          "return_records": {
+            "description": "PC returns all records to Moric. Moric is relieved. internal_politics remains stable.",
+            "flag": "records_fate",
+            "value": "returned"
+          },
+          "destroy_records": {
+            "description": "PC destroys the records to protect all named members equally. Moric is conflicted but respects the decision. internal_politics.purgers +1.",
+            "flag": "records_fate",
+            "value": "destroyed"
+          }
+        },
+        "notes": "This quest plants seeds for the internal_politics split in silver_hand_split_restorer_or_purger. Destroying the records (+purgers) signals distrust of leadership; returning them (+restorers) signals institutional loyalty.",
+        "prerequisites": ["silver_hand_prove_the_oath"],
+        "follow_up_quest": "silver_hand_split_restorer_or_purger"
+      },
+      "silver_hand_split_restorer_or_purger": {
+        "name": "Restorer or Purger",
+        "quest_id": "silver_hand_split_restorer_or_purger",
+        "quest_giver": "Krev the Skinner / Moric Sidrey",
+        "description": "The Silver Hand is fracturing. Krev and the Purger faction want to escalate attacks on the Companions and any suspected werewolf sympathizer in Whiterun. Moric and the Restorer faction argue for discipline, careful intelligence, and avoiding civilian casualties. Both factions want your allegiance. Your choice shapes the Silver Hand's future — and determines whether Jorrvaskr burns.",
+        "objectives": [
+          "Attend the Silver Hand council session at the Pale archive",
+          "Hear both factions' arguments in full",
+          "Cast your vote: side with Krev (Purgers) or Moric (Restorers)",
+          "Execute the first action of your chosen faction's agenda"
+        ],
+        "rewards": [
+          "Leadership role in your chosen faction (+2 trust with faction leader)",
+          "Unique stunt access based on choice (see data/stunts/silver_hand.json)"
+        ],
+        "branching": {
+          "side_with_purgers": {
+            "description": "PC sides with Krev. Purgers begin aggressive campaign against the Companions. Moric withdraws to the archive. internal_politics.purgers += 2.",
+            "flag": "silver_hand_faction_choice",
+            "value": "purger"
+          },
+          "side_with_restorers": {
+            "description": "PC sides with Moric. Restorers push for targeted intelligence operations. Krev becomes a dangerous rival. internal_politics.restorers += 2.",
+            "flag": "silver_hand_faction_choice",
+            "value": "restorer"
+          }
+        },
+        "notes": "The internal_politics scores (restorers / purgers) accumulated across the arc feed directly into silver_hand_final_judgment outcomes. A tie (equal scores) triggers a special mediation scene.",
+        "prerequisites": ["silver_hand_oath_records"],
+        "follow_up_quest": "silver_hand_final_judgment"
+      },
+      "silver_hand_final_judgment": {
+        "name": "Final Judgment",
+        "quest_id": "silver_hand_final_judgment",
+        "quest_giver": "Krev the Skinner or Moric Sidrey (depending on faction_choice)",
+        "description": "The Silver Hand's civil war reaches its climax. If you sided with the Purgers, you must lead the assault on Jorrvaskr or stop Krev from destroying it. If you sided with the Restorers, you must outmaneuver Krev's coup attempt and prevent the Silver Hand from self-destructing. Either path ends at Dustman's Cairn, where the Silver Hand's true leadership has retreated — and where the final choice must be made.",
+        "objectives": [
+          "Reach Dustman's Cairn before the opposing faction completes their action",
+          "Confront the Silver Hand leadership",
+          "Make the final choice: purge the beast-blood plague entirely (even from innocents), restore the Silver Hand to a disciplined force, or dissolve the order",
+          "Witness the consequences of your judgment"
+        ],
+        "rewards": [
+          "If purger victory: Silver Hand Commander title, +3 Silver Hand standing (maximum), but Companions become hostile",
+          "If restorer victory: Silver Hand Arbiter title, +3 Silver Hand standing, neutral Companions relationship preserved",
+          "If order dissolved: Silver Hand dissolved as a faction, unique aspect 'The Last Silver Hand' (compellable)"
+        ],
+        "outcomes": {
+          "purger_victory": "Krev's forces overwhelm the Restorers. The Silver Hand becomes a hammer against all lycanthropes. Jorrvaskr faces a siege unless the PC intervenes.",
+          "restorer_victory": "Moric's careful strategy wins the day. The Silver Hand survives as a disciplined order, no longer at war with the Companions unless provoked.",
+          "order_dissolved": "You personally dismantle the Silver Hand's command structure. The hunters scatter. The beast-blood wars in Skyrim cool — for now.",
+          "tie_mediation": "Equal restorer/purger scores trigger a mediation scene where the PC must make a Will vs Great (+4) roll to forge a compromise."
+        },
+        "notes": "Final quest of the Silver Hand arc. After this quest, silver_hand_state.active_quest is set to null. The Commander/Arbiter title gives the PC narrative authority over surviving Silver Hand NPCs. Companion relationships are adjusted based on outcome.",
+        "prerequisites": ["silver_hand_split_restorer_or_purger"],
+        "follow_up_quest": null
+      }
+    }
+  }
+}
