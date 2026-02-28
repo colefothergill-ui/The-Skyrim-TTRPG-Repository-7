@@ -1,8 +1,15 @@
 {
   "profile_id": "wayn_visual",
   "pc_id": "pc_wayn",
-  "portrait_path": "docs/assets/pcs/wayn_manifesting.png",
+  "portrait": {
+    "path": "docs/assets/pcs/wayn_manifesting.png"
+  },
+  "appearance": {
+    "default": {
+      "description": "Wayn at-Cindershroud — Redguard Ansei, manifesting his Shehai of Cold Snow."
+    }
+  },
+  "trigger_outputs": {},
   "appearance_ref": "data/pcs/appearances/wayn_appearance.json",
-  "description": "Wayn at-Cindershroud — Redguard Ansei, manifesting his Shehai of Cold Snow.",
   "tags": ["wayn", "redguard", "ansei", "shehai", "manifesting"]
 }
