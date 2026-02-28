@@ -10,6 +10,11 @@ text and companion barks switch to siege context keyed to the current stage.
 
 from .trigger_utils import is_companion_present
 
+try:
+    import jorvaskr_events
+except Exception:
+    jorvaskr_events = None
+
 
 def whiterun_location_triggers(loc, campaign_state):
     """
@@ -28,6 +33,8 @@ def whiterun_location_triggers(loc, campaign_state):
     loc_lower = str(loc).lower()
 
     flags = campaign_state.setdefault("scene_flags", {})
+
+    last_loc = str(flags.get("last_location", "")).lower()
 
     # ------------------------------------------------------------------
     # Siege state detection
@@ -67,6 +74,65 @@ def whiterun_location_triggers(loc, campaign_state):
                 "You enter the bustling Plains District. Merchants call out their wares, "
                 "and the smell of fresh bread wafts from the Bannered Mare."
             )
+
+    elif "jorvaskr" in loc_lower:
+        # Normalize entry + one-time hall description
+        # Detect "entered from Wind District" by last_location bookkeeping
+        entered_from_wind = "wind" in last_loc and "whiterun" in last_loc
+
+        if entered_from_wind and not flags.get("jorvaskr_entered_from_wind_once"):
+            events.append(
+                "From the Wind District, you push open Jorrvaskr's heavy doors. "
+                "Warmth, woodsmoke, and old mead breath out at you. The hall feels lived-in: "
+                "scarred tables, weapon racks, and the hush of a place where legends eat dinner."
+            )
+            flags["jorvaskr_entered_from_wind_once"] = True
+
+        # One-time structural description (first true entry)
+        if not flags.get("jorvaskr_structural_outline_done"):
+            events.append(
+                "[JORVASKR MAP ANCHOR] You take in the Companions' home as a set of clear spaces:\n"
+                "- Exterior: Skyforge\n"
+                "- Exterior: Training Yard (behind Jorrvaskr)\n"
+                "- Exterior: Deck Patio to the Yard\n"
+                "- Exterior: Underforge Entry (beneath Skyforge)\n"
+                "- Interior (Upstairs): Mead Hall / Grand Entrance; Servants Quarters; Stairwell Down\n"
+                "- Interior (Downstairs): Grand Hall; Whelps Quarters; Harbinger's Room;\n"
+                "  Aela's / Farkas' / Skjor's / Vilkas' quarters; future Inner Circle room\n"
+                "This anchor is now canon for scene location calls."
+            )
+            flags["jorvaskr_structural_outline_done"] = True
+
+        # Optional: scripted event offer (Athis spar) during the investigate quest
+        companions_state = campaign_state.get("companions_state", {})
+        active_comp_quest = companions_state.get("active_quest")
+
+        if (
+            active_comp_quest == "companions_investigate_jorvaskr"
+            and not flags.get("jorvaskr_athis_spar_resolved")
+            and jorvaskr_events is not None
+        ):
+            # Offer spar once, typically when the PC is in/near the hall entrance.
+            events.extend(jorvaskr_events.offer_athis_spar_event(campaign_state))
+
+        # Follow-up approach hooks after a win (one-time)
+        followup = flags.get("jorvaskr_athis_spar_followup")
+        if followup == "farkas" and not flags.get("jorvaskr_farkas_followup_done"):
+            events.append(
+                "[FOLLOW-UP] Farkas approaches with a grin that's half respect, half challenge. "
+                "\"That was honest steel. If you've got more of that in you, I've got work that fits.\" "
+                "(Side quest unlocked: Honorable Combat — becomes active once Proving Honor is active.)"
+            )
+            flags["jorvaskr_farkas_followup_done"] = True
+
+        if followup == "aela" and not flags.get("jorvaskr_aela_followup_done"):
+            events.append(
+                "[FOLLOW-UP] Aela's eyes track you like you're prey that decided to bite back. "
+                "\"You move like a hunter, not a brawler. If you want to learn what the wild teaches, "
+                "meet me when the yard goes quiet.\" "
+                "(Side quest unlocked: Prey and Predator — becomes active once Proving Honor is active.)"
+            )
+            flags["jorvaskr_aela_followup_done"] = True
 
     elif "wind" in loc_lower and "whiterun" in loc_lower:
         if siege_active:
@@ -248,5 +314,7 @@ def whiterun_location_triggers(loc, campaign_state):
             "This is honor."
         )
         flags["companions_whiterun_deployment_triggered"] = True
+
+    flags["last_location"] = loc_lower
 
     return events

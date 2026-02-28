@@ -3,13 +3,38 @@
     "name": "The Companions",
     "description": "Join the ancient warrior guild of Jorrvaskr, earn your place in the Inner Circle, and face the choice of lycanthropy or purity as Kodlak Whitemane's fate hangs in the balance.",
     "quests": {
+      "companions_investigate_jorvaskr": {
+        "name": "Investigate the Companions of Jorrvaskr",
+        "quest_id": "companions_investigate_jorvaskr",
+        "quest_giver": "Jorrvaskr (Rumors / First Entry)",
+        "description": "Before Kodlak offers you a true trial, you must learn the culture of the Companions: their hall, their whelps, and the steel-code they live by. Your first impression is your first test.",
+        "objectives": [
+          "Enter Jorrvaskr from Whiterun's Wind District",
+          "Take in the hall: observe its structure, customs, and the Companions' rhythm",
+          "Optional: Accept Athis' sparring challenge (first to impose a Mild consequence wins)",
+          "Speak with Kodlak Whitemane in the Harbinger's Room about joining"
+        ],
+        "rewards": [
+          "Quest unlock: Proving Honor becomes available",
+          "If you win the spar: +10 loyalty to the whelps who witness it",
+          "If you impress via style: unlock a special approach scene (Farkas or Aela) and a side quest stub"
+        ],
+        "outcomes": {
+          "spar_win": "Your victory earns respect: Ria, Torvar, Njada (and Athis) loyalty increases; a senior Companion approaches based on your style.",
+          "spar_loss": "You lose coin and gain no immediate sponsor. You can still speak to Kodlak to proceed.",
+          "spar_declined": "You keep your coin and dignity; proceed to Kodlak without the hall making a spectacle of you."
+        },
+        "notes": "This quest is designed to make entry into the Companions feel lived-in and reactive. Triggers fire on first entry to Jorrvaskr and when stepping into the Training Yard.",
+        "prerequisites": [],
+        "follow_up_quest": "companions_proving_honor"
+      },
       "companions_proving_honor": {
         "name": "Proving Honor",
         "quest_id": "companions_proving_honor",
         "quest_giver": "Kodlak Whitemane",
         "description": "To earn a place among the Companions of Jorrvaskr, you must prove your honor and battle-worth. Kodlak Whitemane sets you a trial: recover a fragment of Wuuthrad from a bandit-held dungeon and return it to Jorrvaskr. The quest is a test of courage, discipline, and Nordic virtue.",
         "objectives": [
-          "Speak to Kodlak Whitemane in Jorrvaskr's mead hall",
+          "Speak to Kodlak Whitemane in Jorrvaskr's Harbinger Room (after investigating the hall)",
           "Travel to the designated dungeon and defeat its guardian",
           "Recover the Wuuthrad fragment from the depths",
           "Return the fragment to Kodlak and formally join the Companions"
@@ -26,7 +51,7 @@
           "quick_retreat": "You recovered the fragment but left some enemies standing. Vilkas will note it - take -1 trust with Vilkas."
         },
         "notes": "Entry quest for the Companions arc. Mirrors the College's 'First Lessons' in function. Vilkas and Farkas are present in Jorrvaskr; their dispositions toward the PC are set here. If PC demonstrates exceptional combat ability (SWS on Fight), Farkas offers a free sparring stunt for later.",
-        "prerequisites": [],
+        "prerequisites": ["companions_investigate_jorvaskr"],
         "follow_up_quest": "companions_inner_circle_rites"
       },
       "companions_inner_circle_rites": {
