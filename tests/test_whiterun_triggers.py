@@ -507,6 +507,44 @@ def test_silver_hand_seed_no_fire_when_embraced_curse_none():
     )
 
 
+def test_jorvaskr_single_r_sublocation_ids_trigger_phase2():
+    """Canonical single-r sub-location IDs (jorvaskr_grand_hall, jorvaskr_harbinger_room, etc.) should fire Phase 2 events."""
+    # jorvaskr_grand_hall (single-r, underscore) triggers downstairs description
+    state = {"companions": {"active_companions": []}, "scene_flags": {}}
+    events = whiterun_location_triggers("jorvaskr_grand_hall", state)
+    assert any("[TRIGGERED DESCRIPTION]" in e and "downstairs" in e.lower() for e in events), (
+        "Expected downstairs description for jorvaskr_grand_hall"
+    )
+    assert any("MISSABLE OVERHEAR" in e for e in events), (
+        "Expected Vignar/Eorlund notice prompt for jorvaskr_grand_hall"
+    )
+
+    # jorvaskr_harbinger_room (single-r, underscore) triggers Harbinger room description
+    state2 = {"companions": {"active_companions": []}, "scene_flags": {}}
+    events2 = whiterun_location_triggers("jorvaskr_harbinger_room", state2)
+    assert any("[TRIGGERED DESCRIPTION]" in e and "Kodlak" in e for e in events2), (
+        "Expected Harbinger room description for jorvaskr_harbinger_room"
+    )
+
+    # jorvaskr_whelps_quarters (single-r, underscore) — banter fires only after vilkas trial
+    state3 = {"companions": {"active_companions": []}, "scene_flags": {"vilkas_trial_resolved": True, "vilkas_trial_pc_won": True}}
+    events3 = whiterun_location_triggers("jorvaskr_whelps_quarters", state3)
+    assert any("whelps" in e.lower() or "Whelps" in e or "WHELPS" in e for e in events3), (
+        "Expected whelps quarters banter for jorvaskr_whelps_quarters"
+    )
+
+    # jorvaskr_training_yard (single-r, underscore) — Vilkas trial offered when Proving Honor active
+    state4 = {
+        "companions": {"active_companions": []},
+        "companions_state": {"active_quest": "companions_proving_honor"},
+        "scene_flags": {},
+    }
+    events4 = whiterun_location_triggers("jorvaskr_training_yard", state4)
+    assert any("SCRIPTED TRIAL" in e or "Vilkas" in e for e in events4), (
+        "Expected Vilkas trial offer for jorvaskr_training_yard"
+    )
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -541,6 +579,7 @@ def run_all_tests():
         test_jorrvaskr_both_spellings_fire,
         test_entered_from_wind_district_fires_once,
         test_silver_hand_seed_no_fire_when_embraced_curse_none,
+        test_jorvaskr_single_r_sublocation_ids_trigger_phase2,
     ]
     
     passed = 0
