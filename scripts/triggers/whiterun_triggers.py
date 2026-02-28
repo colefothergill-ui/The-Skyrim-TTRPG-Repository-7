@@ -15,12 +15,18 @@ from .global_story_triggers import global_story_triggers
 
 try:
     import jorvaskr_events
-except Exception:
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'jorvaskr_events' could not be imported; related features will be disabled: {e!r}"
+    )
     jorvaskr_events = None
 
 try:
     import dustmans_cairn_events
-except Exception:
+except (ImportError, ModuleNotFoundError) as e:
+    warnings.warn(
+        f"Optional module 'dustmans_cairn_events' could not be imported; related features will be disabled: {e!r}"
+    )
     dustmans_cairn_events = None
 
 

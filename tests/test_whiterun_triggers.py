@@ -426,6 +426,29 @@ def test_dustmans_cairn_silver_hand_seed_for_purity_track_once():
     assert "silver_hand_contact" in campaign_state.get("quests", {}).get("active", [])
 
 
+def test_dustmans_cairn_additional_room_triggers_once():
+    """Trap/ossuary/deep-crypt/word-wall branches should trigger once each."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "scene_flags": {},
+    }
+
+    checks = [
+        ("dustmans_anteroom", "dustmans_trap_rooms_seen", "Runes scratch the stone."),
+        ("dustmans_ossuary_maze", "dustmans_ossuary_seen", "Bone-dust clings to your boots."),
+        ("dustmans_deep_crypt_chamber", "dustmans_fragment_chamber_seen", "[FRAGMENT CHAMBER]"),
+        ("dustmans_word_wall", "dustmans_word_wall_seen", "[WORD WALL]"),
+    ]
+
+    for loc, flag, expected in checks:
+        first_events = whiterun_location_triggers(loc, campaign_state)
+        second_events = whiterun_location_triggers(loc, campaign_state)
+
+        assert any(expected in e for e in first_events), f"Expected first trigger text for {loc}"
+        assert not any(expected in e for e in second_events), f"Expected once-only behavior for {loc}"
+        assert campaign_state.get("scene_flags", {}).get(flag) is True
+
+
 def run_all_tests():
     """Run all tests"""
     print("=" * 60)
@@ -455,6 +478,7 @@ def run_all_tests():
         test_join_request_promotes_locked_sidequests_with_string_active_quests,
         test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
         test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
+        test_dustmans_cairn_additional_room_triggers_once,
     ]
     
     passed = 0

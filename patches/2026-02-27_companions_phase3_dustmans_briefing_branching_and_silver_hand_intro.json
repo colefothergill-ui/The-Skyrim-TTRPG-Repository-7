@@ -2,9 +2,9 @@
   "patch_id": "2026-02-27_companions_phase3_dustmans_briefing_branching_and_silver_hand_intro",
   "created_at": "2026-02-27",
   "type": "quest_restructure_phase",
-  "summary": "Phase 3: Contracts clock -&gt; Harbinger Room summon -&gt; branching briefing selects mission partner (Aela/Vilkas/Farkas) based on side quest completion; Dustman’s Cairn gets room map anchors + companion-reactive triggers; introduces named Silver Hand antagonist and seeds optional join/infiltration hook for Purity-track PCs.",
+  "summary": "Phase 3: Contracts clock -> Harbinger Room summon -> branching briefing selects mission partner (Aela/Vilkas/Farkas) based on side quest completion; Dustman’s Cairn gets room map anchors + companion-reactive triggers; introduces named Silver Hand antagonist and seeds optional join/infiltration hook for Purity-track PCs.",
   "changes": [
-    { "path": "data/quests/companions_questline.json", "change": "Update Proving Honor objectives/notes to include contracts -&gt; summon -&gt; Dustman’s Cairn flow." },
+    { "path": "data/quests/companions_questline.json", "change": "Update Proving Honor objectives/notes to include contracts -> summon -> Dustman’s Cairn flow." },
     { "path": "scripts/jorvaskr_events.py", "change": "Add Dustman’s Cairn briefing scene with branching partner selection and pending trust deltas." },
     { "path": "data/locations/dustmans_cairn_layout.json", "change": "Add Dustman’s Cairn room anchors + alias mapping." },
     { "path": "data/encounters/companions_dustmans_cairn_proving_honor.json", "change": "Add Dustman’s Cairn encounter scaffold." },
