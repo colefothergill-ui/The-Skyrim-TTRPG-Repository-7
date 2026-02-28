@@ -11,8 +11,13 @@ This script manages session context by:
 
 import json
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
+
+# Add scripts directory to path for utils import
+sys.path.insert(0, str(Path(__file__).parent))
+from utils import EXAMPLE_PC_FILENAME
 
 
 class SessionContextManager:
@@ -196,7 +201,7 @@ class SessionContextManager:
         
         # Update PCs with experience and fate points
         for char_id in session.get('characters_present', []):
-            pc_files = list(self.pcs_dir.glob("*.json"))
+            pc_files = [p for p in self.pcs_dir.glob("*.json") if p.name != EXAMPLE_PC_FILENAME]
             for pc_file in pc_files:
                 try:
                     with open(pc_file, 'r', encoding='utf-8') as f:

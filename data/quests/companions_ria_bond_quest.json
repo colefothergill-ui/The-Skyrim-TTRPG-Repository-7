@@ -6,7 +6,7 @@
   "giver": "Ria",
   "location": "Jorrvaskr and surrounding Whiterun Hold",
   "faction": "The Companions",
-  "description": "Ria has been volunteering for every dangerous contract to prove herself, and the strain is starting to show. When a Silver Hand scout is spotted trailing her after a solo patrol, Elitrof must help Ria decide what kind of hero she actually wants to be — and survive the ambush the Silver Hand have prepared for her.",
+  "description": "Ria has been volunteering for every dangerous contract to prove herself, and the strain is starting to show. When a Silver Hand scout is spotted trailing her after a solo patrol, the player character must help Ria decide what kind of hero she actually wants to be — and survive the ambush the Silver Hand have prepared for her.",
   "prerequisites": ["companions_proving_honor", "take_up_arms"],
   "objectives": [
     {
@@ -38,7 +38,7 @@
   },
   "complications": [
     {
-      "trigger": "If Aela the Huntress learns Ria was followed by Silver Hand, she will push to make this an offensive strike rather than a rescue — creating tension with Elitrof's approach.",
+      "trigger": "If Aela the Huntress learns Ria was followed by Silver Hand, she will push to make this an offensive strike rather than a rescue — creating tension with the player character's approach.",
       "faction": "The Companions (Aela faction)"
     },
     {
@@ -52,5 +52,5 @@
   },
   "related_npcs": ["Ria", "Aela the Huntress", "Njada Stonearm"],
   "related_locations": ["Jorrvaskr", "Whiterun Hold outskirts"],
-  "gm_notes": "This quest is Ria's coming-of-age moment. The key dramatic beat is not the fight — it's letting her make the call. If Elitrof takes over, Ria learns nothing. If Elitrof coaches her and steps back, she grows. Adjust Silver Hand strength to make the decision genuinely risky."
+  "gm_notes": "This quest is Ria's coming-of-age moment. The key dramatic beat is not the fight — it's letting her make the call. If the player character takes over, Ria learns nothing. If the player character coaches her and steps back, she grows. Adjust Silver Hand strength to make the decision genuinely risky."
 }

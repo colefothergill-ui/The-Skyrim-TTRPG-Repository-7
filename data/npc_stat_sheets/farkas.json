@@ -16,10 +16,23 @@
     ]
   },
   "skills": {
-    "Great": ["Physique"],
-    "Good": ["Fight", "Athletics"],
-    "Fair": ["Will", "Notice", "Empathy"],
-    "Average": ["Rapport", "Lore", "Provoke"]
+    "Great": [
+      "Physique"
+    ],
+    "Good": [
+      "Fight",
+      "Athletics"
+    ],
+    "Fair": [
+      "Will",
+      "Notice",
+      "Empathy"
+    ],
+    "Average": [
+      "Rapport",
+      "Lore",
+      "Provoke"
+    ]
   },
   "stunts": [
     "Shield Wall: +2 to Defend when protecting an adjacent ally.",
@@ -27,8 +40,17 @@
     "Pack Bond: Once per session, if Farkas is in the same zone as the PC, the PC gains +1 to a Fight roll."
   ],
   "stress": {
-    "physical": [false, false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -69,11 +91,17 @@
     "Inner Circle Rites",
     "Whiterun defense"
   ],
-  "act_context": ["Act 1", "Act 2"],
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ],
   "starting_equipment": {
     "armor": "Heavy Companions Armor (Armor:3)",
     "weapon": "Skyforge Steel Greatsword (Weapon:3)",
-    "other": ["Hardtack and dried meat (always prepared)", "Extra shield (for giving to allies)"]
+    "other": [
+      "Hardtack and dried meat (always prepared)",
+      "Extra shield (for giving to allies)"
+    ]
   },
   "relationships": {
     "Vilkas": "Twin brother; loves him fiercely, sometimes frustrated by Vilkas's brooding",

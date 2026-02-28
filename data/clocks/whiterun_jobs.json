@@ -25,7 +25,7 @@
           "type": "conditional_progress_cap",
           "cap_until_condition_met": 4,
           "condition": "state.branching_decisions.civil_war_entry_contact in ['Ralof','Hadvar'] || state.civil_war_state.player_alliance in ['stormcloak','imperial']",
-          "note": "Olfrid fully opens the Whiterun door once you prove your value during the Battle of Whiterun—on either side—so long as he benefits and your cover holds."
+          "note": "Olfrid fully opens the Whiterun door once you prove your value during the Battle of Whiterun\u2014on either side\u2014so long as he benefits and your cover holds."
         },
         "status": "inactive",
         "continuity_note": "This clock is for Thieves Guild story and can be activated when a PC pursues that path."

@@ -6,7 +6,7 @@
   "giver": "Athis",
   "location": "Whiterun, Windhelm (optional thread)",
   "faction": "The Companions",
-  "description": "Athis has kept a secret since before Jorrvaskr: an old debt to a Dunmer house contact who is now in Whiterun asking to collect. The debt is not gold — it is a name. A witness. And giving it means endangering a current Companion. Athis needs Elitrof to help him find a third path before someone gets hurt — or before the Hall's trust in him collapses.",
+  "description": "Athis has kept a secret since before Jorrvaskr: an old debt to a Dunmer house contact who is now in Whiterun asking to collect. The debt is not gold — it is a name. A witness. And giving it means endangering a current Companion. Athis needs the player character to help him find a third path before someone gets hurt — or before the Hall's trust in him collapses.",
   "prerequisites": ["companions_proving_honor", "take_up_arms"],
   "objectives": [
     {
@@ -38,7 +38,7 @@
   },
   "complications": [
     {
-      "trigger": "Aela suspects the Dunmer contact is a spy and will push to expel Athis preemptively if the situation becomes public — Elitrof must manage information carefully.",
+      "trigger": "Aela suspects the Dunmer contact is a spy and will push to expel Athis preemptively if the situation becomes public — the player character must manage information carefully.",
       "faction": "The Companions (Aela faction)"
     },
     {
@@ -52,5 +52,5 @@
   },
   "related_npcs": ["Athis", "Aela the Huntress", "Njada Stonearm"],
   "related_locations": ["Jorrvaskr", "Whiterun", "Windhelm (optional)"],
-  "gm_notes": "Athis's bond quest is about belonging under pressure. The emotional core is the moment he realizes Elitrof investigated on his behalf without being asked — because that's what shield-siblings do. Keep the Dunmer contact morally ambiguous: they're not a villain. The 'third path' resolution should feel earned, not easy. Tie the Windhelm thread loosely to the civil war arc if desired."
+  "gm_notes": "Athis's bond quest is about belonging under pressure. The emotional core is the moment he realizes the player character investigated on his behalf without being asked — because that's what shield-siblings do. Keep the Dunmer contact morally ambiguous: they're not a villain. The 'third path' resolution should feel earned, not easy. Tie the Windhelm thread loosely to the civil war arc if desired."
 }

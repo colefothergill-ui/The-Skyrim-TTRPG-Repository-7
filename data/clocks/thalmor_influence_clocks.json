@@ -196,10 +196,10 @@
           "Eye sealed or removed from Mundus (-3)"
         ],
         "story_hooks": [
-          "At 2/6: Magical anomalies appear near College—wards flickering, time distortions",
+          "At 2/6: Magical anomalies appear near College\u2014wards flickering, time distortions",
           "At 4/6: Students and faculty report nightmares, reality feels 'thin'",
-          "At 5/6: Physical manifestations—objects phasing, gravity anomalies, spectral visions",
-          "At 6/6: Full breakdown—reality rifts, Eye attempting to tear open barriers between planes"
+          "At 5/6: Physical manifestations\u2014objects phasing, gravity anomalies, spectral visions",
+          "At 6/6: Full breakdown\u2014reality rifts, Eye attempting to tear open barriers between planes"
         ],
         "environmental_effects": {
           "low_instability": "Minor magical fluctuations, enhanced spell effects",
@@ -572,7 +572,7 @@
         "current_phase": "progress",
         "discovery_state": {
           "segments": 4,
-          "current": 2,
+          "current": 0,
           "description": "How much players know about this operation",
           "revelations": [
             "Segment 1: Hear rumors of Thalmor hunting someone",
@@ -584,7 +584,7 @@
         },
         "progress_state": {
           "segments": 8,
-          "current": 4,
+          "current": 0,
           "description": "Thalmor progress toward eliminating all Blades",
           "milestones": [
             "Segment 2: Located Delphine in Riverwood (completed)",
@@ -639,7 +639,7 @@
         },
         "progress_state": {
           "segments": 10,
-          "current": 4,
+          "current": 0,
           "description": "Success in prolonging civil war",
           "milestones": [
             "Segment 3: War continues past first year (completed)",
@@ -681,7 +681,7 @@
         "current_phase": "progress",
         "discovery_state": {
           "segments": 3,
-          "current": 3,
+          "current": 0,
           "description": "Players aware of Talos persecution",
           "revelations": [
             "Segment 1: See Justiciar patrols (completed)",
@@ -692,7 +692,7 @@
         },
         "progress_state": {
           "segments": 10,
-          "current": 5,
+          "current": 0,
           "description": "Success in suppressing Talos worship",
           "milestones": [
             "Segment 3: Openly questioned in cities (completed)",
@@ -733,7 +733,7 @@
         "current_phase": "discovery",
         "discovery_state": {
           "segments": 5,
-          "current": 1,
+          "current": 0,
           "description": "Thalmor awareness and understanding of regional champions",
           "revelations": [
             "Segment 1: Reports of powerful warriors emerging (completed)",
@@ -794,12 +794,12 @@
           "current": 0,
           "description": "Thalmor (and player) awareness of the Eye of Magnus",
           "revelations": [
-            "Segment 1: College begins excavation at Saarthal—routine monitoring",
+            "Segment 1: College begins excavation at Saarthal\u2014routine monitoring",
             "Segment 2: Ancano reports 'significant artifact' discovered",
-            "Segment 3: Eye transported to College—Ancano confirms reality-altering power",
-            "Segment 4: Elenwen authorizes full operation—secure Eye at any cost"
+            "Segment 3: Eye transported to College\u2014Ancano confirms reality-altering power",
+            "Segment 4: Elenwen authorizes full operation\u2014secure Eye at any cost"
           ],
-          "current_thalmor_knowledge": "No awareness yet—operation activates when Eye discovered"
+          "current_thalmor_knowledge": "No awareness yet\u2014operation activates when Eye discovered"
         },
         "progress_state": {
           "segments": 8,
@@ -808,7 +808,7 @@
           "milestones": [
             "Segment 2: Ancano gains unrestricted access to Eye",
             "Segment 4: Begins attunement process",
-            "Segment 6: Ancano seizes control—locks down College",
+            "Segment 6: Ancano seizes control\u2014locks down College",
             "Segment 8: Successfully harnesses Eye for Dominion (or dies trying)"
           ]
         },
@@ -843,15 +843,15 @@
             "Confront and defeat Ancano (+2 resolution)",
             "Stabilize Eye with Staff (+0 resolution but prevents catastrophe)"
           ],
-          "completion_thalmor": "If progress reaches 8: Ancano succeeds—Eye under Thalmor control, reality warping begins, campaign-level consequences",
+          "completion_thalmor": "If progress reaches 8: Ancano succeeds\u2014Eye under Thalmor control, reality warping begins, campaign-level consequences",
           "completion_player": "If resolution reaches 6: Ancano defeated, Eye secured, Thalmor lose major asset"
         },
         "connection_to_college_questline": {
-          "first_lessons": "Dormant—Ancano observing, no action yet",
+          "first_lessons": "Dormant\u2014Ancano observing, no action yet",
           "under_saarthal": "Discovery state advances to segment 2-3",
           "hitting_the_books": "Ancano intensifies interest, progress state begins",
           "staff_of_magnus": "Progress state advances rapidly, players gain resolution tool",
-          "eye_of_magnus_finale": "Progress vs Resolution climax—outcome determines Eye's fate"
+          "eye_of_magnus_finale": "Progress vs Resolution climax\u2014outcome determines Eye's fate"
         },
         "thalmor_resources_committed": {
           "ancano": "Deep cover agent, embedded for years, authorized to use any means",
@@ -865,7 +865,7 @@
           "psijic_intervention": "If Psijic Order removes Eye, Thalmor completely lose access",
           "public_exposure": "If operation revealed, major propaganda victory for Thalmor enemies"
         },
-        "gm_notes": "This operation is THE College questline hook for Thalmor. It escalates from background surveillance to existential crisis. Ancano is expendable—Elenwen authorized him to die if necessary to secure Eye. Use this to tie College storyline into broader Thalmor conspiracy. If players ignore College, Ancano may succeed, giving Thalmor reality-warping capabilities for rest of campaign."
+        "gm_notes": "This operation is THE College questline hook for Thalmor. It escalates from background surveillance to existential crisis. Ancano is expendable\u2014Elenwen authorized him to die if necessary to secure Eye. Use this to tie College storyline into broader Thalmor conspiracy. If players ignore College, Ancano may succeed, giving Thalmor reality-warping capabilities for rest of campaign."
       }
     },
     "thalmor_agents": {

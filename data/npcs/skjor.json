@@ -14,10 +14,23 @@
     ]
   },
   "skills": {
-    "Great": ["Fight", "Stealth"],
-    "Good": ["Notice", "Athletics"],
-    "Fair": ["Provoke", "Deceive"],
-    "Average": ["Physique", "Will", "Rapport"]
+    "Great": [
+      "Fight",
+      "Stealth"
+    ],
+    "Good": [
+      "Notice",
+      "Athletics"
+    ],
+    "Fair": [
+      "Provoke",
+      "Deceive"
+    ],
+    "Average": [
+      "Physique",
+      "Will",
+      "Rapport"
+    ]
   },
   "stunts": [
     "Ambush Predator: +2 to Fight on the first exchange of a conflict if Skjor was hidden or unnoticed beforehand.",
@@ -25,8 +38,15 @@
     "Scarred Survivor: Skjor may ignore one mild consequence per session (he's taken worse and kept fighting)."
   ],
   "stress": {
-    "physical": [false, false, false],
-    "mental": [false, false]
+    "physical": [
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -55,7 +75,7 @@
     ],
     "quirks": [
       "Traces the scar over his blind eye when sizing someone up",
-      "Speaks of the beast blood the way a smith speaks of good steel — as a tool that defines the craftsman",
+      "Speaks of the beast blood the way a smith speaks of good steel \u2014 as a tool that defines the craftsman",
       "Pushes recruits harder than anyone else and respects only those who push back"
     ]
   },
@@ -64,10 +84,10 @@
     "Aela the Huntress": "Close ally and kindred spirit; both embrace the beast blood fully",
     "Farkas": "Easy respect between two fighters who prefer action over talk",
     "Vilkas": "Mutual respect but ideological friction; Vilkas's brooding irritates Skjor",
-    "Elitrof Whitemane": "Wary respect; the newcomer refused the blood but proved himself in battle"
+    "the player character": "Wary respect; the newcomer refused the blood but proved himself in battle"
   },
-  "notes": "Circle member. Skjor is hard-edged and pro-beast blood — he sees the lycanthropy as Hircine's gift and considers Kodlak's cure quest misguided, though he obeys the Harbinger's authority. He is alive in this campaign timeline. His stance on the cure is firmly against it, aligned with Aela.",
-  "combat_tactics": "Skjor fights dirty by Companion standards — ambushes, flanking, striking from stealth. He is the Circle's shadow operative, comfortable in places where honor gets people killed. In werewolf form he is fast and vicious rather than powerful.",
+  "notes": "Circle member. Skjor is hard-edged and pro-beast blood \u2014 he sees the lycanthropy as Hircine's gift and considers Kodlak's cure quest misguided, though he obeys the Harbinger's authority. He is alive in this campaign timeline. His stance on the cure is firmly against it, aligned with Aela.",
+  "combat_tactics": "Skjor fights dirty by Companion standards \u2014 ambushes, flanking, striking from stealth. He is the Circle's shadow operative, comfortable in places where honor gets people killed. In werewolf form he is fast and vicious rather than powerful.",
   "scene_triggers": [
     "Jorrvaskr mead hall",
     "Companions questline",
@@ -75,5 +95,8 @@
     "Underforge rites",
     "Silver Hand encounters"
   ],
-  "act_context": ["Act 1", "Act 2"]
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ]
 }

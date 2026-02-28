@@ -14,10 +14,23 @@
     ]
   },
   "skills": {
-    "Great": ["Physique"],
-    "Good": ["Fight", "Athletics"],
-    "Fair": ["Will", "Notice", "Empathy"],
-    "Average": ["Rapport", "Lore", "Provoke"]
+    "Great": [
+      "Physique"
+    ],
+    "Good": [
+      "Fight",
+      "Athletics"
+    ],
+    "Fair": [
+      "Will",
+      "Notice",
+      "Empathy"
+    ],
+    "Average": [
+      "Rapport",
+      "Lore",
+      "Provoke"
+    ]
   },
   "stunts": [
     "Shield Wall: +2 to Defend when protecting an adjacent ally.",
@@ -25,8 +38,17 @@
     "Pack Bond: Once per session, if Farkas is in the same zone as the PC, the PC gains +1 to a Fight roll."
   ],
   "stress": {
-    "physical": [false, false, false, false],
-    "mental": [false, false, false]
+    "physical": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "mental": [
+      false,
+      false,
+      false
+    ]
   },
   "consequences": {
     "mild": null,
@@ -49,7 +71,7 @@
     ],
     "quirks": [
       "Always has dried meat or hardtack somewhere on his person",
-      "Stands near people he trusts — proximity is his language of loyalty",
+      "Stands near people he trusts \u2014 proximity is his language of loyalty",
       "Polishes his greatsword when nervous"
     ]
   },
@@ -58,10 +80,10 @@
     "Kodlak Whitemane": "Deep filial love; Kodlak is father-figure",
     "Skjor": "Easy camaraderie; two warriors who don't overthink things",
     "Aela the Huntress": "Respectful friendship; she's fast, he's strong, they work well together",
-    "Elitrof Whitemane": "Shield-Sibling; respects his straightforward courage and purity path"
+    "the player character": "Shield-Sibling; respects his straightforward courage and purity path"
   },
-  "notes": "Circle member. Farkas accepts the beast blood without Vilkas's philosophical torment — the wolf is part of him and he doesn't fight it. On the cure question he is loyal to Kodlak's wish above his own comfort: if the Harbinger wants a cure, Farkas will help without hesitation.",
-  "combat_tactics": "Farkas fights like a force of nature — direct, powerful, relentless. He uses his size to control zones and protect flanks. In werewolf form he is terrifying; even in human form enemies find him almost impossible to move.",
+  "notes": "Circle member. Farkas accepts the beast blood without Vilkas's philosophical torment \u2014 the wolf is part of him and he doesn't fight it. On the cure question he is loyal to Kodlak's wish above his own comfort: if the Harbinger wants a cure, Farkas will help without hesitation.",
+  "combat_tactics": "Farkas fights like a force of nature \u2014 direct, powerful, relentless. He uses his size to control zones and protect flanks. In werewolf form he is terrifying; even in human form enemies find him almost impossible to move.",
   "scene_triggers": [
     "Jorrvaskr training yard",
     "Companions questline",
@@ -69,5 +91,8 @@
     "Inner Circle Rites",
     "Whiterun defense"
   ],
-  "act_context": ["Act 1", "Act 2"]
+  "act_context": [
+    "Act 1",
+    "Act 2"
+  ]
 }

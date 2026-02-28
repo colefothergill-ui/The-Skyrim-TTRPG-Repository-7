@@ -8,7 +8,7 @@
         "description": "Successful leads and ground gained while hunting Swiftclaw",
         "current": 0,
         "max": 3,
-        "completion_effect": "Swiftclaw’s lair is found",
+        "completion_effect": "Swiftclaw\u2019s lair is found",
         "advancement_triggers": [
           "Successful Investigate/Notice/Survival lead (+1)",
           "Create Advantage: clear tracks, blood trail, witness report (+1)"
@@ -26,11 +26,11 @@
         ]
       },
       "honor_proving_contracts_done": {
-        "name": "Honor Proving — Contracts Done",
+        "name": "Honor Proving \u2014 Contracts Done",
         "description": "Complete Hall contracts to prove reliability before the Harbinger assigns the Wuuthrad fragment mission",
         "current": 0,
         "max": 2,
-        "completion_effect": "Summoned to Kodlak and Skjor; Dustman’s Cairn mission assigned",
+        "completion_effect": "Summoned to Kodlak and Skjor; Dustman\u2019s Cairn mission assigned",
         "advancement_triggers": [
           "Complete an easy contract (+1)",
           "Complete a hard contract (+1, may also add a bonus reward)"

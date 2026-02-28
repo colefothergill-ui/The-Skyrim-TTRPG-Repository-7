@@ -1569,6 +1569,79 @@ the Battle of Whiterun will shape Skyrim's future.
         print("="*60)
 
 
+def build_clean_campaign_state(existing: dict = None) -> dict:
+    """
+    Returns a campaign state dict reset to a clean Session 0 baseline.
+    All dynamic progress fields are zeroed; static architecture is preserved.
+    Pass an existing state dict to keep non-dynamic fields; pass None to start fresh.
+    """
+    base = existing.copy() if existing else {}
+    dynamic_reset = {
+        "session_zero_completed": False,
+        "session_count": 0,
+        "active_pc_id": None,
+        "active_pc": None,
+        "pcs": {},
+        "player_characters": [],
+        "npc_first_impressions": {},
+        "npc_first_impressions_legacy": {},
+        "faction_trust": {},
+        "active_quests": [],
+        "completed_quests": [],
+        "failed_quests": [],
+        "relationship_inference": {},
+        "scene_flags": {},
+        "flags": {},
+        "clocks": {},
+        "current_location": None,
+        "current_objective": None,
+        "current_npcs": [],
+        "last_session_ended_at": None,
+        "last_session_title": None,
+        "next_scene_hint": None,
+    }
+    base.update(dynamic_reset)
+    # Reset companions_state dynamic fields
+    cs = base.setdefault("companions_state", {})
+    cs.update({
+        "active_quest": None,
+        "completed_quests": [],
+        "quest_progress": {},
+        "embraced_curse": None,
+        "skjor_alive": True,
+        "kodlak_cured": False,
+        "vilkas_cured": False,
+        "farkas_cured": False,
+        "glenmoril_heads_remaining": 0,
+        "cure_targets_remaining": [],
+        "cure_chain_completed": False,
+        "circle_cleansed": [],
+        "harbingership_succession_hint": None,
+        "circle_secret_known_to_pc": {},
+        "circle_secret_policy": {},
+        "inner_circle_trust": {},
+    })
+    return base
+
+
+def reset_dynamic_campaign_state(state_path) -> dict:
+    """
+    Load the campaign state at state_path, reset all dynamic fields to Session 0
+    baseline, write it back, and return the new state.
+    """
+    import json
+    from pathlib import Path
+    p = Path(state_path)
+    existing = {}
+    if p.exists():
+        with open(p) as f:
+            existing = json.load(f)
+    new_state = build_clean_campaign_state(existing)
+    with open(p, "w") as f:
+        json.dump(new_state, f, indent=2)
+    return new_state
+
+
 def main():
     """Main function"""
     print("Skyrim Fate Core - Session Zero Manager")

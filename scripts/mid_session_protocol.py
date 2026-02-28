@@ -9,8 +9,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
-
-# ---------------------------
+from utils import EXAMPLE_PC_FILENAME
 # Utilities
 # ---------------------------
 
@@ -226,11 +225,14 @@ def pick_primary_pc(repo: Path, state: Dict[str, Any]) -> Optional[Path]:
             if cand2.exists():
                 return cand2
 
-    # Fallback: first json in data/pcs
+    # Fallback: only if exactly one real pc_*.json exists (excluding example_pc.json)
     pcs_dir = repo / "data" / "pcs"
     if pcs_dir.exists():
-        pcs = sorted(pcs_dir.glob("*.json"))
-        return pcs[0] if pcs else None
+        pcs = sorted(
+            p for p in pcs_dir.glob("pc_*.json")
+            if p.name != EXAMPLE_PC_FILENAME
+        )
+        return pcs[0] if len(pcs) == 1 else None
     return None
 
 def summarize_relationships(state: Dict[str, Any]) -> List[Tuple[str, Any]]:

@@ -1,0 +1,16 @@
+{
+  "patch_id": "2026-02-28_session_zero_reset_remove_legacy_pcs",
+  "created_at": "2026-02-28",
+  "type": "repository_reset",
+  "summary": "Removed legacy player-character artifacts and reset the repository to a Session 0 baseline. Cleared live campaign progress, old session files, PC-specific references, and first-impression state while preserving generic systems and quest architecture.",
+  "changes": [
+    {"path": "state/campaign_state.json", "change": "Reset to Session 0 baseline with no active PC and no progress."},
+    {"path": "data/clocks/*.json", "change": "Reset all live clock progress to 0 and statuses to inactive/not_started."},
+    {"path": "data/npcs/*.json", "change": "Removed old PC references and genericized relationship/story text."},
+    {"path": "data/quests/*.json", "change": "Removed old PC references and future-history assumptions from quest text."},
+    {"path": "scripts/first_impression.py", "change": "Made first-impression system safe when no active PC exists."},
+    {"path": "scripts/story_manager.py", "change": "Stopped auto-selecting a fallback PC for first-impression hooks."},
+    {"path": "scripts/mid_session_protocol.py", "change": "Stopped treating example_pc.json as a live PC fallback."},
+    {"path": "scripts/jorvaskr_events.py", "change": "Removed hard-coded legacy PC fallback for pending PC updates."}
+  ]
+}

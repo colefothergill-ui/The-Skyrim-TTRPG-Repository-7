@@ -950,10 +950,7 @@ Schemes Discovered: {len(state['thalmor_arc']['thalmor_schemes_discovered'])}
             with open(self.campaign_state_path, 'r') as f:
                 state = json.load(f)
                 pc_id = state.get("active_pc_id") or state.get("active_pc")
-                if not pc_id and state.get("player_characters"):
-                    # Fallback to first PC in player_characters list
-                    pc_id = state["player_characters"][0].get("id")
-                
+                # Do not fall back to player_characters[0]; only proceed with explicit active PC
                 if pc_id:
                     # Convert pc_id to appearance file slug
                     slug = pc_id.replace("pc_", "")

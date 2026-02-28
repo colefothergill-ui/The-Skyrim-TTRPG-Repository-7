@@ -6,11 +6,11 @@
   "giver": "Njada Stonearm",
   "location": "Jorrvaskr and Whiterun Hold",
   "faction": "The Companions",
-  "description": "The Silver Hand have made a move that Njada takes personally: they've used information about her past — the weakness that drove her to Jorrvaskr in the first place — to attempt to turn her against Elitrof. She has to decide whether to confront this manipulation alone (badly) or trust someone for the first time in years. The rivalry clock with Elitrof comes to a head.",
-  "prerequisites": ["companions_proving_honor", "take_up_arms", "rivalry_with_elitrof_clock >= 3"],
+  "description": "The Silver Hand have made a move that Njada takes personally: they've used information about her past — the weakness that drove her to Jorrvaskr in the first place — to attempt to turn her against the player character. She has to decide whether to confront this manipulation alone (badly) or trust someone for the first time in years. The rivalry clock with the player character comes to a head.",
+  "prerequisites": ["companions_proving_honor", "take_up_arms", "rivalry_with_player_character_clock >= 3"],
   "objectives": [
     {
-      "description": "Discover the Silver Hand's leverage over Njada — they have found someone from her past and are using them to feed her false intel about Elitrof's intentions.",
+      "description": "Discover the Silver Hand's leverage over Njada — they have found someone from her past and are using them to feed her false intel about the player character's intentions.",
       "status": "Pending",
       "optional": false
     },
@@ -34,12 +34,12 @@
       { "target": "The Companions", "change": "minor_increase", "reason": "Neutralized a Silver Hand intelligence asset targeting Companions members." }
     ],
     "romance_gate_unlocked": "njada_romance_available",
-    "clock_effect": { "clock": "rivalry_with_elitrof", "resolution": "ally", "notes": "Clock resolves to Ally state; remove from active clocks." },
+    "clock_effect": { "clock": "rivalry_with_player_character", "resolution": "ally", "notes": "Clock resolves to Ally state; remove from active clocks." },
     "notes": "Loyalty increase of +10 unlocks Njada's romance gate (requires loyalty >= 90 and resolve_rivalry_clock)."
   },
   "complications": [
     {
-      "trigger": "Aela believes Njada's hostility toward Elitrof is ideologically motivated (Purity Path vs. pragmatism) and may actively discourage Elitrof from helping Njada, seeing it as weakness.",
+      "trigger": "Aela believes Njada's hostility toward the player character is ideologically motivated (Purity Path vs. pragmatism) and may actively discourage the player character from helping Njada, seeing it as weakness.",
       "faction": "The Companions (Aela faction)"
     },
     {
@@ -48,10 +48,10 @@
     }
   ],
   "consequences": {
-    "success": "The rivalry clock resolves to Ally. Njada still doesn't give compliments, but she stops testing Elitrof and starts backing him. Her loyalty increases significantly and the romance gate opens. The Silver Hand lose an intelligence asset.",
+    "success": "The rivalry clock resolves to Ally. Njada still doesn't give compliments, but she stops testing the player character and starts backing him. Her loyalty increases significantly and the romance gate opens. The Silver Hand lose an intelligence asset.",
     "failure": "Njada handles it alone, badly. The manipulation partially succeeds: she pulls away from the Hall for a scene and the Silver Hand asset escapes. The rivalry clock resets to 1 rather than resolving. Loyalty does not increase."
   },
   "related_npcs": ["Njada Stonearm", "Aela the Huntress"],
   "related_locations": ["Jorrvaskr", "Whiterun Hold"],
-  "gm_notes": "This is the most emotionally difficult bond quest in the set. The Silver Hand's manipulation should feel personal and plausible — they know her real weakness, which the GM should have seeded in earlier sessions. The key dramatic beat: Elitrof has to let Njada be angry without flinching. If he pushes back proportionally, or simply refuses to leave when she tells him to, it cracks the armor. The gift of the sparring wraps is Njada's 'I trust you' — she'll never say the words."
+  "gm_notes": "This is the most emotionally difficult bond quest in the set. The Silver Hand's manipulation should feel personal and plausible — they know her real weakness, which the GM should have seeded in earlier sessions. The key dramatic beat: the player character has to let Njada be angry without flinching. If he pushes back proportionally, or simply refuses to leave when she tells him to, it cracks the armor. The gift of the sparring wraps is Njada's 'I trust you' — she'll never say the words."
 }
