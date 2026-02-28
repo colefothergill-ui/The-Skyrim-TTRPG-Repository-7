@@ -1104,47 +1104,30 @@
         },
         "status": "locked"
       },
-      "the_hand_behind_the_banner": {
+      "whiterun_intrigue": {
         "id": "the_hand_behind_the_banner",
         "name": "The Hand Behind the Banner",
-        "faction": "neutral",
         "type": "hidden",
-        "description": "A cipher fragment found during the Battle of Whiterun points toward Thalmor interference — specifically a charming Imperial Legate who may not be what he appears.",
-        "discovery_conditions": [
-          "Players examine a scene aspect containing a cipher fragment during Whiterun siege Stage 0-1",
-          "Players succeed at Lore Fair (+2) or Notice Good (+3) when interacting with Legate Cassian Varro",
-          "Players find the Battle-Born strongbox (whiterun_siege loot table result)"
-        ],
+        "faction": "",
+        "status": "locked",
+        "description": "Staged justice, suspicious orders, and morale spectacles suggest someone in the Legion wants Whiterun to bleed for as long as possible.",
         "objectives": [
-          "Obtain the cipher fragment (scene aspect)",
-          "Identify Legate Cassian Varro as the Thalmor contact",
-          "Choose a resolution: Expose, Blackmail, or Double Agent"
+          "Secure a cipher fragment from an officer dispatch case",
+          "Identify the public-face Legate feeding false intel and pushing executions",
+          "Choose: expose him, blackmail him, or feed him false intel"
         ],
-        "loot_references": [
-          "whiterun_siege",
-          "whiterun_dragonsreach",
-          "civil_war_field"
-        ],
-        "branching_outcomes": {
-          "expose": {
-            "description": "Reveal Varro's Thalmor ties publicly",
-            "mechanical_effect": "Siege duration -2 stages; Thalmor retaliation clock starts at 3/8",
-            "world_flag": "varro_exposed"
-          },
-          "blackmail": {
-            "description": "Use the evidence to extract resources from Varro",
-            "mechanical_effect": "Gain 200 gold + one free invoke on 'Leverage Over the Legate'; corruption clock ticks +1",
-            "world_flag": "varro_blackmailed"
-          },
-          "double_agent": {
-            "description": "Feed Varro false information while secretly working against him",
-            "mechanical_effect": "Unlock 'Counterintel Routes' aspect; Thalmor suspicion clock starts at 1/8; secret passage map revealed",
-            "world_flag": "varro_double_agent"
+        "branching_choices": [
+          {
+            "id": "resolution",
+            "options": ["expose", "blackmail", "double_agent"],
+            "impact": {
+              "expose": ["reduce_whiterun_disarray", "increase_anti_puppetmaster_heat"],
+              "blackmail": ["gain_leverage_cache", "increase_whiterun_corruption"],
+              "double_agent": ["start_counterintel_clock", "unlock_secret_routes"]
+            }
           }
-        },
-        "npc_stat_sheet": "npc_stat_legate_cassian_varro",
-        "thalmor_arc_link": "perpetual_war",
-        "status": "hidden"
+        ],
+        "rewards": { "gold": 0, "loot_table": "whiterun_hidden_treasure_major" }
       }
     }
   },

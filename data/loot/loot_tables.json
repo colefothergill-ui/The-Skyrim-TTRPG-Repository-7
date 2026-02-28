@@ -260,6 +260,17 @@
         { "text": "Map of Whiterun Hold with patrol notes (create advantage: 'Know the Routes')", "weight": 2 },
         { "text": "Imperial dispatch case: coded letter hinting at Thalmor oversight", "weight": 1 }
       ]
+    },
+    "whiterun_hidden_treasure_major": {
+      "name": "Whiterun Hidden Treasure (Major)",
+      "rolls": 2,
+      "entries": [
+        { "text": "Cipher dispatch fragment (story asset: 'Varro's Orders')", "weight": 3 },
+        { "text": "Thalmor-stamped gold pouch (100 septims, dangerous to display)", "weight": 2 },
+        { "text": "Signet-sealed letter implicating Legion officer (advantage: 'Leverage')", "weight": 2 },
+        { "text": "Concealed rune dagger with Thalmor maker's mark (Weapon:1, story hook)", "weight": 1 },
+        { "text": "False orders countermanding relief effort (evidence of sabotage)", "weight": 2 }
+      ]
     }
   }
 }

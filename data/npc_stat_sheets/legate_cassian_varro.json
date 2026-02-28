@@ -1,116 +1,48 @@
 {
   "name": "Legate Cassian Varro",
   "id": "npc_stat_legate_cassian_varro",
-  "type": "Imperial Officer (Thalmor Asset)",
-  "category": "Act I Antagonist",
-  "location": "Whiterun - Dragonsreach War Room / Whiterun Gates (siege)",
-  "faction": "Imperial Legion (publicly); Thalmor (covertly)",
-  "role": "Puppet-master Legate; public face of Imperial authority in Whiterun during the siege",
-  "act_context": ["Act 1"],
-  "current_status": {
-    "status": "active",
-    "notes": "Assigned to Whiterun command as the Empire's liaison to Jarl Balgruuf. Publicly loyal, privately ensuring the siege drags on."
-  },
+  "type": "npc",
+  "category": "legate",
+  "location": "Whiterun",
+  "faction": "Imperial Legion",
+  "race": "Imperial",
+  "role": "Whiterun Imperial Legate (public face) — secret puppet master",
+  "disposition": "friendly",
   "aspects": {
-    "high_concept": "Immaculate Imperial Legate with a Thalmor Cipher in His Dispatch Case",
-    "trouble": "The War Must Stay Undecisive — or My Masters Will Be Displeased",
+    "high_concept": "Charismatic Imperial Legate, Spellblade Strategist",
+    "trouble": "Every Smile Is a Knife",
     "other_aspects": [
-      "Public Face, Hidden Chain",
-      "Execution Spectacle as Morale Warfare",
-      "Flawless Imperial Diction and a Thalmor Accent He Never Quite Loses",
-      "Useful Idiot to No One"
+      "Public Face of Order",
+      "Spellblade Duellist",
+      "Knows Everyone's Weakness",
+      "Makes Executions Look Like Justice"
     ]
   },
   "skills": {
-    "Superb": ["Deceive"],
-    "Great": ["Rapport", "Will"],
-    "Good": ["Notice", "Lore"],
-    "Fair": ["Fight", "Investigate"],
-    "Average": ["Stealth", "Command"]
+    "Great": ["Rapport", "Deceive"],
+    "Good": ["Fight", "Lore"],
+    "Fair": ["Will", "Notice", "Athletics"],
+    "Average": ["Empathy", "Crafts", "Stealth", "Survival", "Shoot", "Physique"]
   },
   "stunts": [
-    "Mask of Legality: Because Varro always acts within the letter of Imperial law, +2 to Deceive when his orders are questioned by Imperial personnel.",
-    "Spectacle of Authority: Once per session, Varro may stage a public execution or morale act that creates the scene aspect 'Fear and Compliance' with a free invoke.",
-    "Cipher Drop: Varro may pass or receive coded Thalmor instructions mid-scene without Notice rolls from bystanders; only a Superb (+5) Notice or Investigate roll detects the exchange.",
-    "Puppet Master's Patience: +2 to Will against attempts to rattle or intimidate him during interrogation or confrontation."
+    "Spellblade: Once per conflict, use Lore instead of Fight to attack at range within the same zone (fire/ice arc).",
+    "Golden Tongue: +2 to Rapport when creating an advantage in a formal setting (court, war room, speeches).",
+    "Public Execution: Once per session, on a successful Provoke or Deceive create-advantage, gain an extra free invoke if the scene involves justice, punishment, or morale."
   ],
-  "stress": {
-    "physical": [false, false],
-    "mental": [false, false, false, false]
-  },
-  "consequences": {
-    "mild": null,
-    "moderate": null,
-    "severe": null
-  },
-  "refresh": 2,
-  "fate_points": 2,
+  "stress": { "physical": [false, false, false], "mental": [false, false, false, false] },
+  "consequences": { "mild": null, "moderate": null, "severe": null },
   "equipment": {
-    "weapon": "Legionnaire's gladius (officer's variant)",
-    "armor": "Imperial officer's cuirass (light, ceremonial)",
-    "special": "Encrypted Thalmor cipher fragment (discovery item for 'The Hand Behind the Banner'); Imperial commission papers"
+    "weapons": ["Imperial officer sword", "Rune dagger (concealed)"],
+    "armor": ["Reinforced officer cuirass (light)", "Cloak of office"],
+    "items": ["Signet ring (cipher seal)", "Coded dispatch case"]
   },
-  "personality_notes": {
-    "speaking_style": "Clipped Imperial Latin cadences, unfailingly courteous, never raises his voice. Uses formal titles. Lets long pauses do the threatening.",
-    "motivations": [
-      "Keep the civil war in Whiterun Hold protracted and costly for both sides",
-      "Maintain his cover as a loyal Legate long enough for Thalmor Phase 2 to advance",
-      "Advance personally within the Legion while serving Thalmor interests",
-      "Ensure Ulfric is never captured — a dead Ulfric ends the war too quickly"
-    ],
-    "fears": [
-      "The cipher fragment being decoded by the players",
-      "Legate Rikke or General Tullius requesting his reassignment before the siege is complete",
-      "The players choosing the Expose outcome and making his network public",
-      "A decisive Imperial victory that ends his usefulness"
-    ],
-    "quirks": [
-      "Straightens his cuffs before any difficult conversation",
-      "Refers to Ulfric only as 'the pretender' in company, never by name in private correspondence",
-      "Occasionally quotes Aldmeri maxims in a language he pretends not to speak",
-      "Volunteers for morale spectacle duties — executions, proclamations — with unsettling enthusiasm"
-    ]
-  },
-  "relationships": {
-    "Elenwen": "Handler and superior; Varro reports to her indirectly via dead-drops",
-    "Legate Rikke": "Parallel authority; Varro defers to her publicly and undermines her privately",
-    "Jarl Balgruuf": "Nominally commands him; Varro ensures Balgruuf sees exactly what serves the Thalmor",
-    "General Tullius": "Distant chain of command; Varro exploits Tullius's disinterest in politics",
-    "The Player": "Potential threat if suspicious; potential asset if corruptible"
-  },
-  "discovery_path": {
-    "stage_0_public": "Players meet Varro at Whiterun gates or Dragonsreach War Room as the new Imperial liaison. He is impeccably professional.",
-    "stage_1_clue": "A cipher fragment is found during or after a siege skirmish in Varro's personal dispatch case or a dead-drop location near the walls.",
-    "stage_2_quest": "Cipher fragment decoded (Lore roll or Thieves Guild contact) unlocks hidden quest: 'The Hand Behind the Banner'.",
-    "stage_3_outcomes": {
-      "expose": "Shorter siege; Thalmor retaliation clock +2; Varro arrested or flees to Thalmor embassy",
-      "blackmail": "Party gains resources immediately; Varro becomes a compromised asset, corruption spreads later",
-      "double_agent": "Counterintelligence clock begins; Varro feeds false intelligence to Thalmor; secret routes opened"
-    }
-  },
-  "hidden_quest_link": "the_hand_behind_the_banner",
-  "scene_triggers": [
-    "Battle of Whiterun stage 0 intro sting (one-time)",
-    "Whiterun siege scenes (stages 1-3)",
-    "Dragonsreach War Room scenes (Imperial path)",
-    "Post-siege aftermath (any faction)"
+  "combat_notes": [
+    "Prefers to talk first, duel second.",
+    "Escapes rather than dies unless cornered."
   ],
-  "gm_notes": "Varro is the Act I revelation antagonist. He should feel completely normal and trustworthy for as long as the players don't dig. The cipher fragment is a passive discovery — place it in a container the players are likely to search organically (a locked chest during the siege, an intercepted courier, Varro's quarters if players sneak in). Do not force discovery; the quest is present and discoverable, not mandatory. If players never find it, Varro simply disappears after the siege with a vague reassignment order.",
-  "loot_if_exposed_or_defeated": {
-    "guaranteed": ["Imperial officer's gladius", "Dispatch case with cipher fragment", "Commission papers (Imperial seal)"],
-    "special": "Encrypted Thalmor dossier — names three other hold-level assets in Skyrim (long-term campaign hook)",
-    "campaign_impact": "Exposing Varro accelerates Thalmor Phase 2 retaliation clock by +2; shortens Battle of Whiterun by 1 stage"
-  },
-  "alternatives_to_combat": {
-    "blackmail": "Varro will negotiate if he believes the party can be bought or is pragmatic enough to deal",
-    "expose_publicly": "Requires evidence (cipher + corroborating witness); triggers diplomatic crisis",
-    "double_agent": "Requires Deceive or Rapport against his Superb (+5) Deceive; he must believe you are also corruptible"
-  },
-  "thalmor_integration": {
-    "arc_reference": "perpetual_war",
-    "phase": 1,
-    "hold": "Whiterun",
-    "asset_type": "hold_puppet_master",
-    "discovery_clock_contribution": 2
+  "secret": {
+    "true_affiliation": "Thalmor-aligned",
+    "long_term_objective": "Accelerate war tempo, maximize moral injury, prolong Whiterun bloodshed to weaken both sides.",
+    "methods": ["False intel", "Staged executions", "Provocations", "Sabotaged relief efforts"]
   }
 }

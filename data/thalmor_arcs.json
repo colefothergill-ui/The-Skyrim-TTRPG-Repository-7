@@ -179,20 +179,13 @@
       "role": "Enforcers and agents",
       "typical_stats": "Fair (+2) Fight, Fair (+2) Shoot, Average (+1) Stealth"
     },
-    "legate_cassian_varro": {
-      "name": "Legate Cassian Varro",
-      "title": "Imperial Legate (Whiterun Siege Commander)",
-      "role": "Hold-level puppet master; Act I antagonist",
-      "personality": "Impeccably professional, coldly patient, supremacist in Imperial clothing",
-      "goals": "Keep the Battle of Whiterun protracted; ensure neither side achieves a decisive early victory",
-      "combat_stats": "Superb (+5) Deceive, Great (+4) Rapport, Great (+4) Will",
-      "arc_reference": "perpetual_war",
-      "phase": 1,
-      "hold": "Whiterun",
-      "asset_type": "hold_puppet_master",
-      "stat_sheet": "data/npc_stat_sheets/legate_cassian_varro.json",
-      "hidden_quest": "the_hand_behind_the_banner",
-      "discovery_clock_contribution": 2
+    "cassian_varro": {
+      "name": "Cassian Varro",
+      "role": "Whiterun puppet master (embedded Imperial Legate)",
+      "description": "Charismatic spellblade operative who manipulates morale, executions, and chaos to prolong the war",
+      "importance": "major",
+      "personality": "inviting, charming, and terrifyingly pragmatic",
+      "goals": ["accelerate_ulfric_assault", "prolong_whiterun_bloodshed", "maximize_moral_injury", "remain_unexposed"]
     }
   },
   "gm_guidance": {
