@@ -3,6 +3,8 @@ from typing import Any, Dict, List, Literal, Optional
 NoticeOutcome = Literal["fail", "success", "sws"]
 WarStance = Literal["pro_stormcloak", "pro_empire", "neutral"]
 AthisResult = Literal["win", "lose", "none"]
+Partner = Literal["aela", "vilkas", "farkas"]
+QuestResult = Literal["success", "failure", "unknown"]
 
 
 def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -10,7 +12,20 @@ def _flags(state: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _clocks(state: Dict[str, Any]) -> Dict[str, Any]:
-    return state.setdefault("campaign_clocks", {})
+    clocks = state.setdefault("clocks", {})
+    if not isinstance(clocks, dict):
+        state["clocks"] = {}
+        clocks = state["clocks"]
+    legacy = state.get("campaign_clocks")
+    if isinstance(legacy, dict):
+        if not clocks:
+            state["clocks"] = legacy
+            return legacy
+        for key, value in legacy.items():
+            clocks.setdefault(key, value)
+    else:
+        state.setdefault("campaign_clocks", clocks)
+    return clocks
 
 
 def _active_quests(state: Dict[str, Any]) -> List[Any]:
@@ -18,6 +33,14 @@ def _active_quests(state: Dict[str, Any]) -> List[Any]:
     if not isinstance(aq, list):
         state["active_quests"] = []
     return state["active_quests"]
+
+
+def _quests(state: Dict[str, Any]) -> Dict[str, Any]:
+    q = state.setdefault("quests", {})
+    q.setdefault("active", [])
+    q.setdefault("completed", [])
+    q.setdefault("failed", [])
+    return q
 
 
 def _get_clock_progress(state: Dict[str, Any], clock_id: str) -> int:
@@ -68,6 +91,17 @@ def _quest_status(state: Dict[str, Any], quest_id: str) -> Optional[str]:
     qprog = cstate.get("quest_progress", {})
     if isinstance(qprog, dict) and quest_id in qprog:
         return str(qprog.get(quest_id))
+    q = _quests(state)
+    if quest_id in q.get("completed", []):
+        return "completed"
+    if quest_id in q.get("failed", []):
+        return "failed"
+    if quest_id in q.get("active", []):
+        return "active"
+    if quest_id in state.get("completed_quests", []):
+        return "completed"
+    if quest_id in state.get("active_quests", []):
+        return "active"
     key = f"companions:{quest_id}"
     for q in _active_quests(state):
         if isinstance(q, str) and q == key:
@@ -75,6 +109,15 @@ def _quest_status(state: Dict[str, Any], quest_id: str) -> Optional[str]:
         if isinstance(q, dict) and q.get("id") == quest_id:
             return str(q.get("status", "active"))
     return None
+
+
+def _quest_result(state: Dict[str, Any], quest_id: str) -> QuestResult:
+    s = _quest_status(state, quest_id)
+    if s == "completed":
+        return "success"
+    if s == "failed":
+        return "failure"
+    return "unknown"
 
 
 def _companions_state(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -408,6 +451,8 @@ def maybe_dustmans_cairn_summon(state: Dict[str, Any]) -> List[str]:
     cstate = _companions_state(state)
     if cstate.get("active_quest") != "companions_proving_honor":
         return []
+    if flags.get("dustmans_briefing_done"):
+        return []
     if flags.get("dustmans_cairn_summon_done"):
         return []
     cur = _get_clock_progress(state, "honor_proving_contracts_done")
@@ -421,3 +466,149 @@ def maybe_dustmans_cairn_summon(state: Dict[str, Any]) -> List[str]:
         "In Kodlak’s chamber, Kodlak and Skjor wait. The Hall’s tone is different now: you’ve done the contracts. Now you get the real trial.",
         "MISSION: Retrieve the next fragment of Wuuthrad from Dustman’s Cairn. (This advances Proving Honor into its dungeon phase.)"
     ]
+
+
+def _set_partner(state: Dict[str, Any], partner: Partner) -> None:
+    flags = _flags(state)
+    flags["dustmans_partner"] = partner
+
+    # Track in companions_state for visibility
+    cstate = state.setdefault("companions_state", {})
+    cstate["proving_honor_assigned_partner"] = partner
+
+    # Also add them to active_companions list if the system uses it
+    comps = state.setdefault("companions", {})
+    active = comps.setdefault("active_companions", [])
+    # Avoid duplicates by npc_id/name prefix match
+    key = partner
+    exists = False
+    for c in active:
+        if isinstance(c, dict):
+            if str(c.get("npc_id", c.get("id", ""))).lower().startswith(key):
+                exists = True
+        else:
+            if str(c).lower().startswith(key):
+                exists = True
+    if not exists:
+        # Keep it lightweight: npc_id is enough for trigger_utils.is_companion_present
+        active.append({"npc_id": partner, "name": partner.capitalize(), "loyalty": 50})
+
+
+def _trust_delta_pending(state: Dict[str, Any], npc_id: str, delta: int) -> None:
+    """
+    We do NOT mutate data/npcs/*.json at runtime.
+    We store pending trust deltas in state so the GM can patch or a post-step can apply.
+    """
+    pending = state.setdefault("pending_npc_updates", [])
+    pending.append({"npc_id": npc_id, "type": "trust_clock_delta", "delta": delta})
+
+
+def seed_silver_hand_join_offer(state: Dict[str, Any]) -> None:
+    """
+    Foreshadow joining the Silver Hand later IF beast blood is rejected (Purity track).
+    We seed a dormant quest memory and a token flag.
+    """
+    flags = _flags(state)
+    if flags.get("silver_hand_join_seeded"):
+        return
+
+    companions_state = state.get("companions_state", {}) or {}
+    purity_track = companions_state.get("embraced_curse") is False  # rejected/never embraced
+
+    if not purity_track:
+        return
+
+    flags["silver_hand_join_seeded"] = True
+    flags["silver_hand_token_obtained"] = True
+
+    q = _quests(state)
+    if "silver_hand_contact" not in q["active"] and "silver_hand_contact" not in q["completed"]:
+        q["active"].append("silver_hand_contact")
+
+
+def dustmans_cairn_briefing_scene_once(state: Dict[str, Any]) -> List[str]:
+    """
+    Fires when Honor Proving — Contracts Done hits max and PC is in Harbinger’s Room.
+    Branches based on completion of:
+      - companions_prey_and_predator
+      - companions_honorable_combat
+    """
+    flags = _flags(state)
+    cstate = _companions_state(state)
+    if cstate.get("active_quest") != "companions_proving_honor":
+        return []
+    if flags.get("dustmans_briefing_done"):
+        return []
+
+    contracts_clock = _clocks(state).get("honor_proving_contracts_done", {})
+    contracts_max = int(contracts_clock.get("total_segments", 2) or 2)
+    if _get_clock_progress(state, "honor_proving_contracts_done") < contracts_max:
+        return []
+
+    summon_already_done = bool(flags.get("dustmans_cairn_summon_done"))
+    flags["dustmans_briefing_done"] = True
+    flags["dustmans_cairn_summon_done"] = True
+
+    prey_res = _quest_result(state, "companions_prey_and_predator")
+    honor_res = _quest_result(state, "companions_honorable_combat")
+
+    lines: List[str] = []
+    summon_prefix = "[SUMMON] " if not summon_already_done else ""
+    lines.append(f"{summon_prefix}You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
+    lines.append("On the table: a map mark and a fragment case. The air tastes like the moment before a storm breaks.")
+
+    # Branch 1: Prey & Predator completed (success OR fail)
+    if prey_res in ("success", "failure"):
+        # Trust delta to Skjor: +20 success, +10 failure
+        _trust_delta_pending(state, "skjor", 20 if prey_res == "success" else 10)
+
+        lines.append("[BRANCH] Skjor leads the briefing this time. His tone is grudging, but not hostile. He has seen what you can do in the wild.")
+        lines.append("Skjor: “Dustman’s Cairn. Draugr. And worse… men in silver who don’t belong down there.”")
+
+        # Pair with Aela
+        _set_partner(state, "aela")
+
+        # Aela enters (sass vs fond if bond deepened)
+        bond = bool(_flags(state).get("aela_bond_deepened")) or (prey_res == "success")
+        if bond:
+            lines.append("[NPC ENTERS] Aela steps in, glances at you, and the corner of her mouth almost becomes a smile.")
+            lines.append('Aela: “Try to keep up. I don’t want to drag you out when the dead start clawing.” (fond, but pretending it’s not)')
+        else:
+            lines.append("[NPC ENTERS] Aela strides in like she owns the room, eyes sharp as arrowheads.")
+            lines.append('Aela: “Hope you’re faster than you look, outsider.” (sassy, testing)')
+
+    # Branch 2: Honorable Combat completed (success OR fail) and Prey branch did NOT trigger
+    elif honor_res in ("success", "failure"):
+        # Trust delta to Kodlak: +2 segments (clock-style) regardless; add +1 more if success
+        # (Kept small because Kodlak trust clock is 0-6, not 0-100.)
+        _trust_delta_pending(state, "kodlak_whitemane", 2 if honor_res == "failure" else 3)
+
+        lines.append("[BRANCH] Kodlak leads the briefing personally. His voice is gentle, but it pins the room in place.")
+        lines.append('Kodlak: “This is a trial of who you are when steel is easy and honor is hard.”')
+
+        # Pair with Vilkas
+        _set_partner(state, "vilkas")
+
+        # Vilkas enters with tone keyed to the yard trial outcome (from Phase 2)
+        pc_won = bool(_flags(state).get("vilkas_trial_pc_won"))
+        if pc_won:
+            lines.append("[NPC ENTERS] Vilkas enters, nods once to you. Respect, controlled and real.")
+            lines.append('Vilkas: “You’ve got hands. Now show you’ve got judgment.”')
+        else:
+            lines.append("[NPC ENTERS] Vilkas enters like a commander entering a war room.")
+            lines.append('Vilkas: “Do not improvise. Do not posture. Do what you’re told and come back alive.”')
+
+    # Default branch
+    else:
+        lines.append("[DEFAULT] Kodlak leads. Skjor watches, silent. This is the traditional path: prove reliability, then earn the real work.")
+        _set_partner(state, "farkas")
+        lines.append("[NPC ASSIGNED] Farkas is chosen to go with you to Dustman’s Cairn. He rolls his shoulders like he’s been waiting for this all day.")
+        lines.append('Farkas: “Let’s go crack a barrow, then. Easy.” (it is not easy)')
+
+    # Mission briefing (shared)
+    lines.append("")
+    lines.append("[MISSION] Retrieve the Wuuthrad fragment from Dustman’s Cairn. Expect draugr, traps, and Silver Hand defilers.")
+    seed_silver_hand_join_offer(state)
+    lines.append("GM NOTE: After this briefing, set location to 'Dustman’s Cairn — Entrance' to begin the dungeon triggers.")
+
+    return lines

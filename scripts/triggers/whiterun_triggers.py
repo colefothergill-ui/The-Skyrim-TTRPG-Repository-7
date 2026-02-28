@@ -301,6 +301,7 @@ def whiterun_location_triggers(loc, campaign_state):
         if any(k in loc_lower for k in ["harbinger", "kodlak", "jorrvaskr_harbinger_room"]):
             events.extend(jorvaskr_events.harbinger_room_description_once(campaign_state))
             events.extend(jorvaskr_events.kodlak_vilkas_foreshadow_scene_once(campaign_state))
+            events.extend(jorvaskr_events.dustmans_cairn_briefing_scene_once(campaign_state))
 
         # Training yard Vilkas trial (offer once after Proving Honor becomes active)
         if any(k in loc_lower for k in ["training yard", "jorrvaskr_training_yard"]):

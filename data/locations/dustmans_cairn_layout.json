@@ -1,0 +1,24 @@
+{
+  "location_group": "Dustman's Cairn",
+  "hold": "Whiterun Hold / Pale Border",
+  "purpose": "Room anchors + suggested trigger points for Dustman’s Cairn mission (Proving Honor dungeon).",
+  "areas": [
+    { "id": "dustmans_entrance", "name": "Entrance Barrow", "type": "exterior", "connects_to": ["dustmans_anteroom"], "tags": ["wind", "grave-mound"], "gm_notes": "Set the tone; companion commentary depends on partner." },
+    { "id": "dustmans_anteroom", "name": "Antechamber of Runes", "type": "interior", "connects_to": ["dustmans_hall_of_axes", "dustmans_entrance"], "tags": ["trap", "runic"], "gm_notes": "Trap tutorial + first draugr stir." },
+    { "id": "dustmans_hall_of_axes", "name": "Hall of Axes", "type": "interior", "connects_to": ["dustmans_ossuary", "dustmans_anteroom"], "tags": ["trap", "pressure-plates"], "gm_notes": "Opportunity for partner-specific advice." },
+    { "id": "dustmans_ossuary", "name": "Ossuary Maze", "type": "interior", "connects_to": ["dustmans_silver_hand_camp", "dustmans_hall_of_axes"], "tags": ["maze", "bones"], "gm_notes": "Environmental horror + skill checks." },
+    { "id": "dustmans_silver_hand_camp", "name": "Silver Hand Camp", "type": "interior", "connects_to": ["dustmans_crypt_stairs", "dustmans_ossuary"], "tags": ["faction", "antagonist"], "gm_notes": "Named antagonist intro scene + join seed + first real Silver Hand presence." },
+    { "id": "dustmans_crypt_stairs", "name": "Crypt Stairs", "type": "interior_transition", "connects_to": ["dustmans_deep_crypt", "dustmans_silver_hand_camp"], "tags": ["descending"], "gm_notes": "Rising draugr pressure; show escalation." },
+    { "id": "dustmans_deep_crypt", "name": "Deep Crypt (Fragment Chamber)", "type": "interior_boss", "connects_to": ["dustmans_word_wall", "dustmans_crypt_stairs"], "tags": ["boss", "wuuthrad_fragment"], "gm_notes": "Guardian fight + fragment retrieval; allow climactic moment." },
+    { "id": "dustmans_word_wall", "name": "Word Wall Vault", "type": "interior_special", "connects_to": ["dustmans_deep_crypt"], "tags": ["word-wall", "thuum"], "gm_notes": "Optional Word Wall / lore drop; use if you want Thu’um tie-ins." }
+  ],
+  "location_string_aliases": {
+    "dustman": "dustmans_entrance",
+    "dustman's cairn": "dustmans_entrance",
+    "dustmans cairn": "dustmans_entrance",
+    "dustmans_entrance": "dustmans_entrance",
+    "dustmans_silver_hand_camp": "dustmans_silver_hand_camp",
+    "dustmans_fragment_chamber": "dustmans_deep_crypt",
+    "dustmans_word_wall": "dustmans_word_wall"
+  }
+}
