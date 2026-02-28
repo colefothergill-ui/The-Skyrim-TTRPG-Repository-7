@@ -1,0 +1,55 @@
+{
+  "location_group": "Jorrvaskr",
+  "hold": "Whiterun Hold",
+  "district": "Wind District",
+  "purpose": "Canonical sub-location map for the Companions home, used by triggers and quest scenes to anchor where events happen.",
+  "recommended_location_ids": {
+    "entry_from_wind_district": "whiterun_wind_district->jorvaskr_mead_hall_entrance",
+    "primary_social_hub": "jorvaskr_grand_hall",
+    "sparring_event_default": "jorvaskr_training_yard",
+    "kodlak_meeting": "jorvaskr_harbinger_room",
+    "secret_path": "jorvaskr_underforge_entry"
+  },
+  "areas": [
+    { "id": "jorvaskr_skyforge", "name": "The Skyforge", "type": "exterior", "connects_to": ["jorvaskr_training_yard", "jorvaskr_underforge_entry"], "tags": ["forge", "legendary"], "gm_notes": "Eorlund; ritual weight; weapon crafting." },
+    { "id": "jorvaskr_training_yard", "name": "Training Yard (Behind Jorrvaskr)", "type": "exterior", "connects_to": ["jorvaskr_deck_patio", "jorvaskr_skyforge"], "tags": ["sparring", "whelps"], "gm_notes": "Default for Athis duel event." },
+    { "id": "jorvaskr_deck_patio", "name": "Deck Patio (Behind Jorrvaskr)", "type": "exterior", "connects_to": ["jorvaskr_training_yard", "jorvaskr_mead_hall_entrance"], "tags": ["overlook"], "gm_notes": "Great staging for 'walk out to see the commotion' beats." },
+    { "id": "jorvaskr_underforge_entry", "name": "Underforge (Secret Entrance Beneath Skyforge)", "type": "exterior", "connects_to": ["jorvaskr_underforge"], "tags": ["secret", "lycanthropy"], "gm_notes": "Hidden. Gate with flags until Inner Circle." },
+
+    { "id": "jorvaskr_mead_hall_entrance", "name": "Mead Hall / Grand Entrance (Upstairs)", "type": "interior_upstairs", "connects_to": ["jorvaskr_servants_quarters", "jorvaskr_stone_stairwell", "jorvaskr_deck_patio"], "tags": ["entry", "public"], "gm_notes": "Where first-entry description triggers." },
+    { "id": "jorvaskr_servants_quarters", "name": "Servants Quarters (Upstairs)", "type": "interior_upstairs", "connects_to": ["jorvaskr_mead_hall_entrance"], "tags": ["quiet"], "gm_notes": "Low-traffic; useful for secret conversations." },
+    { "id": "jorvaskr_stone_stairwell", "name": "Stone Stairwell (Downstairs)", "type": "interior_transition", "connects_to": ["jorvaskr_grand_hall", "jorvaskr_mead_hall_entrance"], "tags": ["transition"], "gm_notes": "Good for 'descending into the old hall' narration." },
+
+    { "id": "jorvaskr_grand_hall", "name": "Grand Hall (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_whelps_quarters", "jorvaskr_harbinger_room", "jorvaskr_aela_quarters", "jorvaskr_farkas_quarters", "jorvaskr_skjor_quarters", "jorvaskr_vilkas_quarters", "jorvaskr_inner_circle_room_future"], "tags": ["central"], "gm_notes": "Main social hub below." },
+    { "id": "jorvaskr_whelps_quarters", "name": "Whelps Quarters (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["whelps"], "gm_notes": "Ria/Torvar/Athis/Njada banter; bonding triggers live well here." },
+    { "id": "jorvaskr_harbinger_room", "name": "Harbinger's Room (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["kodlak"], "gm_notes": "Entry point to Proving Honor." },
+
+    { "id": "jorvaskr_aela_quarters", "name": "Aela's Quarters (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["aela"], "gm_notes": "Prey/Predator side quest conversations." },
+    { "id": "jorvaskr_farkas_quarters", "name": "Farkas' Quarters (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["farkas"], "gm_notes": "Honorable Combat side quest conversations." },
+    { "id": "jorvaskr_skjor_quarters", "name": "Skjor's Quarters (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["skjor"], "gm_notes": "Reserved; unlock later." },
+    { "id": "jorvaskr_vilkas_quarters", "name": "Vilkas' Quarters (Downstairs)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["vilkas"], "gm_notes": "Reserved; unlock later." },
+
+    { "id": "jorvaskr_inner_circle_room_future", "name": "Inner Circle Room (Eventually PC's)", "type": "interior_downstairs", "connects_to": ["jorvaskr_grand_hall"], "tags": ["future"], "gm_notes": "Gate behind Inner Circle flags; can become PC quarters later." },
+
+    { "id": "jorvaskr_underforge", "name": "The Underforge", "type": "interior_secret", "connects_to": ["jorvaskr_underforge_entry"], "tags": ["lycanthropy", "ritual"], "gm_notes": "Secret ritual chamber." }
+  ],
+  "location_string_aliases": {
+    "jorvaskr": "jorvaskr_mead_hall_entrance",
+    "jorvaskr_mead_hall": "jorvaskr_mead_hall_entrance",
+    "jorvaskr_entrance": "jorvaskr_mead_hall_entrance",
+    "jorvaskr_hall": "jorvaskr_grand_hall",
+    "jorvaskr_yard": "jorvaskr_training_yard",
+    "jorvaskr_patio": "jorvaskr_deck_patio",
+    "skyforge": "jorvaskr_skyforge",
+    "underforge": "jorvaskr_underforge",
+    "_note": "Aliases below support the canonical double-r spelling used in campaign state/tests alongside the single-r map ID prefix.",
+    "jorrvaskr": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_mead_hall": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_entrance": "jorvaskr_mead_hall_entrance",
+    "jorrvaskr_hall": "jorvaskr_grand_hall",
+    "jorrvaskr_yard": "jorvaskr_training_yard",
+    "jorrvaskr_patio": "jorvaskr_deck_patio",
+    "jorrvaskr_skyforge": "jorvaskr_skyforge",
+    "jorrvaskr_underforge": "jorvaskr_underforge"
+  }
+}

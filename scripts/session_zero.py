@@ -980,8 +980,8 @@ class SessionZeroManager:
                 "kodlak_cured": False,
             })
             if not companions_state.get("active_quest"):
-                companions_state["active_quest"] = "companions_proving_honor"
-                companions_state.setdefault("quest_progress", {})["companions_proving_honor"] = "active"
+                companions_state["active_quest"] = "companions_investigate_jorvaskr"
+                companions_state.setdefault("quest_progress", {})["companions_investigate_jorvaskr"] = "active"
             campaign_state["starting_faction"] = "companions"
         else:
             campaign_state.setdefault("companions_state", {

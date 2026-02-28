@@ -1,0 +1,15 @@
+{
+  "patch_id": "2026-02-27_companions_phase1_jorvaskr_investigation",
+  "created_at": "2026-02-27",
+  "type": "quest_restructure_phase",
+  "summary": "Phase 1: Add pre-Proving Honor quest (Investigate Jorrvaskr), Jorrvaskr location map, and Athis spar event with bet + branching outcomes + follow-up hooks.",
+  "changes": [
+    { "path": "data/holds/whiterun_jorvaskr_map.json", "change": "Add canonical Jorrvaskr sub-location outline and alias mapping." },
+    { "path": "data/quests/companions_questline.json", "change": "Add companions_investigate_jorvaskr quest; set as prerequisite for Proving Honor." },
+    { "path": "scripts/story_manager.py", "change": "Companions chain begins with investigate quest; start_companions_questline updated." },
+    { "path": "scripts/jorvaskr_events.py", "change": "Add Athis spar offer + resolution helpers (bet rules, loyalty bumps, side quest unlock markers)." },
+    { "path": "scripts/triggers/whiterun_triggers.py", "change": "Add Jorrvaskr entry triggers, one-time hall outline, Athis offer call, follow-up approach hooks." },
+    { "path": "data/quests/companions_honorable_combat.json", "change": "Add side quest stub (locked until Proving Honor)." },
+    { "path": "data/quests/companions_prey_and_predator.json", "change": "Add side quest stub (locked until Proving Honor)." }
+  ]
+}
