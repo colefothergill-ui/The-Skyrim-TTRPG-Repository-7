@@ -171,6 +171,55 @@
           "neutral_in_civil_war": "Companions don't take sides, won't lose trust based on civil war choices"
         }
       },
+      "silver_hand_trust": {
+        "faction": "The Silver Hand",
+        "current_trust": 0,
+        "max_trust": 10,
+        "trust_level": "Stranger",
+        "advancement_triggers": {
+          "join_silver_hand": "+3",
+          "deliver_evidence_of_circle_curse": "+1 to +2",
+          "rescue_cursed_warrior_instead_of_killing": "+2 (restorer path)",
+          "slay_circle_werewolf": "+1 (purger path)",
+          "destroy_extremist_cell": "+2",
+          "secure_frostroot_lodge": "+1",
+          "final_judgment_completed": "+4"
+        },
+        "setback_triggers": {
+          "embrace_beast_blood": "-10 (Irreversible)",
+          "aid_circle_secretly": "-3",
+          "kill_innocent_suspected_cursed": "-2",
+          "betray_silver_hand": "-10",
+          "publicly_expose_silver_hand": "-2"
+        },
+        "trust_benefits": {
+          "2": [
+            "Lodge access (safehouse)",
+            "Basic silvered gear",
+            "Field intel on cursed creatures"
+          ],
+          "4": [
+            "Join strike teams",
+            "Faction contacts in The Pale and Whiterun",
+            "Access to 'Oath Records' (lore + evidence)"
+          ],
+          "6": [
+            "Command small hunts",
+            "Specialized anti-curse training",
+            "Silver Hand allies can reinforce scenes (1/act)"
+          ],
+          "9": [
+            "Council seat influence",
+            "Unlock Silver Hand artifact reward",
+            "Narrative authority over lodge policy"
+          ]
+        },
+        "incompatible_with": [
+          "companions_if_lycanthrope",
+          "werewolf_form"
+        ],
+        "notes": "Trust can be earned through either restorative or purger choices, but those paths affect internal politics and which NPCs become allies."
+      },
       "thieves_guild_trust": {
         "faction": "Thieves Guild",
         "current_trust": 0,
