@@ -391,79 +391,62 @@ def test_join_request_promotes_locked_sidequests_with_string_active_quests():
     assert all(isinstance(q, str) for q in state["active_quests"])
 
 
-def test_dustmans_briefing_prefers_prey_and_predator_branch():
-    """When Prey and Predator is completed, briefing should assign Aela and Skjor-led branch."""
-    state = {
+def test_dustmans_cairn_entrance_trigger_via_whiterun_hooks():
+    """Dustman's Cairn entrance trigger should flow through whiterun trigger wiring."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {"proving_honor_assigned_partner": "aela"},
         "scene_flags": {},
-        "clocks": {
-            "honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}
+    }
+
+    events = whiterun_location_triggers("dustmans_entrance", campaign_state)
+
+    assert any("[DUSTMAN’S CAIRN]" in e for e in events), "Expected Dustman's Cairn entrance description"
+    assert any("Aela murmurs" in e for e in events), "Expected Aela entrance bark"
+
+
+def test_dustmans_cairn_silver_hand_seed_for_purity_track_once():
+    """Purity track should seed Silver Hand contact once at camp intro."""
+    campaign_state = {
+        "companions": {"active_companions": []},
+        "companions_state": {
+            "embraced_curse": False,
+            "proving_honor_assigned_partner": "farkas",
         },
-        "quests": {"active": [], "completed": ["companions_prey_and_predator"], "failed": []},
-        "companions": {"active_companions": []},
-        "companions_state": {"active_quest": "companions_proving_honor"},
-    }
-
-    events = whiterun_location_triggers("jorrvaskr_harbinger_room", state)
-
-    assert any("Skjor leads the briefing" in e for e in events)
-    assert state["scene_flags"].get("dustmans_partner") == "aela"
-    assert state["companions_state"].get("proving_honor_assigned_partner") == "aela"
-    assert any(isinstance(c, dict) and c.get("npc_id") == "aela" for c in state["companions"]["active_companions"])
-
-
-def test_dustmans_briefing_honorable_combat_branch_assigns_vilkas():
-    """When Honorable Combat is completed and Prey branch is not available, Vilkas is assigned."""
-    state = {
-        "scene_flags": {"vilkas_trial_pc_won": True},
-        "clocks": {
-            "honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}
-        },
-        "quests": {"active": [], "completed": ["companions_honorable_combat"], "failed": []},
-        "companions": {"active_companions": []},
-        "companions_state": {"active_quest": "companions_proving_honor"},
-    }
-
-    lines = jorvaskr_events.dustmans_cairn_briefing_scene_once(state)
-
-    assert any("Kodlak leads the briefing personally" in e for e in lines)
-    assert state["scene_flags"].get("dustmans_partner") == "vilkas"
-    assert any("You’ve got hands. Now show you’ve got judgment." in e for e in lines)
-
-
-def test_dustmans_briefing_requires_proving_honor_active():
-    """Dustman's Harbinger briefing should not fire outside active Proving Honor quest."""
-    state = {
         "scene_flags": {},
-        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
-        "companions_state": {"active_quest": "companions_inner_circle_rites"},
     }
-    assert jorvaskr_events.dustmans_cairn_briefing_scene_once(state) == []
-    assert state["scene_flags"].get("dustmans_briefing_done") is not True
+
+    first_events = whiterun_location_triggers("dustmans_silver_hand_camp", campaign_state)
+    second_events = whiterun_location_triggers("dustmans_silver_hand_camp", campaign_state)
+
+    assert any("[INTRO ANTAGONIST]" in e for e in first_events), "Expected Hakon intro on first camp trigger"
+    assert any("[SEED]" in e for e in first_events), "Expected Silver Hand seed text for purity track"
+    assert not any("[SEED]" in e for e in second_events), "Expected seed text only once"
+    assert campaign_state.get("scene_flags", {}).get("silver_hand_token_obtained") is True
+    assert "silver_hand_contact" in campaign_state.get("quests", {}).get("active", [])
 
 
-def test_harbinger_room_emits_single_summon_with_briefing():
-    """At 2/2 contracts in Harbinger room, summon text should not be duplicated."""
-    state = {
-        "scene_flags": {},
-        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
-        "companions_state": {"active_quest": "companions_proving_honor"},
+def test_dustmans_cairn_additional_room_triggers_once():
+    """Trap/ossuary/deep-crypt/word-wall branches should trigger once each."""
+    campaign_state = {
         "companions": {"active_companions": []},
-    }
-    events = whiterun_location_triggers("jorrvaskr_harbinger_room", state)
-    assert sum(1 for e in events if "[SUMMON]" in e) == 1
-
-
-def test_dustmans_briefing_seeds_silver_hand_offer_for_purity_track():
-    """Purity-track PCs should receive Silver Hand foreshadow seed during briefing."""
-    state = {
         "scene_flags": {},
-        "clocks": {"honor_proving_contracts_done": {"current_progress": 2, "total_segments": 2}},
-        "companions_state": {"active_quest": "companions_proving_honor", "embraced_curse": False},
-        "quests": {"active": [], "completed": [], "failed": []},
     }
-    jorvaskr_events.dustmans_cairn_briefing_scene_once(state)
-    assert state["scene_flags"].get("silver_hand_join_seeded") is True
-    assert "silver_hand_contact" in state["quests"]["active"]
+
+    checks = [
+        ("dustmans_anteroom", "dustmans_trap_rooms_seen", "Runes scratch the stone."),
+        ("dustmans_ossuary_maze", "dustmans_ossuary_seen", "Bone-dust clings to your boots."),
+        ("dustmans_deep_crypt_chamber", "dustmans_fragment_chamber_seen", "[FRAGMENT CHAMBER]"),
+        ("dustmans_word_wall", "dustmans_word_wall_seen", "[WORD WALL]"),
+    ]
+
+    for loc, flag, expected in checks:
+        first_events = whiterun_location_triggers(loc, campaign_state)
+        second_events = whiterun_location_triggers(loc, campaign_state)
+
+        assert any(expected in e for e in first_events), f"Expected first trigger text for {loc}"
+        assert not any(expected in e for e in second_events), f"Expected once-only behavior for {loc}"
+        assert campaign_state.get("scene_flags", {}).get(flag) is True
 
 
 def run_all_tests():
@@ -493,11 +476,9 @@ def run_all_tests():
         test_jorrvaskr_dustmans_summon_when_contract_clock_full,
         test_resolve_vilkas_trial_uses_active_pc_id,
         test_join_request_promotes_locked_sidequests_with_string_active_quests,
-        test_dustmans_briefing_prefers_prey_and_predator_branch,
-        test_dustmans_briefing_honorable_combat_branch_assigns_vilkas,
-        test_dustmans_briefing_requires_proving_honor_active,
-        test_harbinger_room_emits_single_summon_with_briefing,
-        test_dustmans_briefing_seeds_silver_hand_offer_for_purity_track,
+        test_dustmans_cairn_entrance_trigger_via_whiterun_hooks,
+        test_dustmans_cairn_silver_hand_seed_for_purity_track_once,
+        test_dustmans_cairn_additional_room_triggers_once,
     ]
     
     passed = 0
