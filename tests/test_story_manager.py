@@ -407,9 +407,9 @@ class TestCompanionsQuests:
             sm = _make_story_manager(Path(tmpdir))
             sm.start_companions_questline(state)
         cs = state["companions_state"]
-        assert cs["active_quest"] == "companions_proving_honor"
-        assert cs["quest_progress"]["companions_proving_honor"] == "active"
-        print("  ✓ start_companions_questline sets companions_proving_honor as active")
+        assert cs["active_quest"] == "companions_investigate_jorvaskr"
+        assert cs["quest_progress"]["companions_investigate_jorvaskr"] == "active"
+        print("  ✓ start_companions_questline sets companions_investigate_jorvaskr as active")
 
     def test_complete_companions_quest_default_chain(self):
         """complete_companions_quest() advances through the default chain."""
@@ -418,6 +418,7 @@ class TestCompanionsQuests:
             "companions_proving_honor",
             "companions_inner_circle_rites",
             "companions_kodlak_cure_or_sacrifice",
+            "companions_purity_path_ignites",
             "companions_final_journey",
         ]
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -503,7 +504,7 @@ class TestCompanionsQuests:
         with tempfile.TemporaryDirectory() as tmpdir:
             sm = _make_story_manager(Path(tmpdir))
             next_q = sm.complete_companions_quest(state)
-        assert next_q == "companions_final_journey", (
+        assert next_q == "companions_purity_path_ignites", (
             f"Expected final_journey, got '{next_q}'"
         )
         print("  ✓ Dragonbreak branch skipped when embraced_curse=False")
@@ -523,7 +524,7 @@ class TestCompanionsQuests:
         with tempfile.TemporaryDirectory() as tmpdir:
             sm = _make_story_manager(Path(tmpdir))
             next_q = sm.complete_companions_quest(state)
-        assert next_q == "companions_final_journey", (
+        assert next_q == "companions_purity_path_ignites", (
             f"Expected final_journey, got '{next_q}'"
         )
         print("  ✓ Dragonbreak branch skipped when skjor_alive=False")
@@ -660,12 +661,12 @@ class TestSessionZeroCompanionsFaction:
 
         assert "companions_state" in state, "companions_state should be present in campaign state"
         cs = state["companions_state"]
-        assert cs["active_quest"] == "companions_proving_honor", (
-            f"Expected companions_proving_honor as active quest, got: {cs['active_quest']}"
+        assert cs["active_quest"] == "companions_investigate_jorvaskr", (
+            f"Expected companions_investigate_jorvaskr as active quest, got: {cs['active_quest']}"
         )
-        assert cs["quest_progress"].get("companions_proving_honor") == "active"
+        assert cs["quest_progress"].get("companions_investigate_jorvaskr") == "active"
         assert state.get("starting_faction") == "companions"
-        print("  ✓ session-zero with Companions queues companions_proving_honor")
+        print("  ✓ session-zero with Companions queues companions_investigate_jorvaskr")
 
     def test_non_companions_faction_does_not_activate_companions_quests(self):
         """Session-zero with non-Companions subfaction should leave companions_state inactive."""
