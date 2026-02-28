@@ -55,7 +55,7 @@ def _tick_clock(state: Dict[str, Any], clock_id: str, amount: int = 1) -> int:
     entry = clocks[clock_id]
     current = int(entry.get("current_progress", 0))
     total = int(entry.get("total_segments", 6))
-    new_val = min(current + amount, total)
+    new_val = min(max(0, current + amount), total)
     entry["current_progress"] = new_val
     return new_val
 

@@ -313,10 +313,6 @@ def resolve_assault_act(
             events.extend(apply_defender_consequence(state, "farkas", "Overwhelmed at the Gate"))
         elif act == 2:
             events.extend(apply_defender_consequence(state, "skjor", "Breach Wound"))
-            # Skjor hit once — check save gate
-            pool = _build_defense_pool(state)
-            if pool["defenders"].get("skjor", {}).get("status") == "active":
-                events.append("[SAVE GATE AVAILABLE] Call attempt_save_gate(state, 'skjor', 'success'/'failure').")
 
     return events
 
