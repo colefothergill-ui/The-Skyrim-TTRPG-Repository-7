@@ -540,7 +540,9 @@ def dustmans_cairn_briefing_scene_once(state: Dict[str, Any]) -> List[str]:
     if flags.get("dustmans_briefing_done"):
         return []
 
-    if _get_clock_progress(state, "honor_proving_contracts_done") < int(_clocks(state).get("honor_proving_contracts_done", {}).get("total_segments", 2) or 2):
+    contracts_clock = _clocks(state).get("honor_proving_contracts_done", {})
+    contracts_max = int(contracts_clock.get("total_segments", 2) or 2)
+    if _get_clock_progress(state, "honor_proving_contracts_done") < contracts_max:
         return []
 
     summon_already_done = bool(flags.get("dustmans_cairn_summon_done"))
@@ -551,10 +553,8 @@ def dustmans_cairn_briefing_scene_once(state: Dict[str, Any]) -> List[str]:
     honor_res = _quest_result(state, "companions_honorable_combat")
 
     lines: List[str] = []
-    if not summon_already_done:
-        lines.append("[SUMMON] You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
-    else:
-        lines.append("You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
+    summon_prefix = "[SUMMON] " if not summon_already_done else ""
+    lines.append(f"{summon_prefix}You are called to Kodlak’s chamber. Skjor is already there, arms crossed. Kodlak’s gaze is calm, but heavy with intent.")
     lines.append("On the table: a map mark and a fragment case. The air tastes like the moment before a storm breaks.")
 
     # Branch 1: Prey & Predator completed (success OR fail)
