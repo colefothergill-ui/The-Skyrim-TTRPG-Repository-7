@@ -16,12 +16,12 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../s
 from loot_manager import LootManager
 
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data"))
-STATE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../state"))
 
 
 @pytest.fixture(scope="module")
-def loot_manager():
-    return LootManager(DATA_DIR, STATE_DIR)
+def loot_manager(tmp_path_factory):
+    state_dir = tmp_path_factory.mktemp("state")
+    return LootManager(DATA_DIR, str(state_dir))
 
 WHITERUN_TABLES = [
     "whiterun_creature_scavenged",
@@ -55,7 +55,8 @@ def test_whiterun_tables_have_required_fields():
     data = _load_tables()
     tables = data.get("tables", {})
     for table_id in WHITERUN_TABLES:
-        table = tables[table_id]
+        table = tables.get(table_id)
+        assert table is not None, f"Missing loot table: {table_id}"
         assert "rolls" in table, f"{table_id}: missing 'rolls'"
         assert "entries" in table, f"{table_id}: missing 'entries'"
         assert len(table["entries"]) > 0, f"{table_id}: entries must not be empty"
