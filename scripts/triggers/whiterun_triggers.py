@@ -11,6 +11,7 @@ text and companion barks switch to siege context keyed to the current stage.
 import warnings
 
 from .trigger_utils import is_companion_present
+from .global_story_triggers import global_story_triggers
 
 try:
     import jorvaskr_events
@@ -359,5 +360,5 @@ def whiterun_location_triggers(loc, campaign_state):
         )
         flags["companions_whiterun_deployment_triggered"] = True
 
-    flags["last_location"] = loc_lower
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

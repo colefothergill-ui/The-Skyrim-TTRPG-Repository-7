@@ -5,6 +5,15 @@ This script defines scene triggers and events for Falkreath Hold, including its 
 When certain conditions are met (entering Falkreath, visiting specific locations, or key quest choices), these functions can be called to produce narrative scenes or update the game state.
 """
 
+from .global_story_triggers import global_story_triggers
+
+
+def falkreath_location_triggers(loc, campaign_state):
+    events = []
+    events.extend(global_story_triggers(loc, campaign_state))
+    return events
+
+
 def scene_falkreath_arrival(party_state=None):
     """
     Scene trigger: Party arrives in Falkreath for the first time.

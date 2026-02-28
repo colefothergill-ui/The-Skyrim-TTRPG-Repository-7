@@ -8,6 +8,7 @@ specific to Solitude, the capital of Skyrim and seat of Imperial power.
 """
 
 from .trigger_utils import is_companion_present
+from .global_story_triggers import global_story_triggers
 
 
 def solitude_location_triggers(loc, campaign_state):
@@ -41,4 +42,5 @@ def solitude_location_triggers(loc, campaign_state):
     if is_companion_present(active_companions, "marcurio") and "solitude" in loc_lower:
         events.append('Marcurio (master of the arcane) raises an eyebrow. "Your Highness\'s city is well-protected... impressive. But I sense discontent beneath the loyalty."')
 
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

@@ -9,6 +9,7 @@ and The White Phial.
 """
 
 from .trigger_utils import is_companion_present, is_quest_active, is_night_time
+from .global_story_triggers import global_story_triggers
 
 
 def windhelm_location_triggers(loc, campaign_state):
@@ -96,4 +97,5 @@ def windhelm_location_triggers(loc, campaign_state):
             events.append("An uneasy peace has settled over Windhelm. You notice Imperial emissaries being grudgingly escorted through the streets, their presence tolerated under the terms of the truce. Stormcloak guards watch them with barely concealed hostility. The tension is thick – this ceasefire feels temporary at best.")
             campaign_state["windhelm_truce_noticed"] = True
     
+    events.extend(global_story_triggers(loc, campaign_state))
     return events

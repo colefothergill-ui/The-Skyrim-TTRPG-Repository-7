@@ -1,0 +1,19 @@
+{
+  "patch_id": "2026-02-27_companions_phase2_downstairs_vignar_kodlak_sidequests",
+  "created_at": "2026-02-27",
+  "type": "quest_restructure_phase",
+  "summary": "Phase 2: Add downstairs-first-entry description; Vignar/Eorlund missable Notice overhear; Greymane quest memory->activation at Battle of Whiterun Countdown 6/8; Harbinger room first-entry description + Kodlak/Vilkas foreshadow scene; Proving Honor activation resolver; side quests (Honorable Combat, Prey and Predator) official activation; Swiftclaw boss + hunt clocks; Vilkas yard trial + escort-to-whelps logic; Honor Proving contracts clock -> Dustman’s Cairn summon.",
+  "changes": [
+    { "path": "data/quests/companions_questline.json", "change": "Add Phase 2 objective hooks + notes for new intro scenes." },
+    { "path": "scripts/jorvaskr_events.py", "change": "Add Phase 2 helper triggers/resolvers (downstairs desc, Vignar overhear + politics talk, Kodlak/Vilkas scene, Proving Honor activation, Vilkas trial, escort logic, Dustman summon)." },
+    { "path": "scripts/triggers/whiterun_triggers.py", "change": "Wire Phase 2 triggers by location string; prompt/resolve flow for missable overhear and joining." },
+    { "path": "scripts/triggers/global_story_triggers.py", "change": "Add global march announcement at 6/8 + Greymane quest activation." },
+    { "path": "scripts/triggers/*_triggers.py", "change": "Call global_story_triggers from all hold trigger modules." },
+    { "path": "data/quests/greymane_and_the_greater.json", "change": "Add dormant memory quest that activates at 6/8." },
+    { "path": "data/quests/companions_honorable_combat.json", "change": "Expand quest into real chain with mechanical boon reward." },
+    { "path": "data/quests/companions_prey_and_predator.json", "change": "Expand quest + clocks + Swiftclaw boss." },
+    { "path": "data/npc_stat_sheets/swiftclaw.json", "change": "Add named elite sabre cat stat sheet." },
+    { "path": "data/encounters/companions_swiftclaw_hunt.json", "change": "Add hunt encounter scaffold." },
+    { "path": "data/clocks/pc_extras_clocks.json", "change": "Add Swiftclaw hunt clocks + Honor Proving contracts clock." }
+  ]
+}

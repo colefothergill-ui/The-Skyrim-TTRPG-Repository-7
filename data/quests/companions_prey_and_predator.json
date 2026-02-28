@@ -2,19 +2,21 @@
   "quest_id": "companions_prey_and_predator",
   "name": "Prey and Predator",
   "type": "Faction Quest",
-  "status": "Locked",
+  "status": "Locked (becomes Active when Proving Honor is active)",
   "giver": "Aela the Huntress",
-  "location": "Whiterun — Jorrvaskr / Whiterun Hold Wilds",
-  "description": "Aela tests whether you can hunt with patience and kill with purpose. The wild doesn't reward noise; it rewards teeth and timing.",
+  "location": "Whiterun Hold Wilds",
+  "description": "Aela challenges you to a hunt-game with teeth: slay Swiftclaw, the infamous sabre cat terrorizing Whiterun’s roads, before she does.",
   "objectives": [
-    { "description": "Speak to Aela in Jorrvaskr after Proving Honor is active", "status": "Pending", "optional": false },
-    { "description": "Complete a hunting trial and return proof", "status": "Pending", "optional": false }
+    { "description": "Meet Aela outside Jorrvaskr and accept the hunt terms", "status": "Pending", "optional": false },
+    { "description": "Track Swiftclaw’s signs and locate its lair (fills Tracking Swiftclaw clock)", "status": "Pending", "optional": false },
+    { "description": "Kill Swiftclaw before Aela does (Race is on with Aela clock)", "status": "Pending", "optional": false },
+    { "description": "Return to Aela with proof", "status": "Pending", "optional": false }
   ],
   "rewards": [
     "Aela loyalty/trust increase",
-    "Companions reputation increase",
-    "Unlock: Aela tracking benefit (future phase)"
+    "Mechanical boon: Aela’s Tracking lesson (GM grants one free invoke on a 'Trail Sign' aspect once per hunt scene for the next arc)",
+    "Unlock: deeper Aela bond hooks"
   ],
   "prerequisites": ["companions_proving_honor"],
-  "notes": "Unlocked by winning Athis spar with a tactical/athletic style."
+  "notes": "On activation, create clocks: Tracking Swiftclaw (0/3) and Race is on with Aela (0/5). Race ticks when time is wasted or leads go cold; at max, quest fails (Aela kills it first)."
 }
