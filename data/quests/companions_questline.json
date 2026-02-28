@@ -9,6 +9,7 @@
         "quest_giver": "Kodlak Whitemane",
         "description": "You arrive at Jorrvaskr to learn how the Companions live, train, and judge potential recruits before asking to join.",
         "objectives": [
+          "Enter Jorrvaskr from Whiterun's Wind District",
           "Take in the hall and observe the Companions in their home",
           "Descend into Jorrvaskr’s downstairs living area (Grand Hall) for the first time",
           "Optional: Accept Athis’ sparring challenge (first to impose a Mild consequence wins)",
@@ -17,7 +18,17 @@
         ],
         "notes": "Pre-Proving Honor setup quest used to stage first impressions and early social hooks in Jorrvaskr.",
         "prerequisites": [],
-        "follow_up_quest": "companions_proving_honor"
+        "follow_up_quest": "companions_proving_honor",
+        "rewards": [
+          "Quest unlock: Proving Honor becomes available",
+          "If you win the spar: whelp loyalty increases; a senior Companion may approach",
+          "If you impress via style: unlock a side quest stub (Honorable Combat or Prey and Predator)"
+        ],
+        "outcomes": {
+          "spar_win": "Your victory earns respect: Ria, Torvar, Njada (and Athis) react favorably.",
+          "spar_loss": "You lose the wager and gain no immediate sponsor, but you can still proceed to Kodlak.",
+          "spar_declined": "You keep your coin and dignity; proceed to Kodlak without the hall making a spectacle of you."
+        }
       },
       "companions_proving_honor": {
         "name": "Proving Honor",
@@ -43,7 +54,9 @@
           "quick_retreat": "You recovered the fragment but left some enemies standing. Vilkas will note it - take -1 trust with Vilkas."
         },
         "notes": "Entry quest for the Companions arc. Mirrors the College's 'First Lessons' in function. Vilkas and Farkas are present in Jorrvaskr; their dispositions toward the PC are set here. If PC demonstrates exceptional combat ability (SWS on Fight), Farkas offers a free sparring stunt for later. Phase 2 hooks: first-time Harbinger Room entry triggers Kodlak/Vilkas foreshadow scene; first-time Yard entry can trigger Vilkas Trial by Combat (first Mild consequence wins). After Vilkas trial, escort-to-whelps logic branches based on active side-quests (Aela vs Farkas vs Vilkas). Phase 3: When Honor Proving — Contracts Done hits 2/2, fire the Harbinger Room briefing. Briefing selects mission companion (Aela/Vilkas/Farkas) based on side quest completion. Dustman’s Cairn uses companion-reactive dungeon triggers and introduces a named Silver Hand antagonist with a recruitment seed for Purity-track PCs.",
-        "prerequisites": ["companions_investigate_jorrvaskr"],
+        "prerequisites": [
+          "companions_investigate_jorrvaskr"
+        ],
         "follow_up_quest": "companions_inner_circle_rites"
       },
       "companions_inner_circle_rites": {
@@ -75,7 +88,9 @@
           }
         },
         "notes": "This is the pivotal choice of the arc. The embraced_curse flag governs Kodlak's fate branch and Skjor's role later. If Skjor is alive when companions_kodlak_cure_or_sacrifice is reached and embraced_curse is true, the Dragonbreak branch triggers.",
-        "prerequisites": ["companions_proving_honor"],
+        "prerequisites": [
+          "companions_proving_honor"
+        ],
         "follow_up_quest": "companions_kodlak_cure_or_sacrifice"
       },
       "companions_kodlak_cure_or_sacrifice": {
@@ -108,7 +123,9 @@
           }
         },
         "notes": "Dragonbreak trigger: check state['companions_state']['skjor_alive'] AND state['companions_state']['embraced_curse']. If both true, inject companions_skjor_dragonbreak before final_journey. The GM should present the cure option as costly (requiring travel to Glenmoril Coven) to give the choice real weight.",
-        "prerequisites": ["companions_inner_circle_rites"],
+        "prerequisites": [
+          "companions_inner_circle_rites"
+        ],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_skjor_dragonbreak": {
@@ -133,7 +150,9 @@
           "resolution": "PC makes a Will roll vs Great (+4) to close the fracture; success with style preserves both timeline aspects as boosts"
         },
         "notes": "This is the special Skjor-alive branch described in the problem statement. The DragonbreakManager should be used if available. This quest is skipped if Skjor died or if the PC refused lycanthropy. After this quest, the arc always proceeds to companions_final_journey.",
-        "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
+        "prerequisites": [
+          "companions_kodlak_cure_or_sacrifice"
+        ],
         "follow_up_quest": "companions_final_journey"
       },
       "companions_purity_path_ignites": {
@@ -142,7 +161,7 @@
         "deprecated": true,
         "deprecation_note": "Replaced by Phase 4+ schism arc starting at companions_circle_revelation. This quest node is retained for save-state compatibility only.",
         "quest_giver": "Kodlak Whitemane",
-        "description": "DEPRECATED — see companions_circle_revelation. The cure rites at Ysgramor's Tomb are complete. Kodlak, Vilkas, and Farkas have had the beast blood burned from their souls by the Harbinger Flame. Wuuthrad has been reforged and placed in Elitrof's hands. Now the Inner Circle is fractured: three members are cured, two (Aela and Skjor) are not — and the Silver Hand will escalate in response to the tomb's events. Elitrof must return to Jorrvaskr, secure the hall, manage the ideological fallout within the Circle, and prepare for the Silver Hand's next move.",
+        "description": "DEPRECATED — see companions_circle_revelation. The cure rites at Ysgramor's Tomb are complete. Kodlak, Vilkas, and Farkas have had the beast blood burned from their souls by the Harbinger Flame. Wuuthrad has been reforged and placed in the PC's hands. Now the Inner Circle is fractured: three members are cured, two (Aela and Skjor) are not — and the Silver Hand will escalate in response to the tomb's events. The PC must return to Jorrvaskr, secure the hall, manage the ideological fallout within the Circle, and prepare for the Silver Hand's next move.",
         "objectives": [
           "Leave Ysgramor's Tomb and travel back to Whiterun with the cured Circle members",
           "Secure Jorrvaskr against Silver Hand retaliation",
@@ -152,18 +171,18 @@
         ],
         "rewards": [
           "Harbinger candidacy signaled (Kodlak's private acknowledgment)",
-          "Wuuthrad (Reforged) permanently carried by Elitrof",
+          "Wuuthrad (Reforged) permanently carried by the PC",
           "Inner Circle trust advanced for Kodlak, Vilkas, Farkas",
           "Clarity on Aela and Skjor's stance — potential future complications"
         ],
         "branching": {
           "secure_jorrvaskr_diplomatically": {
-            "description": "Elitrof manages the Circle divide with measured persuasion. Aela and Skjor remain uneasy but stable allies.",
+            "description": "the PC manages the Circle divide with measured persuasion. Aela and Skjor remain uneasy but stable allies.",
             "flag": "circle_divide_managed",
             "value": "diplomatic"
           },
           "secure_jorrvaskr_with_authority": {
-            "description": "Elitrof asserts authority as Harbinger-in-waiting. Aela bristles; Skjor backs down. Trust with Aela -5.",
+            "description": "the PC asserts authority as Harbinger-in-waiting. Aela bristles; Skjor backs down. Trust with Aela -5.",
             "flag": "circle_divide_managed",
             "value": "authoritative"
           },
@@ -173,7 +192,9 @@
           }
         },
         "notes": "DEPRECATED. Replaced by companions_circle_revelation + Phase 4 schism chain. Retained for save-state compatibility.",
-        "prerequisites": ["companions_skjor_dragonbreak"],
+        "prerequisites": [
+          "companions_skjor_dragonbreak"
+        ],
         "follow_up_quest": "companions_circle_revelation"
       },
       "companions_circle_revelation": {
@@ -207,7 +228,9 @@
           }
         },
         "notes": "Anchor quest for Phase 4. Mirrors canon's 'The Silver Hand' initiation without forcing acceptance. Fires companions_schism_tradition_vs_newway clock initialization. Both branches converge into companions_schism_pressure. The Underforge symbolism (sun vs moon, Skyforge above / Underforge below) should be played up.",
-        "prerequisites": ["companions_proving_honor"],
+        "prerequisites": [
+          "companions_proving_honor"
+        ],
         "follow_up_quest": "companions_schism_pressure"
       },
       "companions_pack_run_night": {
@@ -232,7 +255,9 @@
           "partial_truth": "Kodlak reads between the lines. He says nothing yet. Tension held in reserve."
         },
         "notes": "Beast Blood path branch from companions_circle_revelation. Runs before companions_schism_pressure.",
-        "prerequisites": ["companions_circle_revelation"],
+        "prerequisites": [
+          "companions_circle_revelation"
+        ],
         "follow_up_quest": "companions_schism_pressure"
       },
       "companions_oath_of_purity": {
@@ -258,7 +283,9 @@
           "skjor_confrontation_escalates": "If Skjor's hostility roll succeeds against your Will, schism clock ticks an extra +1."
         },
         "notes": "Purity path branch from companions_circle_revelation. Runs before companions_schism_pressure. The social backlash scene uses Provoke/Will mechanics.",
-        "prerequisites": ["companions_circle_revelation"],
+        "prerequisites": [
+          "companions_circle_revelation"
+        ],
         "follow_up_quest": "companions_schism_pressure"
       },
       "companions_schism_pressure": {
@@ -282,7 +309,10 @@
           "companions_whelps_polarization": "Advances on: each whelp forced to pick a side (+1 per whelp)."
         },
         "notes": "Hub quest for Phase 4 middle arc. Each schism scene is a discrete event call in scripts/companions_schism_events.py. The GM should run 2-3 sessions here before advancing to breakpoint.",
-        "prerequisites": ["companions_pack_run_night", "companions_oath_of_purity"],
+        "prerequisites": [
+          "companions_pack_run_night",
+          "companions_oath_of_purity"
+        ],
         "prerequisites_mode": "any",
         "follow_up_quest": "companions_schism_breakpoint"
       },
@@ -321,7 +351,9 @@
           }
         },
         "notes": "All four branches feed into the Silver Hand pressure track (companions_silver_hand_intel). The internal_civil_war flag affects Jorrvaskr defense pool at assault time.",
-        "prerequisites": ["companions_schism_pressure"],
+        "prerequisites": [
+          "companions_schism_pressure"
+        ],
         "follow_up_quest": "companions_silver_hand_intel"
       },
       "companions_silver_hand_intel": {
@@ -344,7 +376,9 @@
           "silver_hand_assault_preparation": "Ticks +1 for each cell left alive after this quest; +1 for public werewolf incidents; +1 for stealth/intel failures."
         },
         "notes": "Parallel side-plot B. Can be run concurrently with schism arc. Feeds into companions_silver_hand_strike_gallows_rock.",
-        "prerequisites": ["companions_schism_breakpoint"],
+        "prerequisites": [
+          "companions_schism_breakpoint"
+        ],
         "follow_up_quest": "companions_silver_hand_strike_gallows_rock"
       },
       "companions_silver_hand_strike_gallows_rock": {
@@ -370,7 +404,9 @@
           "commander_escapes": "The Silver Hand commander escapes. silver_hand_assault_preparation clock ticks +1."
         },
         "notes": "Canon tie to 'The Silver Hand' quest. Skjor's survival here is NOT guaranteed — the GM should not protect him by default. His death is a legitimate campaign outcome with downstream consequences.",
-        "prerequisites": ["companions_silver_hand_intel"],
+        "prerequisites": [
+          "companions_silver_hand_intel"
+        ],
         "follow_up_quest": "companions_silver_hand_endgame"
       },
       "companions_silver_hand_endgame": {
@@ -390,7 +426,9 @@
           "Aela trust +15"
         ],
         "notes": "If the assault clock reaches 6 before this quest completes, the assault fires regardless. Completing this quest successfully can skip companions_jorvaskr_assault entirely — a meaningful success reward.",
-        "prerequisites": ["companions_silver_hand_strike_gallows_rock"],
+        "prerequisites": [
+          "companions_silver_hand_strike_gallows_rock"
+        ],
         "follow_up_quest": "companions_jorvaskr_assault"
       },
       "companions_jorvaskr_assault": {
@@ -406,8 +444,18 @@
         "trigger_condition": "silver_hand_assault_preparation clock reaches 6 OR companions_silver_hand_endgame fails",
         "defense_pool": {
           "description": "The Jorrvaskr Defense Pool is a group consequence track. Each named NPC can absorb one consequence before being taken out. Taken-out NPCs are dead or expelled.",
-          "defenders": ["Kodlak Whitemane", "Skjor", "Aela the Huntress", "Vilkas", "Farkas", "Vignar Gray-Mane"],
-          "lethal_risk_npcs": ["Kodlak Whitemane", "Skjor"],
+          "defenders": [
+            "Kodlak Whitemane",
+            "Skjor",
+            "Aela the Huntress",
+            "Vilkas",
+            "Farkas",
+            "Vignar Gray-Mane"
+          ],
+          "lethal_risk_npcs": [
+            "Kodlak Whitemane",
+            "Skjor"
+          ],
           "save_gates": [
             "PC Physique vs Great (+4) to pull Kodlak from a killing blow",
             "PC Fight vs Superb (+5) to hold the breach in Act 2",
@@ -421,7 +469,9 @@
           "both_veterans_fall": "Kodlak and Skjor both die in the assault. The Companions are shattered. Sets hall_shattered_state=true."
         },
         "notes": "Skip this quest entirely if companions_silver_hand_endgame cleared all cells (silver_hand_assault_preparation == 0). The internal_civil_war flag (from schism breakpoint) reduces the defense pool by 2 defenders.",
-        "prerequisites": ["companions_silver_hand_endgame"],
+        "prerequisites": [
+          "companions_silver_hand_endgame"
+        ],
         "follow_up_quest": "companions_funeral_rites"
       },
       "companions_funeral_rites": {
@@ -462,7 +512,9 @@
           "Breath of Ysgramor stunt if Kodlak's spirit appears (requires kodlak_cured or kodlak_died_with_honor)"
         ],
         "notes": "Replaces companions_final_journey as the arc's true finale. The 'twist' in the tomb should be keyed to the PC's choice history — the ghost of whoever died most meaningfully can appear. Ysgramor's Tomb layout uses the existing data/locations/ entries.",
-        "prerequisites": ["companions_jorvaskr_assault"],
+        "prerequisites": [
+          "companions_jorvaskr_assault"
+        ],
         "follow_up_quest": null
       },
       "companions_final_journey": {
@@ -488,7 +540,9 @@
           "beast_burial": "If not cured, Farkas howls at the barrow entrance. The Companions honor the warrior, not the soul's fate."
         },
         "notes": "Final quest in the Companions arc. After this quest, companions_state.active_quest is set to null. The Harbinger title gives the PC narrative authority over Jorrvaskr NPCs. Breath of Ysgramor stunt is found in data/stunts/companions.json.",
-        "prerequisites": ["companions_kodlak_cure_or_sacrifice"],
+        "prerequisites": [
+          "companions_kodlak_cure_or_sacrifice"
+        ],
         "follow_up_quest": null
       }
     }

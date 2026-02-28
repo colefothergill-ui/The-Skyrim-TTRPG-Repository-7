@@ -1,0 +1,25 @@
+{
+  "patch_id": "2026-02-28_companions_phase4_hotfix_restore_phase1_contracts_and_session0_tristate",
+  "created_at": "2026-02-28",
+  "type": "quest_restructure_phase",
+  "summary": "Phase 4 Hotfix: restore Phase 1 Athis spar propagation (gold delta, side quest unlock markers, loyalty); add compute_bet_amount helper; fix named-PC default in Vilkas trial; add Proving Honor prerequisite gate; make embraced_curse tri-state in Session 0; harden Jorrvaskr spelling matches; scrub named-PC mentions from Companions quest node text; fix syntax error in test_global_story_triggers.py.",
+  "applies_to": "copilot/hotfix-restore-and-remove",
+  "changes": [
+    {
+      "path": "tests/test_global_story_triggers.py",
+      "change": "Remove accidentally embedded GitHub merge-conflict URL from line 62 that caused a SyntaxError on import."
+    },
+    {
+      "path": "scripts/jorvaskr_events.py",
+      "change": "Add compute_bet_amount helper. Replace resolve_athis_spar_event with spec-compliant version: returns List[str], records pending gold delta, sets companions_* side quest statuses to 'locked' on style win, applies whelp loyalty bumps. Remove named-PC default from resolve_vilkas_trial (pc_elitrof_whitemane -> state.get('active_pc_id') or 'pc_001')."
+    },
+    {
+      "path": "data/quests/companions_questline.json",
+      "change": "Restore missing Phase 1 objective ('Enter Jorrvaskr from Whiterun's Wind District'); add rewards/outcomes metadata to companions_investigate_jorrvaskr; scrub named-PC references ('Elitrof') from companions_purity_path_ignites description, rewards, and branching."
+    },
+    {
+      "path": "scripts/session_zero.py",
+      "change": "Set companions_state.embraced_curse to None (tri-state) in both the companions and default branch initializers so Purity-track hooks do not fire before the player explicitly chooses."
+    }
+  ]
+}
