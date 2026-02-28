@@ -739,12 +739,11 @@ class TestSilverHandQuests:
         state = {}
         with tempfile.TemporaryDirectory() as tmpdir:
             sm = _make_story_manager(Path(tmpdir))
-            result = sm.start_silver_hand_questline(state)
-        assert result == "silver_hand_frostroot_contact"
+            sm.start_silver_hand_questline(state)
         sh = state["silver_hand_state"]
         assert sh["active_quest"] == "silver_hand_frostroot_contact"
         assert sh["quest_progress"]["silver_hand_frostroot_contact"] == "active"
-        assert sh["joined"] is True
+        assert sh["joined"] is False
         print("  ✓ start_silver_hand_questline sets silver_hand_frostroot_contact as active")
 
     def test_complete_silver_hand_quest_default_chain(self):

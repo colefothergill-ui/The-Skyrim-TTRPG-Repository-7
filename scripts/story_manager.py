@@ -289,20 +289,16 @@ class StoryManager:
 
         Args:
             state: Campaign state dict (mutated in-place).
-
-        Returns:
-            The quest ID of the first Silver Hand quest.
         """
         sh_state = state.setdefault("silver_hand_state", {
             "active_quest": None,
             "completed_quests": [],
             "quest_progress": {},
             "internal_politics": {"restorers": 0, "purgers": 0},
-            "joined": True,
+            "joined": False,
         })
         sh_state["active_quest"] = "silver_hand_frostroot_contact"
         sh_state.setdefault("quest_progress", {})["silver_hand_frostroot_contact"] = "active"
-        return "silver_hand_frostroot_contact"
 
     def complete_silver_hand_quest(self, state):
         """

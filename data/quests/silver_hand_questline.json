@@ -66,7 +66,7 @@
         ],
         "branching": {
           "return_records": {
-            "description": "PC returns all records to Moric. Moric is relieved. internal_politics remains stable.",
+            "description": "PC returns all records to Moric. Moric is relieved. internal_politics.restorers +1.",
             "flag": "records_fate",
             "value": "returned"
           },
@@ -93,7 +93,7 @@
         ],
         "rewards": [
           "Leadership role in your chosen faction (+2 trust with faction leader)",
-          "Unique stunt access based on choice (see data/stunts/silver_hand.json)"
+          "Unique stunt access based on choice (see data/stunts/companions.json)"
         ],
         "branching": {
           "side_with_purgers": {
