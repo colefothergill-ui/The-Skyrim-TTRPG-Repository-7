@@ -1,0 +1,42 @@
+{
+  "name": "Agent Sable",
+  "id": "npc_stat_white_gold_cipher",
+  "type": "Bounty Hunter (Penitus Oculatus Operator)",
+  "category": "Elite Humanoid Antagonist",
+  "location": "Roads",
+  "faction": "Penitus Oculatus",
+  "aspects": {
+    "high_concept": "The White-Gold Cipher, State Knife That Doesn't Officially Exist",
+    "trouble": "Mission Loyalty Limits Mercy (But Deals Are Allowed)",
+    "other_aspects": [
+      "Network of Eyes",
+      "Nonlethal When Convenient",
+      "Reads People Like Ciphers",
+      "Arrives Before You Notice You're Late"
+    ]
+  },
+  "skills": {
+    "Great": ["Notice", "Deceive", "Fight"],
+    "Good": ["Stealth", "Will"],
+    "Fair": ["Shoot", "Empathy", "Athletics"],
+    "Average": ["Lore", "Provoke", "Physique"]
+  },
+  "stunts": [
+    "Oculatus Network: +2 to Create Advantage with Notice when using informants, planted witnesses, or surveillance.",
+    "Nonlethal Takedown: +2 to Fight when attacking to inflict a consequence that represents restraint/capture rather than injury.",
+    "Authority Without Badges: Use Will instead of Rapport when issuing calm, terrifying instructions to civilians."
+  ],
+  "stress": {
+    "physical": [false, false, false, false],
+    "mental": [false, false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 5,
+  "armor": 1,
+  "notes": "This is spy-thriller tier. He can offer a deal that bends the bounty into a story arc.",
+  "gm_notes": "Use him sparingly. When he shows up, it should feel like the campaign zoomed in."
+}

@@ -1,0 +1,43 @@
+{
+  "name": "Khalid al-Niben",
+  "id": "npc_stat_oathbound_ansei",
+  "type": "Bounty Hunter (Legend-tier Redguard Duelist)",
+  "category": "Antagonist",
+  "location": "Roads",
+  "faction": "Independent (Imperial contract)",
+  "aspects": {
+    "high_concept": "The Oathbound Ansei, Who Hunts Wayn to 'Cleanse' the Name",
+    "trouble": "Oath-Bound to the Contract (Pride Won't Let Him Quit)",
+    "other_aspects": [
+      "Soul-Sword Philosophy",
+      "Sees Wayn as Wasted Potential",
+      "Will Demand a Duel, Not an Ambush",
+      "A Legend With Standards"
+    ]
+  },
+  "skills": {
+    "Superb": ["Fight"],
+    "Great": ["Will", "Athletics"],
+    "Good": ["Notice", "Physique"],
+    "Fair": ["Lore", "Empathy", "Provoke"],
+    "Average": ["Stealth", "Rapport", "Shoot"]
+  },
+  "stunts": [
+    "Ansei Challenge: +2 to Fight when facing a single named opponent in a formal duel declared openly.",
+    "Breath of the Dunes: +2 to Will when resisting fear, intimidation, or supernatural pressure.",
+    "Mirror of Resolve: Once per scene, if Khalid is hit, he may immediately Create Advantage with Will at +2 to place 'Unbroken Focus' (1 free invoke) on himself."
+  ],
+  "stress": {
+    "physical": [false, false, false, false, false],
+    "mental": [false, false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 6,
+  "armor": 1,
+  "notes": "Legend tier. Not for Act I unless Wayn truly burns the world down. This should be a mythic duel with dialogue weight.",
+  "gm_notes": "If he arrives, make it a 'chosen ground' scene. Offer ways to transform the conflict into character resolution."
+}

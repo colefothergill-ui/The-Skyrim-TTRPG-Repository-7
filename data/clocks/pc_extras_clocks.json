@@ -48,6 +48,17 @@
           "Major narrative moment of soul-forging or personal breakthrough (+1)",
           "GM award for exceptional roleplay of Ansei discipline (+1)"
         ]
+      },
+      "mythless_bounty_heat": {
+        "name": "Mythless Bounty Heat",
+        "description": "Tracks how much heat Wayn's Mythless Trouble is generating. When full, the next bounty hunter on the ladder is spawned.",
+        "current": 0,
+        "max": 4,
+        "completion_effect": "Spawn next bounty hunter (advance tier +1), reset heat to 0, record encounter in campaign_state.flags.mythless_bounty_system.history.",
+        "advancement_triggers": [
+          "Trouble compel triggers or a major misstep (+1)",
+          "Shehai/public legend moment (Wayn acts openly as Ansei) (+2)"
+        ]
       }
     }
   }

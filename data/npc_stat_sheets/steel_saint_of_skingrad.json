@@ -1,0 +1,46 @@
+{
+  "name": "Sir Cassian Varro",
+  "id": "npc_stat_steel_saint_of_skingrad",
+  "type": "Bounty Hunter (Imperial Knight)",
+  "category": "Enemy",
+  "location": "Roads",
+  "faction": "Independent (Imperial-aligned)",
+  "aspects": {
+    "high_concept": "The Steel Saint of Skingrad, Great War Veteran Bounty Knight",
+    "trouble": "Cannot Refuse a Duel Offered in Earnest",
+    "other_aspects": [
+      "Order Is a Virtue (Even When It Hurts)",
+      "Shield Before Questions",
+      "Respects Real Honor",
+      "Will Offer Terms Before Blood"
+    ]
+  },
+  "skills": {
+    "Great": ["Fight"],
+    "Good": ["Physique", "Will", "Notice"],
+    "Fair": ["Athletics", "Rapport", "Provoke"],
+    "Average": ["Shoot", "Lore", "Empathy"]
+  },
+  "stunts": [
+    "Shield Hook: +2 to Fight when Creating Advantage to off-balance or disarm with a shield.",
+    "Iron Discipline: +2 to Will when resisting intimidation, fear, or mental pressure.",
+    "Veteran Riposte: Once per scene, if Cassian succeeds with style on a Fight defense, he may immediately make a Fight attack at -1."
+  ],
+  "stress": {
+    "physical": [false, false, false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 4,
+  "armor": 2,
+  "notes": "This is where the ladder becomes serious. Cassian can be reasoned with, but only if Wayn proves honor isn't an act.",
+  "starting_equipment": {
+    "armor": "Imperial plate-mix (Armor:2)",
+    "weapon": "Sword (Weapon:2), Shield",
+    "other": ["Manacles", "Bounty writ copy", "War medal"]
+  }
+}
