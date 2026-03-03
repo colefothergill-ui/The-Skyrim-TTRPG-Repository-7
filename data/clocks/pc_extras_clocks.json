@@ -48,6 +48,32 @@
           "Major narrative moment of soul-forging or personal breakthrough (+1)",
           "GM award for exceptional roleplay of Ansei discipline (+1)"
         ]
+      },
+      "mythless_bounty_tier": {
+        "name": "Mythless Bounty Tier",
+        "description": "Tracks the escalating tier/difficulty of bounty hunters sent after Wayn as his Mythless identity spreads.",
+        "current": 0,
+        "max": 4,
+        "completion_effect": "The bounty hunter chain has reached its planned final tier; no further escalation beyond this point.",
+        "advancement_triggers": [
+          "mythless_bounty_heat clock completes (+1 tier; reset mythless_bounty_heat to 0)"
+        ]
+      },
+      "mythless_bounty_heat": {
+        "name": "Mythless Bounty Heat",
+        "description": "Heat representing how close Wayn's identity gets to the bounty hunter network. When full, a bounty hunter arrives (not a guard swarm).",
+        "current": 0,
+        "max": 4,
+        "completion_effect": "Spawn the next hunter in the Mythless Bounty chain based on current mythless_bounty_tier. Then reset mythless_bounty_heat to 0 and advance mythless_bounty_tier +1.",
+        "advancement_triggers": [
+          "Shehai / unmistakable Ansei display witnessed (+2)",
+          "Full name/title given to record-keepers (+1)",
+          "Public fight / scene with witnesses (+1)",
+          "Old Cyrodiil contact recognizes you (+2)",
+          "Directly antagonize Imperial interests (+1)",
+          "Fail to lay low when heat > 0 (+1)",
+          "Lay low / travel quietly under false name (-1, min 0)"
+        ]
       }
     }
   }
