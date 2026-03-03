@@ -51,14 +51,23 @@
       },
       "mythless_bounty_heat": {
         "name": "Mythless Bounty Heat",
-        "description": "Tracks how much heat Wayn's Mythless Trouble is generating. When full, the next bounty hunter on the ladder is spawned.",
+        "description": "Tracks how much heat Wayn has drawn from witnesses, records, and bold deeds. Fills via Trouble compels. On full clock: spawn the next bounty hunter (by tier), reset to 0, advance tier (capped at max_tier).",
         "current": 0,
-        "max": 4,
-        "completion_effect": "Spawn next bounty hunter (advance tier +1), reset heat to 0, record encounter in campaign_state.flags.mythless_bounty_system.history.",
+        "max": 6,
+        "tier": 1,
+        "max_tier": 3,
+        "completion_effect": "Spawn next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1, capped at max_tier (3).",
         "advancement_triggers": [
-          "Trouble compel triggers or a major misstep (+1)",
-          "Shehai/public legend moment (Wayn acts openly as Ansei) (+2)"
-        ]
+          "Manifest the Shehai in public or do anything unmistakably Ansei (+2)",
+          "Give your full name/title to officials, innkeepers, or record-keepers (+1)",
+          "Win big, insult big, or fight loud in a witnessed public space (+1)",
+          "Traveler from Cyrodiil recognizes you, or 'Mythless' reaches the wrong ear (+2)",
+          "Directly cross the Empire in a way that becomes a repeatable story (+1)"
+        ],
+        "setback_triggers": [
+          "Lay low — travel under a false name, avoid heroics, take quiet work for a scene (-1, min 0)"
+        ],
+        "gm_notes": "Do NOT respond to this clock by swarming Wayn with hold guards. Use the escalating bounty hunter ladder instead. No global Imperial posters — heat spreads by travelers, ledgers, bribed witnesses, and hunter networks."
       }
     }
   }
