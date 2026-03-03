@@ -1,0 +1,48 @@
+{
+  "name": "Sirilion 'Greyhound'",
+  "id": "npc_stat_hound_of_chorrol",
+  "type": "Bounty Hunter (Bosmer Tracker)",
+  "category": "Enemy",
+  "location": "Roads",
+  "faction": "Independent",
+  "aspects": {
+    "high_concept": "The Hound of Chorrol, Winter Tracker With a Trained Hound",
+    "trouble": "His Hound Is a Weak Point (and a Tell)",
+    "other_aspects": [
+      "Reads Snow Like Parchment",
+      "Traps Before Blades",
+      "Prefers the Mark Alive",
+      "Silence Is His Language"
+    ]
+  },
+  "skills": {
+    "Great": ["Survival"],
+    "Good": ["Notice", "Shoot", "Stealth"],
+    "Fair": ["Athletics", "Will", "Fight"],
+    "Average": ["Empathy", "Physique", "Rapport"]
+  },
+  "stunts": [
+    "Scent Mark: +2 to Survival when Creating Advantage to mark a target's trail (blood, cloth, ash).",
+    "Snareline: +2 to Survival when Creating Advantage with traps in wilderness terrain.",
+    "Hound Handler: Once per scene, gain +2 to Notice when the hound is present and searching."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "armor": 1,
+  "notes": "This is the first hunter that feels scary in the wilderness. If Wayn treats the hound with mercy, it becomes a leverage point.",
+  "combat_tactics": "Starts at range, uses traps to control zones, forces exhausting movement, then closes only when advantage is stacked.",
+  "starting_equipment": {
+    "armor": "Reinforced leather (Armor:1)",
+    "weapon": "Hunting bow (Weapon:2), knife (Weapon:1)",
+    "other": ["Trap kit", "Scent salts", "Trained hound"]
+  },
+  "gm_notes": "Don't overuse him. Make the approach tense: signs, silence, then a snap of cord or an arrow in a tree."
+}

@@ -232,7 +232,16 @@
     "wind_district_guard_compel_accepted": true,
     "wind_district_guard_attention": "heightened"
   },
-  "flags": {},
+  "flags": {
+    "mythless_bounty_system": {
+      "heat_clock_id": "mythless_bounty_heat",
+      "tier": 0,
+      "next_tier": 1,
+      "active_hunter_id": null,
+      "history": [],
+      "last_spawn_scene_id": null
+    }
+  },
   "clocks": {
     "whiterun_guard_connects_dots": {
       "name": "Whiterun Guard Connects the Dots",

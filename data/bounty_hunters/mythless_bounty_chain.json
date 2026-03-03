@@ -1,0 +1,72 @@
+{
+  "system_name": "Mythless Bounty Hunter Ladder",
+  "target_pc_id": "pc_wayn",
+  "heat_clock_id": "mythless_bounty_heat",
+  "gm_rules": {
+    "tick_policy": "When a Trouble compel triggers or a major misstep happens, tick heat (usually +1). Shehai/public legend moments tick +2.",
+    "on_full": "When heat fills, spawn the next hunter (by tier), reset heat to 0, advance tier +1, and record the encounter in campaign_state.flags.mythless_bounty_system.history.",
+    "resolution": "Each hunter can be defeated, bargained with, bribed, recruited, or turned into a rival. Make it a scene, not a random ambush."
+  },
+  "tiers": [
+    {
+      "tier": 1,
+      "hunter_id": "npc_stat_braggart_of_bruma",
+      "title": "The Braggart of Bruma",
+      "tone": "Comedic-dangerous, prideful, very talkable",
+      "hook": "A low-tier hunter who wants a payday and a story. He's thrilled the mark is 'with the Companions.'",
+      "preferred_scene": "Outside Jorrvaskr, a tavern yard, or a road just outside Whiterun",
+      "dialogue_pitch": "He challenges Wayn loudly to force a public concession or a duel.",
+      "story_seed": "He knows gossip about Bravil's Count and the 'Mythless' rumor trail."
+    },
+    {
+      "tier": 2,
+      "hunter_id": "npc_stat_ledger_sister_of_leyawiin",
+      "title": "The Ledger-Sister of Leyawiin",
+      "tone": "Polite menace, paperwork as a weapon",
+      "hook": "She doesn't hunt by muscle. She hunts by records, inn books, toll logs, and paid witnesses.",
+      "preferred_scene": "Inn common room, carriage stop, city gate queue",
+      "dialogue_pitch": "She offers 'reasonable surrender' and a contract. She'd rather capture than kill.",
+      "story_seed": "She has a copy of the bounty writ and knows what the Empire truly wants back (coin, names, proof)."
+    },
+    {
+      "tier": 3,
+      "hunter_id": "npc_stat_hound_of_chorrol",
+      "title": "The Hound of Chorrol",
+      "tone": "Hunter-horror, quiet competence",
+      "hook": "A Bosmer tracker with a hound and winter traps. You won't see him until you've already been found.",
+      "preferred_scene": "Roads, snowy treeline, campsites",
+      "dialogue_pitch": "He speaks little. The hound speaks for him. He respects skill and bargains only from strength.",
+      "story_seed": "He's tracking someone else too: a surviving Mythless associate who's been selling leads."
+    },
+    {
+      "tier": 4,
+      "hunter_id": "npc_stat_steel_saint_of_skingrad",
+      "title": "The Steel Saint of Skingrad",
+      "tone": "Honorable duel energy, real threat",
+      "hook": "A Great War veteran bounty knight. He believes capturing you is 'order restored,' not personal cruelty.",
+      "preferred_scene": "Bridge choke-point, city approach road, fort ruins",
+      "dialogue_pitch": "He demands terms and offers a duel instead of slaughter.",
+      "story_seed": "He knew of Aldran's reputation and tests whether Wayn's honor is real."
+    },
+    {
+      "tier": 5,
+      "hunter_id": "npc_stat_white_gold_cipher",
+      "title": "The White-Gold Cipher",
+      "tone": "Spy thriller, surgical, dangerous",
+      "hook": "A Penitus Oculatus operator. Less 'bounty hunter,' more 'state knife that doesn't officially exist.'",
+      "preferred_scene": "Alley shadows, private rooms, staged 'accidents'",
+      "dialogue_pitch": "He offers a deal: information or service in exchange for making the bounty\u2026 flexible.",
+      "story_seed": "He knows the real file. Names. Dates. Why Bravil mattered. Who profited."
+    },
+    {
+      "tier": 6,
+      "hunter_id": "npc_stat_oathbound_ansei",
+      "title": "The Oathbound Ansei",
+      "tone": "Legend-tier, mythic duel, soul-sword mirror",
+      "hook": "A Redguard who hunts you for coin, yes, but also for ideology: he believes Wayn's past stains the name of Ansei.",
+      "preferred_scene": "Open ground. No ambush. A chosen place.",
+      "dialogue_pitch": "He demands a duel of honor and offers a path: defeat, redemption, or death.",
+      "story_seed": "This is where Wayn's Trouble becomes a character arc, not just a chase."
+    }
+  ]
+}
