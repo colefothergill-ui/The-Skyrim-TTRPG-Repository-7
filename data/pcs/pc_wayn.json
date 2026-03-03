@@ -6,12 +6,12 @@
   "standing_stone": "The Steed Stone",
   "level": 1,
   "aspects": {
-    "high_concept": "Master Swordsmen & Martial Artist - The Half-Breed Sayad Sage (Identity).",
+    "high_concept": "Ansei of the Cold Sand (His Title / Fame / Identity)",
     "trouble": "WANTED: DEAD OR ALIVE - The Mythless Bandit of Bravil (Empire Hunted).",
     "other_aspects": [
       "The Ansei of the Cold Sand (Title).",
-      "Dry Wit, Smart Mouth (Personality / Reputation).",
-      "Master Martial Artist. (Combat Prowess)."
+      "Dry Wit, Smart Mouth. (Personality)",
+      "Sage Swordsman of Jorrvaskr. (Combat Prowess)"
     ]
   },
   "skills": {
@@ -20,12 +20,12 @@
     ],
     "Good (+3)": [
       "Will",
-      "Physique"
+      "Empathy"
     ],
     "Fair (+2)": [
       "Athletics",
       "Notice",
-      "Empathy"
+      "Physique"
     ],
     "Average (+1)": [
       "Crafts",
@@ -64,9 +64,9 @@
     "severe": null
   },
   "stunts": [
-    "Warrior of the Mind: Because Wayn has spent years learning to size his opponent up, learning integral truths about people's personas comes as if second nature. A talent he then uses, to disarm his opposition mentally, before proceeding to do so physically as well. Rolls used to read someone with Empathy receive a +2 Bonus to their 4dF rolls. On SWS Wayn audibly points out a character flaw of his enemy, and imposes a Situation Aspect on them for a Scene: 'In their Head' making attacks made by the Attacker using Fight or Shoot receieve a -1 to their 4dF rolls against Wayn.",
+    "Mentor of the Mind: Because Wayn's spent years in self reflection, running from the wrongdoings of his youth, and coming to a place of peace at last. He now uses his emotional intelligence to help others find much the same. Wayn gains a +2 bonus on Empathy rolls opposed by an NPC's Will when forming a bond with an ally or opposition. On a success, he may name the resulting scene aspect 'Master of the Mind'; while that aspect is in play, Wayn may Overcome with Empathy and use it in the place of Rapport (for that bond/interaction).",
     "Martial Art Maneuvers: Because Wayn is a Sage of the Martial Art, having trained with the Monastic Khajiit,the Dunmer Marshmerrow, and within his own home of Hammerfell studying the Book of Circles with exceedinly profound insight to the point he could manifest a Shehai. When it comes to close quarter's defense he usually need only let his opponents momentum be their downfall. When defending against one enemy within the same zone, and with no other attacking him, Wayn receieves a bonus of +2 to Defend using Fight. On SWS he may waive the boost in exchange for imposing one of three Situation effects on his target for 2 exchanges: 'Weapon Stolen', 'Swordarm taken out - Pressure Point Struck!', 'Throat chopped - Can't breath!'. If he spends 1 FP he may also inflict two physical stress upon his target affected by one of those situation aspects.",
-    "Mental Mastery: Because Wayn has complete control over his Mind from years of disciplining it through his training at becoming an Ansei. When he sets his mind upon battle, there's little that can detour his objective. Once per Scene Wayn can Create Advantage with Will focusing in on his opponents, receiving a +2 Bonus on the 4dF, placing the Scene Aspect: 'Deadly Calm' (2 free Invokes). On SWS the first Physical Mild Consequence he takes can be ignored and soaked, as if having an additional box to check."
+    "Deadly Calm: Because Wayn has complete control over his Mind from years of disciplining it through his training at becoming an Ansei. When he sets his mind upon battle, there's little that can detour his objective. Once per Scene Wayn can Create Advantage with Will focusing in on his opponents, receiving a +2 Bonus on the 4dF, placing the Scene Aspect: 'Deadly Calm' (2 free Invokes). On SWS the first Physical Mild Consequence he takes can be ignored and soaked, as if having an additional box to check."
   ],
   "refresh": 1,
   "fate_points": 1,
