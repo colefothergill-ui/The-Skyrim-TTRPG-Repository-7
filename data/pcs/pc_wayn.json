@@ -16,7 +16,7 @@
     "compel_library": {
       "system": "Mythless Bounty Heat (Bounty Hunter Ladder, no guard swarm)",
       "clock_id": "mythless_bounty_heat",
-      "on_full_clock": "Spawn the next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1.",
+      "on_full_clock": "Spawn the next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1 (capped at tier 3).",
       "ideas": [
         {
           "id": "mythless_heat_star_too_bright",

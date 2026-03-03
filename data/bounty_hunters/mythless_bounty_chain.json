@@ -3,6 +3,7 @@
   "description": "Escalating bounty hunters sent after Wayn (the Mythless) as the heat clock fills. Each tier is more dangerous and more personal than the last. No guard swarms — these are professionals working the hunter network.",
   "clock_id": "mythless_bounty_heat",
   "spawn_rule": "When mythless_bounty_heat fills (reaches max), spawn the hunter at current tier, reset clock to 0, advance tier by +1.",
+  "max_tier": 3,
   "tiers": [
     {
       "tier": 1,

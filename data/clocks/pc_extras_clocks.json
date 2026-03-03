@@ -51,11 +51,12 @@
       },
       "mythless_bounty_heat": {
         "name": "Mythless Bounty Heat",
-        "description": "Tracks how much heat Wayn has drawn from witnesses, records, and bold deeds. Fills via Trouble compels. On full clock: spawn the next bounty hunter (by tier), reset to 0, advance tier.",
+        "description": "Tracks how much heat Wayn has drawn from witnesses, records, and bold deeds. Fills via Trouble compels. On full clock: spawn the next bounty hunter (by tier), reset to 0, advance tier (capped at max_tier).",
         "current": 0,
         "max": 6,
         "tier": 1,
-        "completion_effect": "Spawn next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1.",
+        "max_tier": 3,
+        "completion_effect": "Spawn next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1, capped at max_tier (3).",
         "advancement_triggers": [
           "Manifest the Shehai in public or do anything unmistakably Ansei (+2)",
           "Give your full name/title to officials, innkeepers, or record-keepers (+1)",
