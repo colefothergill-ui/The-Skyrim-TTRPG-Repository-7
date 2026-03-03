@@ -1,0 +1,54 @@
+{
+  "name": "Hrolf Bear-Tongue",
+  "id": "npc_stat_braggart_of_bruma",
+  "type": "Bounty Hunter (Nord)",
+  "category": "Hostile NPC",
+  "location": "Roads",
+  "faction": "Independent",
+  "aspects": {
+    "high_concept": "The Braggart of Bruma, Loud-Mouthed Bounty Hunter Chasing a Big Story",
+    "trouble": "Can't Resist an Audience, Overcommits to the Bit",
+    "other_aspects": [
+      "Wants to Go Home With a Saga",
+      "Pride Before Planning",
+      "Actually Decent Under the Noise",
+      "Will Talk Before He Swings"
+    ]
+  },
+  "skills": {
+    "Great": ["Provoke"],
+    "Good": ["Fight", "Athletics"],
+    "Fair": ["Notice", "Physique"],
+    "Average": ["Rapport", "Stealth", "Will"]
+  },
+  "stunts": [
+    "Bruma Boast: +2 to Provoke when challenging a named opponent in public.",
+    "Cheap Shot: +2 to Fight on the first exchange if Hrolf acts first.",
+    "Bail Like a Rabbit: Once per scene, +2 to Athletics when Overcoming to disengage/escape after taking stress."
+  ],
+  "stress": {
+    "physical": [false, false, false],
+    "mental": [false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 2,
+  "armor": 1,
+  "notes": "Hrolf is an early-ladder hunter: dangerous enough to matter, social enough to talk. He's here for coin and a story, not cruelty.",
+  "combat_tactics": "Starts with loud Provoke to force a duel or concession, then commits hard. If he meets real resistance, he tries to retreat with face-saving threats.",
+  "starting_equipment": {
+    "armor": "Fur/Leather mix (Armor:1)",
+    "weapon": "Steel Axe (Weapon:2), backup knife (Weapon:1)",
+    "other": ["Bounty token (cheap brass)", "Flask of spiced mead", "Rope and manacles"]
+  },
+  "social_interaction": "Talkative, braggy, surprisingly responsive to respect. If Wayn offers him a better story than 'dragged in chains,' Hrolf can be redirected.",
+  "story_hooks": [
+    "Knows gossip about Bravil's corruption and how the bounty started spreading by word-of-mouth.",
+    "Can become a recurring comedic rival if spared.",
+    "May switch sides if Wayn offers coin plus honor (and lets him keep his pride)."
+  ],
+  "gm_notes": "Play him like a man auditioning for legend. He should be beatable, but not trivial. Reward clever social play."
+}

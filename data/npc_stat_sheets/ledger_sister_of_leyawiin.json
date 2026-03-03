@@ -1,0 +1,53 @@
+{
+  "name": "Marcelline Varian",
+  "id": "npc_stat_ledger_sister_of_leyawiin",
+  "type": "Bounty Hunter (Breton, Imperial Writ-Runner)",
+  "category": "Hostile NPC",
+  "location": "Roads",
+  "faction": "Independent (Imperial-aligned)",
+  "aspects": {
+    "high_concept": "The Ledger-Sister of Leyawiin, Who Hunts by Records and Paid Eyes",
+    "trouble": "Needs Time and Paperwork; Direct Violence Disrupts Her Plans",
+    "other_aspects": [
+      "Polite Voice, Knife-Edge Terms",
+      "Has the Writ (and Copies of It)",
+      "Prefers Capture to Killing",
+      "Bribes Are Cheaper Than Blood"
+    ]
+  },
+  "skills": {
+    "Great": ["Lore"],
+    "Good": ["Deceive", "Notice"],
+    "Fair": ["Rapport", "Will", "Athletics"],
+    "Average": ["Fight", "Empathy", "Provoke"]
+  },
+  "stunts": [
+    "Paper Trail: Use Lore instead of Notice to Overcome when tracking through ledgers, registries, toll logs, and inn books.",
+    "Writ of Authority: +2 to Rapport when compelling cooperation from civilians using an Imperial writ or legal threat.",
+    "Paid Informant: Once per scene, create advantage 'Someone Already Talked' with +2 using Deceive."
+  ],
+  "stress": {
+    "physical": [false, false],
+    "mental": [false, false, false]
+  },
+  "consequences": {
+    "mild": null,
+    "moderate": null,
+    "severe": null
+  },
+  "refresh": 3,
+  "armor": 0,
+  "notes": "Marcelline turns the chase into a social/legal trap. She's the first hunter who feels like 'the net is closing.'",
+  "combat_tactics": "Avoids direct combat unless cornered. Uses allies, guards-for-hire, or staged 'coincidences' to separate the target.",
+  "starting_equipment": {
+    "armor": "Travel robes under a light gambeson (no armor rating)",
+    "weapon": "Slim dagger (Weapon:1)",
+    "other": ["Imperial writ copies", "Ink + seal wax", "Coin purse for bribes", "Manacles"]
+  },
+  "social_interaction": "Calm, contractual, and threatening without raising her voice. She bargains from paperwork strength.",
+  "story_hooks": [
+    "Knows what the Empire actually values in the Mythless bounty (names, proof, recovered coin).",
+    "Can be tricked into becoming a reluctant ally if the legal angle flips on her employer."
+  ],
+  "gm_notes": "She should feel unavoidable unless the PC actively plays stealth/false identity. Great for tense dialogue scenes."
+}
