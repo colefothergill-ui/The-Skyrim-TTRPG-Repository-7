@@ -2,7 +2,7 @@
   "name": "Agent Sable",
   "id": "npc_stat_white_gold_cipher",
   "type": "Bounty Hunter (Penitus Oculatus Operator)",
-  "category": "Elite Humanoid Antagonist",
+  "category": "Hostile NPC",
   "location": "Roads",
   "faction": "Penitus Oculatus",
   "aspects": {

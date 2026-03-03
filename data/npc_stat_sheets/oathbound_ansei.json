@@ -2,7 +2,7 @@
   "name": "Khalid al-Niben",
   "id": "npc_stat_oathbound_ansei",
   "type": "Bounty Hunter (Legend-tier Redguard Duelist)",
-  "category": "Antagonist",
+  "category": "Enemy",
   "location": "Roads",
   "faction": "Independent (Imperial contract)",
   "aspects": {
