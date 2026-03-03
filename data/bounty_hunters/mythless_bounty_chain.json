@@ -1,0 +1,111 @@
+{
+  "chain_id": "mythless_bounty_chain",
+  "description": "Escalating bounty hunters sent after Wayn (the Mythless) as the heat clock fills. Each tier is more dangerous and more personal than the last. No guard swarms — these are professionals working the hunter network.",
+  "clock_id": "mythless_bounty_heat",
+  "spawn_rule": "When mythless_bounty_heat fills (reaches max), spawn the hunter at current tier, reset clock to 0, advance tier by +1.",
+  "tiers": [
+    {
+      "tier": 1,
+      "id": "bounty_hunter_agna_stonewatch",
+      "name": "Agna Stonewatch",
+      "type": "Independent Bounty Hunter (Scout)",
+      "category": "Human Antagonist — Tracker",
+      "location_hint": "Roadside ambush or inn approach, Whiterun Hold",
+      "aspects": {
+        "high_concept": "Hard-Nosed Nord Tracker Working a Fresh Lead",
+        "trouble": "Overconfident on First Contact",
+        "other_aspects": [
+          "Paid Up Front, Needs the Second Half",
+          "Knows a Redguard Swordsman When She Sees One"
+        ]
+      },
+      "skills": {
+        "Good": ["Notice", "Athletics"],
+        "Fair": ["Fight", "Survival"],
+        "Average": ["Shoot", "Deceive"]
+      },
+      "stunts": [
+        "Trail Sense: +2 to Notice when tracking a target she has observed in person before.",
+        "First Strike: Once per scene, act first in an exchange regardless of initiative order."
+      ],
+      "stress": { "physical": [false, false], "mental": [false, false] },
+      "consequences": { "mild": null },
+      "refresh": 1,
+      "fate_points": 1,
+      "reward_posted": 200,
+      "gm_notes": "Agna is a working hunter, not a zealot. She approached a contact in a caravan who described a Redguard swordsman. She will negotiate, retreat if badly outmatched, and report back to the network — advancing the chain — rather than die for pride.",
+      "on_defeat_or_driven_off": "Word gets back. The next tier hunter receives a detailed description and known alias."
+    },
+    {
+      "tier": 2,
+      "id": "bounty_hunter_verek_ashbrand",
+      "name": "Verek Ashbrand",
+      "type": "Dunmer Blade-for-Hire (Named Hunter)",
+      "category": "Named Humanoid Antagonist — Duelist",
+      "location_hint": "Planned intercept at a known route or settlement, any hold",
+      "aspects": {
+        "high_concept": "Dunmer Blade Who Collects Reputations Like Trophies",
+        "trouble": "Needs to Win This One to Restore His Standing",
+        "other_aspects": [
+          "A Ledger Entry and a Personal Grudge",
+          "He's Heard of the Mythless — That's Why He Took the Job",
+          "Fights to Embarrass, Then to Kill"
+        ]
+      },
+      "skills": {
+        "Great": ["Fight"],
+        "Good": ["Athletics", "Notice"],
+        "Fair": ["Provoke", "Deceive"],
+        "Average": ["Will", "Stealth"]
+      },
+      "stunts": [
+        "Duelist's Edge: When fighting one-on-one with no allies present for either combatant in the same zone, +2 to Fight attack rolls.",
+        "Read the Room: Once per scene, ask the GM one question about an NPC's intent and receive an honest answer.",
+        "Reputation Bait: +2 to Provoke when invoking the target's own reputation or title against them."
+      ],
+      "stress": { "physical": [false, false, false], "mental": [false, false] },
+      "consequences": { "mild": null, "moderate": null },
+      "refresh": 2,
+      "fate_points": 2,
+      "reward_posted": 500,
+      "gm_notes": "Verek has been briefed by Agna's report and knows Wayn is Ansei-trained. He will attempt to bait Wayn into a duel in front of witnesses — a public loss humiliates the target and pays more. He is dangerous in a straight fight and will use the 'Mythless' title as a taunt.",
+      "on_defeat_or_driven_off": "Verek survives and sends a detailed combat report to the tier-3 contact. The hunter network now knows the Shehai is real."
+    },
+    {
+      "tier": 3,
+      "id": "bounty_hunter_mira_coldchain",
+      "name": "Mira Coldchain",
+      "type": "Imperial-Affiliated Hunter Coordinator (Network Broker)",
+      "category": "Elite Named Antagonist — Tactician",
+      "location_hint": "Operates through intermediaries; direct confrontation in a city (Whiterun, Windhelm, Riften)",
+      "aspects": {
+        "high_concept": "Imperial Network Broker Who Turns Leads Into Traps",
+        "trouble": "This Has Become Personal After Verek's Report",
+        "other_aspects": [
+          "She Never Gets Her Hands Dirty First",
+          "Every Innkeeper in Skyrim Owes Her a Favor",
+          "She Knows You'll Need to Rest Eventually"
+        ]
+      },
+      "skills": {
+        "Great": ["Contacts", "Deceive"],
+        "Good": ["Notice", "Will"],
+        "Fair": ["Provoke", "Resources"],
+        "Average": ["Fight", "Stealth"]
+      },
+      "stunts": [
+        "Informant Web: Once per session, reveal that an NPC the party trusted has been in contact with Mira. Place the scene aspect 'Compromised Source' (2 free invokes for Mira or her agents).",
+        "Prepared Ambush: When Mira has at least one scene of advance warning, she may place 'Surrounded' as a boost before combat begins.",
+        "Ledger Never Lies: +2 to Create Advantage using Contacts or Deceive when exploiting a paper trail left by Wayn."
+      ],
+      "stress": { "physical": [false, false], "mental": [false, false, false] },
+      "consequences": { "mild": null, "moderate": null },
+      "refresh": 3,
+      "fate_points": 3,
+      "reward_posted": 1500,
+      "gm_notes": "Mira is a coordinator, not a fighter. She operates through proxies (local thugs, crooked innkeepers, off-duty legionnaires). Confronting her directly requires navigating her network of favors and informants first. Defeating her collapses the current hunter chain — the Empire loses the thread for at least an act.",
+      "on_defeat_or_driven_off": "The network goes quiet. Heat resets to 0 and tier resets to 1 (the chain breaks). A major victory — but someone in Cyrodiil filed the original contract, and it will resurface.",
+      "chain_reset_on_defeat": true
+    }
+  ]
+}

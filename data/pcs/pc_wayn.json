@@ -12,7 +12,78 @@
       "The Ansei of the Cold Sand (Title).",
       "Dry Wit, Smart Mouth (Personality / Reputation).",
       "Master Martial Artist. (Combat Prowess)."
-    ]
+    ],
+    "compel_library": {
+      "system": "Mythless Bounty Heat (Bounty Hunter Ladder, no guard swarm)",
+      "clock_id": "mythless_bounty_heat",
+      "on_full_clock": "Spawn the next bounty hunter from data/bounty_hunters/mythless_bounty_chain.json (by tier). Reset heat to 0. Advance tier by +1.",
+      "ideas": [
+        {
+          "id": "mythless_heat_star_too_bright",
+          "title": "A Star Too Bright",
+          "when": "You manifest the Shehai (or do anything unmistakably 'Ansei') where strangers can describe you later.",
+          "compel_hit": "Word travels by coin and caravan. Someone sells a description. Heat rises.",
+          "suggested_scene_aspect": "Rumor Bought for Coin",
+          "clock": { "id": "mythless_bounty_heat", "tick": 2 },
+          "tags": ["trouble", "bounty_heat", "public", "shehai"]
+        },
+        {
+          "id": "mythless_heat_name_in_a_ledger",
+          "title": "Name in a Ledger",
+          "when": "You give your full name/title to officials, innkeepers, stewards, caravan masters, or anyone who keeps records.",
+          "compel_hit": "Ledgers don't forget. Someone cross-references a description and a travel record.",
+          "suggested_scene_aspect": "Paper Trail",
+          "clock": { "id": "mythless_bounty_heat", "tick": 1 },
+          "tags": ["trouble", "bounty_heat", "records", "social"]
+        },
+        {
+          "id": "mythless_heat_public_scene",
+          "title": "Public Scene, Private Price",
+          "when": "You win big, insult big, or fight loud in a place with witnesses (market, tavern, yard, street).",
+          "compel_hit": "A witness realizes your face is worth money. They don't need a poster to get paid.",
+          "suggested_scene_aspect": "Too Many Eyes",
+          "clock": { "id": "mythless_bounty_heat", "tick": 1 },
+          "tags": ["trouble", "bounty_heat", "witnesses"]
+        },
+        {
+          "id": "mythless_heat_old_contact",
+          "title": "Ghost From Bravil",
+          "when": "A traveler from Cyrodiil recognizes you, or someone drops the word 'Mythless' in the wrong ear.",
+          "compel_hit": "The past breathes. The next hunter gets a lead that feels personal.",
+          "suggested_scene_aspect": "Recognized on the Road",
+          "clock": { "id": "mythless_bounty_heat", "tick": 2 },
+          "tags": ["trouble", "bounty_heat", "backstory", "cyrodiil"]
+        },
+        {
+          "id": "mythless_heat_imperial_interest",
+          "title": "Imperial Interest (Without Posters)",
+          "when": "You directly cross the Empire (rob, humiliate, expose corruption), and it becomes a story people repeat.",
+          "compel_hit": "A professional hears 'CHA-CHING' and starts hunting you for sport and reputation.",
+          "suggested_scene_aspect": "Professional Interest",
+          "clock": { "id": "mythless_bounty_heat", "tick": 1 },
+          "tags": ["trouble", "bounty_heat", "empire"]
+        },
+        {
+          "id": "mythless_heat_lay_low_relief",
+          "title": "Lay Low (Heat Relief)",
+          "when": "You choose to go quiet: travel under a false name, avoid heroics, take low-profile work, or disappear for a scene.",
+          "compel_hit": "You lose momentum, but you lose heat too.",
+          "suggested_scene_aspect": "False Name, Quiet Steps",
+          "clock": { "id": "mythless_bounty_heat", "tick": -1, "min": 0 },
+          "tags": ["trouble", "bounty_heat", "relief"]
+        }
+      ],
+      "exceptions": [
+        {
+          "tag": "no_guard_swarm",
+          "description": "Do NOT respond to this Trouble by siccing an entire hold's guard on Wayn. Use the Heat clock and escalating bounty hunters instead."
+        },
+        {
+          "tag": "no_global_posters",
+          "description": "The Empire does not plaster Skyrim with posters for this. Leads spread by travelers, ledgers, bribed witnesses, and hunter networks."
+        }
+      ]
+    }
   },
   "skills": {
     "Great (+4)": [
