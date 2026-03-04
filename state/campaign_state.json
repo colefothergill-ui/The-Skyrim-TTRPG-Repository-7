@@ -69,7 +69,7 @@
     "blades": 0,
     "thalmor": 0
   },
-  "active_quests": ["companions:companions_proving_honor"],
+  "active_quests": ["companions:companions_proving_honor", "companions:companions_prey_and_predator"],
   "completed_quests": [],
   "failed_quests": [],
   "quests": {
@@ -178,9 +178,9 @@
   },
   "companions_state": {
     "active_quest": "companions_proving_honor",
-    "completed_quests": [],
+    "completed_quests": ["companions_investigate_jorrvaskr"],
     "quest_progress": {
-      "companions_investigate_jorrvaskr": "active",
+      "companions_investigate_jorrvaskr": "completed",
       "companions_proving_honor": "active",
       "companions_prey_and_predator": "active",
       "greymane_and_the_greater": "memory"
@@ -252,8 +252,8 @@
     "companions_join_request_pending": false,
     "companions_join_request_resolved": true,
     "companions_join_request_accepted": true,
-    "vilkas_trial_offered": true,
-    "vilkas_trial_pending": true,
+    "vilkas_trial_offered": false,
+    "vilkas_trial_pending": false,
     "wind_district_guard_compel_accepted": true,
     "wind_district_guard_attention": "heightened"
   },
