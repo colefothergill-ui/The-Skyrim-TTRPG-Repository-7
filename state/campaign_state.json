@@ -5,7 +5,7 @@
   "started_date": null,
   "current_act": 1,
   "current_act_label": "Act I",
-  "current_scene_id": "A1-S2_Jorrvaskr_HarbingerDoor",
+  "current_scene_id": "A1-S3_Jorrvaskr_YardTrial",
   "active_hold": "Whiterun",
   "starting_location": "Whiterun",
   "session_zero_completed": true,
@@ -33,6 +33,26 @@
         "recognition_tags": [],
         "appearance_revision": null
       }
+    },
+    "kodlak_whitemane": {
+      "pc_wayn": {
+        "timestamp": "2026-03-04T03:20:49.597000",
+        "disposition": "neutral",
+        "line": null,
+        "source": "default",
+        "recognition_tags": [],
+        "appearance_revision": null
+      }
+    },
+    "vilkas": {
+      "pc_wayn": {
+        "timestamp": "2026-03-04T03:20:49.597000",
+        "disposition": "neutral",
+        "line": null,
+        "source": "default",
+        "recognition_tags": [],
+        "appearance_revision": null
+      }
     }
   },
   "npc_first_impressions_legacy": {},
@@ -49,7 +69,7 @@
     "blades": 0,
     "thalmor": 0
   },
-  "active_quests": [],
+  "active_quests": ["companions:companions_proving_honor", "companions:companions_prey_and_predator"],
   "completed_quests": [],
   "failed_quests": [],
   "quests": {
@@ -67,8 +87,8 @@
       "status": "not_started"
     },
     "companions": {
-      "current": null,
-      "status": "not_started"
+      "current": "companions_proving_honor",
+      "status": "active"
     },
     "college": {
       "current": null,
@@ -157,11 +177,12 @@
     "companion_relationships": {}
   },
   "companions_state": {
-    "active_quest": "companions_investigate_jorrvaskr",
-    "completed_quests": [],
+    "active_quest": "companions_proving_honor",
+    "completed_quests": ["companions_investigate_jorrvaskr"],
     "quest_progress": {
-      "companions_investigate_jorrvaskr": "active",
-      "companions_prey_and_predator": "locked",
+      "companions_investigate_jorrvaskr": "completed",
+      "companions_proving_honor": "active",
+      "companions_prey_and_predator": "active",
       "greymane_and_the_greater": "memory"
     },
     "embraced_curse": null,
@@ -228,7 +249,11 @@
     "jorvaskr_vignar_politics_pc_stance": "neutral",
     "jorvaskr_vignar_politics_trust_delta": 30,
     "jorvaskr_kodlak_vilkas_scene_done": true,
-    "companions_join_request_pending": true,
+    "companions_join_request_pending": false,
+    "companions_join_request_resolved": true,
+    "companions_join_request_accepted": true,
+    "vilkas_trial_offered": false,
+    "vilkas_trial_pending": false,
     "wind_district_guard_compel_accepted": true,
     "wind_district_guard_attention": "heightened"
   },
@@ -254,10 +279,35 @@
         "3",
         "4"
       ]
+    },
+    "honor_proving_contracts_done": {
+      "name": "Honor-Proving Contracts Done",
+      "current_progress": 0,
+      "total_segments": 2,
+      "segments": ["0", "1", "2"]
+    },
+    "race_is_on_with_aela": {
+      "name": "Race Is On With Aela",
+      "current_progress": 0,
+      "total_segments": 5,
+      "segments": ["0", "1", "2", "3", "4", "5"]
+    },
+    "tracking_swiftclaw": {
+      "name": "Tracking Swiftclaw",
+      "current_progress": 0,
+      "total_segments": 3,
+      "segments": ["0", "1", "2", "3"]
+    },
+    "mythless_bounty_heat": {
+      "name": "Mythless Bounty Heat",
+      "current_progress": 0,
+      "total_segments": 6,
+      "tier": 1,
+      "segments": ["0", "1", "2", "3", "4", "5", "6"]
     }
   },
-  "current_location": "Whiterun — Jorrvaskr (Downstairs Hall, outside Harbinger's door)",
-  "current_objective": "Request to join the Companions; secure Kodlak Whitemane's audience.",
+  "current_location": "Whiterun — Jorrvaskr (Harbinger Door → Training Yard)",
+  "current_objective": "Survive Vilkas's trial and accept the first steps of Proving Honor.",
   "current_npcs": [
     "Kodlak Whitemane",
     "Vilkas",

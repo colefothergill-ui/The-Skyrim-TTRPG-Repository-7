@@ -1,0 +1,14 @@
+{
+  "patch_id": "2026-03-04_jorvaskr_join_and_vilkas_trial",
+  "created_at": "2026-03-04",
+  "type": "campaign_state_advance",
+  "summary": "Wayn's join request accepted; Proving Honor activated; Vilkas trial offered; initialize relevant clocks; record first impressions.",
+  "changes": [
+    { "path": "state/campaign_state.json", "change": "Set scene_flags: companions_join_request_pending=false, companions_join_request_resolved=true, companions_join_request_accepted=true; add vilkas_trial_offered=true, vilkas_trial_pending=true." },
+    { "path": "state/campaign_state.json", "change": "Set companions_state.active_quest to companions_proving_honor; add companions_proving_honor:active to quest_progress; change companions_prey_and_predator from locked to active." },
+    { "path": "state/campaign_state.json", "change": "Set quest_state.companions.status=active, quest_state.companions.current=companions_proving_honor; add companions:companions_proving_honor to active_quests." },
+    { "path": "state/campaign_state.json", "change": "Add clocks: honor_proving_contracts_done (0/2), race_is_on_with_aela (0/5), tracking_swiftclaw (0/3), mythless_bounty_heat (0/6 tier 1)." },
+    { "path": "state/campaign_state.json", "change": "Set current_scene_id=A1-S3_Jorrvaskr_YardTrial, current_location=Whiterun — Jorrvaskr (Harbinger Door -> Training Yard), current_objective=Survive Vilkas's trial and accept the first steps of Proving Honor." },
+    { "path": "state/campaign_state.json", "change": "Add npc_first_impressions entries: kodlak_whitemane -> pc_wayn, vilkas -> pc_wayn." }
+  ]
+}

@@ -12,7 +12,7 @@ def test_campaign_state_session_one_checkpoint():
     # Campaign has advanced past Session Zero into Session 01
     assert state.get("session_zero_completed") is True
     assert state.get("active_pc_id") == "pc_wayn"
-    assert state.get("current_scene_id") == "A1-S2_Jorrvaskr_HarbingerDoor"
+    assert state.get("current_scene_id") == "A1-S3_Jorrvaskr_YardTrial"
     assert state.get("pcs") == {}
     # scene_flags and npc_trust are now populated for session 01
     assert "jorvaskr_athis_spar_resolved" in state.get("scene_flags", {})
